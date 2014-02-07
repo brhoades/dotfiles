@@ -19,13 +19,26 @@ map <A-8> 8gt
 map <A-9> 9gt
 
 " Tab Control: Alt+L / Alt+R 
-map <A-Left> :tabl
-map <A-Right> :tabn
+map <A-Left> gt
+map <A-Right> gT
 
 
 " Indentation
 set autoindent
 set smartindent
+
+" Syntax Highlighting
+syntax on
+set showmatch " Jump to matching brackets
+
+" Colors
+set background=dark
+
+" Tabulators
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smarttab
 
 " let Vundle manage Vundle
 " required! 
