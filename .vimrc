@@ -45,5 +45,8 @@ set smarttab
 Bundle 'gmarik/vundle'
 Bundle 'bling/vim-airline'
 
+" Code completion.
+Bundle 'Valloric/YouCompleteMe'
+
 Bundle 'git://git.wincent.com/command-t.git'
 filetype plugin indent on     " required!
