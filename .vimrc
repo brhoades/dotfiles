@@ -44,7 +44,8 @@ set expandtab
 set smarttab
 
 " Swapfile stuff
-set dir=/home/$USER/.vim/swaps/
+set dir=/home/$USER/.vim/swaps//
+set backupdir=/home/$USER/.vim/backups//
 
 " let Vundle manage Vundle
 " required! 
