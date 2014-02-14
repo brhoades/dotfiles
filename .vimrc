@@ -19,13 +19,16 @@ map <A-8> 8gt
 map <A-9> 9gt
 
 " Tab Control: Alt+L / Alt+R 
-map <A-Left> gt
-map <A-Right> gT
+map <A-Left> gT
+map <A-Right> gt
 
 
 " Indentation
 set autoindent
 set smartindent
+
+" Backspaces
+set backspace=indent,eol,start
 
 " Syntax Highlighting
 syntax on
@@ -40,10 +43,14 @@ set shiftwidth=2
 set expandtab
 set smarttab
 
+" Swapfile stuff
+set dir=/home/$USER/.vim/swaps/
+
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
 Bundle 'bling/vim-airline'
+Bundle 'Valloric/YouCompleteMe'
 
 Bundle 'git://git.wincent.com/command-t.git'
 filetype plugin indent on     " required!
