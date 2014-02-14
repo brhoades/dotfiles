@@ -50,7 +50,6 @@ set dir=/home/$USER/.vim/swaps/
 " required! 
 Bundle 'gmarik/vundle'
 Bundle 'bling/vim-airline'
-Bundle 'Valloric/YouCompleteMe'
 
 " Code completion.
 Bundle 'Valloric/YouCompleteMe'
