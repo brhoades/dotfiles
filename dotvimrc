@@ -32,7 +32,7 @@ map <A-Right> gt
 " Indentation
 set noautoindent
 set smartindent
-set textwidth=78
+" set textwidth=78
 
 " Backspaces
 set backspace=indent,eol,start
