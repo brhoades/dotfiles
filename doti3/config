@@ -86,30 +86,6 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-# switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -148,5 +124,52 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar
 {
-  status_command py3status
+  status_command py3status -c ~/.i3/i3status.conf -i ~/.i3/scripts/
 }
+
+# Workspace names
+
+set $wsn1 terms
+set $wsn2 coding
+set $wsn3 firefox
+set $wsn4 reading
+set $wsn5 remote
+set $wsn6 misc
+set $wsn7 longterm
+set $wsn8 archive
+set $wsn9 ???
+set $wsn0 $wsn9
+
+# Switch to workspace
+bindsym $mod+1 workspace $wsn1
+bindsym $mod+2 workspace $wsn2
+bindsym $mod+3 workspace $wsn3
+bindsym $mod+4 workspace $wsn4
+bindsym $mod+5 workspace $wsn5
+bindsym $mod+6 workspace $wsn6
+bindsym $mod+7 workspace $wsn7
+bindsym $mod+8 workspace $wsn8
+bindsym $mod+9 workspace $wsn9
+bindsym $mod+0 workspace $wsn0
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $wsn1
+bindsym $mod+Shift+2 move container to workspace $wsn2
+bindsym $mod+Shift+3 move container to workspace $wsn3
+bindsym $mod+Shift+4 move container to workspace $wsn4
+bindsym $mod+Shift+5 move container to workspace $wsn5
+bindsym $mod+Shift+6 move container to workspace $wsn6
+bindsym $mod+Shift+7 move container to workspace $wsn7
+bindsym $mod+Shift+8 move container to workspace $wsn8
+bindsym $mod+Shift+9 move container to workspace $wsn9
+bindsym $mod+Shift+0 move container to workspace $wsn0
+
+# Workspace classes
+
+assign [class="konsole"] 1
+assign [class="Firefox"] 3
+
+# Notifications float
+
+for_window [class="xfce4-notifyd"] floating enable
+
