@@ -166,8 +166,8 @@ bindsym $mod+Shift+0 move container to workspace $wsn0
 
 # Workspace classes
 
-assign [class="konsole"] 1
-assign [class="Firefox"] 3
+assign [class="konsole"] $wsn1
+assign [class="Firefox"] $wsn3
 
 # Notifications float
 
