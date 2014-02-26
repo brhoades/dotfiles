@@ -24,9 +24,22 @@ map <A-7> 7gt
 map <A-8> 8gt
 map <A-9> 9gt
 
-" Tab Control: Alt+L / Alt+R 
+" Tab Control: Alt+L | Ctrl+Shift+Tab / Alt+R | Ctrl+Tab 
 map <A-Left> gT
 map <A-Right> gt
+
+map <C-Tab> gt
+map <C-S-Tab> gT
+
+"
+" Miscellaneous Shortcuts 
+"
+
+" command "tn" :tabnew<return>
+
+" Undo/Redo
+map <C-Z> :undo<return>
+map <C-S-Z> :redo<return>
 
 
 " Indentation

@@ -138,7 +138,7 @@ set $wsn6 misc
 set $wsn7 longterm
 set $wsn8 archive
 set $wsn9 ???
-set $wsn0 $wsn9
+set $wsn0 ???
 
 # Switch to workspace
 bindsym $mod+1 workspace $wsn1
@@ -172,4 +172,6 @@ assign [class="Firefox"] $wsn3
 # Notifications float
 
 for_window [class="xfce4-notifyd"] floating enable
+
+# for_window [class=""] floating enable
 
