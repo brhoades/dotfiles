@@ -1,0 +1,8 @@
+"1.1
+
+loadplugins '\.(js|penta)$'
+group user
+command! -nargs=1 tasksequence open https://cmdesk-site.srv.mst.edu/smsreporting_rd1/Report.asp?ReportID=143&ComputerName=<args>
+set exrc
+
+" vim: set ft=pentadactyl:
