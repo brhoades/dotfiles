@@ -2,6 +2,7 @@
 
 loadplugins '\.(js|penta)$'
 group user
+
 set exrc
 
 " Functional
@@ -9,9 +10,10 @@ command! jstoggle :js (function() { var p = "javascript.enabled"; prefs.set(p, !
 
 
 " Work
-command! -nargs=1 sccmts tabopen https://cmdesk-site.srv.mst.edu/smsreporting_rd1/Report.asp?ReportID=143&ComputerName=<args>
 " command! -nargs=*
-
+command! -nargs=1 sccmtasksequence open https://cmdesk-site.srv.mst.edu/smsreporting_rd1/Report.asp?ReportID=143&ComputerName=<args>
+command! -nargs=1 sccmadvertisement open https://itweb.mst.edu/auth-cgi-bin/cgiwrap/deskwtg/generate.pl?mode=search&platform=win7-x64-sccm&host=<args>
+command! -nargs=1 sccmcomputer open https://cmdesk-site.srv.mst.edu/smsreporting_rd1/Report.asp?ReportID=143&ComputerName=<args>
 " Work Shortcuts
 
 " command! sccmallts
