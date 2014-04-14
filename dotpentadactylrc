@@ -2,7 +2,33 @@
 
 loadplugins '\.(js|penta)$'
 group user
-command! -nargs=1 tasksequence open https://cmdesk-site.srv.mst.edu/smsreporting_rd1/Report.asp?ReportID=143&ComputerName=<args>
 set exrc
+
+" Functional
+command! jstoggle :js (function() { var p = "javascript.enabled"; prefs.set(p, !prefs.get(p)); dactyl.echo(p+" is now set to "+prefs.get(p)+"\n") })() " Stolen from github/remiprev/pentadactyl-files
+
+
+" Work
+command! -nargs=1 sccmts tabopen https://cmdesk-site.srv.mst.edu/smsreporting_rd1/Report.asp?ReportID=143&ComputerName=<args>
+" command! -nargs=*
+
+" Work Shortcuts
+
+" command! sccmallts
+" command! sccmallad
+command! owa tabopen https://owa.mst.edu/
+command! remedy tabopen https://remedy.umsystem.edu/
+
+
+" Google
+command! -nargs=* google tabopen google <args> 
+command! -nargs=* define tabopen google define: <args>
+
+
+" Misc Shortcuts
+command! weather tabopen http://www.wunderground.com/weather-forecast/US/MO/Rolla.html
+command! -nargs=1 subreddit tabopen http://reddit.com/r/<args>/
+command! reddit tabopen http://reddit.com/
+command! gmail  tabopen https://gmail.com/
 
 " vim: set ft=pentadactyl:
