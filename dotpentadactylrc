@@ -6,15 +6,20 @@ group user
 set exrc
 
 " Functional
-command! jstoggle :js (function() { var p = "javascript.enabled"; prefs.set(p, !prefs.get(p)); dactyl.echo(p+" is now set to "+prefs.get(p)+"\n") })() " Stolen from github/remiprev/pentadactyl-files
+command! jstoggle -description='Toggles javascript' :js (function() { var p = "javascript.enabled"; prefs.set(p, !prefs.get(p)); dactyl.echo(p+" is now set to "+prefs.get(p)+"\n") })() " Stolen from github/remiprev/pentadactyl-files
 
 
 " Work
 " command! -nargs=*
-command! -nargs=1 sccmtasksequence open https://cmdesk-site.srv.mst.edu/smsreporting_rd1/Report.asp?ReportID=143&ComputerName=<args>
-command! -nargs=1 sccmadvertisement open https://itweb.mst.edu/auth-cgi-bin/cgiwrap/deskwtg/generate.pl?mode=search&platform=win7-x64-sccm&host=<args>
-command! -nargs=1 sccmcomputer open https://cmdesk-site.srv.mst.edu/smsreporting_rd1/Report.asp?ReportID=143&ComputerName=<args>
+command! -nargs=1 -description='Opens an advertisement by ID' sccmad open https://cmdesk-site.srv.mst.edu/SMSReporting_RD1/Report.asp?ReportID=145&AdvertID=<args>
+command! -nargs=1 -description='Opens all task sequences for a computer' sccmc open https://cmdesk-site.srv.mst.edu/smsreporting_rd1/Report.asp?ReportID=143&ComputerName=<args>
+command! -nargs=1 -description='Opens a WTG search for a computer name' wtgc open https://itweb.mst.edu/auth-cgi-bin/cgiwrap/deskwtg/generate.pl?mode=search&platform=win7-x64-sccm&host=<args>
+command! -nargs=1 -description='Opens the netdb page for a computer name' netdb open https://itweb.mst.edu/auth-cgi-bin/cgiwrap/netdb/search-hosts.pl?mode=byname&search=<args>
+command! -nargs=1 -description='Opens a netdb page by ethernet' netdbe open https://itweb.mst.edu/auth-cgi-bin/cgiwrap/netdb/search-hosts.pl?mode=byether&search=<args>
+
 " Work Shortcuts
+
+command! wtg open https://itweb.mst.edu/auth-cgi-bin/cgiwrap/deskwtg/menu.pl
 
 " command! sccmallts
 " command! sccmallad
@@ -23,14 +28,14 @@ command! remedy tabopen https://remedy.umsystem.edu/
 
 
 " Google
-command! -nargs=* google tabopen google <args> 
-command! -nargs=* define tabopen google define: <args>
+command! -nargs=* google open google <args> 
+command! -nargs=* define open google define: <args>
 
 
 " Misc Shortcuts
 command! weather tabopen http://www.wunderground.com/weather-forecast/US/MO/Rolla.html
 command! -nargs=1 subreddit tabopen http://reddit.com/r/<args>/
-command! reddit tabopen http://reddit.com/
-command! gmail  tabopen https://gmail.com/
+command! reddit open http://reddit.com/
+command! gmail  open https://gmail.com/
 
 " vim: set ft=pentadactyl:
