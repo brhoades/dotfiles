@@ -48,11 +48,11 @@ nmap <silent> <A-Right> :wincmd l<CR>
 map <C-Z> :undo<return>
 map <C-S-Z> :redo<return>
 
-
 " Indentation
 set noautoindent
-set smartindent
-" set textwidth=78
+set cindent
+set cinkeys-=0#
+set indentkeys-=0#
 
 " Backspaces
 set backspace=indent,eol,start
