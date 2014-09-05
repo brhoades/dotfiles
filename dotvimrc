@@ -4,49 +4,16 @@ filetype off                  " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" Airline Madness
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'solarized'
-let g:airline#extensions#tabline#enabled = 1
-
 " PowerLine Magic
 set encoding=utf-8 " Necessary to show unicode glyphs
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
 
-" Tab Control: alt+#
-map <A-1> 1gt
-map <A-2> 2gt
-map <A-3> 3gt
-map <A-4> 4gt
-map <A-5> 5gt
-map <A-6> 6gt
-map <A-7> 7gt
-map <A-8> 8gt
-map <A-9> 9gt
-
-" Tab Control: Alt+L | Ctrl+Shift+Tab / Alt+R | Ctrl+Tab 
-map <A-Left> gT
-map <A-Right> gt
-
-map <C-Tab> gt
-map <C-S-Tab> gT
-
-
-" Split navigation
-nmap <silent> <A-Up> :wincmd k<C>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
-
-"
-" Miscellaneous Shortcuts 
-"
-
-" command "tn" :tabnew<return>
-
 " Undo/Redo
 map <C-Z> :undo<return>
 map <C-S-Z> :redo<return>
+
+" Change the terminal's title to the filename
+set title
 
 " Indentation
 set noautoindent
@@ -54,6 +21,18 @@ set cindent
 set cinkeys-=0#
 set indentkeys-=0#
 
+" Tabulators
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smarttab
+
+" Searching
+set incsearch  " Displays search matches as you type
+set hlsearch   " Highlights all search terms
+set ignorecase " Default to ignoring case 
+set smartcase  " However if there's a capital it's case sensitve
+ 
 " Backspaces
 set backspace=indent,eol,start
 
@@ -65,36 +44,54 @@ set showmatch " Jump to matching brackets
 set background=dark
 colorscheme slate
 
-" Tabulators
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set smarttab
+if &t_Co >= 256 
+  colorscheme mustang
+endif
 
-" Display history for fifty lines and always show my ruler
+" Display history for fifty lines and always show ruler
 set history=50
 set ruler
 
-" Show incomplete commands and incremental searching
+" Show incomplete commands (?)
 set showcmd
-set incsearch
 
-" Visual Bells Off
+" Bells Off
 set novisualbell
 set noerrorbells
 set vb t_vb=
 
-" Swapfile stuff
+" Swapfile and enable backups
+set backup
 set dir=/home/$USER/.vim/swaps//
 set backupdir=/home/$USER/.vim/backups//
+let myvar = "set backupext=_". strftime("--%y%m%d--%Hh%M")
+execute myvar
 
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
+
+" Airline
 Bundle 'bling/vim-airline'
 
-" Code completion.
-Bundle 'Valloric/YouCompleteMe'
+" Airline Plugins
+Plugin 'airblade/vim-gitgutter' " Adds diff symbols to the left hand 'gutter'
+Plugin 'tpope/vim-fugitive'     " Branch support for airline
 
-Bundle 'git://git.wincent.com/command-t.git'
+" Airline Config
+let g:airline_powerline_fonts            = 1
+let g:airline_theme                      = 'powerlineish'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_inactive_collapse          = 1  " Collapse inactive sections
+let g:airline_detect_paste               = 1  " Detect pastes
+let g:airline#extensions#branch#enabled  = 1  " Git branch integration
+
+set laststatus=2  " Always show statusline
+
+
+" Airline Sections
+let g:airline_section_a                  = airline#section#create(['mode', ' ', 'branch'])
+
+" Code completion.
+"Bundle 'Valloric/YouCompleteMe'
 filetype plugin indent on     " required!
