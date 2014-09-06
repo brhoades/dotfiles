@@ -93,5 +93,9 @@ set laststatus=2  " Always show statusline
 let g:airline_section_a                  = airline#section#create(['mode', ' ', 'branch'])
 
 " Code completion.
-"Bundle 'Valloric/YouCompleteMe'
+if has("win32") || has("win16")
+  " Nothing
+else
+  Bundle 'Valloric/YouCompleteMe'
+endif
 filetype plugin indent on     " required!
