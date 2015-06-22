@@ -17,8 +17,9 @@ set title
 
 " Indentation
 set noautoindent
-set cindent
-set cinkeys-=0#
+" set cindent makes things funky... specifically colons
+set smartindent
+" set cinkeys-=0#
 set indentkeys-=0#
 
 " Tabulators
@@ -45,7 +46,7 @@ set background=dark
 colorscheme slate
 
 if &t_Co >= 256 
-  colorscheme mustang
+  "colorscheme mustang
 endif
 
 " Display history for fifty lines and always show ruler
@@ -94,4 +95,5 @@ let g:airline_section_a                  = airline#section#create(['mode', ' ', 
 
 " Code completion.
 "Bundle 'Valloric/YouCompleteMe'
-filetype plugin indent on     " required!
+" filetype plugin indent on     " required!
+autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
