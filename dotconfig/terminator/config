@@ -1,0 +1,26 @@
+[global_config]
+  geometry_hinting = False
+  tab_position = hidden
+  inactive_color_offset = 0.88
+  borderless = True
+[keybindings]
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#1e90ff:#cd00cd:#00cdcd:#e5e5e5:#4c4c4c:#ff0000:#00ff00:#ffff00:#4682b4:#ff00ff:#00ffff:#ffffff"
+    background_image = None
+    background_darkness = 0.8
+    background_type = transparent
+    use_system_font = False
+    show_titlebar = False
+    font = DejaVu Sans Mono for Powerline 10
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
