@@ -27,6 +27,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set smarttab
+set nocindent
 
 " Searching
 set incsearch  " Displays search matches as you type
@@ -40,6 +41,8 @@ set backspace=indent,eol,start
 " Syntax Highlighting
 syntax on
 set showmatch " Jump to matching brackets
+set list      " Show tabs and newlines
+set listchars=tab:▸\ ,eol:¬
 
 " Colors
 set background=dark
