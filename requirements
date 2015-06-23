@@ -1,0 +1,14 @@
+xorg-xsetroot
+xorg-xinit
+bspwm
+-bar
+sxhkd
+compton
+conky
+hsetroot
+xrandr
+lemonbar-git # ln -s /usr/bin/lemonbar /usr/bin/bar
+dmenu
+stlarch_font
+vnstat #net apps
+tint2

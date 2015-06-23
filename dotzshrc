@@ -51,7 +51,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/home/aaron/.gem/ruby/2.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/home/aaron/.gem/ruby/2.1.0/bin"
+export PATH="$PATH:/home/bjrq48/.gem/ruby/2.0.0/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/core_perl:/home/aaron/.gem/ruby/2.1.0/bin:/home/bjrq48/.config/bspwm/panel/"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -85,3 +85,4 @@ export GIT_EDITOR="vim"
 
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 export ANDROID_SDK_HOME="/opt/android-sdk/"
+export PANEL_FIFO="/tmp/panel_fifo"
