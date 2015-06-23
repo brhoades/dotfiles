@@ -85,4 +85,4 @@ export GIT_EDITOR="vim"
 
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 export ANDROID_SDK_HOME="/opt/android-sdk/"
-export PANEL_FIFO="/tmp/panel_fifo"
+#export PANEL_FIFO="/tmp/panel_fifo"
