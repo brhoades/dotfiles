@@ -34,8 +34,8 @@ super + y
 super + m
 	bspc window -s biggest
 
-super + {_,shift + }{h,j,k,l}
-	bspc window -{f,s} {left,down,up,right}
+#super + {_,shift + }{h,j,k,l}
+#	bspc window -{f,s} {left,down,up,right}
 
 super + {_,shift + }c
 	bspc window -f {next,prev}
@@ -132,7 +132,10 @@ ctrl + super + r
 ##############
 
 ctrl + Print
-  /home/aaron/bin/screenshot/upscreenshot.sh -s
+  /home/$USER/bin/screenshot/upscreenshot.sh -s
 
 Print
-  /home/aaron/bin/screenshot/upscreenshot.sh
+  /home/$USER/bin/screenshot/upscreenshot.sh
+
+super + l
+  /usr/bin/xscreensaver-command -lock
