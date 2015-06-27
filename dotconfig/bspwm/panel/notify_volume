@@ -74,4 +74,5 @@ do
 done
 
 $(dirname $0)/notify  "%{F$COLOR_ICON}$icon%{F-}  [$bar]"&
-mplayer "$CLIP" >/dev/null&
+mplayer "$CLIP" > /dev/null &
+

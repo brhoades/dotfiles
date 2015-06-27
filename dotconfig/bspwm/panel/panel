@@ -16,12 +16,13 @@ mkfifo "$PANEL_FIFO"
 bspc control --subscribe > "$PANEL_FIFO" &
 echo "T" >  "$PANEL_FIFO" &
 conky -c ./panel_conky > "$PANEL_FIFO" &
-./notify_mpd -d &
+#./notify_mpd -d &
 
 cat "$PANEL_FIFO" \
 	| ./panel_bar \
 	| bar \
-		-f "$FONT1","$FONT2"\
+		-f "$FONT1"\
+    -f "$FONT2"\
 		-F "$COLOR_FOREGROUND"\
 		-B "$COLOR_BACKGROUND"\
 		-g "$PANEL_GEOMETRY"\

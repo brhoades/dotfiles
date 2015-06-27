@@ -1,6 +1,6 @@
 # Fonts defined in xfontsel (xft not yet supported)
 FONT1="-misc-stlarch-medium-r-normal--10-100-75-75-c-80-iso10646-1"
-FONT2="-lokaltog-fixed-medium-r-normal--10-100-75-75-c-60-iso8859-1"
+#FONT2="-lokaltog-fixed-medium-r-normal--10-100-75-75-c-60-iso8859-1"
 FONT2="-*-dweep-medium-r-semicondensed-*-11-*-*-*-*-*-*-*"
 
 COLOR_BACKGROUND="#FF1f1f1f"

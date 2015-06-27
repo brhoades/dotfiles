@@ -85,9 +85,13 @@ export GIT_EDITOR="vim"
 
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 export ANDROID_SDK_HOME="/opt/android-sdk/"
-#export PANEL_FIFO="/tmp/panel_fifo"
+export PANEL_FIFO="/tmp/panel_fifo"
 
 if [ -e $HOME/.rbenv/ ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
+fi
+
+if [ -e $HOME/.config/bspwm ]; then
+  export PATH="$HOME/.config/bspwm/panel/:$PATH"
 fi

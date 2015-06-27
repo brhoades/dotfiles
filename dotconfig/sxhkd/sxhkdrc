@@ -97,11 +97,12 @@ super + Escape
 
 # Raises volume
 XF86AudioRaiseVolume
-    amixer set Master 2%+
+    notify_volume + 5
+    #amixer set Master 2%+
 
 # Lowers volume
 XF86AudioLowerVolume
-    amixer set Master 2%-
+    notify_volume - 5
 
 # Mutes
 XF86AudioMute
