@@ -13,4 +13,4 @@ ${execi 1 ./panel_temperature}  \
 ${execi 1 ./panel_wifi} ${wireless_essid wlp3s0}  \
 ${execi 1 ./panel_battery}${battery_percent BAT0}  \
 ${execi 1 ./panel_battery1}${battery_percent BAT1}\
-  ${time %-m/%-d/%y  %I:%M %P} %{-u}
+  ${time %-m/%-d/%y  %-I:%M %P} %{-u}
