@@ -69,6 +69,12 @@ set vb t_vb=
 set backup
 set dir=$HOME/.vim/swaps//
 set backupdir=$HOME/.vim/backups//
+
+" Enable undo storage
+set undofile
+set undodir=$HOME/.vim/undo//
+set undolevels=5000
+set undoreload=50000
 let myvar = "set backupext=_". strftime("--%y%m%d--%Hh%M")
 execute myvar
 
