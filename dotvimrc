@@ -19,6 +19,7 @@ set title
 set noautoindent
 " set cindent makes things funky... specifically colons
 set smartindent
+inoremap # X<BS>#
 " set cinkeys-=0#
 set indentkeys-=0#
 

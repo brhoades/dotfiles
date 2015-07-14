@@ -28,3 +28,7 @@ fi
 if [ -e $HOME/.config/bspwm ]; then
   export PATH="$HOME/.config/bspwm/panel/:$PATH"
 fi
+
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
