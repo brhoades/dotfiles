@@ -1,0 +1,10 @@
+#!/bin/bash
+source $(dirname $0)/config
+
+# CPU ICONS
+# 
+
+icon=""
+echo "%{F$COLOR_ICON}$icon%{F-}"
+
+

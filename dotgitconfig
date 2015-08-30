@@ -1,0 +1,11 @@
+[user]
+        email = billyarhoades@gmail.com
+        name = Billy Rhoades
+[color]
+        ui = auto
+
+[core]
+	editor = vim
+
+[push]
+	default = simple
