@@ -32,6 +32,8 @@ if [ -x /usr/bin/autocutsel ]; then
     autocutsel -selection PRIMARY -fork
 fi
 
+dropbox
+
 python2 ~/bin/rotate-wallpaper.py ~/Pictures/backgrounds/
 exec bspwm ~/.config/bspwm/bspwmrc
 

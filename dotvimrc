@@ -4,6 +4,8 @@ filetype off                  " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+execute pathogen#infect()
+
 " PowerLine Magic
 set encoding=utf-8 " Necessary to show unicode glyphs
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
@@ -104,6 +106,11 @@ set laststatus=2  " Always show statusline
 let g:airline_section_a                  = airline#section#create(['mode', ' ', 'branch'])
 
 " Code completion.
-"Bundle 'Valloric/YouCompleteMe'
-" filetype plugin indent on     " required!
+if has("win32") || has("win16")
+  " Nothing
+else
+  Bundle 'Valloric/YouCompleteMe'
+endif
+filetype plugin indent on     " required!
+
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
