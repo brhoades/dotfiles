@@ -11,6 +11,8 @@ TEXT
 S${execi 1 ./panel_cpuusage} ${cpu cpu0}  \
 ${execi 1 ./panel_temperature}  \
 ${execi 1 ./panel_wifi} ${wireless_essid wlp3s0}  \
-${execi 1 ./panel_battery}${battery_percent BAT0}  \
+${execi 1 ./panel_battery}${battery_percent BAT0}\
+%{U$COLOR_FOREGROUND}  \
 ${execi 1 ./panel_battery1}${battery_percent BAT1}\
-  ${time %-m/%-d/%y  %-I:%M %P} %{-u}
+%{U$COLOR_FOREGROUND}  \
+${time %-m/%-d/%y  %-I:%M %P} %{-u}
