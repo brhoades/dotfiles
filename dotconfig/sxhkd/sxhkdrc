@@ -110,11 +110,11 @@ XF86AudioMute
 
 # Brightness goes up
 XF86MonBrightnessUp
-    brightnessScript 1
+    brightnessScript +
 
 # Brightness goes down
 XF86MonBrightnessDown
-    brightnessScript -1
+    brightnessScript -
 
 # Screen lock
 XF86ScreenSaver
