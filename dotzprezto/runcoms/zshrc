@@ -29,8 +29,12 @@ if [ -e $HOME/.config/bspwm ]; then
   export PATH="$HOME/.config/bspwm/panel/:$PATH"
 fi
 
+if [ -e $HOME/bin ]; then 
+  export PATH=$PATH:$HOME/bin
+fi
+
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
 alias m='sudo ruby ~/bin/mounter.rb'
-export PATH=$PATH:$HOME/bin
+alias suspend='sudo systemctl suspend'

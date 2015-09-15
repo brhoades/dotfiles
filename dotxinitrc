@@ -11,8 +11,15 @@ bspc set wm_name LG3D
 
 # Multihead configuration--- work usually
 if [ `xrandr -q | grep " connected" | wc -l` -eq "2" ]; then
-  xrandr --output DVI-0 --auto --right-of DVI-1 &
-  synergys -c ~/.quicksynergy/synergy.conf &
+  # Home 2x
+  if [ `xrandr -q | grep "HDMI-0 connected" | wc -l` -eq "1" ]; then
+    xrandr --output DVI-I-1 --auto --left-of HDMI-0 &
+  else #work 2x
+    xrandr --output DVI-0 --auto --right-of DVI-1 &
+
+    # Work requires synergy
+    synergys -c ~/.quicksynergy/synergy.conf &
+  fi
 fi
 
 pulseaudio --start &
@@ -32,8 +39,8 @@ if [ -x /usr/bin/autocutsel ]; then
     autocutsel -selection PRIMARY -fork
 fi
 
-dropbox
+dropbox &
 
-python2 ~/bin/rotate-wallpaper.py ~/Pictures/backgrounds/
+python2 ~/bin/rotate-wallpaper.py ~/Pictures/backgrounds/ &
 exec bspwm ~/.config/bspwm/bspwmrc
 
