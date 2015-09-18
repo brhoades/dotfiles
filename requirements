@@ -1,15 +1,23 @@
 xorg-xsetroot
 xorg-xinit
 bspwm
--bar
+bar
 sxhkd
 compton
 conky
 hsetroot
-xrandr
-lemonbar-git # ln -s /usr/bin/lemonbar /usr/bin/bar
+xorg-xrandr
 dmenu
 stlarch_font
-vnstat #net apps
 tint2
-https://github.com/Lokaltog/lokaltog-fonts.git
+autocutsel
+terminator
+# v both acpi for the panel
+acpi
+acpid
+vnstat #net apps
+lemonbar-git # ln -s /usr/bin/lemonbar /usr/bin/bar
+#https://github.com/Lokaltog/lokaltog-fonts.git
+
+# https://github.com/windelicato/dotfiles/wiki/bspwm-for-dummies
+# Guide ^
