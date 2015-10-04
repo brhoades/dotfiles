@@ -14,17 +14,20 @@ bspc config normal_frame_opacity        0.0
 bspc config focused_frame_opacity       0.05
 
 if [ `xrandr -q | grep " connected" | wc -l` -eq "2" ]; then
-  if [ `xrandr -q | grep "LVDS1 connected" | wc -l` -eq "0" ]; then
+  if [ `xrandr -q | grep "LVDS1 connected" | wc -l` -eq "1" ]; then
     # Laptop
+    echo "LAPTOP"
     bspc monitor LVDS1 -d I II III IV V
     bspc monitor HDMI1 -d VI VII VIII IX X
   else
     if [ `xrandr -q | grep "HDMI-0 connected" | wc -l` -eq "1" ]; then
       # Home
+      echo "HOME"
       bspc monitor DVI-I-1 -d 2 4 6 8 10
       bspc monitor HDMI-0 -d 1 3 5 7 9
     else
       # Work
+      echo "WORK"
       bspc monitor DVI-1 -d I II V VI IX X
       bspc monitor DVI-0 -d III IV VII VIII
 
@@ -34,6 +37,7 @@ if [ `xrandr -q | grep " connected" | wc -l` -eq "2" ]; then
   fi
 else
   # Fallback
+  echo "FALLBACK"
   bspc monitor -d I II III IV V VI VII VIII IX X
 fi
 
