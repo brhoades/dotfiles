@@ -41,6 +41,9 @@ set smartcase  " However if there's a capital it's case sensitve
 " Backspaces
 set backspace=indent,eol,start
 
+" 80 char column
+set colorcolumn=80
+
 " Syntax Highlighting
 syntax on
 set showmatch " Jump to matching brackets
