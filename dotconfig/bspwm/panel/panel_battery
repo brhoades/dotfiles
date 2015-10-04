@@ -4,8 +4,8 @@ source $(dirname $0)/config
 # BATTERY ICONS:
 #      
 
-BAT=`acpi -b | awk '{gsub(/%,/,""); print $4}' | sed 's/%//g' | head -n1`
-STATUS=`acpi -b | awk '{gsub(/,/,""); print $3}' | head -n1`
+BAT=`acpi -b | awk '{gsub(/%,/,""); print $4}' | sed 's/%//g' | tail -n1`
+STATUS=`acpi -b | awk '{gsub(/,/,""); print $3}' | tail -n1`
 
 # Set Icon
 icon=""
