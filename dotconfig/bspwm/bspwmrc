@@ -37,13 +37,7 @@ else
   bspc monitor -d I II III IV V VI VII VIII IX X
 fi
 
-bspc rule -a Gimp desktop=^8 follow=on floating=on
-bspc rule -a Chromium desktop=^2
-bspc rule -a mplayer2 floating=on
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
-bspc rule -a "MPLAB X IDE v3.00" floating=on
-bspc rule -a "Minecraft 1.6.4" fullscreen=on desktop=^5
+bspc rule -a Gimp follow=on floating=on
 
 bspc config wm_name LG3D
 
