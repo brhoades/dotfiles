@@ -1,11 +1,9 @@
 #!/bin/bash
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-ln -s ${DIR} ${HOME}/.vim
-ln -s ${DIR}/../dotvimrc ${HOME}/.vimrc
+DIR=$(dirname $(readlink -f $0))
+ln -s $DIR ${HOME}/.vim
+ln -s $DIR/../dotvimrc ${HOME}/.vimrc
 
-mkdir ${HOME}/.vim/swaps
-mkdir ${HOME}/.vim/backups
-mkdir ${HOME}/.vim/undo
+mkdir -p ${HOME}/.vim/swaps ${HOME}/.vim/backups ${HOME}/.vim/undo
 
 # Install pathogen
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
