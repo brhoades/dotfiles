@@ -83,4 +83,6 @@
     scrollback_infinite = True
     scrollbar_position = hidden
     show_titlebar = False
+    urgent_bell = True
     use_system_font = False
+    visible_bell = True
