@@ -11,4 +11,8 @@ mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 
 # Install vundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/vundle
-printf "\n" | vim +PluginInstall +qall &>/dev/null
+printf "\n" | vim +PluginInstall +qall
+cd ${HOME}/.vim/bundle/YouCompleteMe/
+cmake .
+python install.py
+printf "\n" | vim +PluginInstall +qall
