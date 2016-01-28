@@ -9,3 +9,7 @@
 
 [push]
 	default = simple
+
+[credential]
+  #helper = store --file /home/aaron/.git-credentials
+	helper = cache --timeout=28800

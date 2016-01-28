@@ -42,3 +42,5 @@ bindkey "^[[1;5D" backward-word
 
 alias m='sudo ruby ~/bin/mounter.rb'
 alias suspend='sudo systemctl suspend'
+
+setopt clobber
