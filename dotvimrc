@@ -95,6 +95,7 @@ Plugin 'airblade/vim-gitgutter' " Adds diff symbols to the left hand 'gutter'
 Plugin 'tpope/vim-fugitive'     " Branch support for airline
 Plugin 'JuliaLang/julia-vim'
 Plugin 'scrooloose/syntastic'   " Syntax checking
+Plugin 'vim-airline/vim-airline-themes'
 
 " Airline Config
 let g:airline_powerline_fonts            = 1
@@ -115,8 +116,8 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 0 
-let g:syntastic_auto_loc_list = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
