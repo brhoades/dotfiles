@@ -87,12 +87,12 @@ Bundle 'gmarik/vundle'
 Bundle 'bling/vim-airline'
 
 " Airline Plugins
-Plugin 'airblade/vim-gitgutter' " Adds diff symbols to the left hand 'gutter'
+" Plugin 'airblade/vim-gitgutter' " Adds diff symbols to the left hand 'gutter'
 Plugin 'tpope/vim-fugitive'     " Branch support for airline
-Plugin 'JuliaLang/julia-vim'
-Plugin 'scrooloose/syntastic'   " Syntax checking
+" Plugin 'JuliaLang/julia-vim'
+" Plugin 'scrooloose/syntastic'   " Syntax checking
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'wincent/command-t'
+" Plugin 'wincent/command-t'
 " Plugin 'tmhedberg/SimpylFold'
 
 " Airline Config
@@ -126,7 +126,7 @@ let g:syntastic_python_flake8_args='--ignore=E501'
 if has("win32") || has("win16")
   " Nothing
 else
-  Bundle 'Valloric/YouCompleteMe'
+"  Bundle 'Valloric/YouCompleteMe'
 endif
 filetype plugin indent on     " required!
 

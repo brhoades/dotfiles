@@ -1,8 +1,6 @@
 [global_config]
   always_split_with_profile = True
-  borderless = True
   enabled_plugins = ,
-  geometry_hinting = False
   inactive_color_offset = 0.88
   tab_position = hidden
 [keybindings]
@@ -82,7 +80,6 @@
     palette = "#000000:#cd0000:#00cd00:#cdcd00:#1e90ff:#cd00cd:#00cdcd:#e5e5e5:#4c4c4c:#ff0000:#00ff00:#ffff00:#4682b4:#ff00ff:#00ffff:#ffffff"
     scrollback_infinite = True
     scrollbar_position = hidden
-    show_titlebar = False
     urgent_bell = True
     use_system_font = False
     visible_bell = True
