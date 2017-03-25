@@ -94,6 +94,10 @@ Plugin 'tpope/vim-fugitive'     " Branch support for airline
 Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'wincent/command-t'
 " Plugin 'tmhedberg/SimpylFold'
+Plugin 'hdima/python-syntax'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'rust-lang/rust.vim'
+Plugin 'ElmCast/elm-vim'
 
 " Airline Config
 let g:airline_powerline_fonts            = 1
@@ -126,7 +130,7 @@ let g:syntastic_python_flake8_args='--ignore=E501'
 if has("win32") || has("win16")
   " Nothing
 else
-"  Bundle 'Valloric/YouCompleteMe'
+  " Bundle 'Valloric/YouCompleteMe'
 endif
 filetype plugin indent on     " required!
 

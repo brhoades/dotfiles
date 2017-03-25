@@ -8,8 +8,8 @@ super + alt + Escape
 super + w
 	bspc node -c
 
-super + t
-	bspc desktop -l next
+# super + t
+# 	bspc desktop -l next
 
 super + b
 	bspc desktop -B
@@ -109,12 +109,12 @@ XF86AudioMute
     amixer set Master toggle
 
 # Beastness goes up
-XF86MonBeastnessUp
-    beastnessScript +
+XF86MonBrightnessUp
+    brightnessScript +
 
 # Beastness goes south
-XF86MonBeastnesssouth
-    beastnessScript -
+XF86MonBrightnessDown
+    brightnessScript -
 
 # Screen lock
 XF86ScreenSaver

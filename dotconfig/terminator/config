@@ -72,7 +72,7 @@
 [plugins]
 [profiles]
   [[default]]
-    background_darkness = 0.8
+    background_darkness = 0.92
     background_image = None
     background_type = transparent
     cursor_color = "#ffffff"
@@ -83,3 +83,15 @@
     urgent_bell = True
     use_system_font = False
     visible_bell = True
+  [[present]]
+    background_color = "#fdf6e3"
+    background_darkness = 0.9
+    background_image = None
+    background_type = transparent
+    cursor_color = "#000000"
+    font = DejaVu Sans Mono for Powerline 16
+    foreground_color = "#657b83"
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0015ff:#cd00cd:#00cdcd:#faebd7:#000000:#ff0000:#00ff00:#ffff00:#0000ff:#ff00ff:#00ffff:#ffffff"
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
