@@ -1,5 +1,6 @@
 [global_config]
   always_split_with_profile = True
+  borderless = True
   enabled_plugins = ,
   inactive_color_offset = 0.88
   tab_position = hidden
@@ -73,10 +74,10 @@
 [profiles]
   [[default]]
     background_darkness = 0.92
-    background_image = None
     background_type = transparent
     cursor_color = "#ffffff"
     font = DejaVu Sans Mono for Powerline 10
+    icon_bell = False
     palette = "#000000:#cd0000:#00cd00:#cdcd00:#1e90ff:#cd00cd:#00cdcd:#e5e5e5:#4c4c4c:#ff0000:#00ff00:#ffff00:#4682b4:#ff00ff:#00ffff:#ffffff"
     scrollback_infinite = True
     scrollbar_position = hidden
@@ -86,7 +87,6 @@
   [[present]]
     background_color = "#fdf6e3"
     background_darkness = 0.9
-    background_image = None
     background_type = transparent
     cursor_color = "#000000"
     font = DejaVu Sans Mono for Powerline 16

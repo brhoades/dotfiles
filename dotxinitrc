@@ -12,13 +12,9 @@ bspc set wm_name LG3D
 # Multihead configuration--- work usually
 if [ `xrandr -q | grep " connected" | wc -l` -eq "2" ]; then
   # Home 2x
-  if [ `xrandr -q | grep "HDMI-0 connected" | wc -l` -eq "1" ]; then
-    xrandr --output DVI-I-1 --auto --left-of HDMI-0 &
-  else #work 2x
-    xrandr --output DVI-0 --auto --right-of DVI-1 &
-
-    # Work requires synergy
-    synergys -c ~/.quicksynergy/synergy.conf &
+  if [ `xrandr -q | grep "HDMI1 connected" | wc -l` -eq "1" ]; then
+    xrandr --output VGA1 --auto --left-of HDMI1 &
+    # synergys -c ~/.quicksynergy/synergy.conf &
   fi
 fi
 
@@ -40,6 +36,9 @@ if [ -x /usr/bin/autocutsel ]; then
 fi
 
 dropbox &
+# capslock -> escape when pressed alone, otherwise control
+xcape -e 'Control_L=Escape' 
+xmodmap ~/.Xmodmap
 
 python2 ~/bin/rotate-wallpaper.py ~/Pictures/backgrounds/ &
 exec bspwm ~/.config/bspwm/bspwmrc
