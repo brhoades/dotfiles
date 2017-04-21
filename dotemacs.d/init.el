@@ -4,6 +4,24 @@
 
 (package-initialize)
 
+;;;;;;;;;;;;;;; Modular Config
+; https://www.emacswiki.org/emacs/DotEmacsModular
+(defun load-directory (directory)
+  "Load recursively all `.el' files in DIRECTORY."
+  (dolist (element (directory-files-and-attributes directory nil nil nil))
+    (let* ((path (car element))
+           (fullpath (concat directory "/" path))
+           (isdir (car (cdr element)))
+           (ignore-dir (or (string= path ".") (string= path ".."))))
+      (cond
+       ((and (eq isdir t) (not ignore-dir))
+        (load-directory fullpath))
+       ((and (eq isdir nil) (string= (substring path -3) ".el"))
+        (load (file-name-sans-extension fullpath)))))))
+
+(load-directory "~/.emacs.d/config")
+;;;;;;;;;;;;;;;;;;
+
 ;;;;;;;;;;;;;;; Emacs Config
 ;; Save all tempfiles in $TMPDIR/emacs$UID/
 (defconst emacs-tmp-dir (format "~/.emacs.d/tmp/backups/"))
@@ -13,7 +31,7 @@
       `((".*" ,emacs-tmp-dir t)))
 (setq auto-save-list-file-prefix
       emacs-tmp-dir)
-(add-hook 'focus-out-hook 'save-all)
+; (add-hook 'focus-out-hook 'save-all)
 
 (define-coding-system-alias 'UTF-8 'utf-8)
 (define-coding-system-alias 'utf8 'utf-8)
@@ -95,6 +113,12 @@
 ; Open new org file
 (global-set-key (kbd "C-c C-x o") (lambda() (interactive)(find-file "~/Documents/org")))
 
+(defun dont-kill-emacs()
+    "Disable C-x C-c binding execute kill-emacs."
+      (interactive)
+        (error (substitute-command-keys "To exit emacs: \\[kill-emacs]")))
+(global-set-key (kbd "C-x C-c") 'dont-kill-emacs)
+
 ;;;;;;;;;;;;;;;
 
 (require 'evil)
@@ -162,7 +186,7 @@
 ;;                '("\\.py\\'" flymake-pyflakes-init)))
 ;;
 ;; (add-hook 'find-file-hook 'flymake-find-file-hook)
-;; (setq exec-path (cons "/Users/br046823/.pyenv/shims" exec-path))
+(setq exec-path (cons "/Users/br046823/.pyenv/shims" exec-path))
 ;; (;; delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 
 ;; Place temp files in a temp dir
@@ -211,7 +235,7 @@
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax coffee-mode timesheet el-get jedi json-mode markdown-mode bug-hunter pony-mode helm-projectile flx-ido projectile helm evil)))
+    (flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax coffee-mode timesheet el-get jedi json-mode markdown-mode bug-hunter pony-mode helm-projectile flx-ido projectile helm evil)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(ruby-align-to-stmt-keywords nil)
