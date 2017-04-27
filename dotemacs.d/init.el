@@ -4,6 +4,17 @@
 
 (package-initialize)
 
+;;;;;;;;;;;;;;; Themes
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'monokai t)
+;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;; Evil mode
+;; Enable global evil mode early, so if something else breaks I still have arms
+(require 'evil)
+(evil-mode 1)
+;;;;;;;;;;;;;;;
+
 ;;;;;;;;;;;;;;; Modular Config
 ; https://www.emacswiki.org/emacs/DotEmacsModular
 (defun load-directory (directory)
@@ -22,160 +33,19 @@
 (load-directory "~/.emacs.d/config")
 ;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;; Emacs Config
-;; Save all tempfiles in $TMPDIR/emacs$UID/
-(defconst emacs-tmp-dir (format "~/.emacs.d/tmp/backups/"))
-(setq backup-directory-alist
-      `((".*" . ,emacs-tmp-dir)))
-(setq auto-save-file-name-transforms
-      `((".*" ,emacs-tmp-dir t)))
-(setq auto-save-list-file-prefix
-      emacs-tmp-dir)
-; (add-hook 'focus-out-hook 'save-all)
-
-(define-coding-system-alias 'UTF-8 'utf-8)
-(define-coding-system-alias 'utf8 'utf-8)
-
-;; Always save our buffers and load them on start
-(desktop-save-mode 1)
-(setq desktop-auto-save-timeout 300)
-
-;; Save history
-;; (push (cons 'buffer-undo-list buffer-undo-list) ll)
-
-;; This is your old M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-
-;; Whitespace config (no spaces)
-(global-whitespace-mode)
-(setq whitespace-style '(tabs newline tab-mark newline-mark))
-; (set-face-attribute 'whitespace-space " " background nil :foreground "gray30")
-
-;;smex (better M-x)
-(global-set-key [(meta x)] (lambda ()
-                             (interactive)
-                             (or (boundp 'smex-cache)
-                                 (smex-initialize))
-                             (global-set-key [(meta x)] 'smex)
-                             (smex)))
-
-(global-set-key [(shift meta x)] (lambda ()
-                                   (interactive)
-                                   (or (boundp 'smex-cache)
-                                       (smex-initialize))
-                                   (global-set-key [(shift meta x)] 'smex-major-mode-commands)
-                                   (smex-major-mode-commands)))
-
-
-; https://github.com/syl20bnr/spacemacs/issues/2626
-; Fix for some restored sessions causing buffer lists to break.
-; (push '(persp . :never) frameset-filter-alist)
-;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;;; Ruby Config
-; ruby does wild stuff inside parens...
-(setq ruby-deep-indent-paren nil)
-
-;; rbenv
-;; (require 'rbenv)
-;; (global-rbenv-mode)
-
-;; Syntax checking
-;; (require 'flymake-ruby)
-;; (add-hook 'ruby-mode-hook 'flymake-ruby-load)
-
-;; open a shell
-(global-set-key (kbd "C-c r r") 'inf-ruby)
-
-;; Rails projectile
-(add-hook 'projectile-mode-hook 'projectile-rails-on)
-
-;; robe
-;; (require 'robe)
-;; (add-hook 'ruby-mode-hook 'robe-mode)
-
-;; robe with rbenv
-;; (defadvice inf-ruby-console-auto (before rbenv-use-corresponding activate))
-
-;; intelligent completion
-;; (global-company-mode t)
-;; (push 'company-robe company-backends)
-
-;; execute irb
-;; (define-key inf-ruby-minor-mode-map (kbd "C-c C-z") 'run-ruby)
-;;;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;;
-;; Custom Shortcuts
-; Open config
-(global-set-key (kbd "C-c C-x i") (lambda() (interactive)(find-file "~/.emacs.d")))
-
-; Open new org file
-(global-set-key (kbd "C-c C-x o") (lambda() (interactive)(find-file "~/Documents/org")))
-
-(defun dont-kill-emacs()
-    "Disable C-x C-c binding execute kill-emacs."
-      (interactive)
-        (error (substitute-command-keys "To exit emacs: \\[kill-emacs]")))
-(global-set-key (kbd "C-x C-c") 'dont-kill-emacs)
-
-;;;;;;;;;;;;;;;
-
-(require 'evil)
-(evil-mode 1)
-
 (require 'helm)
 (require 'helm-config)
 (helm-mode 1)
 
-(require 'projectile)
-(projectile-mode 1)
-(setq projectile-enable-caching t)
-(add-to-list 'projectile-globally-ignored-directories "node_modules")
-
 (require 'flx)
 (require 'flx-ido)
 
-;; (setq helm-projectile-fuzzy-match nil)
-(require 'helm-projectile)
-(helm-projectile-on)
-
 (require 'pony-mode)
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'monokai t)
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 2)
 
 ; (infer-indentation-style)
-
-;; Disable the splash screen (to enable it agin, replace the t with 0)
-(setq inhibit-splash-screen t)
-
-;; Save session buffers
-(desktop-save-mode 1)
-
-;; Hide toolbar
-(tool-bar-mode -1)
-
-;;;;;;;;;;;;;;org-mode configuration
-;; Enable org-mode
-(require 'org)
-;; Make org-mode work with files ending in .org
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-;;;;;;;;;;;;;;;
-
-;;;;;;;;;;;;;;; JSON mode
-'(setq js-indent-level 2)
-(add-hook 'json-mode-hook
-          (lambda ()
-            (make-local-variable 'js-indent-level)
-            (setq js-indent-level 2)))
-;;;;;;;;;;;;;;; End JSON
-
-;;;;;;;;;;;;;;; Coffeescript
-;; This gives you a tab of 2 spaces
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -239,17 +109,9 @@
 ;; only show bad whitespace
 (setq whitespace-style '(trailing space-before-tab indentation empty space-after-tab))
 
-;; evil mode
-
-;;;;;;;;;;;;;;;
-
-
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-;;;; Custom keybinds
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
