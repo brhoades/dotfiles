@@ -1,0 +1,12 @@
+tmp/*
+elpa/*
+tramp
+projectile.cache
+projectile-*
+history
+*.sh
+smex-items
+*.lock
+*.desktop
+*~
+*-tmp

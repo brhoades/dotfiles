@@ -1,6 +1,4 @@
 dotzprezto/modules/*
-dotemacs.d/tmp/*
-dotemacs.d/elpa/*
 
 dotvim/swaps/*
 !dotvim/swaps/.keep
@@ -8,4 +6,6 @@ dotvim/undo/*
 !dotvim/undo/.keep
 dotvim/backups/*
 !dotvim/backups/.keep
+dotvim/autoload/
+dotvim/bundle/
 
