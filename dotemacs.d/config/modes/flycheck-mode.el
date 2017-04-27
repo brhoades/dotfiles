@@ -18,7 +18,7 @@
   (append flycheck-disabled-checkers
     '(json-jsonlist)))
 
-(setq flycheck-checkers '(javascript-eslint))
+; (setq flycheck-checkers '(javascript-eslint))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Exec path from shell
 ;; https://github.com/purcell/exec-path-from-shell
@@ -30,6 +30,9 @@
 ;; Set nvm path for eslint
 (add-to-list 'exec-path "/home/br046823/.nvm/v6.10.1/bin")
 (setq flycheck-eslintrc "~/.eslintrc")
+
+;; faster checking
+(setq flycheck-highlighting-mode 'lines)
 
 ;; use local eslint from node_modules before global
 ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
