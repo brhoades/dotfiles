@@ -49,7 +49,7 @@
 ;; Save session buffers
 (custom-set-variables
   '(desktop-save-mode t)
-  '(desktop-restore-eager 3)) ;; only load 3 most recent files
+  '(desktop-restore-eager 3)) ;; only load 3 most recent files, do the rest later
 
 (setq desktop-auto-save-timeout 300)
 

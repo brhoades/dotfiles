@@ -15,24 +15,6 @@
 (evil-mode 1)
 ;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;; Modular Config
-; https://www.emacswiki.org/emacs/DotEmacsModular
-(defun load-directory (directory)
-  "Load recursively all `.el' files in DIRECTORY."
-  (dolist (element (directory-files-and-attributes directory nil nil nil))
-    (let* ((path (car element))
-           (fullpath (concat directory "/" path))
-           (isdir (car (cdr element)))
-           (ignore-dir (or (string= path ".") (string= path ".."))))
-      (cond
-       ((and (eq isdir t) (not ignore-dir))
-        (load-directory fullpath))
-       ((and (eq isdir nil) (string= (substring path -3) ".el"))
-        (load (file-name-sans-extension fullpath)))))))
-
-(load-directory "~/.emacs.d/config")
-;;;;;;;;;;;;;;;;;;
-
 (require 'helm)
 (require 'helm-config)
 (helm-mode 1)
@@ -58,6 +40,8 @@
  '(coffee-tab-width 2)
  '(compilation-message-face (quote default))
  '(custom-enabled-themes (quote (misterioso)))
+ '(desktop-restore-eager 3)
+ '(desktop-save-mode t)
  '(fci-rule-color "#3C3D37")
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
@@ -71,9 +55,12 @@
      ("#F309DF" . 85)
      ("#3C3D37" . 100))))
  '(magit-diff-use-overlays nil)
+ '(org-agenda-files
+   (quote
+    ("~/Documents/org/daily/2017-05-01-devcenter-training.org")))
  '(package-selected-packages
    (quote
-    (flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax coffee-mode timesheet el-get jedi json-mode markdown-mode bug-hunter pony-mode helm-projectile flx-ido projectile helm evil)))
+    (less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax coffee-mode timesheet el-get jedi json-mode markdown-mode bug-hunter pony-mode helm-projectile flx-ido projectile helm evil)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(ruby-align-to-stmt-keywords nil)
@@ -115,3 +102,21 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;;;;;;;;;;;;;; Modular Config
+; https://www.emacswiki.org/emacs/DotEmacsModular
+(defun load-directory (directory)
+  "Load recursively all `.el' files in DIRECTORY."
+  (dolist (element (directory-files-and-attributes directory nil nil nil))
+    (let* ((path (car element))
+           (fullpath (concat directory "/" path))
+           (isdir (car (cdr element)))
+           (ignore-dir (or (string= path ".") (string= path ".."))))
+      (cond
+       ((and (eq isdir t) (not ignore-dir))
+        (load-directory fullpath))
+       ((and (eq isdir nil) (string= (substring path -3) ".el"))
+        (load (file-name-sans-extension fullpath)))))))
+
+(load-directory "~/.emacs.d/config")
+;;;;;;;;;;;;;;;;;;

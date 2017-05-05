@@ -11,7 +11,8 @@
     '(javascript-jshint)))
 
 ;; use eslint with web-mode for jsx files
-(flycheck-add-mode 'javascript-eslint 'web-mode)
+(with-eval-after-load 'flycheck
+  (flycheck-add-mode 'javascript-eslint 'web-mode))
 
 ;; disable json-jsonlist checking for json files
 (setq-default flycheck-disabled-checkers
@@ -29,7 +30,7 @@
 
 ;; Set nvm path for eslint
 (add-to-list 'exec-path "/home/br046823/.nvm/v6.10.1/bin")
-(setq flycheck-eslintrc "~/.eslintrc")
+(setq flycheck-eslintrc "/home/br046823/.eslintrc")
 
 ;; faster checking
 (setq flycheck-highlighting-mode 'lines)
