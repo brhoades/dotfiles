@@ -14,17 +14,10 @@
 ;; Save history
 ;; (push (cons 'buffer-undo-list buffer-undo-list) ll)
 
-;; This is your old M-x.
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
-
 ;; Whitespace config (no spaces)
 (global-whitespace-mode)
 (setq whitespace-style '(tabs newline tab-mark newline-mark))
 ; (set-face-attribute 'whitespace-space " " background nil :foreground "gray30")
-
-(global-set-key (kbd "M-x") #'helm-M-x)
-(global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
-(global-set-key (kbd "C-x C-f") #'helm-find-files)
 
 ;; Disable most GUI elements
 (when window-system

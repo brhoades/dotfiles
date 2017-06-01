@@ -15,13 +15,6 @@
 (evil-mode 1)
 ;;;;;;;;;;;;;;;
 
-(require 'helm)
-(require 'helm-config)
-(helm-mode 1)
-
-(require 'flx)
-(require 'flx-ido)
-
 (require 'pony-mode)
 
 (setq-default indent-tabs-mode nil)
