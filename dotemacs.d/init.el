@@ -55,12 +55,9 @@
      ("#F309DF" . 85)
      ("#3C3D37" . 100))))
  '(magit-diff-use-overlays nil)
- '(org-agenda-files
-   (quote
-    ("~/Documents/org/daily/2017-05-01-devcenter-training.org")))
  '(package-selected-packages
    (quote
-    (less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax coffee-mode timesheet el-get jedi json-mode markdown-mode bug-hunter pony-mode helm-projectile flx-ido projectile helm evil)))
+    (helm-flx helm-projectile helm smex haskell-mode purescript-mode flycheck-purescript flymake-css flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode scala-mode yaml-mode rbenv inf-ruby evil-smartparens ruby-hash-syntax coffee-mode timesheet el-get jedi json-mode markdown-mode bug-hunter pony-mode flx-ido projectile evil)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(ruby-align-to-stmt-keywords nil)
