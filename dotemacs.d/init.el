@@ -4,18 +4,11 @@
 
 (package-initialize)
 
-;;;;;;;;;;;;;;; Themes
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'monokai t)
-;;;;;;;;;;;;;;;
-
 ;;;;;;;;;;;;;;; Evil mode
 ;; Enable global evil mode early, so if something else breaks I still have arms
 (require 'evil)
 (evil-mode 1)
 ;;;;;;;;;;;;;;;
-
-(require 'pony-mode)
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 2)
@@ -114,3 +107,8 @@
 
 (load-directory "~/.emacs.d/config")
 ;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;; Themes
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'monokai t)
+;;;;;;;;;;;;;;;
