@@ -56,3 +56,8 @@ alias rm='rm'
 alias dmesg='dmesg --color=always'
 alias less='less -r'
 bindkey -e
+
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[cursor]=underline
+
+export GTEST_INCLUDE_DIRS=/usr/lib/

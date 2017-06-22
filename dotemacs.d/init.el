@@ -33,6 +33,9 @@
  '(coffee-tab-width 2)
  '(compilation-message-face (quote default))
  '(custom-enabled-themes (quote (misterioso)))
+ '(custom-safe-themes
+   (quote
+    ("e9df267a1c808451735f2958730a30892d9a2ad6879fb2ae0b939a29ebf31b63" default)))
  '(desktop-restore-eager 3)
  '(desktop-save-mode t)
  '(fci-rule-color "#3C3D37")
@@ -50,11 +53,12 @@
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (helm-flx helm-projectile helm smex haskell-mode purescript-mode flycheck-purescript flymake-css flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode scala-mode yaml-mode rbenv inf-ruby evil-smartparens ruby-hash-syntax coffee-mode timesheet el-get jedi json-mode markdown-mode bug-hunter pony-mode flx-ido projectile evil)))
+    (cmake-mode helm-flx helm-projectile helm smex haskell-mode purescript-mode flycheck-purescript flymake-css flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode scala-mode yaml-mode rbenv inf-ruby evil-smartparens ruby-hash-syntax coffee-mode el-get jedi json-mode markdown-mode bug-hunter pony-mode flx-ido projectile evil)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(ruby-align-to-stmt-keywords nil)
  '(ruby-deep-arglist nil)
+ '(typescript-indent-level 2 t)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote

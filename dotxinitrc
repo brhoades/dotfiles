@@ -40,6 +40,6 @@ dropbox &
 xcape -e 'Control_L=Escape' 
 xmodmap ~/.Xmodmap
 
-python2 ~/bin/rotate-wallpaper.py ~/Pictures/backgrounds/ &
+python ~/bin/rotate-wallpaper.py &
 exec bspwm ~/.config/bspwm/bspwmrc
 
