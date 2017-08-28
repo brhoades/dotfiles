@@ -35,6 +35,14 @@
 ;; faster checking
 (setq flycheck-highlighting-mode 'lines)
 
+;; As long as eslint works, this speeds up opening buffers
+;; https://github.com/flycheck/flycheck/issues/1129
+
+(with-eval-after-load 'flycheck
+  (advice-add 'flycheck-eslint-config-exists-p :override (lambda() t)))
+
+
+
 ;; use local eslint from node_modules before global
 ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
 ;;
