@@ -7,3 +7,7 @@
     (setq js2-strict-trailing-comma-warning nil)
   )
 )
+
+(with-eval-after-load 'rjsx
+  (define-key rjsx-mode-map "<" nil)
+  (define-key rjsx-mode-map (kbd "C-d") nil))
