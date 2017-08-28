@@ -4,18 +4,11 @@
 
 (package-initialize)
 
-;;;;;;;;;;;;;;; Themes
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'monokai t)
-;;;;;;;;;;;;;;;
-
 ;;;;;;;;;;;;;;; Evil mode
 ;; Enable global evil mode early, so if something else breaks I still have arms
 (require 'evil)
 (evil-mode 1)
 ;;;;;;;;;;;;;;;
-
-(require 'pony-mode)
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 2)
@@ -33,6 +26,9 @@
  '(coffee-tab-width 2)
  '(compilation-message-face (quote default))
  '(custom-enabled-themes (quote (misterioso)))
+ '(custom-safe-themes
+   (quote
+    ("e9df267a1c808451735f2958730a30892d9a2ad6879fb2ae0b939a29ebf31b63" default)))
  '(desktop-restore-eager 3)
  '(desktop-save-mode t)
  '(fci-rule-color "#3C3D37")
@@ -53,11 +49,12 @@
     ("~/Documents/org/topics/17/Q1/releaser.org" "~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")))
  '(package-selected-packages
    (quote
-    (jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax coffee-mode timesheet el-get jedi json-mode markdown-mode bug-hunter pony-mode helm-projectile flx-ido projectile helm evil)))
+    (cmake-mode helm-flx helm-projectile helm smex haskell-mode purescript-mode flycheck-purescript flymake-css flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode scala-mode yaml-mode rbenv inf-ruby evil-smartparens ruby-hash-syntax coffee-mode el-get jedi json-mode markdown-mode bug-hunter pony-mode flx-ido projectile evil)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(ruby-align-to-stmt-keywords nil)
  '(ruby-deep-arglist nil)
+ '(typescript-indent-level 2 t)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
@@ -113,3 +110,8 @@
 
 (load-directory "~/.emacs.d/config")
 ;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;; Themes
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'monokai t)
+;;;;;;;;;;;;;;;

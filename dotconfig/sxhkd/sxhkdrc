@@ -3,7 +3,7 @@
 #
 
 super + alt + Escape
-	bspc quit
+	pkill panel_bar
 
 super + w
 	bspc node -c
@@ -153,5 +153,5 @@ Print
 super + l
   /usr/bin/xscreensaver-command -lock
 
-super + ctrl + shift + space
+super + ctrl + space
   /home/$USER/bin/monitors/toggle.sh
