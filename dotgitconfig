@@ -1,15 +1,19 @@
 [user]
-        email = billyarhoades@gmail.com
-        name = Billy Rhoades
+  email = billyarhoades@gmail.com
+  name = Billy Rhoades
+  signingkey = BF4FCB85C69989B4ED95BF938AE74787A4B7C07E
 [color]
-        ui = auto
+  ui = auto
 
 [core]
-	editor = vim
+  editor = vim
+  excludesfile = /home/aaron/.gitignore_global
 
 [push]
-	default = simple
+  default = simple
 
 [credential]
   #helper = store --file /home/aaron/.git-credentials
-	helper = cache --timeout=28800
+  helper = cache --timeout=28800
+[commit]
+  gpgsign = true

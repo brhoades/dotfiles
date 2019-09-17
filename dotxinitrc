@@ -1,45 +1,11 @@
-xset +fp /usr/share/fonts/local
-xset +fp $HOME/.fonts/
-xset fp rehash
-# set the cursor
-xsetroot -cursor_name left_ptr &
-
-# Java fix
-bspc set wm_name LG3D
-
-/usr/bin/xscreensaver -no-splash &
-
-# Multihead configuration--- work usually
-if [ `xrandr -q | grep " connected" | wc -l` -eq "2" ]; then
-  # Home 2x
-  if [ `xrandr -q | grep "HDMI1 connected" | wc -l` -eq "1" ]; then
-    xrandr --output VGA1 --auto --left-of HDMI1 &
-    # synergys -c ~/.quicksynergy/synergy.conf &
-  fi
-fi
-
-pulseaudio --start &
-compton &
-sxhkd &
-[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
-mkfifo $PANEL_FIFO
-
-# clipboard config
-if [ -x /usr/bin/autocutsel ]; then
-    #this will keep the clipboard in sync
-    #   with the primary buffer
-    autocutsel -selection CLIPBOARD -fork
-
-    #this will keep the primary in sync
-    #   with the clipboard buffer
-    autocutsel -selection PRIMARY -fork
-fi
-
-dropbox &
 # capslock -> escape when pressed alone, otherwise control
 xcape -e 'Control_L=Escape' 
-xmodmap ~/.Xmodmap
+xmodmap $HOME/.Xmodmap
 
-python ~/bin/rotate-wallpaper.py &
-exec bspwm ~/.config/bspwm/bspwmrc
-
+# weechat.sh &
+firefox &
+pavucontrol &
+stalonetray &
+# barrier &
+signal-desktop &
+discord &

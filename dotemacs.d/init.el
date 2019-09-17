@@ -22,8 +22,7 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(auto-revert-remote-files t)
- '(coffee-indent-like-python-mode t)
- '(coffee-tab-width 2)
+ '(c-label-minimum-indentation 2)
  '(compilation-message-face (quote default))
  '(custom-enabled-themes (quote (misterioso)))
  '(desktop-restore-eager 3)
@@ -40,17 +39,20 @@
      ("#A75B00" . 70)
      ("#F309DF" . 85)
      ("#3C3D37" . 100))))
+ '(indent-tabs-mode nil)
  '(magit-diff-use-overlays nil)
  '(org-agenda-files
    (quote
     ("~/Documents/org/topics/17/Q1/releaser.org" "~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")))
  '(package-selected-packages
    (quote
-    (evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax coffee-mode timesheet el-get jedi json-mode markdown-mode bug-hunter pony-mode helm-projectile flx-ido projectile helm evil)))
+    (helm-ag flycheck-rust rust-mode projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get jedi json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(ruby-align-to-stmt-keywords nil)
  '(ruby-deep-arglist nil)
+ '(ruby-deep-indent-paren nil)
+ '(typescript-indent-level 2)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
