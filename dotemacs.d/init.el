@@ -28,6 +28,7 @@
  '(desktop-restore-eager 3)
  '(desktop-save-mode t)
  '(fci-rule-color "#3C3D37")
+ '(helm-ff-lynx-style-map t)
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
    (quote
@@ -46,7 +47,7 @@
     ("~/Documents/org/topics/17/Q1/releaser.org" "~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")))
  '(package-selected-packages
    (quote
-    (helm-ag flycheck-rust rust-mode projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get jedi json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
+    (go-imports protobuf-mode go-mode helm-ag flycheck-rust rust-mode projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get jedi json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(ruby-align-to-stmt-keywords nil)
@@ -83,6 +84,12 @@
 
 ;; only show bad whitespace
 (setq whitespace-style '(trailing space-before-tab indentation empty space-after-tab))
+(define-global-minor-mode my-global-whitespace-mode whitespace-mode
+  (lambda ()
+    (when (not (memq major-mode
+                     (list 'go-mode)))
+      (whitespace-mode))))
+(my-global-whitespace-mode 1)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

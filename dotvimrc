@@ -4,7 +4,7 @@ filetype off                  " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-execute pathogen#infect()
+" execute pathogen#infect()
 
 " PowerLine Magic
 set encoding=utf-8 " Necessary to show unicode glyphs

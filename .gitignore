@@ -7,8 +7,6 @@ dotvim/undo/*
 dotvim/backups/*
 !dotvim/backups/.keep
 dotvim/autoload/
-dotvim/bundle/
 dotxmonad/*.{errors,o,hi}
 dotxmonad/xmonad-x86_64-linux
 .stack*
-dotconfigs/i3blocks/config

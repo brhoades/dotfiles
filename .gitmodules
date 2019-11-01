@@ -7,3 +7,9 @@
 [submodule "dotxmonad/xmonad-contrib-git"]
 	path = dotxmonad/xmonad-contrib-git
 	url = https://github.com/xmonad/xmonad-contrib
+[submodule "dotzprezto/prezto-repo"]
+	path = dotzprezto/prezto-repo
+	url = https://github.com/sorin-ionescu/prezto.git
+[submodule "dotvim/bundle/vundle.vim"]
+	path = dotvim/bundle/vundle
+	url = https://github.com/VundleVim/Vundle.vim.git
