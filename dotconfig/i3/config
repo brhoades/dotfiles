@@ -194,9 +194,10 @@ assign [class="Google-chrome-beta"] $ws2
 assign [class="RuneLite"] $ws1
 assign [class="^Steam"] $ws1
 assign [class="^Emacs"] $ws1
-assign [class="^Discord"] $ws2
-assign [class="^Signal"] $ws2
-assign [window_role="WEECHAT"] $ws2
+assign [class="^Discord"] $ws10
+assign [class="^Signal"] $ws10
+assign [window_role="WEECHAT"] $ws10
+assign [class="^Slack"] $ws4
 
 # Launching applications
 exec terminator -r WEECHAT -x weechat
