@@ -1,12 +1,3 @@
-[submodule "dotxmonad/taffybar-git"]
-	path = dotxmonad/taffybar-git
-	url = https://github.com/taffybar/taffybar.git
-[submodule "dotxmonad/xmonad-git"]
-	path = dotxmonad/xmonad-git
-	url = https://github.com/xmonad/xmonad
-[submodule "dotxmonad/xmonad-contrib-git"]
-	path = dotxmonad/xmonad-contrib-git
-	url = https://github.com/xmonad/xmonad-contrib
 [submodule "dotzprezto/prezto-repo"]
 	path = dotzprezto/prezto-repo
 	url = https://github.com/sorin-ionescu/prezto.git
