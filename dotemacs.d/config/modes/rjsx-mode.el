@@ -1,4 +1,4 @@
-(require 'rjsx-mode)
+(use-package rjsx-mode)
 
 (add-to-list 'auto-mode-alist '("\\(components\\|containers\\)\\/.*\\.jsx?\\'" . rjsx-mode))
 

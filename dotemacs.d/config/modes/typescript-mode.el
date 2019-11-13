@@ -1,4 +1,4 @@
-(require 'typescript-mode)
+(use-package typescript-mode)
 
 (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescript-mode))
 
@@ -6,5 +6,3 @@
   "Hooks for TS mode."
   (setq typescript-indent-offset 2)
 )
-
-; (add-hook 'web-mode-hook  'my-web-mode-hook)

@@ -1,3 +1,7 @@
+(use-package rbenv)
+(use-package inf-ruby)
+(use-package ruby-hash-syntax)
+
 ; ruby does wild stuff inside parens...
 (setq ruby-deep-indent-paren nil)
 

@@ -1,19 +1,18 @@
-(setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("org" . "http://orgmode.org/elpa/")
-                         ("gnu" . "http://elpa.gnu.org/packages/")))
-
 (package-initialize)
+
+; use-package setup
+(load "~/.emacs.d/config/use-package.el")
 
 ;;;;;;;;;;;;;;; Evil mode
 ;; Enable global evil mode early, so if something else breaks I still have arms
-(require 'evil)
+(use-package evil)
+(use-package evil-smartparens)
 (evil-mode 1)
 ;;;;;;;;;;;;;;;
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 2)
 
-; (infer-indentation-style)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -29,6 +28,7 @@
  '(desktop-save-mode t)
  '(fci-rule-color "#3C3D37")
  '(helm-ff-lynx-style-map t)
+ '(helm-ff-skip-boring-files t)
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
    (quote
@@ -47,7 +47,7 @@
     ("~/Documents/org/topics/17/Q1/releaser.org" "~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")))
  '(package-selected-packages
    (quote
-    (go-autocomplete go-imports protobuf-mode go-mode helm-ag flycheck-rust rust-mode projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get jedi json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
+    (diminish use-package go-autocomplete go-imports protobuf-mode go-mode helm-ag flycheck-rust rust-mode projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(ruby-align-to-stmt-keywords nil)
