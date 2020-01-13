@@ -2,16 +2,16 @@
   :ensure t
   :mode "\\.go\\'"
   :config
+    (flymake-mode +0) ;; disable flymake
     (add-hook 'before-save-hook 'gofmt-before-save)
+    (add-hook 'go-mode-hook #'lsp)
+	(add-hook 'go-mode-hook 'flycheck-mode)
  ;; (with-eval-after-load 'go-mode
  ;;    (require 'go-autocomplete))
   :custom
-    (flymake-mode) ;; disable flymake
 	(tab-width 4)
     (indent-tabs-mode 1)
     (whitespace-style '(trailing))
-	(flycheck-mode)
-  :after (flycheck)
 )
 
 (use-package company-go

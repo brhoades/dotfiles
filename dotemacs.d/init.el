@@ -29,7 +29,7 @@
  '(desktop-restore-eager 3)
  '(desktop-save-mode t)
  '(fci-rule-color "#3C3D37")
- '(flymake-mode nil t)
+ '(flymake-mode 0 t)
  '(helm-ff-lynx-style-map t)
  '(helm-ff-skip-boring-files t)
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
@@ -50,7 +50,7 @@
 	("~/Documents/org/topics/17/Q1/releaser.org" "~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")))
  '(package-selected-packages
    (quote
-	(company-go flycheck-rust rustic python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports protobuf-mode go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
+	(lsp-ui lsp-ui-sideline company-go flycheck-rust rustic python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports protobuf-mode go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(ruby-align-to-stmt-keywords nil)
