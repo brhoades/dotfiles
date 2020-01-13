@@ -1,9 +1,10 @@
-(use-package python-mode)
-
-(add-hook 'python-mode-hook
-      (lambda ()
-        (setq tab-width 4)
-        (setq python-indent 4)))
+(use-package python-mode
+  :ensure t
+  :defer t
+  :config
+  (setq tab-width 4)
+  (setq python-indent 4)
+)
 
 (add-hook 'python-mode-hook
       'flycheck-mode)

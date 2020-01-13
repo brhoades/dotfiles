@@ -24,10 +24,12 @@
   (setq tab-width 4
         indent-tabs-mode nil))
 
-(use-package flycheck-rust)
+(use-package flycheck-rust
+ :ensure t)
 
 (use-package rustic
-  :mode "\\.rs\\"
+  :ensure t
+  :mode "\\.rs\\'"
   :init
   ;; to use rustic-mode even if rust-mode also installed
   (push 'rustic-clippy flycheck-checkers)
@@ -35,8 +37,9 @@
          (flycheck-mode-hook . flycheck-rust-setup)))
 
 
-  
+
 (use-package company
+  :ensure t
   :init
   (setq company-idle-delay nil  ; avoid auto completion popup, use TAB
                                 ; to show it
@@ -48,9 +51,11 @@
         ("C-M-i" . completion-at-point)))
 
 (use-package company-lsp
+  :ensure t
   :defer)
 
 (use-package lsp-mode
+  :ensure t
   :commands lsp
   ;; reformat code and add missing (or remove old) imports
   :hook ((before-save . lsp-format-buffer)

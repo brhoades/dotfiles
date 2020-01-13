@@ -22,3 +22,4 @@
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 (define-key helm-find-files-map "\t" 'helm-execute-persistent-action)
+(setq projectile-sort-order 'recentf)

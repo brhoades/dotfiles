@@ -8,10 +8,10 @@
 ;;  ('rustic-clippy flycheck-checkers)
 ;;  (flycheck-add-mode 'javascript-eslint 'web-mode)
 ;;  (advice-add 'flycheck-eslint-config-exists-p :override (lambda() t))
-;;  :custom
-  :init
-  (flycheck-eslintrc "~/.eslintrc")
-  (flycheck-highlighting-mode 'columns)
+  :init (global-flycheck-mode)
+  :custom
+    (flycheck-eslintrc "~/.eslintrc")
+    (flycheck-highlighting-mode 'symbols)
 )
 ;; http://www.flycheck.org/manual/latest/index.html
 

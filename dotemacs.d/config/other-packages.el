@@ -1,15 +1,45 @@
-(use-package neotree)
-(use-package dockerfile-mode)
-(use-package purescript-mode)
-(use-package less-css-mode)
-(use-package flycheck-pyflakes)
-(use-package exec-path-from-shell)
-(use-package js2-mode)
-(use-package vue-mode)
-(use-package elm-mode)
-(use-package jsx-mode)
-(use-package scala-mode)
-(use-package yaml-mode)
-(use-package markdown-mode)
-(use-package flx-ido)
-(use-package nix-mode)
+(use-package neotree
+ :ensure t
+ :defer t)
+(use-package dockerfile-mode
+ :ensure t
+ :defer t)
+(use-package purescript-mode
+ :ensure t
+ :defer t)
+(use-package less-css-mode
+ :ensure t
+ :defer t)
+(use-package flycheck-pyflakes
+ :ensure t
+ :defer t)
+(use-package exec-path-from-shell
+ :ensure t
+ :defer t)
+(use-package js2-mode
+ :ensure t
+ :defer t)
+(use-package vue-mode
+ :ensure t
+ :defer t)
+(use-package elm-mode
+ :ensure t
+ :defer t)
+(use-package jsx-mode
+ :ensure t
+ :defer t)
+(use-package scala-mode
+ :ensure t
+ :defer t)
+(use-package yaml-mode
+ :ensure t
+ :defer t)
+(use-package markdown-mode
+ :ensure t
+ :defer t)
+(use-package flx-ido
+ :ensure t
+ :defer t)
+(use-package nix-mode
+ :ensure t
+ :defer t)

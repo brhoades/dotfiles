@@ -29,57 +29,96 @@
  '(desktop-restore-eager 3)
  '(desktop-save-mode t)
  '(fci-rule-color "#3C3D37")
+ '(flymake-mode nil t)
  '(helm-ff-lynx-style-map t)
  '(helm-ff-skip-boring-files t)
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
    (quote
-    (("#3C3D37" . 0)
-     ("#679A01" . 20)
-     ("#4BBEAE" . 30)
-     ("#1DB4D0" . 50)
-     ("#9A8F21" . 60)
-     ("#A75B00" . 70)
-     ("#F309DF" . 85)
-     ("#3C3D37" . 100))))
- '(indent-tabs-mode nil)
+	(("#3C3D37" . 0)
+	 ("#679A01" . 20)
+	 ("#4BBEAE" . 30)
+	 ("#1DB4D0" . 50)
+	 ("#9A8F21" . 60)
+	 ("#A75B00" . 70)
+	 ("#F309DF" . 85)
+	 ("#3C3D37" . 100))))
+ '(indent-tabs-mode 1)
  '(magit-diff-use-overlays nil)
  '(org-agenda-files
    (quote
-    ("~/Documents/org/topics/17/Q1/releaser.org" "~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")))
+	("~/Documents/org/topics/17/Q1/releaser.org" "~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")))
  '(package-selected-packages
    (quote
-    (company-go flycheck-rust rustic python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports protobuf-mode go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
+	(company-go flycheck-rust rustic python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports protobuf-mode go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(ruby-align-to-stmt-keywords nil)
  '(ruby-deep-arglist nil)
  '(ruby-deep-indent-paren nil)
+ '(safe-local-variable-values
+   (quote
+	((eval progn
+		   (require
+			(quote projectile))
+		   (setq projectile-file-exists-remote-cache-expire
+				 (* 60 60))
+		   (setq projectile-enable-caching t)
+		   (setq projectile-sort-order
+				 (quote recentf))
+		   (setq whitespace-style
+				 (quote
+				  (trailing))))
+	 (eval progn
+		   (require
+			(quote projectile))
+		   (setq projectile-file-exists-remote-cache-expire
+				 (* 60 60))
+		   (setq projectile-enable-caching t)
+		   (setq projectile-sort-order
+				 (quote recentf))
+		   (whitespace-mode 0))
+	 (eval progn
+		   (require
+			(quote projectile))
+		   (setq projectile-file-exists-remote-cache-expire
+				 (* 60 60))
+		   (setq projectile-enable-caching t)
+		   (setq projectile-sort-order
+				 (quote recentf)))
+	 (projectile-sort-order quote recentf)
+	 (projectile-enable-caching . t)
+	 (projectile-file-exists-remote-cache-expire * 60 60)
+	 (projectile-enable-caching t)
+	 (projectile-file-exists-remote-cache-expire
+	  (* 60 60)))))
+ '(tab-width 4)
  '(typescript-indent-level 2)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
-    ((20 . "#F92672")
-     (40 . "#CF4F1F")
-     (60 . "#C26C0F")
-     (80 . "#E6DB74")
-     (100 . "#AB8C00")
-     (120 . "#A18F00")
-     (140 . "#989200")
-     (160 . "#8E9500")
-     (180 . "#A6E22E")
-     (200 . "#729A1E")
-     (220 . "#609C3C")
-     (240 . "#4E9D5B")
-     (260 . "#3C9F79")
-     (280 . "#A1EFE4")
-     (300 . "#299BA6")
-     (320 . "#2896B5")
-     (340 . "#2790C3")
-     (360 . "#66D9EF"))))
+	((20 . "#F92672")
+	 (40 . "#CF4F1F")
+	 (60 . "#C26C0F")
+	 (80 . "#E6DB74")
+	 (100 . "#AB8C00")
+	 (120 . "#A18F00")
+	 (140 . "#989200")
+	 (160 . "#8E9500")
+	 (180 . "#A6E22E")
+	 (200 . "#729A1E")
+	 (220 . "#609C3C")
+	 (240 . "#4E9D5B")
+	 (260 . "#3C9F79")
+	 (280 . "#A1EFE4")
+	 (300 . "#299BA6")
+	 (320 . "#2896B5")
+	 (340 . "#2790C3")
+	 (360 . "#66D9EF"))))
  '(vc-annotate-very-old-color nil)
  '(weechat-color-list
-   (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
+   (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))
+ '(whitespace-style (quote (trailing))))
 
 ;; automatically clean up bad whitespace
 (setq whitespace-action '(auto-cleanup))
