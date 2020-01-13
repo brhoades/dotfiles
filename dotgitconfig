@@ -1,13 +1,17 @@
 [user]
   email = me@brod.es
   name = Billy Rhoades
-	signingKey = 6D052A5305F89A0E!
+  signingKey = 6D052A5305F89A0E!
+
+[includeIf "gitdir:~/work/ngrok"]
+  path = .gitconfig-work
+
 [color]
   ui = auto
 
 [core]
   editor = vim
-  excludesfile = /home/aaron/.gitignore_global
+  excludesfile = .gitignore_global
 
 [push]
   default = simple
@@ -15,5 +19,9 @@
 [credential]
   #helper = store --file /home/aaron/.git-credentials
   helper = cache --timeout=28800
+
 [commit]
   gpgsign = true
+
+[protocol "keybase"]
+allow = always
