@@ -12,3 +12,4 @@
 (use-package yaml-mode)
 (use-package markdown-mode)
 (use-package flx-ido)
+(use-package nix-mode)

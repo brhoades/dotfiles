@@ -73,4 +73,7 @@ fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
 
-export PATH="$HOME/.cargo/bin:$PATH"
+if [[ -e "$HOME/.profile" ]]; then
+  source "$HOME/.profile"
+fi
+
