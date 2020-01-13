@@ -1,30 +1,23 @@
 (use-package go-mode
-  :mode
-  "\\.go"
+  :ensure t
+  :mode "\\.go\\'"
   :config
-  (add-hook 'before-save-hook 'gofmt-before-save)
-  (add-hook 'go-mode-hook 'lsp-deferred)
+    (add-hook 'before-save-hook 'gofmt-before-save)
  ;; (with-eval-after-load 'go-mode
-;;    (require 'go-autocomplete))
+ ;;    (require 'go-autocomplete))
   :custom
-    (tab-width 4)
+    (flymake-mode) ;; disable flymake
+	(tab-width 4)
     (indent-tabs-mode 1)
     (whitespace-style '(trailing))
+	(flycheck-mode)
+  :after (flycheck)
 )
 
 (use-package company-go
-  :mode
-  "\\.go\\'"
+  :ensure t
   :after (go-mode company)
   )
-(use-package go-lsp
-  :mode
-  "\\.go\\'"
-  :config
-  (add-hook 'go-mode-hook 'lsp-deferred)
-  :after (go-mode)
-)
-
 
 ; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
 
@@ -32,7 +25,6 @@
  ;; (auto-complete-mode 1))
 
 ;;(add-hook 'go-mode-hook 'auto-complete-for-go)
-
 
 
 ; https://github.com/flycheck/flycheck/issues/1523
