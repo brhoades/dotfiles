@@ -26,7 +26,7 @@
 # Each block command defaults to the script name to avoid boilerplate.
 command=/usr/lib/i3blocks/$BLOCK_NAME/$BLOCK_NAME
 separator_block_width=15
-markup=none
+# markup=pango
 
 # Volume indicator
 #
@@ -106,13 +106,6 @@ label=⚡
 instance=0
 interval=30
 BAT_NUMBER=0
-
-[battery]
-#label=BAT
-label=⚡
-instance=1
-interval=30
-BAT_NUMBER=2
 
 # Date Time
 #
