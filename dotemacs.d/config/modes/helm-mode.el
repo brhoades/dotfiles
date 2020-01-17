@@ -1,25 +1,53 @@
-(use-package helm)
-(use-package helm-config)
-(use-package projectile)
-(use-package helm-projectile)
-(use-package helm-ag)
-(use-package helm-smex)
+(use-package helm
+  :ensure t
+  :custom
+  ; https://github.com/tonsky/FiraCode/issues/158
+  (auto-composition-mode nil)
+  :config
+  (helm-mode 1)
+  (push "\.(js|ts)x?\.map$" helm-boring-file-regexp-list)
+  (push "\.pb\.(go|js|py)$" helm-boring-file-regexp-list)
+  )
+(use-package projectile
+  :ensure t
+  ; :defer t
+  :commands (projectile-switch-project projectile-find-file)
+  :config
+  (projectile-mode)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  )
 
-(helm-mode 1)
-(projectile-mode)
-(helm-projectile-on)
+(use-package helm-ag
+  :after (helm)
+  ; :commands (helm-ag-mode helm-ag)
+  :custom
+  (auto-composition-mode nil)
+  :ensure t
+  ; :defer t)
+  )
+
+(use-package helm-smex
+  :bind (("M-x" . helm-M-x))
+  ; :commands (helm-M-x)
+  :ensure t)
+
+(use-package helm-projectile
+  :ensure t
+  ; :defer t
+  :after (helm helm-ag projectile)
+  ; :commands (helm-projectile helm-projectile-ag helm-projectile-awk helm-projectile-grep)
+  :config
+  (helm-projectile-on)
+  )
+
 
 (customize-set-variable 'helm-ff-lynx-style-map t) ; enable arrow key directory nav.
-
 (customize-set-variable 'helm-ff-skip-boring-files t) ; skip boring files
-(push "\.js\.map$" helm-boring-file-regexp-list)
 
 (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
-(global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x r b") #'helm-filtered-bookmarks)
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 (define-key helm-find-files-map "\t" 'helm-execute-persistent-action)
 (setq projectile-sort-order 'recentf)
