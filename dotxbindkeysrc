@@ -1,0 +1,5 @@
+"xbacklight -dec 5"
+  XF86MonBrightnessDown
+"xbacklight -inc 5"
+  XF86MonBrightnessUp
+
