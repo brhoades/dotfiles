@@ -1,13 +1,21 @@
-(use-package rbenv)
-(use-package inf-ruby)
-(use-package ruby-hash-syntax)
+(use-package rbenv
+  :ensure t
+  :defer t)
+
+(use-package inf-ruby
+  :commands (inf-ruby-mode)
+  :hook (ruby-mode . inf-ruby-mode)
+  :ensure t
+  :defer t)
+
+(use-package ruby-hash-syntax
+  :commands (ruby-hash-syntax-toggle)
+  :hook (ruby-mode . ruby-hash-syntax-toggle)
+  :ensure t
+  :defer t)
 
 ; ruby does wild stuff inside parens...
 (setq ruby-deep-indent-paren nil)
-
-;; rbenv
-;; (require 'rbenv)
-;; (global-rbenv-mode)
 
 ;; Syntax checking
 ;; (require 'flymake-ruby)

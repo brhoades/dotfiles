@@ -25,7 +25,9 @@
         indent-tabs-mode nil))
 
 (use-package flycheck-rust
- :ensure t)
+  :ensure t
+  :defer t
+  :after (flycheck rustic))
 
 (use-package rustic
   :ensure t

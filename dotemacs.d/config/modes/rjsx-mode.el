@@ -1,13 +1,8 @@
-(use-package rjsx-mode)
-
-(add-to-list 'auto-mode-alist '("\\(components\\|containers\\)\\/.*\\.jsx?\\'" . rjsx-mode))
-
-(add-hook 'rjsx-mode-hook
-  (lambda ()
-    (setq js2-strict-trailing-comma-warning nil)
+(use-package rjsx-mode
+  :ensure t
+  :defer t
+  :mode "\\(components\\|containers\\)\\/.*\\.jsx?\\'"
+  :custom
+    (js2-strict-trailing-comma-warning nil)
+  :bind (("<" . nil) ("C-d" . nil))
   )
-)
-
-(with-eval-after-load 'rjsx
-  (define-key rjsx-mode-map "<" nil)
-  (define-key rjsx-mode-map (kbd "C-d") nil))

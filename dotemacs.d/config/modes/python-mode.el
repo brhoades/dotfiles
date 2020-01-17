@@ -1,9 +1,9 @@
 (use-package python-mode
   :ensure t
   :defer t
-  :config
-  (setq tab-width 4)
-  (setq python-indent 4)
+  :custom
+  (tab-width 4)
+  (python-indent 4)
 )
 
 (add-hook 'python-mode-hook

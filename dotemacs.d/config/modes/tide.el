@@ -1,4 +1,11 @@
-(use-package tide)
+(use-package tide
+  :commands (tide-mode)
+  :ensure t
+  :hook (typescript-mode . setup-tide-mode)
+  :after (typescript-mode company-mode eldoc-mode flycheck-mode)
+  :custom
+  (tide-format-options (:indentSize 2 :tabSize 2 :baseIndentSize 2))
+  )
 
 (defun setup-tide-mode ()
   (interactive)
@@ -12,14 +19,3 @@
   ;; `M-x package-install [ret] company`
   (company-mode +1)
   )
-
-;; aligns annotation to the right hand side
-;; (setq company-tooltip-align-annotations t)
-
-;; formats the buffer before saving
-;;(add-hook 'before-save-hook 'tide-format-before-save)
-
-(add-hook 'typescript-mode-hook #'setup-tide-mode)
-
-(setq tide-format-options '(:indentSize 2 :tabSize 2 :baseIndentSize 2))
-(setq typescript-indent-level 3)
