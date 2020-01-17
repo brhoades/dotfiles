@@ -1,12 +1,13 @@
 (package-initialize)
-
-; use-package setup
+;; use-package setup
 (load "~/.emacs.d/config/use-package.el")
 
 ;;;;;;;;;;;;;;; Evil mode
 ;; Enable global evil mode early, so if something else breaks I still have arms
-(use-package evil)
-(use-package evil-smartparens)
+(use-package evil
+	:ensure t)
+(use-package evil-smartparens
+  :ensure t)
 (evil-mode 1)
 ;;;;;;;;;;;;;;;
 
@@ -29,6 +30,9 @@
  '(desktop-restore-eager 3)
  '(desktop-save-mode t)
  '(fci-rule-color "#3C3D37")
+ '(flycheck-eslintrc "~/.eslintrc" t)
+ '(flycheck-highlighting-mode (quote symbols))
+ '(flycheck-idle-change-delay 1)
  '(flymake-mode 0 t)
  '(helm-ff-lynx-style-map t)
  '(helm-ff-skip-boring-files t)
@@ -50,7 +54,7 @@
 	("~/Documents/org/topics/17/Q1/releaser.org" "~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")))
  '(package-selected-packages
    (quote
-	(lsp-ui lsp-ui-sideline company-go flycheck-rust rustic python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports protobuf-mode go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
+	(helm-config protobuf-mode lsp-ui lsp-ui-sideline company-go flycheck-rust rustic python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(ruby-align-to-stmt-keywords nil)
@@ -93,7 +97,9 @@
 	 (projectile-file-exists-remote-cache-expire
 	  (* 60 60)))))
  '(tab-width 4)
+ '(tool-bar-mode nil)
  '(typescript-indent-level 2)
+ '(typescript-indent-offset 2 t)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
@@ -137,7 +143,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Fira Code" :foundry "CTDB" :slant normal :weight normal :height 97 :width normal)))))
 
 ;;;;;;;;;;;;;;; Modular Config
 ; https://www.emacswiki.org/emacs/DotEmacsModular
