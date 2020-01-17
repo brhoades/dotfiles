@@ -1,3 +1,9 @@
 /testers/
-dir-locals.el
-.ruby-version
+.(IKAIA|IKOUA|IKAPUA)$
+/\.dir-locals.el
+/\.ruby-version
+*\.bak
+/\.projectile
+/\.ignore
+/\.gitconfig
+node_modules
