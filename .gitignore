@@ -1,5 +1,13 @@
 dotzprezto/modules/*
 
+\#*\#
+/dotemacs.d/games
+/dotemacs.d/*.data
+/dotemacs.d/*.dat
+/dotemacs.d/*.lsp-session*
+/dotemacs.d/transient
+
+dotvim/bundle
 dotvim/swaps/*
 !dotvim/swaps/.keep
 dotvim/undo/*
@@ -10,3 +18,5 @@ dotvim/autoload/
 dotxmonad/*.{errors,o,hi}
 dotxmonad/xmonad-x86_64-linux
 .stack*
+
+dotconfig/pulse/cookie
