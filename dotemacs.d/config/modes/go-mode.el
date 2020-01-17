@@ -1,31 +1,25 @@
 (use-package go-mode
+  :defer t
   :ensure t
   :mode "\\.go\\'"
-  :config
-    (flymake-mode +0) ;; disable flymake
-    (add-hook 'before-save-hook 'gofmt-before-save)
-    (add-hook 'go-mode-hook #'lsp)
-	(add-hook 'go-mode-hook 'flycheck-mode)
- ;; (with-eval-after-load 'go-mode
- ;;    (require 'go-autocomplete))
+  ; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
+  ; https://gist.github.com/psanford/b5d2689ff1565ec7e46867245e3d2c76
+  :hook ((go-mode . lsp-deferred)
+         (go-mode . flycheck-mode))
+  ; (before-save . lsp-format-buffer)
+  ; (before-save . lsp-organize-imports))
   :custom
-	(tab-width 4)
-    (indent-tabs-mode 1)
-    (whitespace-style '(trailing))
-)
-
-(use-package company-go
-  :ensure t
-  :after (go-mode company)
+  ((flycheck-idle-change-delay 1)
+   (tab-width 4)
+   (indent-tabs-mode 1)
+   (whitespace-style '(trailing)))
   )
 
-; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
-
-;;(defun auto-complete-for-go ()
- ;; (auto-complete-mode 1))
-
-;;(add-hook 'go-mode-hook 'auto-complete-for-go)
-
+(use-package company-go
+             :defer t
+             :ensure t
+             :after (go-mode company)
+             )
 
 ; https://github.com/flycheck/flycheck/issues/1523
 (let ((govet (flycheck-checker-get 'go-vet 'command)))
