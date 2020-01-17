@@ -1,6 +1,6 @@
 [submodule "dotzprezto/prezto-repo"]
 	path = dotzprezto/prezto-repo
 	url = https://github.com/sorin-ionescu/prezto.git
-[submodule "dotvim/bundle/Vundle.vim"]
-	path = dotvim/bundle/Vundle.vim
+[submodule "dotvim/Vundle.vim"]
+	path = dotvim/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
