@@ -17,11 +17,10 @@
   default = simple
 
 [credential]
-  #helper = store --file /home/aaron/.git-credentials
   helper = cache --timeout=28800
 
 [commit]
   gpgsign = true
 
 [protocol "keybase"]
-allow = always
+  allow = always
