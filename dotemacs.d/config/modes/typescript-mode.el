@@ -5,4 +5,6 @@
   :mode "\\.tsx?\\'"
   :custom
     (typescript-indent-offset 2)
+	(typescript-indent-level 2)
+	(indent-tabs-mode nil)
   )
