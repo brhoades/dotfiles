@@ -1,0 +1,20 @@
+[Unit]
+Description=IMAP Notify Script for %I
+Documentation=man:offlineimap(1)
+
+[Service]
+ExecStart=/home/%u/lib/dotconfigs/scripts/mail/daemonize.sh
+Type=simple
+RestartSec=60
+Restart=always
+StandardOutput=journal
+Environment=IMAP_NOTIFY_USER=%i
+Environment=HOME=/home/aaron/
+Environment=USER=aaron
+Environment=DISPLAY=:0
+Environment=IMAP_ALLOW_UNAUTHORIZED=1
+Environment=RUST_LOG=debug
+
+[Install]
+WantedBy=default.target
+
