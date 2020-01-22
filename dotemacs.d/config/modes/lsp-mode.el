@@ -20,3 +20,7 @@
   ;; (lsp-ui-sideline-delay 3.0)
   ;; (lsp-ui-doc-delay 3.0)
 )
+
+(use-package yasnippet
+  :defer t
+  :ensure t)

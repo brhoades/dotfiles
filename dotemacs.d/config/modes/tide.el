@@ -1,6 +1,7 @@
 (use-package tide
-  :commands (tide-mode)
   :ensure t
+  :defer t
+  :commands (tide-mode)
   :hook (typescript-mode . setup-tide-mode)
   :after (typescript-mode company-mode eldoc-mode flycheck-mode)
   :custom

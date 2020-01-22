@@ -1,18 +1,23 @@
 (use-package company
   :ensure t
+  :defer t
   :init
-  (setq company-idle-delay nil  ; avoid auto completion popup, use TAB
-                                ; to show it
-        company-tooltip-align-annotations t)
+  :commands (company-mode company-global-mode)
   :hook (after-init . global-company-mode)
   :bind
   (:map prog-mode-map
         ("C-i" . company-indent-or-complete-common)
-        ("C-M-i" . completion-at-point)))
+		("C-M-i" . completion-at-point))
+  :custom
+  (company-idle-delay nil) ; avoid auto completion popup, use TAB
+										; to show it
+  (company-tooltip-align-annotations t))
 
 (use-package company-lsp
   :ensure t
+  :defer t
   :after (company lsp-mode)
+  :commands company-lsp
   :custom
   (company-lsp-cache-candidates t)
 )
