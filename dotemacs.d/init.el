@@ -5,7 +5,9 @@
 ;;;;;;;;;;;;;;; Evil mode
 ;; Enable global evil mode early, so if something else breaks I still have arms
 (use-package evil
-	:ensure t)
+  :init
+  (setq evil-want-keybinding nil)
+  :ensure t)
 (use-package evil-smartparens
   :ensure t)
 (evil-mode 1)
@@ -26,8 +28,8 @@
  '(auto-composition-mode nil t)
  '(auto-revert-remote-files t)
  '(c-label-minimum-indentation 2)
- '(company-idle-delay nil t)
- '(company-tooltip-align-annotations t t)
+ '(company-idle-delay nil)
+ '(company-tooltip-align-annotations t)
  '(compilation-message-face (quote default))
  '(custom-enabled-themes (quote (misterioso)))
  '(desktop-restore-eager 3)
@@ -42,22 +44,24 @@
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
    (quote
-	(("#3C3D37" . 0)
-	 ("#679A01" . 20)
-	 ("#4BBEAE" . 30)
-	 ("#1DB4D0" . 50)
-	 ("#9A8F21" . 60)
-	 ("#A75B00" . 70)
-	 ("#F309DF" . 85)
-	 ("#3C3D37" . 100))))
+    (("#3C3D37" . 0)
+     ("#679A01" . 20)
+     ("#4BBEAE" . 30)
+     ("#1DB4D0" . 50)
+     ("#9A8F21" . 60)
+     ("#A75B00" . 70)
+     ("#F309DF" . 85)
+     ("#3C3D37" . 100))))
+ '(indent-tabs-mode nil)
+ '(js-indent-level 2)
  '(js2-strict-trailing-comma-warning nil t)
  '(magit-diff-use-overlays nil)
  '(org-agenda-files
    (quote
-    ("~/Documents/org/topics/17/Q1/releaser.org" "~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")))
+    ("~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")))
  '(package-selected-packages
    (quote
-	(helm-config protobuf-mode lsp-ui lsp-ui-sideline company-go flycheck-rust python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
+    (evil-collection helm-notmuch notmuch helm-config protobuf-mode lsp-ui lsp-ui-sideline company-go flycheck-rust python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(push (quote rustic-clippy) t)
@@ -103,7 +107,7 @@
       (* 60 60)))))
  '(tab-width 4)
  '(tool-bar-mode nil)
- '(typescript-indent-level 2)
+ '(typescript-indent-level 2 t)
  '(typescript-indent-offset 2 t)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
