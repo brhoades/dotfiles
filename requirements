@@ -1,23 +1,26 @@
 xorg-xsetroot
 xorg-xinit
-bspwm
-bar
-sxhkd
+i3
 compton
-conky
 hsetroot
 xorg-xrandr
-dmenu
-stlarch_font
+rofi
 tint2
 autocutsel
 terminator
 # v both acpi for the panel
-acpi
-acpid
+# acpi
+# acpid
 vnstat #net apps
-lemonbar-git # ln -s /usr/bin/lemonbar /usr/bin/bar
+
+direnv
+
+offlineimap
+notmuch
 #https://github.com/Lokaltog/lokaltog-fonts.git
 
-# https://github.com/windelicato/dotfiles/wiki/bspwm-for-dummies
-# Guide ^
+### emacs checkers
+# BASH
+dash
+shellcheck-static
+# Rust
