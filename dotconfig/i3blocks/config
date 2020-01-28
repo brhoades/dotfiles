@@ -41,18 +41,23 @@ instance=Master
 interval=5
 signal=10
 
+[mail]
+command=~/.config/i3blocks/mail
+label=
+instance=~/mail
+interval=60
+
 # Memory usage
 #
 # The type defaults to "mem" if the instance is not specified.
 [memory]
-label=MEM
-separator=false
+label=
+instance=mem;free
 interval=30
 
 [memory]
-label=SWAP
-instance=swap
-separator=false
+label=
+instance=swap;total
 interval=30
 
 # Disk usage
@@ -81,18 +86,18 @@ interval=10
 separator=false
 
 [bandwidth]
-#instance=eth0
+label=
+instance=eno1
 interval=5
 
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
+
 [cpu_usage]
-label=CPU
-interval=10
-min_width=CPU: 100.00%
-#separator=false
+label=
+interval=2
 
 #[load_average]
 #interval=10
@@ -107,11 +112,16 @@ instance=0
 interval=30
 BAT_NUMBER=0
 
-# Date Time
-#
-[time]
-command=date '+%Y-%m-%d %H:%M:%S'
+
+[microphone]
+label=
 interval=5
+
+# Date Time
+[time]
+label=
+command=date '+%Y-%m-%d %H:%M:%S'
+interval=1
 
 # Generic media player support
 #
