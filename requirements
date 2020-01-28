@@ -1,9 +1,14 @@
 xorg-xsetroot
 xorg-xinit
 i3
-compton
-hsetroot
+i3bar
+i3blocks
+i3blocks-contrib-git
+# i3blocks requirements
+mpstat
+
 xorg-xrandr
+hsetroot
 rofi
 tint2
 autocutsel
