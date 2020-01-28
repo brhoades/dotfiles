@@ -22,7 +22,8 @@
 (defun my-rustic-mode-hook-fn ()
   "needed for lsp-format-buffer to indent with 4 spaces"
   (setq tab-width 4
-        indent-tabs-mode nil))
+        indent-tabs-mode nil
+        rustic-babel-format-src-block t))
 
 (use-package flycheck-rust
   :ensure t
