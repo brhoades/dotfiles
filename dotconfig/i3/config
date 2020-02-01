@@ -199,9 +199,11 @@ assign [class="^Signal"] $ws10
 assign [window_role="WEECHAT"] $ws10
 assign [class="^Slack"] $ws4
 
-# Launching applications
 exec terminator -r WEECHAT -x weechat
 exec firefox
 exec signal-desktop
 exec discord
 exec dunst
+autocutsel -selection CLIPBOARD -fork
+autocutsel -selection PRIMARY -fork
+
