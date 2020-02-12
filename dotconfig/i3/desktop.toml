@@ -1,0 +1,48 @@
+theme = "solarized-dark"
+icons = "awesome"
+
+[[block]]
+block = "net"
+device = "eno1"
+ip = false
+speed_up = false
+graph_up = true
+interval = 5
+use_bits = false
+
+[[block]]
+block = "notmuch"
+maildir = "/home/aaron/mail"
+query = "tag:unread and not tag:trash"
+threshold_warning = 1
+threshold_critical = 5
+name = ""
+# name = ""
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+[[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
+block = "load"
+interval = 1
+format = "{1m}"
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "bluetooth"
+mac = "28:11:A5:35:50:04"
+label = " QC35"
+
+[[block]]
+block = "time"
+interval = 60
+format = "%a %d/%m %R"

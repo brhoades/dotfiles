@@ -17,7 +17,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono, FontAwesome 11
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -37,6 +37,7 @@ bindsym $mod+w kill
 
 # start dmenu (a program launcher)
 bindsym $mod+space exec zsh -c "rofi -show run -modi run"
+bindsym $mod+shift+k exec zsh -c "rofi -show run -modi window"
 bindsym $mod+d exec rofi-pass
 bindsym $mod+Ctrl+3 exec /home/aaron/bin/sss
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -171,7 +172,18 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  status_command i3blocks
+    font pango:DejaVu Sans Mono, FontAwesome 11
+    position top
+    status_command /home/aaron/bin/i3status-rs /home/aaron/.config/i3/i3status-rs.toml
+    colors {
+        separator #666666
+        background #222222
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
 }
 
 for_window [class=".*"] border pixel 0
@@ -204,6 +216,6 @@ exec firefox
 exec signal-desktop
 exec discord
 exec dunst
-autocutsel -selection CLIPBOARD -fork
-autocutsel -selection PRIMARY -fork
+exec autocutsel -selection CLIPBOARD -fork
+exec autocutsel -selection PRIMARY -fork
 
