@@ -11,5 +11,5 @@
 ;;  (advice-add 'flycheck-eslint-config-exists-p :override (lambda() t))
   :custom
     (flycheck-eslintrc "~/.eslintrc")
-    ; (flycheck-highlighting-mode 'symbols)
+    (flycheck-highlighting-mode 'symbols)
 )
