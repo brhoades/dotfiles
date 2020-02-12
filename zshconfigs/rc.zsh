@@ -18,24 +18,9 @@ bindkey -e
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-
 # debian garbage
 if ! echo "$PATH" | grep -q "/usr/sbin"; then
   export PATH="/usr/sbin:$PATH"
-fi
-
-if [[ -e $HOME/.rbenv/ ]]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
-fi
-
-if [[ -e $HOME/.config/bspwm ]]; then
-  export PATH="$HOME/.config/bspwm/panel/:$PATH"
-fi
-
-if [[ -e $home/.rvm ]]; then
-  # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-    export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
 if [[ -e "$HOME/.local/bin" ]]; then
@@ -44,6 +29,8 @@ fi
 
 # Virtsh/libvirt
 export LIBVIRT_DEFAULT_URI="qemu:///system"
+
+eval "$(direnv hook zsh)"
 
 NVM_DIR="$HOME/.nvm"
 if [[ -d $NVM_DIR ]]; then
