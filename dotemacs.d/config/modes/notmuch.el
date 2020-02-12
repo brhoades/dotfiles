@@ -6,4 +6,6 @@
          (notmuch-hello . evil-collection-notmuch-setup)
          (notmuch-hello-refresh . evil-collection-notmuch-setup)
          (notmuch-tree-command . evil-collection-notmuch-setup)
-         (notmuch-search . evil-collection-notmuch-setup)))
+         (notmuch-search . evil-collection-notmuch-setup))
+  :custom
+  (notmuch-search-oldest-first nil))
