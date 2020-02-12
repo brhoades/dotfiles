@@ -6,6 +6,9 @@ dotzprezto/modules/*
 /dotemacs.d/*.dat
 /dotemacs.d/*.lsp-session*
 /dotemacs.d/transient
+/dotemacs.d/straight
+*personal*
+/dotemacs.d/ede-projects.el
 
 dotvim/.*
 dotvim/bundle
@@ -21,3 +24,4 @@ dotxmonad/xmonad-x86_64-linux
 .stack*
 
 dotconfig/pulse/cookie
+dotconfig/i3/i3status-rs.toml
