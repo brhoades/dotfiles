@@ -6,11 +6,27 @@ block = "net"
 device = "wnet0"
 ssid = true
 signal_strength = true
-ip = true
+ip = false
+graph_down = false
+speed_down = false
 speed_up = false
-graph_up = true
+graph_up = false
 interval = 5
 use_bits = false
+hide_missing = true
+
+[[block]]
+block = "net"
+device = "net0"
+ssid = false
+signal_strength = false
+ip = false
+speed_up = false
+speed_down = false
+graph_up = false
+interval = 5
+use_bits = false
+hide_missing = true
 
 [[block]]
 block = "notmuch"
@@ -24,7 +40,7 @@ name = ""
 [[block]]
 block = "disk_space"
 path = "/home/aaron"
-alias = "𓄎"
+alias = "home"
 info_type = "available"
 show_percentage = true
 interval = 30
