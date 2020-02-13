@@ -4,8 +4,8 @@
   :mode "\\.go\\'"
   ; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
   ; https://gist.github.com/psanford/b5d2689ff1565ec7e46867245e3d2c76
-  :hook ((go-mode . lsp-deferred)
-         (go-mode . flycheck-mode))
+  :hook ((go-mode . flycheck-mode))
+                                        ; ((go-mode . lsp-deferred)
   ; (before-save . lsp-format-buffer)
   ; (before-save . lsp-organize-imports))
   :custom
@@ -25,3 +25,6 @@
 (let ((govet (flycheck-checker-get 'go-vet 'command)))
   (when (equal (cadr govet) "tool")
     (setf (cdr govet) (cddr govet))))
+
+(use-package go-projectile
+  :after (go-mode projectile))

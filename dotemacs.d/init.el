@@ -59,7 +59,7 @@
  '(magit-diff-use-overlays nil)
  '(org-agenda-files
    (quote
-    ("~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")))
+    ("~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")) t)
  '(package-selected-packages
    (quote
     (org org-noter org-pdfview pdf-tools evil-collection helm-notmuch notmuch helm-config protobuf-mode lsp-ui lsp-ui-sideline company-go flycheck-rust python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
@@ -74,6 +74,38 @@
  '(safe-local-variable-values
    (quote
     ((eval progn
+           (require
+            (quote projectile))
+           (setq projectile-file-exists-remote-cache-expire
+                 (* 60 60))
+           (setq projectile-enable-caching t)
+           (setq projectile-sort-order
+                 (quote recentf))
+           (setq whitespace-style
+                 (quote
+                  (trailing)))
+           (projectile-register-project-type
+            (quote go)
+            (quote
+             ("go.mod"))
+            :compilation-dir "go/" :compile "go install ./..." :src-dir "go/" :test "go test ..." :run "go test ..." :test-suffix "_test.go"))
+     (eval progn
+           (require
+            (quote projectile))
+           (setq projectile-file-exists-remote-cache-expire
+                 (* 60 60))
+           (setq projectile-enable-caching t)
+           (setq projectile-sort-order
+                 (quote recentf))
+           (setq whitespace-style
+                 (quote
+                  (trailing)))
+           (projectile-register-project-type
+            (quote go)
+            (quote
+             ("go.mod"))
+            :compile "go install ..." :test "go test ..." :run "go test ..." :test-suffix "_test.go"))
+     (eval progn
            (require
             (quote projectile))
            (setq projectile-file-exists-remote-cache-expire
@@ -109,7 +141,7 @@
       (* 60 60)))))
  '(tab-width 4)
  '(tool-bar-mode nil)
- '(typescript-indent-level 2 t)
+ '(typescript-indent-level 2)
  '(typescript-indent-offset 2 t)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
