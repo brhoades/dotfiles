@@ -1,5 +1,5 @@
 /testers/
-.(IKAIA|IKOUA|IKAPUA)$
+.LOCAL$
 /\.dir-locals.el
 /\.ruby-version
 *\.bak

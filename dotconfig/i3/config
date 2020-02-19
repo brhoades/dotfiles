@@ -37,7 +37,7 @@ bindsym $mod+w kill
 
 # start dmenu (a program launcher)
 bindsym $mod+space exec zsh -c "rofi -show run -modi run"
-bindsym $mod+shift+k exec zsh -c "rofi -show run -modi window"
+# bindsym $mod+shift+k exec zsh -c "rofi -show run -modi window"
 bindsym $mod+d exec rofi-pass
 bindsym $mod+Ctrl+3 exec /home/aaron/bin/sss
 # There also is the (new) i3-dmenu-desktop which only displays applications

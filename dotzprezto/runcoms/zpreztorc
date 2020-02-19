@@ -159,3 +159,5 @@ zstyle ':prezto:module:terminal' auto-title 'yes'
 
 # Integrate with iTerm2.
 # zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+
+zstyle ':prezto:load' pmodule-dirs $HOME/.zprezto/modules/contrib
