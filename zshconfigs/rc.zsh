@@ -41,6 +41,6 @@ if [[ -d $NVM_DIR ]]; then
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
-hash kubectl && source <(kubectl completion zsh) || {}
-hash direnv && eval "$(direnv hook zsh)" || {}
-hash pazi && eval "$(pazi init zsh)" || {}
+hash kubectl &> /dev/null && source <(kubectl completion zsh) || {}
+hash direnv &> /dev/null && eval "$(direnv hook zsh)" || {}
+hash pazi &> /dev/null && eval "$(pazi init zsh)" || {}
