@@ -4,3 +4,6 @@
 [submodule "dotvim/Vundle.vim"]
 	path = dotvim/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
+[submodule "zshconfigs/powerlevel10k"]
+	path = zshconfigs/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
