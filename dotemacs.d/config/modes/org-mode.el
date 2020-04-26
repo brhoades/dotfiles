@@ -1,7 +1,9 @@
 (use-package org
   :ensure t
+  :defer t
   :bind ("\C-ca" . org-agenda)
-  :mode "\\.org\\'"
+  :mode ("\\.org$" . org-mode)
+  :hook (org . (visual-line-mode))
   :custom
     (org-agenda-files (list "~/Documents/org/agenda/work.org"
 	   					    "~/Documents/org/agenda/home.org"))

@@ -58,3 +58,7 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
+;; refresh packages when needed
+(unless package-archive-contents
+  (package-refresh-contents))

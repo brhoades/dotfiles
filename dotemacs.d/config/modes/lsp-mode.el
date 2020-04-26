@@ -15,10 +15,10 @@
   :after (lsp-mode)
   :hook ((lsp-mode-hook . lsp-ui-mode))
   :bind (("C-c e d" . lsp-ui-doc-show))
-  ;; :custom
+  :custom
+  (lsp-ui-doc-delay 10.0)
   ;; (lsp-ui-flycheck-enable :t)
   ;; (lsp-ui-sideline-delay 3.0)
-  ;; (lsp-ui-doc-delay 3.0)
 )
 
 (use-package yasnippet

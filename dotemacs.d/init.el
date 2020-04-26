@@ -30,9 +30,13 @@
  '(auto-revert-remote-files t)
  '(c-label-minimum-indentation 2)
  '(company-idle-delay nil)
+ '(company-lsp-cache-candidates t)
  '(company-tooltip-align-annotations t)
  '(compilation-message-face (quote default))
  '(custom-enabled-themes (quote (misterioso)))
+ '(custom-safe-themes
+   (quote
+    ("7f1d414afda803f3244c6fb4c2c64bea44dac040ed3731ec9d75275b9e831fe5" "e9df267a1c808451735f2958730a30892d9a2ad6879fb2ae0b939a29ebf31b63" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default)))
  '(desktop-restore-eager 3)
  '(desktop-save-mode t)
  '(fci-rule-color "#3C3D37")
@@ -56,10 +60,14 @@
  '(indent-tabs-mode nil)
  '(js-indent-level 2)
  '(js2-strict-trailing-comma-warning nil t)
+ '(lsp-ui-doc-delay 15)
  '(magit-diff-use-overlays nil)
+ '(notmuch-search-oldest-first nil t)
  '(org-agenda-files
    (quote
-    ("~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")) t)
+    ("~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")) nil nil "Customized with use-package org")
+ '(org-noter-always-create-frame nil)
+ '(org-noter-kill-frame-at-session-end nil)
  '(package-selected-packages
    (quote
     (org org-noter org-pdfview pdf-tools evil-collection helm-notmuch notmuch helm-config protobuf-mode lsp-ui lsp-ui-sideline company-go flycheck-rust python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode jsx-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv inf-ruby smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
@@ -186,7 +194,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Fira Code" :foundry "CTDB" :slant normal :weight normal :height 97 :width normal)))))
+ '(default ((((class color) (min-colors 89)) (:foreground "#d2cfc6" :background "#292928"))))
+ '(org-block-begin-line ((t (:background "#35331D" :foreground "#75715E" :slant italic))))
+ '(org-code ((t (:inherit org-block :foreground "#EEEEE"))))
+ '(org-meta-line ((t (:inherit org-block-begin-line)))))
 
 ;;;;;;;;;;;;;;; Modular Config
 ; https://www.emacswiki.org/emacs/DotEmacsModular

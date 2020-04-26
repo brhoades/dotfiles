@@ -43,3 +43,6 @@
 (use-package nix-mode
  :ensure t
  :defer t)
+
+(use-package solarized-theme
+  :ensure t)
