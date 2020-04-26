@@ -2,6 +2,20 @@ setopt clobber
 setopt no_rm_star_silent
 setopt APPEND_HISTORY # sessions append rather than replace
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+#
+# Executes commands at the start of an interactive session.
+#
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+source ~/lib/dotconfigs/zshconfigs/powerlevel10k/powerlevel10k.zsh-theme
+zstyle :prezto:module:prompt theme powerlevel10k
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[cursor]=underline
 
@@ -26,9 +40,6 @@ fi
 if [[ -e "$HOME/.local/bin" ]]; then
   export PATH=$HOME/.local/bin:$PATH
 fi
-
-# Virtsh/libvirt
-export LIBVIRT_DEFAULT_URI="qemu:///system"
 
 eval "$(direnv hook zsh)"
 
@@ -55,3 +66,5 @@ export GTEST_INCLUDE_DIRS=/usr/lib/
 
 # work stuff
 if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+
+eval "$(pazi init zsh)"
