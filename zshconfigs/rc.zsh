@@ -45,3 +45,4 @@ fi
 hash kubectl &> /dev/null && source <(kubectl completion zsh) || {}
 hash direnv &> /dev/null && eval "$(direnv hook zsh)" || {}
 hash pazi &> /dev/null && eval "$(pazi init zsh)" || {}
+(( ! ${+functions[p10k]} )) || p10k finalize
