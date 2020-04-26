@@ -29,6 +29,12 @@ font pango:DejaVu Sans Mono, FontAwesome 11
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# popup during full screen but only with the current application
+popup_during_fullscreen smart
+
+# Do not warp the mouse to newly launched windows
+mouse_warping none
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
@@ -205,8 +211,8 @@ assign [class="Chromium"] $ws3
 assign [class="Google-chrome-beta"] $ws2
 assign [class="RuneLite"] $ws1
 assign [class="^Steam"] $ws1
-assign [class="^Emacs"] $ws1
-assign [class="^Discord"] $ws10
+# assign [class="^Emacs"] $ws1
+assign [class="^discord"] $ws10
 assign [class="^Signal"] $ws10
 assign [window_role="WEECHAT"] $ws10
 assign [class="^Slack"] $ws4
