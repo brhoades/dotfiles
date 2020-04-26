@@ -8,13 +8,11 @@ setopt APPEND_HISTORY # sessions append rather than replace
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-#
-# Executes commands at the start of an interactive session.
-#
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source ~/lib/dotconfigs/zshconfigs/powerlevel10k/powerlevel10k.zsh-theme
+SCRIPT=$(readlink -f $0)
+SPATH=$(dirname "$SCRIPT")
+source "$SPATH/powerlevel10k/powerlevel10k.zsh-theme"
 zstyle :prezto:module:prompt theme powerlevel10k
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[cursor]=underline
@@ -32,16 +30,9 @@ bindkey -e
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-# debian garbage
-if ! echo "$PATH" | grep -q "/usr/sbin"; then
-  export PATH="/usr/sbin:$PATH"
-fi
-
 if [[ -e "$HOME/.local/bin" ]]; then
   export PATH=$HOME/.local/bin:$PATH
 fi
-
-eval "$(direnv hook zsh)"
 
 NVM_DIR="$HOME/.nvm"
 if [[ -d $NVM_DIR ]]; then
@@ -50,21 +41,6 @@ if [[ -d $NVM_DIR ]]; then
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
-# old stuff
-JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
-if [[ -d $JAVA_HOME ]]; then
-  export JAVA_HOME
-fi
-
-ANDROID_SDK_HOME="/opt/android-sdk/"
-if [[ -d $ANDROID_SDK_HOME ]]; then
-  export ANDROID_SDK_HOME
-fi
-
-# CPP stuff
-export GTEST_INCLUDE_DIRS=/usr/lib/
-
-# work stuff
-if [ -n $(which kubectl) ]; then source <(kubectl completion zsh); fi
-
-if [ -n $(which pazi) ]; then eval <(pazi init zsh); fi
+hash kubectl && source <(kubectl completion zsh) || {}
+hash direnv && eval "$(direnv hook zsh)" || {}
+hash pazi && eval "$(pazi init zsh)" || {}
