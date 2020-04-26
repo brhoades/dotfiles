@@ -8,10 +8,11 @@ setopt APPEND_HISTORY # sessions append rather than replace
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true # ~/.p10k is missing on nixos and p10k is persistent.
 
 SCRIPT=$(readlink -f $0)
 SPATH=$(dirname "$SCRIPT")
+source "$SPATH/dotp10k.zsh"
 source "$SPATH/powerlevel10k/powerlevel10k.zsh-theme"
 zstyle :prezto:module:prompt theme powerlevel10k
 typeset -A ZSH_HIGHLIGHT_STYLES
