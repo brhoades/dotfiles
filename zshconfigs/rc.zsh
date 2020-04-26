@@ -65,6 +65,6 @@ fi
 export GTEST_INCLUDE_DIRS=/usr/lib/
 
 # work stuff
-if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
+if [ -n $(which kubectl) ]; then source <(kubectl completion zsh); fi
 
-eval "$(pazi init zsh)"
+if [ -n $(which pazi) ]; then eval <(pazi init zsh); fi
