@@ -1,9 +1,12 @@
 [submodule "dotzprezto/prezto-repo"]
 	path = dotzprezto/prezto-repo
 	url = https://github.com/sorin-ionescu/prezto.git
+    shallow = true
 [submodule "dotvim/Vundle.vim"]
 	path = dotvim/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
+    shallow = true
 [submodule "zshconfigs/powerlevel10k"]
 	path = zshconfigs/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+    shallow = true
