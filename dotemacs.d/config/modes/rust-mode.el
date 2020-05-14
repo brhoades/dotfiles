@@ -28,20 +28,13 @@
 (use-package flycheck-rust
   :ensure t
   :after (flycheck))
-;(use-package rust-mode
-;  :commands rust-mode
-;  :ensure t
-;  :mode "\\.rs\\'")
 
 (use-package rustic
   :ensure t
-  :mode "\\.rs\\'"
+  :mode ("\\.rs$" . rustic-mode)
   :hook ((rustic-mode . flycheck-rust-setup)
 		 (rustic-mode . rustic-flycheck-setup)
-		 (rustic-mode . lsp-mode))
-  :after (flycheck)
-  :custom
-    ((push 'rustic-clippy flycheck-checkers)))
+		 (rustic-mode . lsp-mode)))
 
 (use-package lsp-mode
   :ensure t
