@@ -1,11 +1,12 @@
 (use-package tide
   :ensure t
   :defer t
-  :commands (tide-mode)
-  :hook (typescript-mode . setup-tide-mode)
-  :after (typescript-mode company-mode eldoc-mode flycheck-mode)
+  :hook ((typescript-mode . setup-tide-mode)
+         (tide-mode . flycheck-mode)
+         (tide-mode . company-mode))
+  :bind (("C-c C-j" . tide-jump-to-definition))
   :custom
-  (tide-format-options (:indentSize 2 :tabSize 2 :baseIndentSize 2))
+  (tide-format-options '(:indentSize 2 :tabSize 2 :baseIndentSize 2))
   )
 
 (defun setup-tide-mode ()

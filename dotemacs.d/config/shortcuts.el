@@ -4,3 +4,6 @@
 
 ; Open new org file
 (global-set-key (kbd "C-c C-x o") (lambda() (interactive)(find-file "~/Documents/org")))
+
+; Allow escape repeatedly to escape.
+(global-set-key (kbd "<ESC> <ESC>") 'keyboard-escape-quit)

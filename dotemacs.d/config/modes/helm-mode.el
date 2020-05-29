@@ -10,8 +10,6 @@
   )
 (use-package projectile
   :ensure t
-  ; :defer t
-  :commands (projectile-switch-project projectile-find-file)
   :config
   (projectile-mode)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
@@ -19,23 +17,18 @@
 
 (use-package helm-ag
   :after (helm)
-  ; :commands (helm-ag-mode helm-ag)
   :custom
   (auto-composition-mode nil)
   :ensure t
-  ; :defer t)
   )
 
 (use-package helm-smex
   :bind (("M-x" . helm-M-x))
-  ; :commands (helm-M-x)
   :ensure t)
 
 (use-package helm-projectile
   :ensure t
-  ; :defer t
   :after (helm helm-ag projectile)
-  ; :commands (helm-projectile helm-projectile-ag helm-projectile-awk helm-projectile-grep)
   :config
   (helm-projectile-on)
   )
