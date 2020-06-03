@@ -1,7 +1,5 @@
 (use-package company
   :ensure t
-  :defer t
-  :init
   :commands (company-mode company-global-mode)
   :hook (after-init . global-company-mode)
   :bind
@@ -15,7 +13,6 @@
 
 (use-package company-lsp
   :ensure t
-  :defer t
   :after (company lsp-mode)
   :commands company-lsp
   :custom

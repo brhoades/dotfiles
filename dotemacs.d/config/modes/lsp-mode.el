@@ -5,9 +5,8 @@
   :commands (lsp lsp-deferred)
   :config
   (progn (setq lsp-prefer-flymake nil)) ;; flycheck
-  ; :custom
-  ; (flycheck-mode +0)
-  ; (lsp-prefer-flymake :none)
+  :custom
+  (lsp-prefer-flymake :none)
 )
 
 (use-package lsp-ui
@@ -17,10 +16,10 @@
   :bind (("C-c e d" . lsp-ui-doc-show))
   :custom
   (lsp-ui-doc-delay 10.0)
-  ;; (lsp-ui-flycheck-enable :t)
+  (lsp-ui-flycheck-enable nil)
+  (lsp-ui-sideline-show-hover :t)
   ;; (lsp-ui-sideline-delay 3.0)
 )
 
 (use-package yasnippet
-  :defer t
   :ensure t)
