@@ -153,6 +153,7 @@
  '(typescript-indent-level 2)
  '(typescript-indent-offset 2 t)
  '(undo-tree-auto-save-history t)
+ '(undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
