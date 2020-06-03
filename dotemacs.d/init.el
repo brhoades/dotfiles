@@ -192,9 +192,11 @@
      (projectile-file-exists-remote-cache-expire
       (* 60 60)))))
  '(tab-width 4)
+ '(tide-format-options (quote (:indentSize 2 :tabSize 2 :baseIndentSize 2)))
  '(tool-bar-mode nil)
  '(typescript-indent-level 2 t)
  '(typescript-indent-offset 2 t)
+ '(undo-tree-auto-save-history t)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote

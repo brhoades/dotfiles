@@ -17,14 +17,14 @@
   (projectile-globally-ignored-directories '"node_modules"))
 
 (use-package helm-ag
-  :after helm
   :ensure t
+  :after helm
   :custom
   (auto-composition-mode nil))
 
 (use-package helm-smex
-  :after helm
   :ensure t
+  :after helm
   :bind (("M-x" . helm-M-x)))
 
 (use-package helm-projectile

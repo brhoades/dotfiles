@@ -1,15 +1,3 @@
-;; from the Tide README
-(defun setup-tide-mode ()
-  "Set up Tide mode."
-  (interactive)
-  (push 'typescript-tslint flycheck-disabled-checkers)
-  (tide-setup)
-  (flycheck-mode +1)
-  ; (setq flycheck-check-syntax-automatically '(save-mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  (company-mode +1))
-
 (use-package tide
   :ensure t
   ; after seems to make everything wonky.
@@ -21,3 +9,14 @@
   :config
   (flycheck-add-next-checker 'tsx-tide 'typescript-eslint nil)
   (setq-default tide-format-options '(:indentSize 2 :tabSize 2 :baseIndentSize 2)))
+
+(defun setup-tide-mode ()
+  "Set up Tide mode."
+  (interactive)
+  (push 'typescript-tslint flycheck-disabled-checkers)
+  (tide-setup)
+  (flycheck-mode +1)
+  ; (setq flycheck-check-syntax-automatically '(save-mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
