@@ -13,25 +13,25 @@
   :config
   (projectile-mode)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  )
+  :custom
+  (projectile-globally-ignored-directories '"node_modules"))
 
 (use-package helm-ag
-  :after (helm)
-  :custom
-  (auto-composition-mode nil)
   :ensure t
-  )
+  :after helm
+  :custom
+  (auto-composition-mode nil))
 
 (use-package helm-smex
-  :bind (("M-x" . helm-M-x))
-  :ensure t)
+  :ensure t
+  :after helm
+  :bind (("M-x" . helm-M-x)))
 
 (use-package helm-projectile
   :ensure t
   :after (helm helm-ag projectile)
   :config
-  (helm-projectile-on)
-  )
+  (helm-projectile-on))
 
 
 (customize-set-variable 'helm-ff-lynx-style-map t) ; enable arrow key directory nav.

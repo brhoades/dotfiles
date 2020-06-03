@@ -10,13 +10,13 @@ graph_up = true
 interval = 5
 use_bits = false
 
-[[block]]
-block = "notmuch"
-maildir = "/home/aaron/mail"
-query = "tag:unread and not tag:trash"
-threshold_warning = 1
-threshold_critical = 5
-name = ""
+# [[block]]
+# block = "notmuch"
+# maildir = "/home/aaron/mail"
+# query = "tag:unread and not tag:trash"
+# threshold_warning = 1
+# threshold_critical = 5
+# name = ""
 # name = ""
 
 [[block]]

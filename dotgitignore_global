@@ -7,3 +7,4 @@
 /\.ignore
 /\.gitconfig
 node_modules
+.solargraph.yml

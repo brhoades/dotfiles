@@ -1,6 +1,3 @@
-(use-package neotree
- :ensure t
- :defer t)
 (use-package dockerfile-mode
  :ensure t
  :defer t)
@@ -8,9 +5,6 @@
  :ensure t
  :defer t)
 (use-package less-css-mode
- :ensure t
- :defer t)
-(use-package flycheck-pyflakes
  :ensure t
  :defer t)
 (use-package exec-path-from-shell
@@ -25,9 +19,6 @@
 (use-package elm-mode
  :ensure t
  :defer t)
-(use-package jsx-mode
- :ensure t
- :defer t)
 (use-package scala-mode
  :ensure t
  :defer t)
@@ -38,8 +29,7 @@
  :ensure t
  :defer t)
 (use-package flx-ido
- :ensure t
- :defer t)
+ :ensure t)
 (use-package nix-mode
  :ensure t
  :defer t)

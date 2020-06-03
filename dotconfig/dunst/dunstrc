@@ -178,28 +178,53 @@ history = ctrl+grave
 # Context menu.
 context = ctrl+shift+period
 
+# https://github.com/khamer/base16-dunst
+
 [urgency_low]
 # IMPORTANT: colors have to be defined in quotation marks.
 # Otherwise the "#" and following would be interpreted as a comment.
 frame_color = "#3B7C87"
 foreground = "#3B7C87"
 background = "#191311"
-#background = "#2B313C"
+background = "#2B313C"
 timeout = 4
 
-[urgency_normal]
-frame_color = "#5B8234"
-foreground = "#5B8234"
-background = "#191311"
+#[urgency_normal]
+#frame_color = "#5B8234"
+#foreground = "#5B8234"
+#background = "#191311"
 #background = "#2B313C"
-timeout = 6
+#timeout = 6
+#
+#[urgency_critical]
+#frame_color = "#B7472A"
+#foreground = "#B7472A"
+#background = "#191311"
+#background = "#2B313C"
+#timeout = 8
+
+
+# github theme
+frame_color = "#333333"
+separator_color = "#333333"
+
+# [urgency_low]
+#     msg_urgency = low
+#     background = "#f5f5f5"
+#     foreground = "#969896"
+#     timeout = 5
+
+[urgency_normal]
+    msg_urgency = normal
+    background = "#c8c8fa"
+    foreground = "#333333"
+    timeout = 10
 
 [urgency_critical]
-frame_color = "#B7472A"
-foreground = "#B7472A"
-background = "#191311"
-#background = "#2B313C"
-timeout = 8
+    msg_urgency = critical
+    background = "#ed6a43"
+    foreground = "#ffffff"
+    timeout = 0
 
 
 # Every section that isn't one of the above is interpreted as a rules to
@@ -254,4 +279,23 @@ timeout = 8
 #    summary = *twitter.com*
 #    urgency = normal
 #
+
+[slack_dm]
+  appname = Slack
+  summary = "\[ngrok\] from*"
+  urgency = critical
+  # copied from above
+  background = "#ed6a43"
+  foreground = "#ffffff"
+  timeout = 30
+
+[slack_channel]
+  appname = Slack
+  summary = "\[ngrok\] in*"
+  urgency = normal
+  # Copied from above
+  background = "#c8c8fa"
+  foreground = "#333333"
+  timeout = 3
+
 # vim: ft=cfg

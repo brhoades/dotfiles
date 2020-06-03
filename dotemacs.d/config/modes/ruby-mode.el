@@ -1,31 +1,51 @@
 (use-package rbenv
   :ensure t
-  :defer t)
+  :config
+  (global-rbenv-mode)
+  :custom
+  (rbenv-show-active-ruby-in-modeline nil))
 
-(use-package inf-ruby
-  :commands (inf-ruby-mode)
-  :hook (ruby-mode . inf-ruby-mode)
+(use-package enh-ruby-mode
   :ensure t
-  :defer t)
+  :hook ((enh-ruby-mode . lsp-mode)
+         (enh-ruby-mode . lsp)
+         (enh-ruby-mode . setup-ruby-flycheck-mode)
+         (enh-ruby-mode . company-mode))
+  :mode "\\.rb\\'"
+  :custom
+  (lsp-ui-flycheck-live-reporting :t)
+  (add-to-list 'auto-mode-alist '("\\.rb$" . enh-ruby-mode))
+  (add-to-list 'interpreter-mode-alist '("ruby" . enh-ruby-mode)))
 
-(use-package ruby-hash-syntax
-  :commands (ruby-hash-syntax-toggle)
-  :hook (ruby-mode . ruby-hash-syntax-toggle)
+;(use-package inf-ruby
+;  :ensure t
+;  :after enh-ruby-mode
+;  :hook (enh-ruby-mode . inf-ruby-mode)
+;  :bind ("C-c r r" . inf-ruby))
+
+;(use-package ruby-hash-syntax
+;  :ensure t
+;  :hook (ruby-mode . ruby-hash-syntax-toggle))
+
+(use-package projectile-rails
   :ensure t
-  :defer t)
+  :after (projectile enh-ruby-mode)
+  :config
+  (projectile-rails-global-mode))
 
-; ruby does wild stuff inside parens...
-(setq ruby-deep-indent-paren nil)
+(use-package robe
+  :ensure t
+  :after enh-ruby-mode
+  :config
+  (global-robe-mode))
 
-;; Syntax checking
+(defun setup-ruby-flycheck-mode ()
+  (flycheck-add-next-checker 'lsp 'ruby-rubocop))
+
 ;; (require 'flymake-ruby)
 ;; (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
 ;; open a shell
-(global-set-key (kbd "C-c r r") 'inf-ruby)
-
-;; Rails projectile
-(add-hook 'projectile-mode-hook 'projectile-rails-on)
 
 ;; robe
 ;; (require 'robe)
