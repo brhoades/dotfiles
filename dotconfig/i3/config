@@ -181,6 +181,9 @@ bar {
     font pango:DejaVu Sans Mono, FontAwesome 11
     position top
     status_command /home/aaron/bin/i3status-rs /home/aaron/.config/i3/i3status-rs.toml
+
+    tray_output HDMI-0
+
     colors {
         separator #666666
         background #222222
@@ -197,6 +200,9 @@ for_window [class=".*"] border pixel 0
 smart_gaps on
 gaps inner 5
 gaps outer 2
+
+# Don't steal focus
+focus_on_window_activation urgent
 
 # Media Keys
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 2 +5% #increase sound volume
