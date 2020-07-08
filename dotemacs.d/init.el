@@ -30,7 +30,7 @@
  '(auto-revert-remote-files t)
  '(c-label-minimum-indentation 2)
  '(company-idle-delay nil)
- '(company-lsp-cache-candidates t)
+ '(company-lsp-cache-candidates t t)
  '(company-tooltip-align-annotations t)
  '(compilation-message-face (quote default))
  '(custom-enabled-themes (quote (misterioso)))
@@ -47,8 +47,11 @@
  '(flycheck-idle-change-delay 1)
  '(flymake-mode 0 t)
  '(flymake-start-on-flymake-mode nil)
+ '(global-xclip-mode nil)
  '(helm-ff-lynx-style-map t)
  '(helm-ff-skip-boring-files t)
+ '(helm-rg-file-paths-in-matches-behavior (quote absolute))
+ '(helm-rg-include-file-on-every-match-line nil)
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
    (quote
@@ -67,9 +70,10 @@
  '(lsp-java-java-path "/usr/lib/jvm/java-11-openjdk/bin/java")
  '(lsp-java-save-actions-organize-imports nil)
  '(lsp-metals-java-home "/usr/lib/jvm/java-11-openjdk/")
- '(lsp-ui-doc-delay 10.0)
+ '(lsp-ui-doc-delay 10.0 t)
  '(lsp-ui-flycheck-enable nil t)
- '(lsp-ui-sideline-show-hover :t)
+ '(lsp-ui-flycheck-live-reporting :t t)
+ '(lsp-ui-sideline-show-hover :t t)
  '(magit-diff-use-overlays nil)
  '(notmuch-search-oldest-first nil t)
  '(org-agenda-files
@@ -83,7 +87,7 @@
  '(pdf-loader-install nil t)
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
- '(projectile-globally-ignored-directories "node_modules")
+ '(projectile-globally-ignored-directories (quote ("node_modules")))
  '(push (quote rustic-clippy) t)
  '(python-indent 4 t)
  '(rbenv-show-active-ruby-in-modeline nil)
@@ -197,7 +201,7 @@
  '(typescript-indent-level 2 t)
  '(typescript-indent-offset 2 t)
  '(undo-tree-auto-save-history t)
- '(undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+ '(undo-tree-history-directory-alist (quote (("." . "~/.emacs.d/undo"))))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote

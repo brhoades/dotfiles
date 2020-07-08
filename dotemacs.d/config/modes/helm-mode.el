@@ -6,21 +6,26 @@
   :config
   (helm-mode 1)
   (push "\.(js|ts)x?\.map$" helm-boring-file-regexp-list)
-  (push "\.pb\.(go|js|py)$" helm-boring-file-regexp-list)
-  )
+  (push "\.pb\.(go|js|py)$" helm-boring-file-regexp-list))
+
 (use-package projectile
   :ensure t
   :config
   (projectile-mode)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  :custom
-  (projectile-globally-ignored-directories '"node_modules"))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  ; :custom
+  ; (projectile-globally-ignored-directories '("node_modules")))
 
 (use-package helm-ag
-  :ensure t
   :after helm
-  :custom
-  (auto-composition-mode nil))
+  :ensure t)
+  ;:custom
+  ;(auto-composition-mode nil))
+
+(use-package helm-rg
+  :after helm
+  :ensure t)
+
 
 (use-package helm-smex
   :ensure t
@@ -29,7 +34,7 @@
 
 (use-package helm-projectile
   :ensure t
-  :after (helm helm-ag projectile)
+  :after helm
   :config
   (helm-projectile-on))
 
