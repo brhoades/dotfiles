@@ -6,4 +6,3 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 source ~/lib/dotconfigs/zshconfigs/rc.zsh
-

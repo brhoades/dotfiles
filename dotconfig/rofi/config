@@ -1,5 +1,8 @@
 rofi.theme: /usr/share/rofi/themes/Monokai.rasi
 rofi.run-shell-command: {terminal} -e zsh -c "{cmd}"
+rofi.run-command: /bin/zsh -i -c '{cmd}'
+rofi.run-list-command: ~/bin/zsh_aliases.sh
+
 rofi.glob: true
 rofi.regex: true
 rofi.window-command:                 xkill -id {window}
