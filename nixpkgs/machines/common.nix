@@ -15,7 +15,14 @@
 
   programs.zsh.enableCompletion = true;
 
-  home.sessionVariables.EDITOR = "vim";
+  home.sessionVariables = let
+    editor = "vim";
+  in {
+    EDITOR = editor;
+    GIT_EDITOR = editor;
+    TERM = "screen-256color";
+  };
+
   home.packages = with pkgs; [
     git
     wget rsync httpie curl

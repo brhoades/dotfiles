@@ -3,7 +3,17 @@
 {
   imports = [
     ./common.nix
+    ../programs/desktop.nix
+    ../programs/git.nix
   ];
+
+  user = {
+    name = "Billy J Rhoades II";
+    email = "me@brod.es";
+    signing =  {
+      key = "6D052A5305F89A0E!";
+    };
+  };
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
