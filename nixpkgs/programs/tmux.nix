@@ -1,3 +1,18 @@
+{ lib, pkgs, ... }:
+
+with pkgs; {
+  programs.tmux = {
+    enable = true;
+    clock24 = true;
+    terminal = "screen-256color";
+
+    plugins = [
+      # sensible defaults
+      tmuxPlugins.sensible
+
+    ];
+
+    extraConfig = ''
 # $Id: screen-keys.conf,v 1.7 2010-07-31 11:39:13 nicm Exp $
 #
 # By Nicholas Marriott. Public domain.
@@ -17,13 +32,13 @@ set -g prefix ^A
 bind a send-prefix
 
 # Bind appropriate commands similar to screen.
-# lockscreen ^X x 
+# lockscreen ^X x
 unbind ^X
 bind ^X lock-server
 unbind x
 bind x lock-server
 
-# screen ^C c 
+# screen ^C c
 unbind ^C
 bind ^C new-window
 unbind c
@@ -33,11 +48,11 @@ bind c new-window
 unbind ^D
 bind ^D detach
 
-# displays * 
+# displays *
 unbind *
 bind * list-clients
 
-# next ^@ ^N sp n 
+# next ^@ ^N sp n
 unbind ^@
 bind ^@ next-window
 unbind ^N
@@ -55,7 +70,7 @@ bind A command-prompt "rename-window %%"
 unbind ^A
 bind ^A last-window
 
-# prev ^H ^P p ^? 
+# prev ^H ^P p ^?
 unbind ^H
 bind ^H previous-window
 unbind ^P
@@ -65,23 +80,23 @@ bind p previous-window
 unbind BSpace
 bind BSpace previous-window
 
-# windows ^W w 
+# windows ^W w
 unbind ^W
 bind ^W list-windows
 unbind w
 bind w list-windows
 
-# quit \ 
+# quit \
 unbind '\'
 bind '\' confirm-before "kill-server"
 
-# kill K k 
+# kill K k
 unbind K
 bind K confirm-before "kill-window"
 unbind k
 bind k confirm-before "kill-window"
 
-# redisplay ^L l 
+# redisplay ^L l
 unbind ^L
 bind ^L refresh-client
 unbind l
@@ -102,18 +117,11 @@ unbind '"'
 bind '"' choose-window
 
 set-window-option -g xterm-keys on
-set -g default-terminal "screen-256color"
-set -g default-shell /usr/sbin/zsh
-
-
-# List of plugins
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'jimeh/tmux-themepack'
+# set -g default-terminal "screen-256color"
+set -g default-shell ${zsh}
 
 # Theme
-set -g @themepack 'powerline/block/green'
-
-#############
-# Very bottom
-run -b '~/.tmux/plugins/tpm/tpm'
+# set -g @themepack 'powerline/block/green'
+    '';
+  };
+}

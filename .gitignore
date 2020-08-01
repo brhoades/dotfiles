@@ -25,3 +25,6 @@ dotxmonad/xmonad-x86_64-linux
 
 dotconfig/pulse/cookie
 dotconfig/i3/i3status-rs.toml
+
+# per-machine config activation
+/nixpkgs/home.nix
