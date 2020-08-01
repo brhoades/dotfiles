@@ -4,5 +4,6 @@
     ./tmux.nix
     ./pazi.nix
     ./direnv.nix
+    ./vim.nix
   ];
 }

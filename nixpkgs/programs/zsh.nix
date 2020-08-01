@@ -6,8 +6,7 @@ let
 in with pkgs; {
   home = {
     packages = [
-      zsh zsh-powerlevel10k
-      git
+      zsh-powerlevel10k
     ];
 
     # p10k prompts the config wizard unless its output

@@ -26,7 +26,6 @@
   home.packages = with pkgs; [
     git
     wget rsync httpie curl
-    vim
     perl
     nnn bat
     ripgrep rename # perl rename, not busybox.
