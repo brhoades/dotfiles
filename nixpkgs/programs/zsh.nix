@@ -3,10 +3,12 @@
 let
   p10k = pkgs.zsh-powerlevel10k;
   p10kPath = "${p10k}/share/zsh-powerlevel10k";
-in with pkgs; {
+  unstablePkgs = import <nixpkgs-unstable> {};
+in {
   home = {
     packages = [
-      zsh-powerlevel10k
+      # 20.03 p10k isn't playing nice with 20.03 zsh
+      unstablePkgs.zsh-powerlevel10k
     ];
 
     # p10k prompts the config wizard unless its output

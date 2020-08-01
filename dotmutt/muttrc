@@ -1,7 +1,0 @@
-# IMAP: offlineimap
-set folder = "~/mail"
-source ~/.mutt/mailboxes
-set spoolfile = "+mebrodes/INBOX"
-set record = "+mebrodes/Sent\ Items"
-set postponed = "+mebrodes/Drafts"
-set smtp_url = "smtps://me@brod.es@mail.brod.es:465/"
