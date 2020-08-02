@@ -1,6 +1,6 @@
 (use-package tide
   :ensure t
-  ; after seems to make everything wonky.
+  ; after races with these plugins.
   ; :after (web-mode typescript-mode company flycheck)
   :after flycheck
   :hook ((typescript-mode . setup-tide-mode)
@@ -8,6 +8,7 @@
   :bind (("C-c j" . 'tide-jump-to-definition))
   :config
   (flycheck-add-next-checker 'tsx-tide 'typescript-eslint nil)
+  (flycheck-add-next-checker 'typescript-tide 'javascript-eslint nil)
   (setq-default tide-format-options '(:indentSize 2 :tabSize 2 :baseIndentSize 2)))
 
 (defun setup-tide-mode ()

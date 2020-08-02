@@ -5,6 +5,7 @@
     ./common.nix
     ../programs/desktop.nix
     ../programs/git.nix
+    ../programs/emacs.nix
   ];
 
   user = {
