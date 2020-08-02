@@ -5,10 +5,16 @@ let
   p10kPath = "${p10k}/share/zsh-powerlevel10k";
   unstablePkgs = import <nixpkgs-unstable> {};
   prezto = unstablePkgs.zsh-prezto;
+  enhancd = pkgs.fetchFromGitHub {
+    owner = "b4b4r07";
+    repo = "enhancd";
+    rev = "v2.2.4";
+    sha256 = "1smskx9vkx78yhwspjq2c5r5swh9fc5xxa40ib4753f00wk4dwpp";
+  };
 in {
   home = {
     packages = [
-      prezto
+      prezto unstablePkgs.fzy
       # 20.03 p10k isn't playing nice with 20.03 zsh
       unstablePkgs.zsh-powerlevel10k
     ];
@@ -49,24 +55,46 @@ in {
 if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
   source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
 fi
-# POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true # ~/.p10k is missing on nixos and p10k is persistent.
+
+source "$HOME/.p10k.zsh"
+source "${p10kPath}/powerlevel10k.zsh-theme"
+source "${prezto}/init.zsh"
 '';
 
     initExtra = ''
-setopt clobber
-setopt no_rm_star_silent
-setopt APPEND_HISTORY # sessions append rather than replace
+source "${enhancd}/init.sh"
+
+# the first compinit doesn't catch everything on fpath.
+compinit
 
 # Show loading dots while waiting for tab completion.
-COMPLETION_WAITING_DOTS="true"
+export COMPLETION_WAITING_DOTS="true"
+
+zstyle :prezto:module:prompt theme powerlevel10k
 
 # Use the same colors as ls from dircolors.
 zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
 
-source "${prezto}/init.zsh"
-source "$HOME/.p10k.zsh"
-source "${p10kPath}/powerlevel10k.zsh-theme"
-zstyle :prezto:module:prompt theme powerlevel10k
+# Set the Prezto modules to load (browse modules).
+# The order matters.
+zstyle ':prezto:load' pmodule \
+  'environment' \
+  'terminal' \
+  'editor' \
+  'history' \
+  'directory' \
+  'spectrum' \
+  'utility' \
+  'completion' \
+  'ssh' \
+  'ruby' \
+  'rails' \
+  'command-not-found' \
+  'prompt'
+
+setopt clobber
+setopt no_rm_star_silent
+setopt APPEND_HISTORY # sessions append rather than replace
 
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[cursor]=underline
@@ -96,15 +124,6 @@ bindkey "^[[1;5D" backward-word
 # delete
 bindkey  "^[[3~"  delete-char
 
-# Refresh gpg-agent tty in case user switches into an X session
-# export GPG_TTY=$(tty)
-# eval "$(gpgconf --launch gpg-agent)"
-# gpg-connect-agent updatestartuptty /bye >/dev/null
-
-# Enable SSH Agent support in GPG Agent
-# unset SSH_AGENT_PID
-# export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-
 (( ! ''${+functions[p10k]} )) || p10k finalize
 '';
 
@@ -123,7 +142,7 @@ bindkey  "^[[3~"  delete-char
           owner = "zsh-users";
           repo = "zsh-autosuggestions";
           rev = "v0.6.4";
-          sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+          sha256 = "0h52p2waggzfshvy1wvhj4hf06fmzd44bv6j18k3l9rcx6aixzn6";
         };
       }
       {
@@ -132,7 +151,20 @@ bindkey  "^[[3~"  delete-char
           owner = "zsh-users";
           repo = "zsh-syntax-highlighting";
           rev = "v0.7.1";
-          sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+          sha256 = "03r6hpb5fy4yaakqm3lbf4xcvd408r44jgpv4lnzl9asp4sb9qc0";
+        };
+      }
+      {
+        name = "enhancd";
+        src = enhancd;
+      }
+      {
+        name = "zsh-completions";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-completions";
+          rev = "0.31.0";
+          sha256 = "0rw23m8cqxhcb4yjhbzb9lir60zn1xjy7hn3zv1fzz700f0i6fyk";
         };
       }
     ];
