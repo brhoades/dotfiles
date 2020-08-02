@@ -4,16 +4,25 @@ let
   p10k = pkgs.zsh-powerlevel10k;
   p10kPath = "${p10k}/share/zsh-powerlevel10k";
   unstablePkgs = import <nixpkgs-unstable> {};
+  prezto = unstablePkgs.zsh-prezto;
 in {
   home = {
     packages = [
+      prezto
       # 20.03 p10k isn't playing nice with 20.03 zsh
       unstablePkgs.zsh-powerlevel10k
     ];
 
     # p10k prompts the config wizard unless its output
     # exists.
-    file.".p10k.zsh".source = ../../zshconfigs/dotp10k.zsh;
+    file = {
+      ".p10k.zsh".source = ../../zshconfigs/dotp10k.zsh;
+      ".preztorc".source = ../../zshconfigs/dotpreztorc;
+      ".zlogout".source = prezto + "runcoms/zlogout";
+      ".zlogin".source = prezto + "runcoms/zlogin";
+      ".zprofile".source = prezto + "runcoms/zprofile";
+      ".zshenv".source = prezto + "runcoms/zshenv";
+    };
   };
 
   programs.dircolors = {
@@ -33,7 +42,7 @@ in {
       expireDuplicatesFirst = true;
     };
 
-    initExtra = ''
+    initExtraBeforeCompInit = ''
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -41,7 +50,9 @@ if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh
   source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
 fi
 # POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true # ~/.p10k is missing on nixos and p10k is persistent.
+'';
 
+    initExtra = ''
 setopt clobber
 setopt no_rm_star_silent
 setopt APPEND_HISTORY # sessions append rather than replace
@@ -52,7 +63,8 @@ COMPLETION_WAITING_DOTS="true"
 # Use the same colors as ls from dircolors.
 zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
 
-source $HOME/.p10k.zsh
+source "${prezto}/init.zsh"
+source "$HOME/.p10k.zsh"
 source "${p10kPath}/powerlevel10k.zsh-theme"
 zstyle :prezto:module:prompt theme powerlevel10k
 
@@ -103,6 +115,27 @@ bindkey  "^[[3~"  delete-char
       less = "less -r"; # allow color passthrough
       suspend = "sudo systemctl suspend";
     };
+
+    plugins = [
+      {
+        name = "zsh-autosuggestions";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-autosuggestions";
+          rev = "v0.6.4";
+          sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+        };
+      }
+      {
+        name = "zsh-syntax-highlighting";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-syntax-highlighting";
+          rev = "v0.7.1";
+          sha256 = "0z6i9wjjklb4lvr7zjhbphibsyx51psv50gm07mbb0kj9058j6kc";
+        };
+      }
+    ];
   };
 
   # systemd zsh completions.
