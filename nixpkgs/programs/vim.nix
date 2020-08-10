@@ -8,8 +8,17 @@
     vimAlias = true;
     vimdiffAlias = true;
 
-    plugins = with pkgs.vimPlugins; [
-      YouCompleteMe syntastic fugitive airline ctrlp vim-nix
+    plugins = let
+      unstable = pkgs.vimPlugins;
+      # unstable nixpkgs has racerd compilation issues.
+      stable = (import <nixos-20.03> {}).vimPlugins;
+    in [
+      stable.YouCompleteMe
+      unstable.syntastic
+      unstable.fugitive
+      unstable.airline
+      unstable.ctrlp
+      unstable.vim-nix
     ];
 
     extraConfig = ''

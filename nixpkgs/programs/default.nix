@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ./zsh.nix
@@ -5,5 +6,9 @@
     ./pazi.nix
     ./direnv.nix
     ./vim.nix
+  ];
+
+  home.packages = with pkgs; [
+    ytop
   ];
 }

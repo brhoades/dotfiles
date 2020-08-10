@@ -2,12 +2,12 @@
 
 {
   home.packages = with pkgs; [
-    swaylock
-    swayidle
-    xwayland
+    # swaylock
+    # swayidle
+    # xwayland
   ];
 
   wayland.windowManager.sway = {
-    enable = true;
+    enable = false;
   };
 }

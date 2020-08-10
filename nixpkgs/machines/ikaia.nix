@@ -4,6 +4,7 @@
   imports = [
     ./common.nix
     ../programs/desktop.nix
+    ../services/desktop.nix
     ../programs/git.nix
     ../programs/emacs.nix
   ];
@@ -14,14 +15,6 @@
     signing =  {
       key = "6D052A5305F89A0E!";
     };
-  };
-
-  # Gets around arch locale issues with direnv.
-  home.sessionVariables = with pkgs; {
-    # https://github.com/NixOS/nix/issues/599
-    # Never worked.
-    # LOCALE_ARCHIVE = pkgs.glibc-locales + "/lib/locale/archive";
-    LOCALE_ARCHIVE = /usr/lib/locale/locale-archive;
   };
 
   # Home Manager needs a bit of information about you and the

@@ -80,4 +80,10 @@
       solarized-theme
     ]);
   };
+
+  # required by emacs: projectile ag/rg, magit
+  home.packages = with pkgs; [
+    ag ripgrep
+    git
+  ];
 }

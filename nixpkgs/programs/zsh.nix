@@ -3,7 +3,7 @@
 let
   p10k = pkgs.zsh-powerlevel10k;
   p10kPath = "${p10k}/share/zsh-powerlevel10k";
-  unstablePkgs = import <nixpkgs-unstable> {};
+  unstablePkgs = import <nixpkgs> {};
   prezto = unstablePkgs.zsh-prezto;
   enhancd = pkgs.fetchFromGitHub {
     owner = "b4b4r07";
@@ -49,83 +49,96 @@ in {
     };
 
     initExtraBeforeCompInit = ''
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-  source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-fi
-
-source "$HOME/.p10k.zsh"
-source "${p10kPath}/powerlevel10k.zsh-theme"
-source "${prezto}/init.zsh"
-'';
+      # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+      # Initialization code that may require console input (password prompts, [y/n]
+      # confirmations, etc.) must go above this block; everything else may go below.
+      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+        source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+      fi
+      
+      # export VDPAU_DRIVER=va_gl
+      # export LIBVA_DRIVER_NAME=i965
+      
+      # direnv extensions cause warnings
+      typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+      
+      source "$HOME/.p10k.zsh"
+      source "${p10kPath}/powerlevel10k.zsh-theme"
+      source "${prezto}/init.zsh"
+      source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+    '';
 
     initExtra = ''
-source "${enhancd}/init.sh"
-
-# the first compinit doesn't catch everything on fpath.
-compinit
-
-# Show loading dots while waiting for tab completion.
-export COMPLETION_WAITING_DOTS="true"
-
-zstyle :prezto:module:prompt theme powerlevel10k
-
-# Use the same colors as ls from dircolors.
-zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-
-# Set the Prezto modules to load (browse modules).
-# The order matters.
-zstyle ':prezto:load' pmodule \
-  'environment' \
-  'terminal' \
-  'editor' \
-  'history' \
-  'directory' \
-  'spectrum' \
-  'utility' \
-  'completion' \
-  'ssh' \
-  'ruby' \
-  'rails' \
-  'command-not-found' \
-  'prompt'
-
-setopt clobber
-setopt no_rm_star_silent
-setopt APPEND_HISTORY # sessions append rather than replace
-
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[cursor]=underline
-
-if [[ -e "$HOME/.local/bin" ]]; then
-  export PATH=$HOME/.local/bin:$PATH
-fi
-
-if [[ -e "$HOME/go/bin" ]]; then
-  export PATH=$HOME/go/bin:$PATH
-fi
-
-if [[ -d "$HOME/.nix-defexpr/channels" ]]; then
-  export NIX_PATH=$HOME/.nix-defexpr/channels''${NIX_PATH:+:}$NIX_PATH
-fi
-
-hash kubectl &> /dev/null && source <(kubectl completion zsh) || {}
-
-# alias gopass='GPG_TTY=$(tty) gopass'
-# alias git='GPG_TTY=$(tty) git'
-bindkey -e
-
-# ctrl left/right
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-
-# delete
-bindkey  "^[[3~"  delete-char
-
-(( ! ''${+functions[p10k]} )) || p10k finalize
-'';
+      export ENHANCD_DISABLE_DOT=1
+      export ENHANCD_DISABLE_HYPHEN=1
+      export ENHANCD_DISABLE_HOME=1
+      source "${enhancd}/init.sh"
+      
+      # the first compinit doesn't catch everything on fpath.
+      compinit
+      
+      # Show loading dots while waiting for tab completion.
+      export COMPLETION_WAITING_DOTS="true"
+      
+      zstyle :prezto:module:prompt theme powerlevel10k
+      
+      # Use the same colors as ls from dircolors.
+      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+      
+      # arrow key menu-style selection of tab completions
+      zstyle ':completion:*' menu select
+      
+      # Set the Prezto modules to load (browse modules).
+      # The order matters.
+      zstyle ':prezto:load' pmodule \
+        'environment' \
+        'terminal' \
+        'editor' \
+        'history' \
+        'directory' \
+        'spectrum' \
+        'utility' \
+        'ssh' \
+        'ruby' \
+        'rails' \
+        'completion' \
+        'command-not-found' \
+        'prompt'
+      
+      setopt clobber
+      setopt no_rm_star_silent
+      setopt APPEND_HISTORY # sessions append rather than replace
+      
+      typeset -A ZSH_HIGHLIGHT_STYLES
+      ZSH_HIGHLIGHT_STYLES[cursor]=underline
+      
+      if [[ -e "$HOME/.local/bin" ]]; then
+        export PATH=$HOME/.local/bin:$PATH
+      fi
+      
+      if [[ -e "$HOME/go/bin" ]]; then
+        export PATH=$HOME/go/bin:$PATH
+      fi
+      
+      if [[ -d "$HOME/.nix-defexpr/channels" ]]; then
+        export NIX_PATH=$HOME/.nix-defexpr/channels''${NIX_PATH:+:}$NIX_PATH
+      fi
+      
+      hash kubectl &> /dev/null && source <(kubectl completion zsh) || {}
+      
+      # alias gopass='GPG_TTY=$(tty) gopass'
+      # alias git='GPG_TTY=$(tty) git'
+      bindkey -e
+      
+      # ctrl left/right
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[1;5D" backward-word
+      
+      # delete
+      bindkey  "^[[3~"  delete-char
+      
+      (( ! ''${+functions[p10k]} )) || p10k finalize
+    '';
 
     shellAliases = {
       ls = "ls --color=auto";
@@ -169,7 +182,4 @@ bindkey  "^[[3~"  delete-char
       }
     ];
   };
-
-  # systemd zsh completions.
-  # environment.pathsToLink = [ "/share/zsh" ];
 }
