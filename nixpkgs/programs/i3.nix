@@ -62,7 +62,7 @@
           "${ws4}" = [
             { class = "Slack"; }
             { class = "^[Mm]ail"; } # thunderbird
-            { class = ".*[Tthunderbird].*"; } # thunderbird
+            { class = "Daily"; title = ".*[Tt]hunderbird.*"; } # thunderbird
           ];
 
           "${ws10}" = [

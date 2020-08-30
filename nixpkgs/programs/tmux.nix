@@ -13,6 +13,8 @@
       # Show a symbol when prefix is on
       prefix-highlight
 
+      resurrect
+
       # copy to clipboard
       yank
     ];
