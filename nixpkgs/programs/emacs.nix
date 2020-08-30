@@ -27,7 +27,7 @@
 
     # use-package takes care of any extra packages
     # only defined in .el files.
-    extraPackages = with pkgs.emacsPackages; (_epkgs: [
+    extraPackages = with pkgs; with pkgs.emacsPackages; (_epkgs: [
       use-package
 
       tide web-mode rjsx-mode
@@ -78,12 +78,22 @@
       rbenv enh-ruby-mode projectile-rails robe
 
       solarized-theme
+
+      # if go
+      go # godef gocode gotags gotools golint delve
+      # errcheck go-tools unconvert
+
+      # if nix
+      nix-linter
+
+      # projectile-{ag,rg}
+      ag ripgrep
+
+      # magit
+      git
     ]);
   };
 
-  # required by emacs: projectile ag/rg, magit
   home.packages = with pkgs; [
-    ag ripgrep
-    git
   ];
 }
