@@ -1,6 +1,22 @@
 { lib, pkgs, ... }:
 
 {
+  systemd.user.services = {
+    tmux-daemon = {
+      Unit = {
+        Description = "tmux background session";
+      };
+
+      Service = let
+        tmux = "${pkgs.tmux}/bin/tmux";
+      in {
+        Type = "forking";
+        ExecStart = "${tmux} new-session -s %u -d";
+        ExecStop = "${tmux} kill-session -t %u";
+      };
+    };
+  };
+
   programs.tmux = {
     enable = true;
     clock24 = true;
@@ -14,6 +30,7 @@
       prefix-highlight
 
       resurrect
+      continuum
 
       # copy to clipboard
       yank
@@ -132,6 +149,12 @@
       
       # ctrl+arrows
       set-window-option -g xterm-keys on
+
+      # restore automatically
+      set -g @continuum-restore 'on'
+
+      # systemd support for continuum
+      set -g @continuum-boot 'on'
       
       # Theme
       # set -g @themepack 'powerline/block/green'
