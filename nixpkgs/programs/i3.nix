@@ -125,6 +125,10 @@
            "${mod}+Shift+Down" = "move down";
            "${mod}+Shift+Up" = "move up";
            "${mod}+Shift+Right" = "move right";
+
+           # Workspace rotation
+           "${mod}+Shift+comma" = "move workspace to output left";
+           "${mod}+Shift+period" = "move workspace to output right";
   
            # split in horizontal orientation
            "${mod}+h" = "split h";
