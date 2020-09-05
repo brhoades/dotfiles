@@ -84,7 +84,8 @@
       # errcheck go-tools unconvert
 
       # if nix
-      nix-linter
+      # This is erroring on unstable due to ghc compilation issues.
+      # nix-linter
 
       # projectile-{ag,rg}
       ag ripgrep
