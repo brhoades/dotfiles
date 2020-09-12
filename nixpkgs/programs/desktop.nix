@@ -6,16 +6,15 @@
     ./password-manager.nix
     ./firefox.nix
     ./i3.nix
+    ./chat.nix
   ];
 
   home.packages = with pkgs; [
-    feh 
+    feh
     pavucontrol
 
     google-chrome
     thunderbird
-
-    signal-desktop discord slack
 
     barrier
     xorg.xrandr xorg.xkill scrot
@@ -54,8 +53,8 @@
 
   xresources.properties = {
     # This mirrors ikaia's DPI.
-    "Xft.dpi" = 192; 
-    "*.dpi" = 192; 
+    "Xft.dpi" = 192;
+    "*.dpi" = 192;
     "Xft.antialias" = true;
     # "Xft.hinting" = 1;
   };
@@ -65,7 +64,7 @@
     pointerCursor = {
       name = "Vanilla-DMZ";
       package = pkgs.vanilla-dmz;
-      size = 64;  
+      size = 64;
     };
   };
 

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+ { pkgs, ... }:
 
 {
   programs.password-store = {
@@ -15,6 +15,7 @@
     text = ''
       root:
         cliptimeout: 60
+        path: /home/aaron/.local/share/password-store
         notifications: false
     '';
   };
