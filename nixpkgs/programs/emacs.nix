@@ -85,7 +85,7 @@
 
       # if nix
       # This is erroring on unstable due to ghc compilation issues.
-      # nix-linter
+      nix-linter
 
       # projectile-{ag,rg}
       ag ripgrep
@@ -95,6 +95,8 @@
     ]);
   };
 
-  home.packages = with pkgs; [
-  ];
+  nixpkgs.config.packageOverrides = pkgs: {
+    # XXX: bugged in unstable
+    nix-linter = (import <nixos-20.03> { }).nix-linter;
+  };
 }
