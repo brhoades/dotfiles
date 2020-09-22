@@ -6,6 +6,7 @@
     ../programs/desktop.nix
     ../services/desktop.nix
     ../programs/git.nix
+    ../programs/steam.nix
     ../programs/emacs.nix
   ];
 
