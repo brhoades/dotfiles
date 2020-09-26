@@ -1,7 +1,7 @@
 { ... }:
 {
   services.xcape = {
-    enable = true;
+    enable = false;
     timeout = 500; # ms
     mapExpression = {
       # Control behaves as escape when pressed and released

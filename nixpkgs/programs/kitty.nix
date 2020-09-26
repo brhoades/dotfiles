@@ -11,6 +11,8 @@
 
       enable_audio_bell = "no";
       visual_bell_dueration = "0.5";
+
+      background_opacity = "0.9";
     };
   };
 

@@ -3,7 +3,7 @@
   imports = [
     ./gpg-agent.nix
     ./dunst.nix
-    ./xcape.nix
+    # ./xcape.nix
     # ./wayland.nix
   ];
 }

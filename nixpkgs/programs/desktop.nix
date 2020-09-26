@@ -6,6 +6,7 @@
     ./password-manager.nix
     ./firefox.nix
     ./i3.nix
+    ./wayland
     ./chat.nix
   ];
 
@@ -48,13 +49,12 @@
       rofi.regex: true
       rofi.window-command:                 xkill -id {window}
     '';
-
   };
 
   xresources.properties = {
     # This mirrors ikaia's DPI.
-    "Xft.dpi" = 192;
-    "*.dpi" = 192;
+    "Xft.dpi" = 96;
+    "*.dpi" = 96;
     "Xft.antialias" = true;
     # "Xft.hinting" = 1;
   };
@@ -64,7 +64,7 @@
     pointerCursor = {
       name = "Vanilla-DMZ";
       package = pkgs.vanilla-dmz;
-      size = 64;
+      size = 32;
     };
   };
 

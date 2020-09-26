@@ -8,6 +8,7 @@
     ../programs/git.nix
     ../programs/steam.nix
     ../programs/emacs.nix
+    ../programs/wine.nix
   ];
 
   user = {

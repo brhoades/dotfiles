@@ -1,7 +1,17 @@
 { config, lib, pkgs, ... }:
 {
+  home.sessionVariables.MOZ_ENABLE_WAYLAND = "1";
+
   programs.firefox = {
     enable = true;
+
+    package = with pkgs; firefox.overrideAttrs (oldAttrs: {
+      buildInputs = oldAttrs.buildInputs or [] ++ [ pkgs.makeWrapper ];
+      postInstall = oldAttrs.postInstall or "" + ''
+        wrapProgram $out/bin/firefox \
+          --set MOZ_ENABLE_WAYLAND "1"
+      '';
+    });
 
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       ublock-origin

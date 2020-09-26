@@ -65,7 +65,7 @@
      ("#F309DF" . 85)
      ("#3C3D37" . 100))))
  '(indent-tabs-mode nil)
- '(js-indent-level 2 t)
+ '(js-indent-level 2)
  '(js2-strict-trailing-comma-warning nil t)
  '(lsp-flycheck-live-reporting :t)
  '(lsp-java-format-enabled nil)
@@ -74,8 +74,8 @@
  '(lsp-metals-java-home "/usr/lib/jvm/java-11-openjdk/")
  '(lsp-ui-doc-delay 10.0 t)
  '(lsp-ui-flycheck-enable nil t)
- '(lsp-ui-flycheck-live-reporting :t t)
- '(lsp-ui-sideline-show-hover :t t)
+ '(lsp-ui-flycheck-live-reporting :t)
+ '(lsp-ui-sideline-show-hover :t)
  '(magit-diff-use-overlays nil)
  '(notmuch-search-oldest-first nil t)
  '(org-agenda-files
@@ -236,11 +236,11 @@
      (340 . "#2790C3")
      (360 . "#66D9EF"))))
  '(vc-annotate-very-old-color nil)
- '(web-mode-auto-quote-style 2 t)
- '(web-mode-code-indent-offset 2 t)
- '(web-mode-css-indent-offset 2 t)
- '(web-mode-enable-auto-quoting nil t)
- '(web-mode-enable-current-element-highlight t t)
+ '(web-mode-auto-quote-style 2)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-css-indent-offset 2)
+ '(web-mode-enable-auto-quoting nil)
+ '(web-mode-enable-current-element-highlight t)
  '(web-mode-html-tag-font-lock-keywords
    (quote
     (("\\(</?\\)\\([[\\.:alnum:]]+\\)"
@@ -254,7 +254,7 @@
       (quote web-mode-html-attr-name-face))
      ("/?>" 0
       (quote web-mode-html-tag-bracket-face)))) t)
- '(web-mode-markup-indent-offset 2 t)
+ '(web-mode-markup-indent-offset 2)
  '(weechat-color-list
    (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))
  '(whitespace-style (quote (trailing))))
