@@ -28,7 +28,7 @@
         #   %I  iconname (without its path)
         #   %p  progress value if set ([  0%] to [100%]) or nothing
         # Markup is allowed
-        format = "<b>%s</b>\n%b";
+        format = ''<b>%s</b>\n%b'';
 
         # Sort messages by urgency.
         sort = "no";
@@ -85,12 +85,12 @@
         # The transparency of the window.  Range: [0; 100].
         # This option will only work if a compositing windowmanager is
         # present (e.g. xcompmgr, compiz, etc.).
-        transparency = "5";
+        transparency = "20";
 
         # Don't remove messages, if the user is idle (no mouse or keyboard input)
         # for longer than idle_threshold seconds.
         # Set to 0 to disable.
-        idle_threshold = "0";
+        idle_threshold = "15";
 
         # Which monitor should the notifications be displayed on.
         monitor = "0";
@@ -154,7 +154,7 @@
         browser = "/usr/bin/firefox -new-tab";
 
         # Align icons left/right/off
-        icon_position = "off";
+        icon_position = "left";
         max_icon_size = "80";
 
         # Paths to default icons.

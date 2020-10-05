@@ -98,5 +98,9 @@
   nixpkgs.config.packageOverrides = pkgs: {
     # XXX: bugged in unstable
     nix-linter = (import <nixos-20.03> { }).nix-linter;
+
+    # emacs = with pkgs; pkgs.emacs.overrideAttrs (oldAttrs: rec {
+      # configureFlags = oldAttrs.configureFlags;
+    # });
   };
 }

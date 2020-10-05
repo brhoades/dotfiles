@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ./mako.nix
+  ];
+
   # wayland-only packages
   home.packages = with pkgs; [
     grim slurp # scrot-like behavior
@@ -54,15 +58,21 @@
         output DP-3 mode 1920x1080@60Hz
         output DP-3 transform 270
 
+        # ultrawide
         output DP-2 mode 2560x1080@60Hz
         output DP-2 pos 1080 0
 
-        # sometimes this display stays on gdm. toggle fixes it.
-        output DP-1 toggle
-        output DP-1 enable
+        # 4k monitor
         output DP-1 mode 3840x2160@59.997002Hz
-        output DP-1 scale 2
         output DP-1 pos ${toString (1080+2560)} 0
+        output DP-1 scale 2
+
+        # TV
+        output HDMI-A-1 pos ${toString (1080+2560+3840)} 0
+        output HDMI-A-1 mode 1920x1080@60Hz
+        output HDMI-A-1 disable
+
+        output "*" background ${toString ./background.jpeg} fit
 
         input "type:keyboard" {
           xkb_layout us
