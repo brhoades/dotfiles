@@ -72,7 +72,7 @@
         output HDMI-A-1 mode 1920x1080@60Hz
         output HDMI-A-1 disable
 
-        output "*" background ${toString ./background.jpeg} fit
+        output "*" background ${toString ./background.jpeg} fill
 
         input "type:keyboard" {
           xkb_layout us
@@ -266,7 +266,7 @@
           inherit fonts;
           statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${../../../dotconfig/i3/desktop.toml}";
           position = "top";
-          trayOutput = "DVI-D-0";
+          trayOutput = "DP-3";
           colors = {
             separator = "#666666";
             background = "#222222";
