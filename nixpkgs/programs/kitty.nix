@@ -13,13 +13,14 @@
       visual_bell_dueration = "0.5";
 
       background_opacity = "0.85";
-      whell_scroll_multiplier = "2";
+      # wheel_scroll_multiplier = "1"; for X11
+      touch_scroll_multiplier = "2";
       strip_trailing_spaces = "smart"; # only on text selections not square
     };
 
     keybindings = {
       "ctrl+c" = "copy_or_interrupt"; # if selection, copy, otherwise interrupt
-      "ctrl+v" = "paste_from_clipboard"; 
+      "ctrl+v" = "paste_from_clipboard";
     };
   };
 
