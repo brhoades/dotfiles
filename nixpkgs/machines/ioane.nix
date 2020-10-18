@@ -3,6 +3,7 @@
 {
   imports = [
     ./common.nix
+    ../services/keybase.nix
     ../programs/default.nix
     ../programs/development.nix
     ../programs/ngrok-work.nix
