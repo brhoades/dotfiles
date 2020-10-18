@@ -37,6 +37,10 @@
     };
   };
 
+  home.packages = with pkgs; [
+    libnotify # notify-send
+  ];
+
   xdg.configFile."mako/config".onChange = lib.mkIf config.programs.mako.enable ''
     systemctl --user restart mako.service
   '';

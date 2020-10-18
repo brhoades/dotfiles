@@ -40,7 +40,19 @@
     ];
     in {
       enable = true;
-      extraConfig = ''
+      extraConfig = let
+        echo = "${pkgs.busybox}/bin/echo";
+        mute = pkgs.writeShellScriptBin "mute" ''
+          touch /tmp/PTT.log
+          ${echo} "first $(date +"%T.%3N")" >> /tmp/PTT.log
+          ${pkgs.xautomation}/bin/xte 'keyup XF86AudioPlay' 'usleep ${toString (50*1000)}'
+          ${echo} "second $(date +"%T.%3N")" >> /tmp/PTT.log
+          ${pkgs.xautomation}/bin/xte 'keyup XF86AudioPlay' 'usleep ${toString (50*1000)}'
+          ${echo} "third $(date +"%T.%3N")" >> /tmp/PTT.log
+          ${pkgs.xautomation}/bin/xte 'keyup XF86AudioPlay' 'usleep ${toString (50*1000)}'
+          ${echo} "end $(date +"%T.%3N")" >> /tmp/PTT.log
+        '';
+      in ''
         # Don't steal focus
         focus_on_window_activation urgent
         # focus_follows_mouse no
@@ -80,8 +92,9 @@
           xkb_options ctrl:nocaps
         }
 
-        bindsym Scroll_Lock exec "xte 'keydown XF86AudioPlay'"
-        bindsym --release Scroll_Lock exec "xte 'keyup XF86AudioPlay'"
+        # for discord
+        bindsym Scroll_Lock exec "${pkgs.xautomation}/bin/xte 'keydown XF86AudioPlay'"
+        bindsym --release Scroll_Lock exec "${mute}/bin/mute"
       '';
 
       config = {
