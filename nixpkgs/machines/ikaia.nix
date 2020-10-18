@@ -4,8 +4,8 @@
   imports = [
     ./common.nix
     ../programs/desktop.nix
+    ../programs/development.nix
     ../services/desktop.nix
-    ../programs/git.nix
     ../programs/steam.nix
     ../programs/emacs.nix
     ../programs/wine.nix

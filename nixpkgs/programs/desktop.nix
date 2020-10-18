@@ -14,6 +14,7 @@
     feh
     pavucontrol
 
+    (chromium.override { enableVaapi = true; useOzone = true; })
     google-chrome
     thunderbird
 
