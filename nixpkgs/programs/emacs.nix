@@ -72,6 +72,7 @@
       direnv
 
       json-mode dockerfile-mode markdown-mode yaml-mode
+      journalctl-mode
 
       racer flycheck-rust rustic
 
