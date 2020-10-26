@@ -38,6 +38,9 @@
       "FontAwesome 10"
       "Roboto 12"
     ];
+    leftMon = "\"Dell Inc. DELL U2415 CFV9N98G0YDS\"";
+    mainMon = "\"Dell Inc. DELL U2720Q F8KFX13\"";
+    rightMon = "\"Dell Inc. DELL U2415 CFV9N9890J5S\"";
     in {
       enable = true;
       extraConfig = let
@@ -45,11 +48,7 @@
         mute = pkgs.writeShellScriptBin "mute" ''
           touch /tmp/PTT.log
           ${echo} "first $(date +"%T.%3N")" >> /tmp/PTT.log
-          ${pkgs.xautomation}/bin/xte 'keyup XF86AudioPlay' 'usleep ${toString (50*1000)}'
-          ${echo} "second $(date +"%T.%3N")" >> /tmp/PTT.log
-          ${pkgs.xautomation}/bin/xte 'keyup XF86AudioPlay' 'usleep ${toString (50*1000)}'
-          ${echo} "third $(date +"%T.%3N")" >> /tmp/PTT.log
-          ${pkgs.xautomation}/bin/xte 'keyup XF86AudioPlay' 'usleep ${toString (50*1000)}'
+          ${pkgs.xautomation}/bin/xte 'keyup XF86AudioPlay'
           ${echo} "end $(date +"%T.%3N")" >> /tmp/PTT.log
         '';
       in ''
@@ -60,29 +59,30 @@
         # Some trouble makers
         no_focus [window_role="^[dD]iscord"]
 
-        workspace ${ws10} output DP-3 # left monitor
-        workspace ${ws4} output DP-3  # ^
-        workspace ${ws3} output DP-2  # 21:9 main
-        workspace ${ws1} output DP-2  # ^
-        workspace ${ws2} output DP-1  # 4K
+        workspace ${ws10} output ${leftMon}
+        workspace ${ws4}  output ${mainMon}
+        workspace ${ws3}  output ${mainMon}
+        workspace ${ws1}  output ${mainMon}
+        workspace ${ws2}  output ${rightMon}
 
-        output DP-3 pos 0 0
-        output DP-3 mode 1920x1080@60Hz
-        output DP-3 transform 270
+        # left
+        output ${leftMon} pos 0 0
+        output ${leftMon} mode 1920x1200@60Hz
+        output ${leftMon} transform 90
 
-        # ultrawide
-        output DP-2 mode 2560x1080@60Hz
-        output DP-2 pos 1080 0
+        # center
+        output ${mainMon} pos 1200 0
+        output ${mainMon} mode 3840x2160@59.997002Hz
+        output ${mainMon} scale 2
 
-        # 4k monitor
-        output DP-1 mode 3840x2160@59.997002Hz
-        output DP-1 pos ${toString (1080+2560)} 0
-        output DP-1 scale 2
+        # right
+        output ${rightMon} mode 1920x1200@60Hz
+        output ${rightMon} pos ${toString (1200 + 3840 / 2)} 0
 
         # TV
-        output HDMI-A-1 pos ${toString (1080+2560+3840)} 0
-        output HDMI-A-1 mode 1920x1080@60Hz
-        output HDMI-A-1 disable
+        # output HDMI-A-1 pos ${toString (1080+1200+3840)} 0
+        # output HDMI-A-1 mode 1920x1080@60Hz
+        # output HDMI-A-1 disable
 
         output "*" background ${toString ./background.jpeg} fill
 
@@ -279,7 +279,7 @@
           inherit fonts;
           statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${../../../dotconfig/i3/desktop.toml}";
           position = "top";
-          trayOutput = "DP-3";
+          trayOutput = leftMon;
           colors = {
             separator = "#666666";
             background = "#222222";
