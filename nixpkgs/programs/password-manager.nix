@@ -21,7 +21,7 @@
        [[ $? -eq 0 ]] || exit $?
        echo "Chose $RESULT"
 
-       ${pass}/bin/pass show $EXTRAPASS "$RESULT"
+       ${gopass}/bin/gopass show $EXTRAPASS "$RESULT"
      '';
 
      buildInputs = with pkgs; [
