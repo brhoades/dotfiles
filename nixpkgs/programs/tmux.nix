@@ -17,6 +17,10 @@
     };
   };
 
+  home.packages = with pkgs; [
+    wl-clipboard
+  ];
+
   programs.tmux = {
     enable = true;
     clock24 = true;
@@ -32,7 +36,7 @@
       resurrect
       continuum
 
-      # copy to clipboard
+      # copy to x11/wayland clipboard
       yank
     ];
 
@@ -155,6 +159,8 @@
 
       # systemd support for continuum
       set -g @continuum-boot 'on'
+
+      set -g @override_copy_command '${pkgs.wl-clipboard}/bin/wl-copy'
       
       # Theme
       # set -g @themepack 'powerline/block/green'
