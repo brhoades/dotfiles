@@ -37,7 +37,7 @@ in {
       Type = "simple";
       ExecStart = ''
         ${dlux}/bin/dlux \
-          --log-level="debug"
+          --log-level="debug" \
           --lat="${lat}" \
           --long="${long}" \
           --height="${toString height}" \
