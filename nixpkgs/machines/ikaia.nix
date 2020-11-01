@@ -9,6 +9,7 @@
     ../programs/steam.nix
     ../programs/emacs.nix
     ../programs/wine.nix
+    ../programs/dlux.nix
   ];
 
   user = {
