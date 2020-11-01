@@ -83,7 +83,7 @@
         # right
         output ${rightMon} mode 1920x1200@60Hz
         # output ${rightMon} pos ${toString (1200 + (3840 / 1.5))} 0
-        output ${rightMon} pos ${toString (1200 + 3760)} 0
+        output ${rightMon} pos ${toString (3760)} 0
 
         # TV
         # output HDMI-A-1 pos ${toString (1080+1200+3840)} 0
