@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 {
   programs.neovim = {
     enable = true;
@@ -11,9 +10,9 @@
     plugins = let
       unstable = pkgs.vimPlugins;
       # unstable nixpkgs has racerd compilation issues.
-      stable = (import <nixos-20.03> {}).vimPlugins;
+      # stable = (import <nixos-20.03> {}).vimPlugins;
     in [
-      stable.YouCompleteMe
+      unstable.YouCompleteMe
       unstable.syntastic
       unstable.fugitive
       unstable.airline
