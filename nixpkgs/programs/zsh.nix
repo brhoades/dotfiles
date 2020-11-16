@@ -44,7 +44,10 @@ in {
 
     history = {
       size = 1000000;
+      save = 1000000;
+      extended = true;
       share = true;
+      ignoreDups = true;
       expireDuplicatesFirst = true;
     };
 
@@ -56,8 +59,8 @@ in {
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
       
-      # export VDPAU_DRIVER=va_gl
-      # export LIBVA_DRIVER_NAME=i965
+      setopt INC_APPEND_HISTORY
+      setopt APPEND_HISTORY
       
       # direnv extensions cause warnings
       typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet

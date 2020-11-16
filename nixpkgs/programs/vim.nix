@@ -18,6 +18,8 @@
       unstable.fugitive
       unstable.airline
       unstable.ctrlp
+      unstable.ctrlp
+      unstable.SimpylFold
       unstable.vim-nix
     ];
 
