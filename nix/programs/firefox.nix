@@ -2,23 +2,29 @@
 {
   home.sessionVariables.MOZ_ENABLE_WAYLAND = "1";
 
-  programs.firefox = {
+  programs.firefox = let 
+    unstable = import <nixos-unstable> {};
+    innerPkg = unstable.firefox-unwrapped;
+    cfg = {
+      firefox = {
+        enableTridactylNative = true;
+        forceWayland = true;
+      };
+    };
+  in {
     enable = true;
 
-    # package = pkgs.firefox-wayland;
-    package = let 
-      stable = import ../../../nixpkgs {};
-    in stable.firefox.overrideAttrs (oldAttrs: {
-        buildInputs = oldAttrs.buildInputs or [] ++ [ pkgs.makeWrapper ];
-        postInstall = oldAttrs.postInstall or "" + ''
-          wrapProgram $out/bin/firefox \
-          --set MOZ_ENABLE_WAYLAND "1"
-        '';
-      });
+    # package = with unstable; wrapFirefox.override (oldAttrs: let
+    # in {
+    #   config = cfg; # I don't believe this actually gets used?
+    # }) innerPkg {};
+    package = with unstable; wrapFirefox innerPkg { 
+      extraNativeMessagingHosts = [ tridactyl-native ];
+    };
 
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       ublock-origin
-      tridactyl
+      tridactyl # XXX: use latest beta
       reddit-enhancement-suite
       darkreader
     ];
@@ -80,4 +86,17 @@
       };
     };
   };
+
+  home.file.".tridactylrc".text = with lib; let
+    blacklistSites = [
+      "mail.google.com"
+      "md.hecke.rs"
+    ];
+  in ''
+    " Apparently a bit janky, but I like it.
+    set smoothscroll true
+
+    " Sites blacklisted against tridactyl due to poor compatiblity.
+    ${concatMapStringsSep "\n" (url: "autocmd DocLoad ${url} mode ignore") blacklistSites}
+  '';
 }
