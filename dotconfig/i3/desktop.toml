@@ -44,10 +44,10 @@ format = "{1m}"
 [[block]]
 block = "sound"
 
-# [[block]]
-# block = "bluetooth"
-# mac = "28:11:A5:35:50:04"
-# label = " QC35"
+[[block]]
+block = "bluetooth"
+mac = "28:11:A5:35:50:04"
+label = " QC35"
 
 [[block]]
 block = "time"
