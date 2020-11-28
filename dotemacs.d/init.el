@@ -37,7 +37,7 @@
  '(custom-enabled-themes (quote (misterioso)))
  '(custom-safe-themes
    (quote
-    ("7f1d414afda803f3244c6fb4c2c64bea44dac040ed3731ec9d75275b9e831fe5" "e9df267a1c808451735f2958730a30892d9a2ad6879fb2ae0b939a29ebf31b63" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default)))
+    ("c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "7f1d414afda803f3244c6fb4c2c64bea44dac040ed3731ec9d75275b9e831fe5" "e9df267a1c808451735f2958730a30892d9a2ad6879fb2ae0b939a29ebf31b63" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default)))
  '(desktop-restore-eager 3)
  '(desktop-save-mode t)
  '(enh-ruby-bounce-deep-indent nil)
@@ -74,8 +74,8 @@
  '(lsp-metals-java-home "/usr/lib/jvm/java-11-openjdk/")
  '(lsp-ui-doc-delay 10.0 t)
  '(lsp-ui-flycheck-enable nil t)
- '(lsp-ui-flycheck-live-reporting :t t)
- '(lsp-ui-sideline-show-hover :t t)
+ '(lsp-ui-flycheck-live-reporting :t)
+ '(lsp-ui-sideline-show-hover :t)
  '(magit-diff-use-overlays nil)
  '(notmuch-search-oldest-first nil t)
  '(org-agenda-files
@@ -99,6 +99,15 @@
  '(safe-local-variable-values
    (quote
     ((flycheck-eslintrc concat
+                        (locate-dominating-file default-directory ".dir-locals.el")
+                        "cmd/dev/.eslintrc.yaml")
+     (eval progn
+           (add-to-list
+            (quote exec-path)
+            (concat
+             (locate-dominating-file default-directory ".dir-locals.el")
+             "cmd/dev/node_modules/.bin/")))
+     (flycheck-eslintrc concat
                         (locate-dominating-file default-directory ".dir-locals.el")
                         "frontend/.eslintrc.json")
      (eval progn

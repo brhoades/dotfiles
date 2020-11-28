@@ -5,6 +5,15 @@
 # this file and re-run i3-config-wizard(1).
 #
 
+# sway-specific config
+# dell vertical
+output HDMI-A-1 pos 0 0 res 1920x1080 transform 270
+# dell UW
+output HDMI-A-3 pos 1080 0 res 2560x1080
+# dell 4k -- scale 2
+output DP-1 pos 3640 0 res 3840x2160
+
+
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -17,7 +26,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono, FontAwesome 11
+font pango:Fira Code, FontAwesome 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -182,7 +191,7 @@ bar {
     position top
     status_command /home/aaron/bin/i3status-rs /home/aaron/.config/i3/i3status-rs.toml
 
-    tray_output HDMI-0
+    tray_output DP-1
 
     colors {
         separator #666666
@@ -195,14 +204,18 @@ bar {
     }
 }
 
-for_window [class=".*"] border pixel 0
+# for_window [class=".*"] border pixel 0
 
 smart_gaps on
-gaps inner 5
+gaps inner 6
 gaps outer 2
+
+hide_edge_borders smart
+smart_borders on
 
 # Don't steal focus
 focus_on_window_activation urgent
+# focus_follows_mouse no
 
 # Media Keys
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 2 +5% #increase sound volume
@@ -210,6 +223,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 2 -5% #d
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 bindsym XF86MonBrightnessDown exec light -U 4 # hw does +1
 bindsym XF86MonBrightnessUp exec light -A 4
+
+# bindcode 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
+# bindcode --release 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
+bindsym Scroll_Lock exec "xte 'keydown Scroll_Lock'"
+bindsym --release Scroll_Lock exec "xte 'keyup Scroll_Lock'"
 
 # Assignments
 assign [class="Firefox"] $ws3
