@@ -3,7 +3,7 @@
   name = Billy Rhoades
   signingKey = 6D052A5305F89A0E!
 
-[includeIf "gitdir:~/work/ngrok"]
+[includeIf "gitdir:/home/aaron/work/ngrok"]
   path = .gitconfig-work
 
 [color]
