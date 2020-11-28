@@ -9,3 +9,8 @@
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+# added by Nix installer
+if [[ ! -e /etc/nixos]] && [[ -e /home/aaron/.nix-profile/etc/profile.d/nix.sh ]]; then
+  . /home/aaron/.nix-profile/etc/profile.d/nix.sh;
+fi
