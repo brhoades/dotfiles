@@ -24,10 +24,6 @@ in {
     file = {
       ".p10k.zsh".source = ../../zshconfigs/dotp10k.zsh;
       ".preztorc".source = ../../zshconfigs/dotpreztorc;
-      ".zlogout".source = prezto + "runcoms/zlogout";
-      ".zlogin".source = prezto + "runcoms/zlogin";
-      ".zprofile".source = prezto + "runcoms/zprofile";
-      ".zshenv".source = prezto + "runcoms/zshenv";
     };
   };
 
@@ -43,11 +39,11 @@ in {
     enableVteIntegration = true;
 
     history = {
-      size = 1000000;
-      save = 1000000;
+      size = 100 * 1024 * 1024;
+      save = 100 * 1024 * 1024;
       extended = true;
       share = true;
-      ignoreDups = true;
+      # ignoreDups = true;
       expireDuplicatesFirst = true;
     };
 

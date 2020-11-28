@@ -33,11 +33,11 @@ with lib; {
     ws3 = "3:web";
     ws4 = "4:wrk";
     ws5 = "5";
-    ws6 = "6";
-    ws7 = "7";
-    ws8 = "8";
-    ws9 = "9";
-    ws10 = "10:cht";
+    ws6 = "q";
+    ws7 = "w";
+    ws8 = "e";
+    ws9 = "r";
+    ws10 = "a";
     mod = "Mod4";
     fonts = [
       "FontAwesome 10"
@@ -90,6 +90,7 @@ with lib; {
           xkb_layout us
           xkb_variant altgr-intl
           xkb_options ctrl:nocaps
+          xkb_numlock enabled
         }
 
         # workspace -> monitor
