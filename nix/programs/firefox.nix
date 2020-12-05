@@ -4,6 +4,8 @@
 
   programs.firefox = let 
     unstable = import <nixos-unstable> {};
+    # XXX: unstable-small fixes home-manger set extensions
+    unstableSm = import <nixos-unstable-small> {};
     innerPkg = unstable.firefox-unwrapped;
     cfg = {
       firefox = {
@@ -14,11 +16,7 @@
   in {
     enable = true;
 
-    # package = with unstable; wrapFirefox.override (oldAttrs: let
-    # in {
-    #   config = cfg; # I don't believe this actually gets used?
-    # }) innerPkg {};
-    package = with unstable; wrapFirefox innerPkg { 
+    package = with unstableSm; wrapFirefox innerPkg { 
       extraNativeMessagingHosts = [ tridactyl-native ];
     };
 

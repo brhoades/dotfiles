@@ -64,6 +64,8 @@ with lib; {
         # Some trouble makers
         no_focus [window_role="^[dD]iscord"]
 
+        output * dpms on
+
         # left
         output ${leftMon} pos 0 0
         output ${leftMon} mode 1920x1200@60Hz
