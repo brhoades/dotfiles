@@ -8,17 +8,18 @@
 
   # emacs needs .emacs.d/{undo,tmp,tansient,elpa,workspace}
   # It should make all except for undo and workspace itself?
-  systemd.user.tmpfiles.rules = let
-    emacsdir = (config.home.homeDirectory + "/.emacs.d");
-  in [
-    "d ${emacsdir + "/undo"} - - - - -"
-    "d ${emacsdir + "/tmp"} - - - - -"
-    "d ${emacsdir + "/workspace"} - - - - -"
-    "d ${emacsdir + "/elpa"} - - - - -"
-    "d ${emacsdir + "/auto-save-list"} - - - - -"
-    "d ${emacsdir + "/straight"} - - - - -"
-    "d ${emacsdir + "/transient"} - - - - -"
-  ];
+  ## XXX: enable after upgrade to 20.09+
+  # systemd.user.tmpfiles.rules = let
+  #   emacsdir = (config.home.homeDirectory + "/.emacs.d");
+  # in [
+  #   "d ${emacsdir + "/undo"} - - - - -"
+  #   "d ${emacsdir + "/tmp"} - - - - -"
+  #   "d ${emacsdir + "/workspace"} - - - - -"
+  #   "d ${emacsdir + "/elpa"} - - - - -"
+  #   "d ${emacsdir + "/auto-save-list"} - - - - -"
+  #   "d ${emacsdir + "/straight"} - - - - -"
+  #   "d ${emacsdir + "/transient"} - - - - -"
+  # ];
 
   # fonts.fontconfig.enable = true;
 
@@ -34,6 +35,7 @@
       typescript-mode
       less-css-mode
       add-node-modules-path
+      nodejs  # for tide and to run node_modules
 
       js2-mode vue-mode elm-mode purescript-mode
 
@@ -72,7 +74,7 @@
       direnv
 
       json-mode dockerfile-mode markdown-mode yaml-mode
-      journalctl-mode
+      # journalctl-mode
 
       racer flycheck-rust rustic
 
