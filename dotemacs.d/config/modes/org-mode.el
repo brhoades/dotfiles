@@ -7,6 +7,7 @@
   :custom
     (org-agenda-files (list "~/Documents/org/agenda/work.org"
 	   					    "~/Documents/org/agenda/home.org"))
+    (org-adapt-indentation nil)
     (add-to-list 'org-file-apps
                  '("\\.pdf\\'" . (lambda (file link)
                                    (org-pdfview-open link)))))
