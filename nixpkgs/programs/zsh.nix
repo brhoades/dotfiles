@@ -40,7 +40,8 @@ in {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    enableVteIntegration = true;
+    # XXX: 20.03
+    # enableVteIntegration = true;
 
     history = {
       size = 1000000;
@@ -61,6 +62,9 @@ in {
       
       # direnv extensions cause warnings
       typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+      setopt APPEND_HISTORY 
+      setopt INC_APPEND_HISTORY 
       
       source "$HOME/.p10k.zsh"
       source "${p10kPath}/powerlevel10k.zsh-theme"
@@ -130,12 +134,32 @@ in {
       # alias git='GPG_TTY=$(tty) git'
       bindkey -e
       
+      # works in most terminals: xterm, gnome-terminal, terminator, st, sakura, termit, …
+      bindkey "\\e[1;5C" forward-word
+      bindkey "\\e[1;5D" backward-word
+
+      # urxvt
+      bindkey "\\eOc" forward-word
+      bindkey "\\eOd" backward-word
+
+      ### ctrl+delete
+      bindkey "\\e[3;5~" kill-word
+      # in this case, st misbehaves (even with tmux)
+      bindkey "\\e[M" kill-word
+      # and of course, urxvt must be always special
+      bindkey "\\e[3^" kill-word
+
+      ### ctrl+backspace
+      bindkey "\\C-h" backward-kill-word
+
+      ### ctrl+shift+delete
+      bindkey "\\e[3;6~" kill-line
+      bindkey "\\e[3@" kill-line
+
       # ctrl left/right
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
       
-      # delete
-      bindkey  "^[[3~"  delete-char
       
       (( ! ''${+functions[p10k]} )) || p10k finalize
     '';
@@ -181,5 +205,33 @@ in {
         };
       }
     ];
+  };
+
+  programs.readline = {
+    enable = true;
+
+    bindings = {
+      # works in most terminals: xterm, gnome-terminal, terminator, st, sakura, termit, …
+      "\\e[1;5C" = "forward-word";
+      "\\e[1;5D" = "backward-word";
+
+      # urxvt
+      "\\eOc" = "forward-word";
+      "\\eOd" = "backward-word";
+
+      ### ctrl+delete
+      "\\e[3;5~" = "kill-word";
+      # in this case, st misbehaves (even with tmux)
+      "\\e[M" = "kill-word";
+      # and of course, urxvt must be always special
+      "\\e[3^" = "kill-word";
+
+      ### ctrl+backspace
+      "\\C-h" = "backward-kill-word";
+
+      ### ctrl+shift+delete
+      "\\e[3;6~" = "kill-line";
+      "\\e[3@" = "kill-line";
+    };
   };
 }
