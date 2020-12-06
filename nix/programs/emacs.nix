@@ -6,6 +6,10 @@
     ".emacs.d/config".source = ../../dotemacs.d/config;
   };
 
+  home.packages = with pkgs; [
+      nix-linter
+  ];
+
   # emacs needs .emacs.d/{undo,tmp,tansient,elpa,workspace}
   # It should make all except for undo and workspace itself?
   ## XXX: enable after upgrade to 20.09+
@@ -87,7 +91,6 @@
       # errcheck go-tools unconvert
 
       # if nix
-      # This is erroring on unstable due to ghc compilation issues.
       nix-linter
 
       # projectile-{ag,rg}
@@ -96,14 +99,5 @@
       # magit
       git
     ]);
-  };
-
-  nixpkgs.config.packageOverrides = pkgs: {
-    # XXX: bugged in unstable
-    nix-linter = (import <nixos-20.03> { }).nix-linter;
-
-    # emacs = with pkgs; pkgs.emacs.overrideAttrs (oldAttrs: rec {
-      # configureFlags = oldAttrs.configureFlags;
-    # });
   };
 }

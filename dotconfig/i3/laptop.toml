@@ -29,15 +29,6 @@ use_bits = false
 hide_missing = true
 
 [[block]]
-block = "notmuch"
-maildir = "/home/aaron/mail"
-query = "tag:unread and not tag:trash"
-threshold_warning = 1
-threshold_critical = 5
-name = ""
-# name = ""
-
-[[block]]
 block = "disk_space"
 path = "/home/aaron"
 alias = "home"

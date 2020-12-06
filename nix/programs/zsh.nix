@@ -24,10 +24,6 @@ in {
     file = {
       ".p10k.zsh".source = ../../zshconfigs/dotp10k.zsh;
       ".preztorc".source = ../../zshconfigs/dotpreztorc;
-      ".zlogout".source = prezto + "runcoms/zlogout";
-      ".zlogin".source = prezto + "runcoms/zlogin";
-      ".zprofile".source = prezto + "runcoms/zprofile";
-      ".zshenv".source = prezto + "runcoms/zshenv";
     };
   };
 
@@ -44,8 +40,11 @@ in {
     # enableVteIntegration = true;
 
     history = {
-      size = 1000000;
+      size = 100 * 1024 * 1024;
+      save = 100 * 1024 * 1024;
+      extended = true;
       share = true;
+      # ignoreDups = true;
       expireDuplicatesFirst = true;
     };
 
@@ -57,8 +56,8 @@ in {
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
       
-      # export VDPAU_DRIVER=va_gl
-      # export LIBVA_DRIVER_NAME=i965
+      setopt INC_APPEND_HISTORY
+      setopt APPEND_HISTORY
       
       # direnv extensions cause warnings
       typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet

@@ -5,9 +5,9 @@
      version = "0.1";
 
      src = writeShellScriptBin "bpass" ''
-       EXTRAPASS=""
+       EXTRAPASS="-c"
        if [[ "$1" == "-c" ]]; then
-         EXTRAPASS="-c0"
+         EXTRAPASS="-c"
          shift
        fi
 
@@ -21,7 +21,9 @@
        [[ $? -eq 0 ]] || exit $?
        echo "Chose $RESULT"
 
-       ${gopass}/bin/gopass show $EXTRAPASS "$RESULT"
+       COM="${gopass}/bin/gopass show "$EXTRAPASS" "$RESULT""
+       echo "$COM"
+       $COM
      '';
 
      buildInputs = with pkgs; [

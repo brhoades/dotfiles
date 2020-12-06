@@ -27,7 +27,7 @@ format_swap = "{SUp}%"
 
 [[block]]
 block = "temperature"
-chip = "coretemp-isa-0000"
+chip = "zenpower-pci-00c3"
 collapsed = false
 interval = 5
 format = "{min}°-{max}°"

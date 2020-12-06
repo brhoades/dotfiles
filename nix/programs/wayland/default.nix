@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
-{
+with lib; {
   imports = [
     ./mako.nix
   ];
@@ -33,11 +33,11 @@
     ws3 = "3:web";
     ws4 = "4:wrk";
     ws5 = "5";
-    ws6 = "6";
-    ws7 = "7";
-    ws8 = "8";
-    ws9 = "9";
-    ws10 = "10:cht";
+    ws6 = "q";
+    ws7 = "w";
+    ws8 = "e";
+    ws9 = "r";
+    ws10 = "a";
     mod = "Mod4";
     fonts = [
       "FontAwesome 10"
@@ -64,11 +64,7 @@
         # Some trouble makers
         no_focus [window_role="^[dD]iscord"]
 
-        workspace ${ws10} output ${leftMon}
-        workspace ${ws4}  output ${mainMon}
-        workspace ${ws3}  output ${mainMon}
-        workspace ${ws1}  output ${mainMon}
-        workspace ${ws2}  output ${rightMon}
+        output * dpms on
 
         # left
         output ${leftMon} pos 0 0
@@ -96,7 +92,15 @@
           xkb_layout us
           xkb_variant altgr-intl
           xkb_options ctrl:nocaps
+          xkb_numlock enabled
         }
+
+        # workspace -> monitor
+        workspace ${ws10} output ${leftMon}
+        workspace ${ws4}  output ${leftMon}
+        workspace ${ws3}  output ${mainMon}
+        workspace ${ws1}  output ${mainMon}
+        workspace ${ws2}  output ${rightMon}
 
         # for discord
         bindsym Scroll_Lock exec "${pkgs.xautomation}/bin/xte 'keydown XF86AudioPlay'"
@@ -128,8 +132,7 @@
 
           "${ws4}" = [
             { class = "Slack"; }
-            { class = "^[Mm]ail"; } # thunderbird
-            { class = "Daily"; title = ".*[Tt]hunderbird.*"; } # thunderbird
+            { app_id = "thunderbird"; }
           ];
 
           "${ws10}" = [
@@ -165,11 +168,17 @@
         };
 
         modifier = mod;
-        keybindings = {
+        keybindings = let
+          dirkeys = {
+            "j" = "down";
+            "k" = "up";
+            "l" = "right";
+            "h" = "left";
+          };
+        in {
           "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
           "${mod}+space" = "exec \"${pkgs.rofi}/bin/rofi -show run -modi run -only-match -matching fuzzy\"";
 
-          # change focus
           "${mod}+j" = "focus left";
           "${mod}+k" = "focus down";
           "${mod}+l" = "focus up";
@@ -182,6 +191,10 @@
            "${mod}+Right" = "focus right";
 
            # move focused window
+           # "${mod}+Shift+j" = "move left";
+           # "${mod}+Shift+k" = "move down";
+           # "${mod}+Shift+l" = "move up";
+           # "${mod}+Shift+semicolon" = "move right";
            "${mod}+Shift+j" = "move left";
            "${mod}+Shift+k" = "move down";
            "${mod}+Shift+l" = "move up";
@@ -207,11 +220,13 @@
            "${mod}+f" = "fullscreen toggle";
 
            # change container layout (stacked, tabbed, toggle split)
-           "${mod}+s" = "layout stacking";
+           # "${mod}+s" = "layout stacking";
            # "${mod}+w" = "layout tabbed";
+           # "${mod}+e" = "layout toggle split";
+
+           "${mod}+d" = "layout toggle all";
            # kill focused window
-           "${mod}+w" = "kill";
-           "${mod}+e" = "layout toggle split";
+           "${mod}+s" = "kill";
 
            # toggle tiling / floating
            "${mod}+Shift+space" = "floating toggle";
@@ -220,30 +235,42 @@
            # "${mod}+space" = "focus mode_toggle";
 
            # focus the tab above/below.
-           "${mod}+a" = "focus up";
-           "${mod}+Shift+a" = "focus down";
+           # "${mod}+a" = "focus up";
+           # "${mod}+Shift+a" = "focus down";
 
            # focus the child container
            #"${mod}+d" = "focus child";
 
-           # switch to workspace
+           # switch to workspace, left hand only keys
            "${mod}+1" = "workspace ${ws1}";
            "${mod}+2" = "workspace ${ws2}";
            "${mod}+3" = "workspace ${ws3}";
            "${mod}+4" = "workspace ${ws4}";
            "${mod}+5" = "workspace ${ws5}";
+           "${mod}+q" = "workspace ${ws6}";
+           "${mod}+w" = "workspace ${ws7}";
+           "${mod}+e" = "workspace ${ws8}";
+           "${mod}+r" = "workspace ${ws9}";
+           "${mod}+a" = "workspace ${ws10}";
+           ## legacy switch keybinds
            "${mod}+6" = "workspace ${ws6}";
            "${mod}+7" = "workspace ${ws7}";
            "${mod}+8" = "workspace ${ws8}";
            "${mod}+9" = "workspace ${ws9}";
            "${mod}+0" = "workspace ${ws10}";
 
-           # move focused container to workspace
+           # move focused container to workspace, left hand only keys
            "${mod}+Shift+1" = "move container to workspace ${ws1}";
            "${mod}+Shift+2" = "move container to workspace ${ws2}";
            "${mod}+Shift+3" = "move container to workspace ${ws3}";
            "${mod}+Shift+4" = "move container to workspace ${ws4}";
            "${mod}+Shift+5" = "move container to workspace ${ws5}";
+           "${mod}+Shift+q" = "move container to workspace ${ws6}";
+           "${mod}+Shift+w" = "move container to workspace ${ws7}";
+           "${mod}+Shift+e" = "move container to workspace ${ws8}";
+           "${mod}+Shift+r" = "move container to workspace ${ws9}";
+           "${mod}+Shift+a" = "move container to workspace ${ws10}";
+           ## legacy move keybinds
            "${mod}+Shift+6" = "move container to workspace ${ws6}";
            "${mod}+Shift+7" = "move container to workspace ${ws7}";
            "${mod}+Shift+8" = "move container to workspace ${ws8}";
@@ -251,12 +278,12 @@
            "${mod}+Shift+0" = "move container to workspace ${ws10}";
            # reload the configuration file
            "${mod}+Shift+c" = "reload";
-           # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-           "${mod}+Shift+r" = "restart";
-           # exit i3 (logs you out of your X session)
-           "${mod}+Shift+e" = "exec \"i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'\"";
 
-           "${mod}+r" = "mode \"resize\"";
+           # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+           # "${mod}+Shift+r" = "restart";
+           # exit i3 (logs you out of your X session)
+           # "${mod}+Shift+e" = "exec \"i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'\"";
+           # "${mod}+r" = "mode \"resize\"";
 
           # Media Keys
           # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 2 +5% #increase sound volume
@@ -269,7 +296,11 @@
           # bindcode --release 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
           #bindsym Scroll_Lock exec "xte 'keydown Scroll_Lock'"
           #bindsym --release Scroll_Lock exec "xte 'keyup Scroll_Lock'"
-        };
+        } //
+        # change focus view
+        mapAttrs' (key: dir: nameValuePair ("${mod}+${key}") ("focus ${dir}")) dirkeys //
+        # move focused view
+        mapAttrs' (key: dir: nameValuePair ("${mod}+Shift+${key}") ("move ${dir}")) dirkeys;
 
         gaps = {
           smartGaps = true;
@@ -278,8 +309,7 @@
           smartBorders = "on";
         };
 
-        window = { hideEdgeBorders = "smart";
-        };
+        window = { hideEdgeBorders = "smart"; };
 
         bars = [{
           inherit fonts;

@@ -3,7 +3,7 @@
 
 {
   nixpkgs.config.packageOverrides = _pkgs: {
-    # XXX: until 0.12 hits nixos-unstable
+    # XXX: until 0.13 hits stable
     discord = import ../../../nixpkgs/pkgs/applications/networking/instant-messengers/discord { inherit pkgs; };
   };
 

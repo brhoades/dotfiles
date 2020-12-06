@@ -2,14 +2,16 @@
 
 {
   imports = [
-    ./common.nix
-    ../programs/desktop.nix
-    ../programs/development.nix
-    ../services/desktop.nix
-    ../programs/steam.nix
-    ../programs/emacs.nix
-    ../programs/wine.nix
-    ../programs/dlux.nix
+    ../common.nix
+    ../../programs/desktop.nix
+    ../../programs/development.nix
+    ../../services/desktop.nix
+    ../../programs/steam.nix
+    ../../programs/emacs.nix
+    ../../programs/wine.nix
+    ../../programs/dlux.nix
+    ../../programs/bup.nix
+    ./msmtp.nix
   ];
 
   user = {
