@@ -286,11 +286,11 @@ with lib; {
            # "${mod}+r" = "mode \"resize\"";
 
           # Media Keys
-          # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 2 +5% #increase sound volume
-          # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 2 -5% #decrease sound volume
-          # bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
-          # bindsym XF86MonBrightnessDown exec light -U 4 # hw does +1
-          # bindsym XF86MonBrightnessUp exec light -A 4
+          "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 2 +5%";
+          "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 2 -5%";
+          "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle";
+          "XF86MonBrightnessDown" = "exec light -U 4";
+          "XF86MonBrightnessUp" = "exec light -A 4";
 
           # bindcode 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
           # bindcode --release 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
