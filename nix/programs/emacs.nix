@@ -1,6 +1,13 @@
 { config, pkgs, ... }:
 
-{
+let
+  bnixpkgs = import (pkgs.fetchFromGitHub {
+    owner = "brhoades";
+    repo = "nixpkgs";
+    rev = "brhoades/emacs-28-pgtk";
+    sha256 = "1kjgm47hnp6slwx7lf8i3v8z6rk12hjqv5vpmb9hmlqi2wmxpggh";
+  }) {};
+in {
   home.file = {
     ".emacs.d/init.el".source = ../../dotemacs.d/init.el;
     ".emacs.d/config".source = ../../dotemacs.d/config;
@@ -29,10 +36,11 @@
 
   programs.emacs = {
     enable = true;
+    package = bnixpkgs.emacs28-pgtk;
 
     # use-package takes care of any extra packages
     # only defined in .el files.
-    extraPackages = with pkgs; with pkgs.emacsPackages; (_epkgs: [
+    extraPackages = with pkgs; (epkgs: with epkgs; [
       use-package
 
       tide web-mode rjsx-mode
