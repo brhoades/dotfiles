@@ -12,8 +12,8 @@
                  '("\\.pdf\\'" . (lambda (file link)
                                    (org-pdfview-open link)))))
 
-(straight-use-package
- '(el-patch :type git :host github :repo "fuxialexander/org-pdftools"))
+;(straight-use-package
+; '(el-patch :type git :host github :repo "fuxialexander/org-pdftools"))
 
 (use-package org-noter
   :ensure t
