@@ -23,7 +23,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(add-to-list (quote interpreter-mode-alist) t)
+ '(add-to-list 'interpreter-mode-alist t)
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(auto-composition-mode nil t)
@@ -32,192 +32,164 @@
  '(company-idle-delay nil)
  '(company-lsp-cache-candidates t t)
  '(company-tooltip-align-annotations t)
- '(compilation-message-face (quote default))
+ '(compilation-message-face 'default)
  '(css-indent-offset 2)
- '(custom-enabled-themes (quote (misterioso)))
+ '(custom-enabled-themes '(misterioso))
  '(custom-safe-themes
-   (quote
-    ("c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "7f1d414afda803f3244c6fb4c2c64bea44dac040ed3731ec9d75275b9e831fe5" "e9df267a1c808451735f2958730a30892d9a2ad6879fb2ae0b939a29ebf31b63" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default)))
+   '("c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "7f1d414afda803f3244c6fb4c2c64bea44dac040ed3731ec9d75275b9e831fe5" "e9df267a1c808451735f2958730a30892d9a2ad6879fb2ae0b939a29ebf31b63" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default))
  '(desktop-restore-eager 3)
  '(desktop-save-mode t)
  '(enh-ruby-bounce-deep-indent nil)
  '(enh-ruby-deep-indent-construct nil)
  '(fci-rule-color "#3C3D37")
- '(flycheck-add-next-checker (quote tsx-tide) t)
- '(flycheck-highlighting-mode (quote symbols))
+ '(flycheck-add-next-checker 'tsx-tide t)
+ '(flycheck-highlighting-mode 'symbols)
  '(flycheck-idle-change-delay 1)
  '(flymake-mode 0 t)
  '(flymake-start-on-flymake-mode nil)
  '(global-xclip-mode nil)
  '(helm-ff-lynx-style-map t)
  '(helm-ff-skip-boring-files t)
- '(helm-rg-file-paths-in-matches-behavior (quote absolute))
+ '(helm-rg-file-paths-in-matches-behavior 'absolute)
  '(helm-rg-include-file-on-every-match-line nil)
- '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
+ '(highlight-changes-colors '("#FD5FF0" "#AE81FF"))
  '(highlight-tail-colors
-   (quote
-    (("#3C3D37" . 0)
+   '(("#3C3D37" . 0)
      ("#679A01" . 20)
      ("#4BBEAE" . 30)
      ("#1DB4D0" . 50)
      ("#9A8F21" . 60)
      ("#A75B00" . 70)
      ("#F309DF" . 85)
-     ("#3C3D37" . 100))))
+     ("#3C3D37" . 100)))
  '(indent-tabs-mode nil)
- '(js-indent-level 2)
+ '(js-indent-level 2 t)
  '(js2-strict-trailing-comma-warning nil t)
  '(lsp-flycheck-live-reporting :t)
  '(lsp-java-format-enabled nil)
  '(lsp-java-java-path "/usr/lib/jvm/java-11-openjdk/bin/java")
  '(lsp-java-save-actions-organize-imports nil)
  '(lsp-metals-java-home "/usr/lib/jvm/java-11-openjdk/")
- '(lsp-ui-doc-delay 10.0 t)
+ '(lsp-ui-doc-delay 10.0)
  '(lsp-ui-flycheck-enable nil t)
- '(lsp-ui-flycheck-live-reporting :t)
+ '(lsp-ui-flycheck-live-reporting :t t)
  '(lsp-ui-sideline-show-hover :t)
  '(magit-diff-use-overlays nil)
  '(notmuch-search-oldest-first nil t)
  '(org-agenda-files
-   (quote
-    ("~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org")) t nil "Customized with use-package org")
+   '("~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org") nil nil "Customized with use-package org")
  '(org-noter-always-create-frame nil)
  '(org-noter-kill-frame-at-session-end nil)
  '(package-selected-packages
-   (quote
-    (org org-noter org-pdfview pdf-tools evil-collection helm-notmuch notmuch helm-config protobuf-mode lsp-ui lsp-ui-sideline company-go flycheck-rust python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil)))
+   '(org org-noter org-pdfview pdf-tools evil-collection helm-notmuch notmuch helm-config protobuf-mode lsp-ui lsp-ui-sideline company-go flycheck-rust python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil))
  '(pdf-loader-install nil t)
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
- '(projectile-globally-ignored-directories (quote ("node_modules")))
- '(push (quote rustic-clippy) t)
+ '(projectile-globally-ignored-directories '("node_modules"))
+ '(push 'rustic-clippy t)
  '(python-indent 4 t)
  '(rbenv-show-active-ruby-in-modeline nil)
  '(ruby-align-to-stmt-keywords nil)
  '(ruby-deep-arglist nil)
  '(ruby-deep-indent-paren nil)
  '(safe-local-variable-values
-   (quote
-    ((flycheck-eslintrc concat
+   '((flycheck-eslintrc concat
                         (locate-dominating-file default-directory ".dir-locals.el")
                         "cmd/dev/.eslintrc.yaml")
      (eval progn
-           (add-to-list
-            (quote exec-path)
-            (concat
-             (locate-dominating-file default-directory ".dir-locals.el")
-             "cmd/dev/node_modules/.bin/")))
+           (add-to-list 'exec-path
+                        (concat
+                         (locate-dominating-file default-directory ".dir-locals.el")
+                         "cmd/dev/node_modules/.bin/")))
      (flycheck-eslintrc concat
                         (locate-dominating-file default-directory ".dir-locals.el")
                         "frontend/.eslintrc.json")
      (eval progn
            (lambda nil
-             (add-to-list
-              (quote exec-path)
-              (concat
-               (locate-dominating-file default-directory ".dir-locals.el")
-               "frontend/node_modules/.bin/"))
+             (add-to-list 'exec-path
+                          (concat
+                           (locate-dominating-file default-directory ".dir-locals.el")
+                           "frontend/node_modules/.bin/"))
              (flycheck-eslintrc
               (concat
                (locate-dominating-file default-directory ".dir-locals.el")
                "frontend/.eslintrc.json"))))
      (eval progn
-           (add-to-list
-            (quote exec-path)
-            (concat
-             (locate-dominating-file default-directory ".dir-locals.el")
-             "frontend/node_modules/.bin/"))
+           (add-to-list 'exec-path
+                        (concat
+                         (locate-dominating-file default-directory ".dir-locals.el")
+                         "frontend/node_modules/.bin/"))
            (flycheck-eslintrc "~/.eslintrc"))
      (eval progn
-           (add-to-list
-            (quote exec-path)
-            (concat
-             (locate-dominating-file default-directory ".dir-locals.el")
-             "frontend/node_modules/.bin/")))
+           (add-to-list 'exec-path
+                        (concat
+                         (locate-dominating-file default-directory ".dir-locals.el")
+                         "frontend/node_modules/.bin/")))
      (eval progn
-           (add-to-list
-            (quote exec-path)
-            (concat
-             (locate-dominating-file default-directory ".dir-locals.el")
-             "node_modules/.bin/")))
+           (add-to-list 'exec-path
+                        (concat
+                         (locate-dominating-file default-directory ".dir-locals.el")
+                         "node_modules/.bin/")))
      (eval progn
-           (require
-            (quote projectile))
+           (require 'projectile)
            (setq projectile-file-exists-remote-cache-expire
                  (* 60 60))
            (setq projectile-enable-caching t)
-           (setq projectile-sort-order
-                 (quote recentf))
+           (setq projectile-sort-order 'recentf)
            (setq whitespace-style
-                 (quote
-                  (trailing)))
-           (projectile-register-project-type
-            (quote go)
-            (quote
-             ("go.mod"))
-            :compilation-dir "go/" :compile "go install ./..." :src-dir "go/" :test "go test ..." :run "go test ..." :test-suffix "_test.go"))
+                 '(trailing))
+           (projectile-register-project-type 'go
+                                             '("go.mod")
+                                             :compilation-dir "go/" :compile "go install ./..." :src-dir "go/" :test "go test ..." :run "go test ..." :test-suffix "_test.go"))
      (eval progn
-           (require
-            (quote projectile))
+           (require 'projectile)
            (setq projectile-file-exists-remote-cache-expire
                  (* 60 60))
            (setq projectile-enable-caching t)
-           (setq projectile-sort-order
-                 (quote recentf))
+           (setq projectile-sort-order 'recentf)
            (setq whitespace-style
-                 (quote
-                  (trailing)))
-           (projectile-register-project-type
-            (quote go)
-            (quote
-             ("go.mod"))
-            :compile "go install ..." :test "go test ..." :run "go test ..." :test-suffix "_test.go"))
+                 '(trailing))
+           (projectile-register-project-type 'go
+                                             '("go.mod")
+                                             :compile "go install ..." :test "go test ..." :run "go test ..." :test-suffix "_test.go"))
      (eval progn
-           (require
-            (quote projectile))
+           (require 'projectile)
            (setq projectile-file-exists-remote-cache-expire
                  (* 60 60))
            (setq projectile-enable-caching t)
-           (setq projectile-sort-order
-                 (quote recentf))
+           (setq projectile-sort-order 'recentf)
            (setq whitespace-style
-                 (quote
-                  (trailing))))
+                 '(trailing)))
      (eval progn
-           (require
-            (quote projectile))
+           (require 'projectile)
            (setq projectile-file-exists-remote-cache-expire
                  (* 60 60))
            (setq projectile-enable-caching t)
-           (setq projectile-sort-order
-                 (quote recentf))
+           (setq projectile-sort-order 'recentf)
            (whitespace-mode 0))
      (eval progn
-           (require
-            (quote projectile))
+           (require 'projectile)
            (setq projectile-file-exists-remote-cache-expire
                  (* 60 60))
            (setq projectile-enable-caching t)
-           (setq projectile-sort-order
-                 (quote recentf)))
+           (setq projectile-sort-order 'recentf))
      (projectile-sort-order quote recentf)
      (projectile-enable-caching . t)
      (projectile-file-exists-remote-cache-expire * 60 60)
      (projectile-enable-caching t)
      (projectile-file-exists-remote-cache-expire
-      (* 60 60)))))
+      (* 60 60))))
  '(sh-basic-offset 2)
  '(tab-width 4)
- '(tide-format-options (quote (:indentSize 2 :tabSize 2 :baseIndentSize 2)))
+ '(tide-format-options '(:indentSize 2 :tabSize 2 :baseIndentSize 2))
  '(tool-bar-mode nil)
- '(typescript-indent-level 2)
+ '(typescript-indent-level 2 t)
  '(typescript-indent-offset 2 t)
  '(undo-tree-auto-save-history t)
- '(undo-tree-history-directory-alist (quote (("." . "~/.emacs.d/undo"))))
+ '(undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
-   (quote
-    ((20 . "#F92672")
+   '((20 . "#F92672")
      (40 . "#CF4F1F")
      (60 . "#C26C0F")
      (80 . "#E6DB74")
@@ -234,30 +206,24 @@
      (300 . "#299BA6")
      (320 . "#2896B5")
      (340 . "#2790C3")
-     (360 . "#66D9EF"))))
+     (360 . "#66D9EF")))
  '(vc-annotate-very-old-color nil)
- '(web-mode-auto-quote-style 2)
- '(web-mode-code-indent-offset 2)
- '(web-mode-css-indent-offset 2)
- '(web-mode-enable-auto-quoting nil)
- '(web-mode-enable-current-element-highlight t)
+ '(web-mode-auto-quote-style 2 t)
+ '(web-mode-code-indent-offset 2 t)
+ '(web-mode-css-indent-offset 2 t)
+ '(web-mode-enable-auto-quoting nil t)
+ '(web-mode-enable-current-element-highlight t t)
  '(web-mode-html-tag-font-lock-keywords
-   (quote
-    (("\\(</?\\)\\([[\\.:alnum:]]+\\)"
-      (1
-       (quote web-mode-html-tag-bracket-face))
-      (2
-       (quote web-mode-html-tag-face)))
-     ("\"[^\"]*\"" 0
-      (quote web-mode-html-attr-value-face))
-     ("\\([[:alnum:]]+\\)" 1
-      (quote web-mode-html-attr-name-face))
-     ("/?>" 0
-      (quote web-mode-html-tag-bracket-face)))) t)
- '(web-mode-markup-indent-offset 2)
+   '(("\\(</?\\)\\([[\\.:alnum:]]+\\)"
+      (1 'web-mode-html-tag-bracket-face)
+      (2 'web-mode-html-tag-face))
+     ("\"[^\"]*\"" 0 'web-mode-html-attr-value-face)
+     ("\\([[:alnum:]]+\\)" 1 'web-mode-html-attr-name-face)
+     ("/?>" 0 'web-mode-html-tag-bracket-face)) t)
+ '(web-mode-markup-indent-offset 2 t)
  '(weechat-color-list
    (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))
- '(whitespace-style (quote (trailing))))
+ '(whitespace-style '(trailing)))
 
 ;; automatically clean up bad whitespace
 (setq whitespace-action '(auto-cleanup))
@@ -277,6 +243,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((((class color) (min-colors 89)) (:foreground "#d2cfc6" :background "#292928"))))
+ '(flycheck-error ((t (:underline (:color "red" :style wave)))))
  '(org-block-begin-line ((t (:background "#35331D" :foreground "#75715E" :slant italic))))
  '(org-code ((t (:inherit org-block :foreground "#EEEEE"))))
  '(org-meta-line ((t (:inherit org-block-begin-line)))))
