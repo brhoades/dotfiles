@@ -34,7 +34,10 @@
   :mode ("\\.rs\\'" . rustic-mode)
   :hook ((rustic-mode . flycheck-rust-setup)
 		 (rustic-mode . rustic-flycheck-setup)
-		 (rustic-mode . lsp-mode)))
+		 (rustic-mode . lsp-mode))
+  :custom
+  (rustic-display-spinner nil)
+  (lsp-rust-clippy-reference "on"))
 
 (use-package lsp-mode
   :ensure t
