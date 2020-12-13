@@ -36,8 +36,7 @@
 		 (rustic-mode . rustic-flycheck-setup)
 		 (rustic-mode . lsp-mode))
   :custom
-  (rustic-display-spinner nil)
-  (lsp-rust-clippy-reference "on"))
+  (rustic-display-spinner nil))
 
 (use-package lsp-mode
   :ensure t

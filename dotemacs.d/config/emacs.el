@@ -30,10 +30,9 @@
 
 ;; Save session buffers
 (custom-set-variables
+  '(desktop-auto-save-timeout 300)
   '(desktop-save-mode t)
   '(desktop-restore-eager 3)) ;; only load 3 most recent files, do the rest later
-
-(setq desktop-auto-save-timeout 300)
 
 ;; less verbose prompting
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -62,3 +61,7 @@
 ;; refresh packages when needed
 (unless package-archive-contents
   (package-refresh-contents))
+
+; spaceemacs uses 100 MiB, I should too. Reduces CPU use.
+; https://emacs.stackexchange.com/a/19715
+(setq gc-cons-threshold 100000000) ; 100mb, default is 800kb

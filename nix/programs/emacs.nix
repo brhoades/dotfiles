@@ -11,6 +11,7 @@ in {
   home.file = {
     ".emacs.d/init.el".source = ../../dotemacs.d/init.el;
     ".emacs.d/config".source = ../../dotemacs.d/config;
+    ".emacs.d/.cache/lsp/rust/rust-analyzer".source = "${pkgs.rust-analyzer}/bin/rust-analyzer";
   };
 
   home.packages = with pkgs; [
@@ -62,7 +63,9 @@ in {
 
       dap-mode
 
-      org org-noter
+      org org-noter org-roam
+      pkgs.sqlite # org-roam requirement
+
       pdf-tools
 
       notmuch

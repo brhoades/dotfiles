@@ -2,11 +2,23 @@
 ;; use-package setup
 (load "~/.emacs.d/config/use-package.el")
 
+(use-package undo-tree
+  :ensure t
+  ; suddenly required after emacs 28
+;  :bind (("C-r" . undo-tree-redo))
+  :custom
+    (global-undo-tree-mode t)
+    (undo-tree-auto-save-history t)
+    (undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
+
 ;;;;;;;;;;;;;;; Evil mode
 ;; Enable global evil mode early, so if something else breaks I still have arms
 (use-package evil
+  :after undo-tree
+  :ensure t
   :init
   (setq evil-want-keybinding nil)
+  (setq evil-undo-system 'undo-tree)
   :ensure t)
 (use-package evil-smartparens
   :ensure t)
@@ -185,8 +197,6 @@
  '(tool-bar-mode nil)
  '(typescript-indent-level 2 t)
  '(typescript-indent-offset 2 t)
- '(undo-tree-auto-save-history t)
- '(undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    '((20 . "#F92672")
