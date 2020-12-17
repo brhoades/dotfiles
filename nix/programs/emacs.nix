@@ -13,19 +13,17 @@
   # emacs needs .emacs.d/{undo,tmp,tansient,elpa,workspace}
   # It should make all except for undo and workspace itself?
   ## XXX: enable after upgrade to 20.09+
-  # systemd.user.tmpfiles.rules = let
-  #   emacsdir = (config.home.homeDirectory + "/.emacs.d");
-  # in [
-  #   "d ${emacsdir + "/undo"} - - - - -"
-  #   "d ${emacsdir + "/tmp"} - - - - -"
-  #   "d ${emacsdir + "/workspace"} - - - - -"
-  #   "d ${emacsdir + "/elpa"} - - - - -"
-  #   "d ${emacsdir + "/auto-save-list"} - - - - -"
-  #   "d ${emacsdir + "/straight"} - - - - -"
-  #   "d ${emacsdir + "/transient"} - - - - -"
-  # ];
-
-  # fonts.fontconfig.enable = true;
+  systemd.user.tmpfiles.rules = let
+    emacsdir = (config.home.homeDirectory + "/.emacs.d");
+  in [
+    "d ${emacsdir + "/undo"} - - - - -"
+    "d ${emacsdir + "/tmp"} - - - - -"
+    "d ${emacsdir + "/workspace"} - - - - -"
+    "d ${emacsdir + "/elpa"} - - - - -"
+    "d ${emacsdir + "/auto-save-list"} - - - - -"
+    "d ${emacsdir + "/straight"} - - - - -"
+    "d ${emacsdir + "/transient"} - - - - -"
+  ];
 
   programs.emacs = {
     enable = true;
