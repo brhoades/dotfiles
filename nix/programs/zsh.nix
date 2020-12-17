@@ -76,7 +76,7 @@ in {
       export ENHANCD_DISABLE_HYPHEN=1
       export ENHANCD_DISABLE_HOME=1
       source "${enhancd}/init.sh"
-      
+
       # the first compinit doesn't catch everything on fpath.
       compinit
       
@@ -122,11 +122,7 @@ in {
       if [[ -e "$HOME/go/bin" ]]; then
         export PATH=$HOME/go/bin:$PATH
       fi
-      
-      if [[ -d "$HOME/.nix-defexpr/channels" ]]; then
-        export NIX_PATH=$HOME/.nix-defexpr/channels''${NIX_PATH:+:}$NIX_PATH
-      fi
-      
+
       hash kubectl &> /dev/null && source <(kubectl completion zsh) || {}
       
       # alias gopass='GPG_TTY=$(tty) gopass'
@@ -158,7 +154,6 @@ in {
       # ctrl left/right
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
-      
       
       (( ! ''${+functions[p10k]} )) || p10k finalize
     '';
