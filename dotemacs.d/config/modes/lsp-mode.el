@@ -7,6 +7,7 @@
   (progn (setq lsp-prefer-flymake nil)) ;; flycheck
   :custom
   (lsp-prefer-flymake :none)
+  (lsp-progress-via-spinner nil)
 )
 
 (use-package lsp-ui

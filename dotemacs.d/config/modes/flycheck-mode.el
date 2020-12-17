@@ -14,6 +14,7 @@
   (flycheck-highlighting-mode 'symbols)
   (flycheck-add-next-checker 'typescript-tide 'typescript-eslint)
   (flycheck-add-next-checker 'tsx-tide 'typescript-eslint)
+  (set-face-attribute 'flycheck-error nil :underline '(:color "red2" :style wave))
   :config
   (push 'rustic-clippy flycheck-checkers)
   (push 'typescript-eslint flycheck-checkers)
