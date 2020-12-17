@@ -124,12 +124,6 @@ with lib; {
             { class = "Emacs"; }
           ];
 
-          "${ws3}" = [
-            # { class = "Firefox"; }
-            # { class = "Chromium"; }
-            # { class = "Google-chrome(-beta|-stable)?"; }
-          ];
-
           "${ws4}" = [
             { class = "Slack"; }
             { app_id = "thunderbird"; }
@@ -177,7 +171,7 @@ with lib; {
           };
         in {
           "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
-          "${mod}+space" = "exec \"${pkgs.rofi}/bin/rofi -show run -modi run -only-match -matching fuzzy\"";
+          "${mod}+space" =  "exec ${pkgs.rofi}/bin/rofi -show run -modi run -only-match -matching fuzzy";
 
           "${mod}+j" = "focus left";
           "${mod}+k" = "focus down";
@@ -252,7 +246,8 @@ with lib; {
            "${mod}+e" = "workspace ${ws8}";
            "${mod}+r" = "workspace ${ws9}";
            "${mod}+a" = "workspace ${ws10}";
-           ## legacy switch keybinds
+
+           # legacy switch keybinds
            "${mod}+6" = "workspace ${ws6}";
            "${mod}+7" = "workspace ${ws7}";
            "${mod}+8" = "workspace ${ws8}";
@@ -289,8 +284,8 @@ with lib; {
           "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 2 +5%";
           "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 2 -5%";
           "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle";
-          "XF86MonBrightnessDown" = "exec light -U 4";
-          "XF86MonBrightnessUp" = "exec light -A 4";
+          "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 4";
+          "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 4";
 
           # bindcode 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
           # bindcode --release 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
