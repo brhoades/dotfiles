@@ -3,7 +3,7 @@ with pkgs; with lib; let
   dlux = rustPlatform.buildRustPackage rec {
     pname = "dlux";
     version = "0.1.2";
-    name = "${pname}-${version}";
+    name = "${pname}-${version}b";
 
     nativeBuildInputs = [ libudev pkgconfig ];
     buildInputs = nativeBuildInputs;
@@ -12,10 +12,10 @@ with pkgs; with lib; let
       owner = "brhoades";
       repo = pname;
       rev = version;
-      sha256 = "0rp711k68q3d53ssmdh5vcwwbqnx9za5i3wfhiwnzad4gzm0aq19";
+      sha256 = "03bis0d7r7mllimz6byirh94qzn444k0a1l1m6xvndd7riizqy4y";
     };
 
-    cargoSha256 = "1cy9asgwyfbxj75rnbi61ldsmiqp4dxgbgh8pwki91y1gwj7pwri";
+    cargoSha256 = "1i3hrj6j3grxwxyq2vspc5ijzx6n9bk9riv1kbfw2xgzcif4wccx";
 
     meta = {
       description = "dlux is a tiny daemon for hardware brightness control";
