@@ -2,7 +2,7 @@
 with pkgs; with lib; let
   dlux = rustPlatform.buildRustPackage rec {
     pname = "dlux";
-    version = "0.1.1";
+    version = "0.1.2";
     name = "${pname}-${version}";
 
     nativeBuildInputs = [ libudev pkgconfig ];
@@ -12,10 +12,10 @@ with pkgs; with lib; let
       owner = "brhoades";
       repo = pname;
       rev = version;
-      sha256 = "0z9f2hwnqfamnfn3vy05hgbrhch84zriv5x3a514xwfg9hhg4slz";
+      sha256 = "0rp711k68q3d53ssmdh5vcwwbqnx9za5i3wfhiwnzad4gzm0aq19";
     };
 
-    cargoSha256 = "1vkzwblq0r3hkxymc1kf4cv8f29dsk6pvcbbb6xnkgagrx7dxmms";
+    cargoSha256 = "1cy9asgwyfbxj75rnbi61ldsmiqp4dxgbgh8pwki91y1gwj7pwri";
 
     meta = {
       description = "dlux is a tiny daemon for hardware brightness control";
@@ -23,10 +23,6 @@ with pkgs; with lib; let
       license = licenses.mit;
     };
   };
-  lat = fileContents ~/.config/dlux/secrets/lat;
-  long = fileContents ~/.config/dlux/secrets/long;
-  height = 200;
-  brightness = 40;
 in {
   systemd.user.services.dlux = {
     Unit = {
@@ -35,14 +31,7 @@ in {
 
     Service = {
       Type = "simple";
-      ExecStart = ''
-        ${pkgs.strace}/bin/strace ${dlux}/bin/dlux \
-          --log-level="debug" \
-          --lat="${lat}" \
-          --long="${long}" \
-          --height="${toString height}" \
-          --brightness="${toString brightness}"
-      '';
+      ExecStart = "${dlux}/bin/dlux daemon ${./dlux.yaml}";
     };
   };
 }
