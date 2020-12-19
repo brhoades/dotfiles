@@ -33,8 +33,6 @@ in {
     "d ${emacsdir + "/transient"} - - - - -"
   ];
 
-  # fonts.fontconfig.enable = true;
-
   programs.emacs = {
     enable = true;
     package = bnixpkgs.emacs28-pgtk;
