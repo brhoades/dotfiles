@@ -2,26 +2,36 @@
 ;; use-package setup
 (load "~/.emacs.d/config/use-package.el")
 
-(use-package undo-tree
-  :ensure t
-  ; suddenly required after emacs 28
-;  :bind (("C-r" . undo-tree-redo))
-  :custom
-    (global-undo-tree-mode t)
-    (undo-tree-auto-save-history t)
-    (undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
-
 ;;;;;;;;;;;;;;; Evil mode
 ;; Enable global evil mode early, so if something else breaks I still have arms
-(use-package evil
-  :after undo-tree
+(use-package undo-fu
   :ensure t
-  :init
-  (setq evil-want-keybinding nil)
-  (setq evil-undo-system 'undo-tree)
-  :ensure t)
+  :config ; after package loaded
+    (global-undo-tree-mode -1))
+
+(use-package undo-fu-session
+  :ensure t
+  :after (undo-fu)
+  :config ; after package loaded
+    (global-undo-fu-session-mode)
+  :custom ; setq wrapper
+    (undo-fu-session-incompatible-files '("/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'")))
+
+(use-package evil
+  :after (undo-fu)
+  :ensure t
+ :init   ; before package is loaded
+    (setq evil-want-keybinding nil)
+  :config ; after package is loaded
+    (define-key evil-normal-state-map "u" 'undo-fu-only-undo)
+    (define-key evil-normal-state-map "\C-r" 'undo-fu-only-redo)
+  :custom ; setq wrapper
+    (evil-undo-system 'undo-fu))
+
 (use-package evil-smartparens
+  :after (evil)
   :ensure t)
+
 (evil-mode 1)
 ;;;;;;;;;;;;;;;
 
