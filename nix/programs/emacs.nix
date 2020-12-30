@@ -82,6 +82,8 @@ in {
       evil evil-collection evil-magit evil-smartparens
       monokai-theme
 
+      undo-fu undo-fu-session
+
       bind-key diminish
       exec-path-from-shell
       direnv
