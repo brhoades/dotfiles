@@ -154,6 +154,9 @@ in {
       # ctrl left/right
       bindkey "^[[1;5C" forward-word
       bindkey "^[[1;5D" backward-word
+
+      # something above breaks single char deletes.
+      bindkey "^[[3~" delete-char
       
       (( ! ''${+functions[p10k]} )) || p10k finalize
     '';
