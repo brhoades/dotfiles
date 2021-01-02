@@ -56,7 +56,7 @@
    xdg.configFile.gopassConfig = {
      target = "gopass/config.yml";
      text = ''
-           root:
+        root:
            cliptimeout: 60
            path: /home/aaron/.local/share/password-store
            notifications: false
