@@ -12,7 +12,7 @@
   programs.gpg = {
     enable = true;
     settings = {
-      default-key = "AA01843B936D466B886AB3DF3F21ED9DCDB84AF1";
+      default-key = "5BEA9B121D098D860A0AC25E0017C0956096FC18";
       keyserver = "https://keys.openpgp.org";
     };
   };
