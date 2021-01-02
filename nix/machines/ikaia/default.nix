@@ -6,6 +6,8 @@
     ../../programs/desktop.nix
     ../../programs/development.nix
     ../../services/desktop.nix
+    ../../services/keybase.nix
+    ../../programs/steam.nix
     ../../programs/steam.nix
     ../../programs/emacs.nix
     ../../programs/wine.nix
