@@ -56,10 +56,16 @@
    xdg.configFile.gopassConfig = {
      target = "gopass/config.yml";
      text = ''
-        root:
-           cliptimeout: 60
-           path: /home/aaron/.local/share/password-store
-           notifications: false
+       autoimport: false
+       cliptimeout: 60
+       exportkeys: false
+       mime: true
+       nocolor: false
+       nopager: false
+       notifications: false
+       path: /home/aaron/.local/share/password-store
+       safecontent: false
+       mounts: {}
      '';
    };
  }
