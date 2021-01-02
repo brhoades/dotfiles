@@ -5,7 +5,7 @@ let
     owner = "brhoades";
     repo = "nixpkgs";
     rev = "brhoades/emacs-28-pgtk";
-    sha256 = "1kjgm47hnp6slwx7lf8i3v8z6rk12hjqv5vpmb9hmlqi2wmxpggh";
+    sha256 = "0s1zf23vvm14f4vvfhc9dgy5dkbgylxg26gflq4l5mpxqh3p7hgz";
   }) {};
 in {
   home.file = {
