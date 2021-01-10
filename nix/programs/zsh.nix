@@ -55,16 +55,14 @@ in {
       if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
-      
-      setopt INC_APPEND_HISTORY
+
       setopt APPEND_HISTORY
-      
+      setopt clobber
+      setopt no_rm_star_silent
+
       # direnv extensions cause warnings
       typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
-      setopt APPEND_HISTORY 
-      setopt INC_APPEND_HISTORY 
-      
       source "$HOME/.p10k.zsh"
       source "${p10kPath}/powerlevel10k.zsh-theme"
       source "${prezto}/init.zsh"
@@ -79,18 +77,18 @@ in {
 
       # the first compinit doesn't catch everything on fpath.
       compinit
-      
+
       # Show loading dots while waiting for tab completion.
       export COMPLETION_WAITING_DOTS="true"
-      
+
       zstyle :prezto:module:prompt theme powerlevel10k
-      
+
       # Use the same colors as ls from dircolors.
       zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-      
+
       # arrow key menu-style selection of tab completions
       zstyle ':completion:*' menu select
-      
+
       # Set the Prezto modules to load (browse modules).
       # The order matters.
       zstyle ':prezto:load' pmodule \
@@ -107,28 +105,24 @@ in {
         'completion' \
         'command-not-found' \
         'prompt'
-      
-      setopt clobber
-      setopt no_rm_star_silent
-      setopt APPEND_HISTORY # sessions append rather than replace
-      
+
       typeset -A ZSH_HIGHLIGHT_STYLES
       ZSH_HIGHLIGHT_STYLES[cursor]=underline
-      
+
       if [[ -e "$HOME/.local/bin" ]]; then
         export PATH=$HOME/.local/bin:$PATH
       fi
-      
+
       if [[ -e "$HOME/go/bin" ]]; then
         export PATH=$HOME/go/bin:$PATH
       fi
 
       hash kubectl &> /dev/null && source <(kubectl completion zsh) || {}
-      
+
       # alias gopass='GPG_TTY=$(tty) gopass'
       # alias git='GPG_TTY=$(tty) git'
       bindkey -e
-      
+
       # works in most terminals: xterm, gnome-terminal, terminator, st, sakura, termit, …
       bindkey "\\e[1;5C" forward-word
       bindkey "\\e[1;5D" backward-word
@@ -157,7 +151,7 @@ in {
 
       # something above breaks single char deletes.
       bindkey "^[[3~" delete-char
-      
+
       (( ! ''${+functions[p10k]} )) || p10k finalize
     '';
 
