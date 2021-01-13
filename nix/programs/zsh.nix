@@ -40,12 +40,11 @@ in {
     # enableVteIntegration = true;
 
     history = {
-      size = 100 * 1024 * 1024;
+      size = 101 * 1024 * 1024;
       save = 100 * 1024 * 1024;
       extended = true;
-      share = true;
-      # ignoreDups = true;
-      expireDuplicatesFirst = true;
+      # Don't read and write from history on the fly (SHARE_HISTORY).
+      share = false;
     };
 
     initExtraBeforeCompInit = ''
@@ -55,10 +54,6 @@ in {
       if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
-
-      setopt APPEND_HISTORY
-      setopt clobber
-      setopt no_rm_star_silent
 
       # direnv extensions cause warnings
       typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
@@ -151,6 +146,30 @@ in {
 
       # something above breaks single char deletes.
       bindkey "^[[3~" delete-char
+
+      ########################################################
+      # Nix Overrides
+      # These options are intentionally placed as they come
+      # after home-manager-defined options.
+      ########################################################
+      # Undo nix settings.
+      # Do not read from the history file on every change.
+      unsetopt SHARE_HISTORY
+      # Use INC_APPEND_HISTORY instead.
+      unsetopt APPEND_HISTORY
+      # Do not save every command before execution.
+      unsetopt INC_APPEND_HISTORY
+      # Save every command _after_ execution with its extended history timestamp.
+      setopt INC_APPEND_HISTORY_TIME
+
+      # allow > to clobber existing files
+      setopt CLOBBER
+      setopt NO_RM_STAR_SILENT
+      # Do not store functions in the history list.
+      setopt HIST_NO_FUNCTIONS
+      # Do not store "history" in the history list
+      setopt HIST_NO_STORE
+
 
       (( ! ''${+functions[p10k]} )) || p10k finalize
     '';
