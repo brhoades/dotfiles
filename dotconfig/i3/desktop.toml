@@ -3,7 +3,7 @@ icons = "awesome"
 
 [[block]]
 block = "net"
-device = "eno1"
+device = "enp5s0"
 ip = false
 speed_up = false
 graph_up = true
@@ -43,6 +43,15 @@ format = "{1m}"
 
 [[block]]
 block = "sound"
+device_kind = "sink"
+
+[[block]]
+block = "sound"
+device_kind = "source"
+# device = "alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo"
+# device = "hw:1"
+color_overrides = { warning_bg = "#ff0000" }
+
 
 [[block]]
 block = "bluetooth"
