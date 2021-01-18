@@ -7,6 +7,14 @@ let
     rev = "brhoades/emacs-28-pgtk";
     sha256 = "0s1zf23vvm14f4vvfhc9dgy5dkbgylxg26gflq4l5mpxqh3p7hgz";
   }) {};
+  # nix-linter breaks so frequently. Locking it down to a December version which used a hnix
+  # that didn't give me ulcers.
+  hnixPkgs = import (pkgs.fetchFromGitHub {
+    owner = "brhoades";
+    repo = "nixpkgs";
+    rev = "frozen/nix-linter";
+    sha256 = "1g0siknkxrf7a16fngcf61c9v02rh7p2bslmi80zi6s73qjnmcsw";
+  }) {};
 in {
   home.file = {
     ".emacs.d/init.el".source = ../../dotemacs.d/init.el;
@@ -14,8 +22,14 @@ in {
     ".emacs.d/.cache/lsp/rust/rust-analyzer".source = "${pkgs.rust-analyzer}/bin/rust-analyzer";
   };
 
+  # XXX: nix-linter still broken >:(
+  nixpkgs.config.packageOverrides = _pkgs: {
+    hnix = hnixPkgs.haskellPackages.hnix;
+    nix-linter = hnixPkgs.nix-linter;
+  };
+
   home.packages = with pkgs; [
-      nix-linter
+    # nix-linter
   ];
 
   # emacs needs .emacs.d/{undo,tmp,tansient,elpa,workspace}
@@ -78,8 +92,8 @@ in {
       helm helm-rg helm-smex helm-projectile
       flx-ido
 
-      magit
-      evil evil-collection evil-magit evil-smartparens
+      magit git-link
+      evil evil-magit evil-smartparens # evil-collection  includes evil-mode too now?
       monokai-theme
 
       undo-fu undo-fu-session
@@ -102,7 +116,7 @@ in {
       # errcheck go-tools unconvert
 
       # if nix
-      nix-linter
+      # nix-linter
 
       # projectile-{ag,rg}
       ag ripgrep
