@@ -89,6 +89,8 @@
     blacklistSites = [
       "mail.google.com"
       "md.hecke.rs"
+      "app.datadoghq.com"
+      "photos.google.com"
     ];
   in ''
     " Apparently a bit janky, but I like it.

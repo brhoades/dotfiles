@@ -14,18 +14,20 @@
     feh
     pavucontrol
 
-    (chromium.override { enableVaapi = true; useOzone = true; })
+    (chromium.override { enableVaapi = true; })
     google-chrome
     thunderbird
 
     barrier
     xorg.xrandr xorg.xkill scrot
 
-    fira fira-code fira-code-symbols roboto
+    fira-code fira-code-symbols roboto
 
     # i3-status-rust requires 4
     font-awesome_4
     lm_sensors # i3-status-rust queries for temps
+
+    xfce.thunar xfce.xfconf xfce.tumbler
   ];
 
   gtk = {

@@ -6,14 +6,10 @@
     ../../programs/desktop.nix
     ../../programs/development.nix
     ../../services/desktop.nix
-    ../../services/keybase.nix
-    ../../programs/steam.nix
-    ../../programs/steam.nix
     ../../programs/emacs.nix
-    ../../programs/wine.nix
-    ../../programs/dlux.nix
-    ../../programs/bup.nix
-    ./msmtp.nix
+    # ./nixgl-wrapper.nix
+    # ../programs/bup.nix
+    # ./msmtp.nix
   ];
 
   user = {

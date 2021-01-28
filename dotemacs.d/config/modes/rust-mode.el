@@ -31,10 +31,12 @@
 
 (use-package rustic
   :ensure t
-  :mode ("\\.rs$" . rustic-mode)
+  :mode ("\\.rs\\'" . rustic-mode)
   :hook ((rustic-mode . flycheck-rust-setup)
 		 (rustic-mode . rustic-flycheck-setup)
-		 (rustic-mode . lsp-mode)))
+		 (rustic-mode . lsp-mode))
+  :custom
+  (rustic-display-spinner nil))
 
 (use-package lsp-mode
   :ensure t

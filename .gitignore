@@ -7,6 +7,9 @@ dotzprezto/modules/*
 /dotemacs.d/*.lsp-session*
 /dotemacs.d/transient
 /dotemacs.d/straight
+/dotemacs.d/.cache
+/dotemacs.d/emojis
+/dotemacs.d/workspace
 *personal*
 /dotemacs.d/ede-projects.el
 

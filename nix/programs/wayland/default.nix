@@ -1,12 +1,21 @@
 { pkgs, lib, ... }:
 
-with lib; {
+with lib; let
+  fonts = [
+    "FontAwesome 10"
+    "Roboto 12"
+  ];
+  leftMon = "\"Dell Inc. DELL U2415 CFV9N98G0YDS\"";
+  mainMon = "\"Dell Inc. DELL U2720Q F8KFX13\"";
+  rightMon = "\"Dell Inc. DELL U2415 CFV9N9890J5S\"";
+in {
   imports = [
     ./mako.nix
+    ./i3status_rs.nix
   ];
 
   # wayland-only packages
-  home.packages = let 
+  home.packages = let
     stable = import <nixos-20.03> {};
   in with pkgs; [
     grim slurp # scrot-like behavior
@@ -19,9 +28,7 @@ with lib; {
     stable.waypipe
   ];
 
-  # https://www.reddit.com/r/swaywm/comments/f98jlp/how_to_source_environment_vars_on_startup/fivqgsn/
-  # Session variables aren't getting fired by sway, nor the
-  # firefox variable wrapper script. PAM?
+  # This catches rofi, but not sway-launched programs.
   pam.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
   };
@@ -39,13 +46,6 @@ with lib; {
     ws9 = "r";
     ws10 = "a";
     mod = "Mod4";
-    fonts = [
-      "FontAwesome 10"
-      "Roboto 12"
-    ];
-    leftMon = "\"Dell Inc. DELL U2415 CFV9N98G0YDS\"";
-    mainMon = "\"Dell Inc. DELL U2720Q F8KFX13\"";
-    rightMon = "\"Dell Inc. DELL U2415 CFV9N9890J5S\"";
     in {
       enable = true;
       extraConfig = let
@@ -103,8 +103,10 @@ with lib; {
         workspace ${ws2}  output ${rightMon}
 
         # for discord
-        bindsym Scroll_Lock exec "${pkgs.xautomation}/bin/xte 'keydown XF86AudioPlay'"
-        bindsym --release Scroll_Lock exec "${mute}/bin/mute"
+        # bindsym Scroll_Lock exec "${pkgs.xautomation}/bin/xte 'keydown XF86AudioPlay'"
+        # bindsym --release Scroll_Lock exec "${mute}/bin/mute"
+        bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 0"
+        bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
       '';
 
       config = {
@@ -114,7 +116,7 @@ with lib; {
           { command = "Discord"; }
           { command = "signal-desktop"; }
           { command = "thunderbird"; }
-          { command = "firefox"; }
+          { command = ''bash -c "MOZ_ENABLE_WAYLAND=1 exec firefox''; }
         ];
 
         assigns = {
@@ -122,12 +124,6 @@ with lib; {
             { class = "RuneLite"; }
             { class = "Steam"; }
             { class = "Emacs"; }
-          ];
-
-          "${ws3}" = [
-            # { class = "Firefox"; }
-            # { class = "Chromium"; }
-            # { class = "Google-chrome(-beta|-stable)?"; }
           ];
 
           "${ws4}" = [
@@ -177,7 +173,7 @@ with lib; {
           };
         in {
           "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
-          "${mod}+space" = "exec \"${pkgs.rofi}/bin/rofi -show run -modi run -only-match -matching fuzzy\"";
+          "${mod}+space" =  "exec ${pkgs.rofi}/bin/rofi -show run -modi run -only-match -matching fuzzy";
 
           "${mod}+j" = "focus left";
           "${mod}+k" = "focus down";
@@ -252,7 +248,8 @@ with lib; {
            "${mod}+e" = "workspace ${ws8}";
            "${mod}+r" = "workspace ${ws9}";
            "${mod}+a" = "workspace ${ws10}";
-           ## legacy switch keybinds
+
+           # legacy switch keybinds
            "${mod}+6" = "workspace ${ws6}";
            "${mod}+7" = "workspace ${ws7}";
            "${mod}+8" = "workspace ${ws8}";
@@ -286,11 +283,11 @@ with lib; {
            # "${mod}+r" = "mode \"resize\"";
 
           # Media Keys
-          # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 2 +5% #increase sound volume
-          # bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 2 -5% #decrease sound volume
-          # bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
-          # bindsym XF86MonBrightnessDown exec light -U 4 # hw does +1
-          # bindsym XF86MonBrightnessUp exec light -A 4
+          "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 2 +5%";
+          "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 2 -5%";
+          "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle";
+          "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 4";
+          "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 4";
 
           # bindcode 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
           # bindcode --release 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
@@ -310,39 +307,59 @@ with lib; {
         };
 
         window = { hideEdgeBorders = "smart"; };
+      };
 
-        bars = [{
-          inherit fonts;
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${../../../dotconfig/i3/desktop.toml}";
-          position = "top";
-          trayOutput = leftMon;
-          colors = {
-            separator = "#666666";
-            background = "#222222";
-            statusline = "#dddddd";
+      i3status_rs = {
+        inherit fonts;
+        enable = true;
+        output = leftMon;
+        position = "top";
+        colors = {
+          separator = "#666666";
+          background = "#222222";
+          statusline = "#dddddd";
 
-            focusedWorkspace = {
-              background = "#0088CC";
-              border = "#0088CC";
-              text = "#ffffff";
-            };
-            activeWorkspace = {
-              background = "#333333";
-              border = "#333333";
-              text = "#ffffff";
-            };
-            inactiveWorkspace = {
-              background = "#333333";
-              border = "#333333";
-              text = "#888888";
-            };
-            urgentWorkspace = {
-              background = "#900000";
-              border = "#900000";
-              text = "#ffffff";
-            };
+          focusedWorkspace = {
+            background = "#0088CC";
+            border = "#0088CC";
+            text = "#ffffff";
           };
-        }];
+          activeWorkspace = {
+            background = "#333333";
+            border = "#333333";
+            text = "#ffffff";
+          };
+          inactiveWorkspace = {
+            background = "#333333";
+            border = "#333333";
+            text = "#888888";
+          };
+          urgentWorkspace = {
+            background = "#900000";
+            border = "#900000";
+            text = "#ffffff";
+          };
+        };
+
+        blocks = {
+          net = {
+            enable = true;
+            device = "enp5s0";
+          };
+
+          temperature = {
+            enable = true;
+            device = "zenpower-pci-00c3";
+          };
+
+          microphone.enable = true;
+
+          bluetooth = {
+            enable = true;
+            mac = "28:11:A5:35:50:04";
+            label = " QC35";
+          };
+        };
+      };
     };
-  };
 }

@@ -1,9 +1,8 @@
-
 { pkgs, ... }:
 
 {
   nixpkgs.config.packageOverrides = _pkgs: {
-    # XXX: until 0.13 hits stable
+    # XXX: discord update breaks everything.
     discord = import ../../../nixpkgs/pkgs/applications/networking/instant-messengers/discord { inherit pkgs; };
   };
 

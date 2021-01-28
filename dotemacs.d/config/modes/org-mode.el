@@ -12,10 +12,24 @@
                  '("\\.pdf\\'" . (lambda (file link)
                                    (org-pdfview-open link)))))
 
-(straight-use-package
- '(el-patch :type git :host github :repo "fuxialexander/org-pdftools"))
+;(straight-use-package
+; '(el-patch :type git :host github :repo "fuxialexander/org-pdftools"))
 
 (use-package org-noter
   :ensure t
   ; :bind ("k" . nil)
   :hook (org-pdftools . org-noter))
+
+(use-package org-roam
+      :ensure t
+      :hook
+      (after-init . org-roam-mode)
+      :custom
+      (org-roam-directory "~/work/notes")
+      :bind (:map org-roam-mode-map
+              (("C-c n l" . org-roam)
+               ("C-c n f" . org-roam-find-file)
+               ("C-c n g" . org-roam-graph))
+              :map org-mode-map
+              (("C-c n i" . org-roam-insert))
+              (("C-c n I" . org-roam-insert-immediate))))
