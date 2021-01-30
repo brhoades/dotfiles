@@ -4,13 +4,14 @@
   programs.kitty = {
     enable = true;
     settings = {
-      font_family = "Fira Code";
+      font_family = "FiraCode";
       bold_font = "auto";
       italic_font = "auto";
       bold_italic_font = "auto";
 
       enable_audio_bell = "no";
-      visual_bell_duration = "0.05";
+      # SO BRIGHT.
+      # visual_bell_duration = "0.05";
 
       background_opacity = "0.85";
       # wheel_scroll_multiplier = "1"; for X11

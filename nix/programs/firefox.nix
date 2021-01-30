@@ -1,24 +1,23 @@
 { config, lib, pkgs, ... }:
 {
-  home.sessionVariables.MOZ_ENABLE_WAYLAND = "1";
+  # Home Manager setup
+  home.sessionVariables = {
+    MOZ_ENABLE_WAYLAND = 1;
+    XDG_CURRENT_DESKTOP = "sway";
+    XDG_SESSION_TYPE = "wayland";
+  };
 
-  programs.firefox = let 
+
+  programs.firefox = let
     unstable = import <nixos-unstable> {};
-    # XXX: unstable-small fixes home-manger set extensions
-    unstableSm = import <nixos-unstable-small> {};
-    innerPkg = unstable.firefox-unwrapped;
-    cfg = {
-      firefox = {
-        enableTridactylNative = true;
-        forceWayland = true;
-      };
-    };
   in {
     enable = true;
 
-    package = with unstableSm; wrapFirefox innerPkg { 
-      extraNativeMessagingHosts = [ tridactyl-native ];
-    };
+    # package = with unstableSm; wrapFirefox innerPkg {
+    #   extraNativeMessagingHosts = [ tridactyl-native ];
+    #   forceWayland = true;
+    # };
+    package = pkgs.firefox-wayland;
 
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       ublock-origin

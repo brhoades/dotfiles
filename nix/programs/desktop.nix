@@ -42,16 +42,21 @@
 
   programs.rofi = {
     enable = true;
-
     theme = "Monokai";
 
-    extraConfig = ''
-      run-shell-command: {terminal} -e zsh -c "{cmd}"
-      rofi.run-command: ${pkgs.zsh}/bin/zsh -i -c '{cmd}'
-      rofi.glob: true
-      rofi.regex: true
-      rofi.window-command:                 xkill -id {window}
-    '';
+    extraConfig = {
+      run-shell-command = ''{terminal} -e zsh -c "{cmd}'';
+      run-command = "${pkgs.zsh}/bin/zsh -i -c '{cmd}'";
+      window-command = "xkill -id {window}";
+
+      # sort = true;
+      # sorting-method = "fzf";
+      matching = "normal";
+
+      # https://github.com/davatorium/rofi/wiki/WindowPosition
+      position = 6;
+      monitor = -4;
+    };
   };
 
   xresources.properties = {
