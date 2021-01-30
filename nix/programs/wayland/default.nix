@@ -96,8 +96,8 @@ in {
         }
 
         # workspace -> monitor
-        workspace ${ws10} output ${leftMon}
         workspace ${ws4}  output ${leftMon}
+        workspace ${ws10} output ${leftMon}
         workspace ${ws3}  output ${mainMon}
         workspace ${ws1}  output ${mainMon}
         workspace ${ws2}  output ${rightMon}
@@ -128,12 +128,19 @@ in {
 
           "${ws4}" = [
             { class = "Slack"; }
+
+            # Sway has a hell of a time matching the thunderbird app_id / class
+            # it claims to. These four seem to always work versus just class/app_id
+            # sometimes working. Maybe thunderbird changes its class on launch?
             { app_id = "thunderbird"; }
+            { class = "^[tT]hunderbird.*"; }
+            { title = ".*Mozilla Thunderbird$"; }
+            { class = "^[Mm]ail"; }
           ];
 
           "${ws10}" = [
             { class = "^[Dd]iscord.*"; }
-            { class = "Signal"; }
+            { class = "^[Ss]ignal.*"; }
           ];
         };
 
