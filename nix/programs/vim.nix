@@ -18,7 +18,7 @@
       unstable.airline
       unstable.ctrlp
       unstable.ctrlp
-      unstable.SimpylFold
+      # unstable.SimplyFold
       unstable.vim-nix
     ];
 

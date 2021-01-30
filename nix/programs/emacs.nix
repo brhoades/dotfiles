@@ -111,6 +111,8 @@ in {
 
       solarized-theme
 
+      git-link github-review
+
       # if go
       go # godef gocode gotags gotools golint delve
       # errcheck go-tools unconvert
