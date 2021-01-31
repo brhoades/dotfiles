@@ -1,12 +1,21 @@
 { pkgs, lib, ... }:
 
-with lib; {
+with lib; let
+  fonts = [
+    "FontAwesome 10"
+    "Roboto 12"
+  ];
+  leftMon = "\"Dell Inc. DELL U2415 CFV9N98G0YDS\"";
+  mainMon = "\"Dell Inc. DELL U2720Q F8KFX13\"";
+  rightMon = "\"Dell Inc. DELL U2415 CFV9N9890J5S\"";
+in {
   imports = [
     ./mako.nix
+    ./i3status_rs.nix
   ];
 
   # wayland-only packages
-  home.packages = let 
+  home.packages = let
     stable = import <nixos-20.03> {};
   in with pkgs; [
     grim slurp # scrot-like behavior
@@ -19,9 +28,7 @@ with lib; {
     stable.waypipe
   ];
 
-  # https://www.reddit.com/r/swaywm/comments/f98jlp/how_to_source_environment_vars_on_startup/fivqgsn/
-  # Session variables aren't getting fired by sway, nor the
-  # firefox variable wrapper script. PAM?
+  # This catches rofi, but not sway-launched programs.
   pam.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
   };
@@ -39,13 +46,6 @@ with lib; {
     ws9 = "r";
     ws10 = "a";
     mod = "Mod4";
-    fonts = [
-      "FontAwesome 10"
-      "Roboto 12"
-    ];
-    leftMon = "\"Dell Inc. DELL U2415 CFV9N98G0YDS\"";
-    mainMon = "\"Dell Inc. DELL U2720Q F8KFX13\"";
-    rightMon = "\"Dell Inc. DELL U2415 CFV9N9890J5S\"";
     in {
       enable = true;
       extraConfig = let
@@ -96,15 +96,17 @@ with lib; {
         }
 
         # workspace -> monitor
-        workspace ${ws10} output ${leftMon}
         workspace ${ws4}  output ${leftMon}
+        workspace ${ws10} output ${leftMon}
         workspace ${ws3}  output ${mainMon}
         workspace ${ws1}  output ${mainMon}
         workspace ${ws2}  output ${rightMon}
 
         # for discord
-        bindsym Scroll_Lock exec "${pkgs.xautomation}/bin/xte 'keydown XF86AudioPlay'"
-        bindsym --release Scroll_Lock exec "${mute}/bin/mute"
+        # bindsym Scroll_Lock exec "${pkgs.xautomation}/bin/xte 'keydown XF86AudioPlay'"
+        # bindsym --release Scroll_Lock exec "${mute}/bin/mute"
+        bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 0"
+        bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
       '';
 
       config = {
@@ -114,7 +116,7 @@ with lib; {
           { command = "Discord"; }
           { command = "signal-desktop"; }
           { command = "thunderbird"; }
-          { command = "firefox"; }
+          { command = ''bash -c "MOZ_ENABLE_WAYLAND=1 exec firefox''; }
         ];
 
         assigns = {
@@ -126,12 +128,19 @@ with lib; {
 
           "${ws4}" = [
             { class = "Slack"; }
+
+            # Sway has a hell of a time matching the thunderbird app_id / class
+            # it claims to. These four seem to always work versus just class/app_id
+            # sometimes working. Maybe thunderbird changes its class on launch?
             { app_id = "thunderbird"; }
+            { class = "^[tT]hunderbird.*"; }
+            { title = ".*Mozilla Thunderbird$"; }
+            { class = "^[Mm]ail"; }
           ];
 
           "${ws10}" = [
             { class = "^[Dd]iscord.*"; }
-            { class = "Signal"; }
+            { class = "^[Ss]ignal.*"; }
           ];
         };
 
@@ -305,39 +314,59 @@ with lib; {
         };
 
         window = { hideEdgeBorders = "smart"; };
+      };
 
-        bars = [{
-          inherit fonts;
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${../../../dotconfig/i3/desktop.toml}";
-          position = "top";
-          trayOutput = leftMon;
-          colors = {
-            separator = "#666666";
-            background = "#222222";
-            statusline = "#dddddd";
+      i3status_rs = {
+        inherit fonts;
+        enable = true;
+        output = leftMon;
+        position = "top";
+        colors = {
+          separator = "#666666";
+          background = "#222222";
+          statusline = "#dddddd";
 
-            focusedWorkspace = {
-              background = "#0088CC";
-              border = "#0088CC";
-              text = "#ffffff";
-            };
-            activeWorkspace = {
-              background = "#333333";
-              border = "#333333";
-              text = "#ffffff";
-            };
-            inactiveWorkspace = {
-              background = "#333333";
-              border = "#333333";
-              text = "#888888";
-            };
-            urgentWorkspace = {
-              background = "#900000";
-              border = "#900000";
-              text = "#ffffff";
-            };
+          focusedWorkspace = {
+            background = "#0088CC";
+            border = "#0088CC";
+            text = "#ffffff";
           };
-        }];
+          activeWorkspace = {
+            background = "#333333";
+            border = "#333333";
+            text = "#ffffff";
+          };
+          inactiveWorkspace = {
+            background = "#333333";
+            border = "#333333";
+            text = "#888888";
+          };
+          urgentWorkspace = {
+            background = "#900000";
+            border = "#900000";
+            text = "#ffffff";
+          };
+        };
+
+        blocks = {
+          net = {
+            enable = true;
+            device = "enp5s0";
+          };
+
+          temperature = {
+            enable = true;
+            device = "zenpower-pci-00c3";
+          };
+
+          microphone.enable = true;
+
+          bluetooth = {
+            enable = true;
+            mac = "28:11:A5:35:50:04";
+            label = " QC35";
+          };
+        };
+      };
     };
-  };
 }
