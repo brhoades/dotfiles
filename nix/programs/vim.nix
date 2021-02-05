@@ -8,9 +8,9 @@
     vimdiffAlias = true;
 
     plugins = let
-      unstable = pkgs.vimPlugins;
-      # unstable nixpkgs has racerd compilation issues.
-      # stable = (import <nixos-20.03> {}).vimPlugins;
+      # unstable nixpkgs has airline woes
+      # unstable = pkgs.vimPlugins;
+      unstable = (import <nixos-unstable-small> {}).vimPlugins;
     in [
       unstable.YouCompleteMe
       unstable.syntastic
