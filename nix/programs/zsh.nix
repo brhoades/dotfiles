@@ -59,7 +59,7 @@ in {
 
       source "$HOME/.p10k.zsh"
       source "${p10kPath}/powerlevel10k.zsh-theme"
-      source "${prezto}/init.zsh"
+      source "${prezto}/share/zsh-prezto/init.zsh"
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
     '';
 
