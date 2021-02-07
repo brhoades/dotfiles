@@ -98,4 +98,35 @@
     " Sites blacklisted against tridactyl due to poor compatiblity.
     ${concatMapStringsSep "\n" (url: "autocmd DocLoad ${url} mode ignore") blacklistSites}
   '';
+
+  xdg = {
+    enable = true;
+    mimeApps = {
+      enable = false;
+      associations.added = let
+        # ff = "firefox.desktop";
+        ff = "firefox.desktop"; # this upsets the firefox greatly
+        # makes it create a mimeapps.list in .config every boot which upsets nix
+      in {
+        "text/html" = ff;
+        "x-scheme-handler/http" = ff;
+        "x-scheme-handler/https" = ff;
+        "x-scheme-handler/about" = ff;
+        "x-scheme-handler/unknown" = ff;
+      };
+    };
+  };
+
+  xdg.dataFile."applications/ffirefox.desktop".text = ''
+[Desktop Entry]
+Categories=Network;WebBrowser;
+Comment=
+Exec=firefox %U
+GenericName=Web Browser
+Icon=firefox
+MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp
+Name=Firefox (Wayland Custom)
+Terminal=false
+Type=Application
+'';
 }

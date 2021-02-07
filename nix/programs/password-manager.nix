@@ -3,15 +3,20 @@
    bpass = with pkgs; stdenv.mkDerivation rec {
      name = "bpass-${version}";
      version = "0.1";
-     # XXX: these don't do what I think
-     propagatedBuildInputs = [
-       coreutils
-       busybox
-       fzf
-       gopass
-     ];
+
+     fzf = writeShellScriptBin "pass-fzf" ''
+       set -euo pipefail
+       export PATH="${pkgs.findutils}/bin:${pkgs.coreutils}/bin:${pkgs.fzf}/bin:$PATH"
+
+       cd $1
+       shift
+
+       find . -type f -not -path '*\.git*' | sed 's/\.gpg$//' | fzf -1 "$@"
+     '';
 
      src = writeShellScriptBin "bpass" ''
+       set -euo pipefail
+
        EXTRAPASS="-c"
        if [[ "$1" == "-c" ]]; then
          EXTRAPASS="-c"
@@ -23,18 +28,17 @@
          FZFARGS="--query="$@""
        fi
 
-       export PSTORE=$(readlink "$HOME/.local/share/password-store")
-       RESULT="$(find $PSTORE -type f -not -path '*\.git*' -exec ${pkgs.coreutils}/bin/realpath --relative-to $PSTORE \{\} \; | sed 's/.gpg//' | ${pkgs.fzf}/bin/fzf -1 "$FZFARGS")"
-       [[ $? -eq 0 ]] || exit $?
+       export PSTORE="$HOME/.local/share/password-store"
 
-       COM="gopass show "$EXTRAPASS" "$RESULT""
-       $COM
+       RESULT="$(${fzf}/bin/pass-fzf "$PSTORE" "$FZFARGS")"
+       [[ ! -z $? ]] && exit $?
+
+       ${pkgs.gopass}/bin/gopass show "$EXTRAPASS" "$RESULT"
      '';
 
      installPhase = ''
        mkdir -p "$out/bin"
-
-       cp "${src}/bin/bpass" "$out/bin"
+       cp -v "${src}/bin/bpass" "$out/bin"
      '';
 
      meta = {
