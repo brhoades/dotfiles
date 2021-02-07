@@ -25,6 +25,8 @@
         format = "{signal_strength} {ssid}";
       };
 
+      battery.enable = true;
+
       temperature = {
         enable = true;
         device = "coretemp-isa-0000";

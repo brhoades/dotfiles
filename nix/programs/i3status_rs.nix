@@ -38,17 +38,34 @@
     blocks = {
       net = {
         enable = mkEnableOption "Enable the net block";
+
         device = mkOption {
           type = types.nullOr types.str;
           default = null;
         };
+
         format = mkOption {
           type = types.nullOr types.str;
           default = null;
         };
+
         interval = mkOption {
           type = types.int;
           default = 5;
+        };
+      };
+
+      battery= {
+        enable = mkEnableOption "Enable the battery block";
+
+        format = mkOption {
+          type = types.nullOr types.str;
+          default = "{percentage}% {time}";
+        };
+
+        interval = mkOption {
+          type = types.int;
+          default = 10;
         };
       };
 
@@ -91,6 +108,7 @@
     cfg = config.brodes.windowManager.i3status_rs;
     netCfg = cfg.blocks.net;
     btCfg = cfg.blocks.bluetooth;
+    batCfg = cfg.blocks.battery;
 
     netBlock = if !netCfg.enable then "" else ''
 [[block]]
@@ -132,6 +150,12 @@ color_overrides = { warning_bg = "#ff0000" }
 
 '';
 
+  batBlock = if !batCfg.enable then "" else ''
+[[block]]
+block = "battery"
+${if batCfg.format == null then "" else "format = \"${batCfg.format}\""}
+interval = ${toString netCfg.interval}
+'';
 
     statusFile = pkgs.writeText "config.toml" ''
 theme = "${cfg.theme}"
@@ -158,6 +182,7 @@ block = "sound"
 device_kind = "sink"
 ${micBlock}
 ${btBlock}
+${batBlock}
 [[block]]
 block = "time"
 interval = 1
