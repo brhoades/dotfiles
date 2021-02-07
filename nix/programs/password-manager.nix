@@ -3,6 +3,13 @@
    bpass = with pkgs; stdenv.mkDerivation rec {
      name = "bpass-${version}";
      version = "0.1";
+     # XXX: these don't do what I think
+     propagatedBuildInputs = [
+       coreutils
+       busybox
+       fzf
+       gopass
+     ];
 
      src = writeShellScriptBin "bpass" ''
        EXTRAPASS="-c"
@@ -16,18 +23,13 @@
          FZFARGS="--query="$@""
        fi
 
-       export PSTORE="$HOME/.local/share/password-store"
-       RESULT="$(${busybox}/bin/find $PSTORE -type f -not -path '*\.git*' -exec ${coreutils}/bin/realpath --relative-to $PSTORE \{\} \; | ${busybox}/bin/sed 's/.gpg//' | ${fzf}/bin/fzf -1 "$FZFARGS")"
+       export PSTORE=$(readlink "$HOME/.local/share/password-store")
+       RESULT="$(find $PSTORE -type f -not -path '*\.git*' -exec ${pkgs.coreutils}/bin/realpath --relative-to $PSTORE \{\} \; | sed 's/.gpg//' | ${pkgs.fzf}/bin/fzf -1 "$FZFARGS")"
        [[ $? -eq 0 ]] || exit $?
-       echo "Chose $RESULT"
 
-       COM="${gopass}/bin/gopass show "$EXTRAPASS" "$RESULT""
-       echo "$COM"
+       COM="gopass show "$EXTRAPASS" "$RESULT""
        $COM
      '';
-
-     buildInputs = with pkgs; [
-     ];
 
      installPhase = ''
        mkdir -p "$out/bin"
@@ -46,7 +48,6 @@
      enable = true;
      package = pkgs.gopass;
    };
-
 
    home = {
      packages = with pkgs; [ pass bpass ];
