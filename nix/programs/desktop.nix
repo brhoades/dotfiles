@@ -5,8 +5,9 @@
     ./kitty.nix
     ./password-manager.nix
     ./firefox.nix
-    ./i3.nix
     ./wayland
+    ./i3.nix
+    ./i3status_rs.nix
     ./chat.nix
   ];
 

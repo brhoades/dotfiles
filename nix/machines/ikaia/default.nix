@@ -23,6 +23,21 @@
     };
   };
 
+  brodes.windowManager.i3status_rs.blocks = {
+    net = {
+      enable = false;
+      device = "enp5s0";
+    };
+
+    temperature = {
+      enable = true;
+      device = "zenpower-pci-00c3";
+    };
+
+    microphone.enable = true;
+  };
+
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "aaron";

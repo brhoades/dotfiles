@@ -1,15 +1,12 @@
-{ config, pkgs, ... }:
-
+{ ... }:
 {
   imports = [
     ../common.nix
-    ../../programs/desktop.nix
     ../../programs/development.nix
-    ../../services/desktop.nix
     ../../programs/emacs.nix
-    # ./nixgl-wrapper.nix
-    # ../programs/bup.nix
-    # ./msmtp.nix
+
+    ../../programs/desktop.nix
+    ../../services/desktop.nix
   ];
 
   user = {
@@ -20,18 +17,34 @@
     };
   };
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "aaron";
-  home.homeDirectory = "/home/aaron";
+  brodes = {
+    windowManager.i3status_rs.blocks = {
+      net = {
+        enable = true;
+        device = "wlp0s20f3";
+        format = "{signal_strength} {ssid}";
+      };
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
+      temperature = {
+        enable = true;
+        device = "coretemp-isa-0000";
+      };
+
+      bluetooth = {
+        enable = true;
+        mac = "28:11:A5:35:50:04";
+        label = " QC35";
+      };
+    };
+  };
+
+  home = {
+    username = "aaron";
+    homeDirectory = "/home/aaron";
+
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "20.09";
+    stateVersion = "20.09";
+  };
 }

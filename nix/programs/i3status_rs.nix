@@ -1,7 +1,7 @@
-{ lib, config, pkgs, ... }:
+{ config, pkgs, ... }:
 {
-  options.wayland.windowManager.sway.i3status_rs = with lib; {
-    enable = mkEnableOption "Enable i3status-rs for wayland";
+  options.brodes.windowManager.i3status_rs = with pkgs.lib; {
+    enable = mkEnableOption "Enable i3status-rs for sway";
 
     pkg = mkOption {
       type = types.package;
@@ -39,7 +39,16 @@
       net = {
         enable = mkEnableOption "Enable the net block";
         device = mkOption {
-          type = types.str;
+          type = types.nullOr types.str;
+          default = null;
+        };
+        format = mkOption {
+          type = types.nullOr types.str;
+          default = null;
+        };
+        interval = mkOption {
+          type = types.int;
+          default = 5;
         };
       };
 
@@ -79,7 +88,7 @@
 
   config.wayland.windowManager.sway = let
     swayOn = config.wayland.windowManager.sway.enable;
-    cfg = config.wayland.windowManager.sway.i3status_rs;
+    cfg = config.brodes.windowManager.i3status_rs;
     netCfg = cfg.blocks.net;
     btCfg = cfg.blocks.bluetooth;
 
@@ -90,8 +99,10 @@ ip = false
 speed_up = false
 graph_up = true
 use_bits = false
-device = "${netCfg.device}"
-interval = "${toString netCfg.interval}"
+${if netCfg.format == null then "" else "format = \"${netCfg.format}\""}
+${if netCfg.device == null then "" else "device = \"${netCfg.device}\""}
+interval = ${toString netCfg.interval}
+
 '';
 
     btBlock = if !btCfg.enable then "" else ''
@@ -99,6 +110,7 @@ interval = "${toString netCfg.interval}"
 block = "bluetooth"
 mac = "${btCfg.mac}"
 label = "${btCfg.label}"
+
 '';
 
     tempCfg = cfg.blocks.temperature;
@@ -109,12 +121,15 @@ chip = "${tempCfg.device}"
 collapsed = false
 interval = ${toString tempCfg.interval}
 format = "{min}°-{max}°"
+
 '';
+
   micBlock = if !cfg.blocks.microphone.enable then "" else ''
 [[block]]
 block = "sound"
 device_kind = "source"
 color_overrides = { warning_bg = "#ff0000" }
+
 '';
 
 
@@ -122,15 +137,13 @@ color_overrides = { warning_bg = "#ff0000" }
 theme = "${cfg.theme}"
 icons = "${cfg.icons}"
 
-
+${netBlock}
 [[block]]
 block = "memory"
 display_type = "memory"
 format_mem = "{Mup}%"
 format_swap = "{SUp}%"
-
 ${tempBlock}
-
 [[block]]
 block = "cpu"
 interval = 1
@@ -143,11 +156,8 @@ format = "{1m}"
 [[block]]
 block = "sound"
 device_kind = "sink"
-
 ${micBlock}
-
 ${btBlock}
-
 [[block]]
 block = "time"
 interval = 1
@@ -155,7 +165,7 @@ format = "%a %m/%d %R"
 
 '';
   in {
-    config = lib.mkIf (swayOn && cfg.enable) {
+    config = pkgs.lib.mkIf (swayOn && cfg.enable) {
       bars = [
          {
            inherit (cfg) fonts colors position;

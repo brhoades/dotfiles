@@ -7,7 +7,4 @@
     ./direnv.nix
     ./vim.nix
   ];
-
-  home.packages = with pkgs; [
-  ];
 }

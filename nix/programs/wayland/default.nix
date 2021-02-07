@@ -11,7 +11,6 @@ with lib; let
 in {
   imports = [
     ./mako.nix
-    ./i3status_rs.nix
   ];
 
   # wayland-only packages
@@ -315,57 +314,37 @@ in {
 
         window = { hideEdgeBorders = "smart"; };
       };
+    };
 
-      i3status_rs = {
-        inherit fonts;
-        enable = true;
-        output = leftMon;
-        position = "top";
-        colors = {
-          separator = "#666666";
-          background = "#222222";
-          statusline = "#dddddd";
+    brodes.windowManager.i3status_rs = {
+      inherit fonts;
+      enable = true;
+      output = leftMon;
+      position = "top";
+      colors = {
+        separator = "#666666";
+        background = "#222222";
+        statusline = "#dddddd";
 
-          focusedWorkspace = {
-            background = "#0088CC";
-            border = "#0088CC";
-            text = "#ffffff";
-          };
-          activeWorkspace = {
-            background = "#333333";
-            border = "#333333";
-            text = "#ffffff";
-          };
-          inactiveWorkspace = {
-            background = "#333333";
-            border = "#333333";
-            text = "#888888";
-          };
-          urgentWorkspace = {
-            background = "#900000";
-            border = "#900000";
-            text = "#ffffff";
-          };
+        focusedWorkspace = {
+          background = "#0088CC";
+          border = "#0088CC";
+          text = "#ffffff";
         };
-
-        blocks = {
-          net = {
-            enable = true;
-            device = "enp5s0";
-          };
-
-          temperature = {
-            enable = true;
-            device = "zenpower-pci-00c3";
-          };
-
-          microphone.enable = true;
-
-          bluetooth = {
-            enable = true;
-            mac = "28:11:A5:35:50:04";
-            label = " QC35";
-          };
+        activeWorkspace = {
+          background = "#333333";
+          border = "#333333";
+          text = "#ffffff";
+        };
+        inactiveWorkspace = {
+          background = "#333333";
+          border = "#333333";
+          text = "#888888";
+        };
+        urgentWorkspace = {
+          background = "#900000";
+          border = "#900000";
+          text = "#ffffff";
         };
       };
     };
