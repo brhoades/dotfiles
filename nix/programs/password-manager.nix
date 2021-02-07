@@ -6,12 +6,11 @@
 
      fzf = writeShellScriptBin "pass-fzf" ''
        set -euo pipefail
-       export PATH="${pkgs.findutils}/bin:${pkgs.coreutils}/bin:${pkgs.fzf}/bin:$PATH"
 
        cd $1
        shift
 
-       find . -type f -not -path '*\.git*' | sed 's/\.gpg$//' | fzf -1 "$@"
+       ${pkgs.findutils}/bin/find . -type f -not -path '*\.git*' | sed -e 's/\.gpg$//' | exec ${pkgs.fzf}/bin/fzf -1 -0 "$@"
      '';
 
      src = writeShellScriptBin "bpass" ''
@@ -31,9 +30,9 @@
        export PSTORE="$HOME/.local/share/password-store"
 
        RESULT="$(${fzf}/bin/pass-fzf "$PSTORE" "$FZFARGS")"
-       [[ ! -z $? ]] && exit $?
+       [[ $? ]] || exit $?
 
-       ${pkgs.gopass}/bin/gopass show "$EXTRAPASS" "$RESULT"
+       exec ${pkgs.gopass}/bin/gopass show "$EXTRAPASS" "$RESULT"
      '';
 
      installPhase = ''
