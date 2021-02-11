@@ -1,12 +1,12 @@
 { config, pkgs, ... }:
 
 let
-  bnixpkgs = import (pkgs.fetchFromGitHub {
-    owner = "brhoades";
-    repo = "nixpkgs";
-    rev = "brhoades/emacs-28-pgtk";
-    sha256 = "0s1zf23vvm14f4vvfhc9dgy5dkbgylxg26gflq4l5mpxqh3p7hgz";
-  }) {};
+  # bnixpkgs = import (pkgs.fetchFromGitHub {
+  #   owner = "brhoades";
+  #   repo = "nixpkgs";
+  #   rev = "brhoades/emacs-28-pgtk";
+  #   sha256 = "0s1zf23vvm14f4vvfhc9dgy5dkbgylxg26gflq4l5mpxqh3p7hgz";
+  # }) {};
   # nix-linter breaks so frequently. Locking it down to a December version which used a hnix
   # that didn't give me ulcers.
   hnixPkgs = import (pkgs.fetchFromGitHub {
@@ -49,7 +49,10 @@ in {
 
   programs.emacs = {
     enable = true;
-    package = bnixpkgs.emacs28-pgtk;
+    # I've not been using the GUI. Having emacs in tmux is too nice.
+    # emacs 28 introduces fuzzy search changes with projectile that are annoying
+    # as hell. Additionally, it breaks undo-tree.
+    # package = bnixpkgs.emacs28-pgtk;
 
     # use-package takes care of any extra packages
     # only defined in .el files.
@@ -96,7 +99,8 @@ in {
       evil evil-magit evil-smartparens # evil-collection  includes evil-mode too now?
       monokai-theme
 
-      undo-fu undo-fu-session
+      # undo-fu undo-fu-session
+      undo-tree
 
       bind-key diminish
       exec-path-from-shell
