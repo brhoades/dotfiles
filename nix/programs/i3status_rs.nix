@@ -55,7 +55,7 @@
         };
       };
 
-      battery= {
+      battery = {
         enable = mkEnableOption "Enable the battery block";
 
         format = mkOption {

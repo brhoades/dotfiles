@@ -11,6 +11,7 @@ with lib; let
 in {
   imports = [
     ./mako.nix
+    ./swayidle.nix
   ];
 
   # wayland-only packages
@@ -63,8 +64,6 @@ in {
         # Some trouble makers
         no_focus [window_role="^[dD]iscord"]
 
-        output * dpms on
-
         # left
         output ${leftMon} pos 0 0
         output ${leftMon} mode 1920x1200@60Hz
@@ -104,8 +103,10 @@ in {
         # for discord
         # bindsym Scroll_Lock exec "${pkgs.xautomation}/bin/xte 'keydown XF86AudioPlay'"
         # bindsym --release Scroll_Lock exec "${mute}/bin/mute"
-        bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 0"
-        bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
+        # bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 0"
+        # bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
+        bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
+        bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
       '';
 
       config = {
