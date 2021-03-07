@@ -24,7 +24,7 @@
   programs.tmux = {
     enable = true;
     clock24 = true;
-    historyLimit = 100000;
+    historyLimit = 20000;
 
     plugins = with pkgs.tmuxPlugins; [
       # sensible defaults
