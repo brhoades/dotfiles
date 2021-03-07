@@ -17,8 +17,8 @@ let
   }) {};
 in {
   home.file = {
-    ".emacs.d/init.el".source = ../../dotemacs.d/init.el;
-    ".emacs.d/config".source = ../../dotemacs.d/config;
+    ".emacs.d/init.el".source = config.lib.file.mkOutOfStoreSymlink ../../dotemacs.d/init.el;
+    ".emacs.d/config".source = config.lib.file.mkOutOfStoreSymlink ../../dotemacs.d/config;
     ".emacs.d/.cache/lsp/rust/rust-analyzer".source = "${pkgs.rust-analyzer}/bin/rust-analyzer";
   };
 
@@ -79,7 +79,7 @@ in {
       dap-mode
 
       org org-noter org-roam
-      pkgs.sqlite # org-roam requirement
+      pkgs.sqlite pkgs.graphviz # org-roam requirement
 
       pdf-tools
 
@@ -96,7 +96,8 @@ in {
       flx-ido
 
       magit git-link
-      evil evil-magit evil-smartparens # evil-collection  includes evil-mode too now?
+      # evil-magit is gone
+      evil evil-smartparens # evil-collection  includes evil-mode too now?
       monokai-theme
 
       # undo-fu undo-fu-session

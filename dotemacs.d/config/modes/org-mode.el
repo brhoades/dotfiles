@@ -26,6 +26,19 @@
       (after-init . org-roam-mode)
       :custom
       (org-roam-directory "~/work/notes")
+      (setq org-capture-templates '(
+          '(("o" "observation about behavior" plain (function org-roam--capture-get-point)
+          "%?"
+          :file-name "%<%Y%m%d%H%M%S>-${slug}"
+          :head "#+title: ${title}\n"
+          :unnarrowed t))
+          '(("O" "observation about behavior" plain (function org-roam--capture-get-point)
+          "%?"
+          :file-name "%<%Y%m%d%H%M%S>-${slug}"
+          :head "#+title: ${title}\n"
+          :unnarrowed t))
+      ))
+
       :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)

@@ -4,6 +4,7 @@
   ; https://github.com/tonsky/FiraCode/issues/158
   (auto-composition-mode nil)
   :config
+  (helm-completion-style 'helm-fuzzy)
   (helm-mode 1)
   (push "\.(js|ts)x?\.map$" helm-boring-file-regexp-list)
   (push "\.pb\.(go|js|py)$" helm-boring-file-regexp-list))

@@ -35,33 +35,33 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(add-to-list 'interpreter-mode-alist t)
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
- '(auto-composition-mode nil t)
+ '(auto-composition-mode nil t nil "Customized with use-package helm")
  '(auto-revert-remote-files t)
  '(c-label-minimum-indentation 2)
- '(company-idle-delay nil)
- '(company-lsp-cache-candidates t t)
- '(company-tooltip-align-annotations t)
+ '(company-idle-delay nil nil nil "Customized with use-package company")
+ '(company-tooltip-align-annotations t nil nil "Customized with use-package company")
  '(compilation-message-face 'default)
  '(css-indent-offset 2)
  '(custom-enabled-themes '(misterioso))
  '(custom-safe-themes
    '("c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "7f1d414afda803f3244c6fb4c2c64bea44dac040ed3731ec9d75275b9e831fe5" "e9df267a1c808451735f2958730a30892d9a2ad6879fb2ae0b939a29ebf31b63" "0fffa9669425ff140ff2ae8568c7719705ef33b7a927a0ba7c5e2ffcfac09b75" "13a8eaddb003fd0d561096e11e1a91b029d3c9d64554f8e897b2513dbf14b277" "51ec7bfa54adf5fff5d466248ea6431097f5a18224788d0bd7eb1257a4f7b773" "830877f4aab227556548dc0a28bf395d0abe0e3a0ab95455731c9ea5ab5fe4e1" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default))
+ '(desktop-auto-save-timeout 300)
  '(desktop-restore-eager 3)
  '(desktop-save-mode t)
  '(enh-ruby-bounce-deep-indent nil)
  '(enh-ruby-deep-indent-construct nil)
  '(fci-rule-color "#3C3D37")
- '(flycheck-add-next-checker 'tsx-tide t)
- '(flycheck-highlighting-mode 'symbols)
- '(flycheck-idle-change-delay 1)
+ '(flycheck-add-next-checker 'tsx-tide t nil "Customized with use-package flycheck")
+ '(flycheck-highlighting-mode 'symbols nil nil "Customized with use-package flycheck")
+ '(flycheck-idle-change-delay 1 nil nil "Customized with use-package go-mode")
  '(flymake-mode 0 t)
  '(flymake-start-on-flymake-mode nil)
- '(global-xclip-mode nil)
+ '(global-xclip-mode nil nil nil "Customized with use-package xclip")
  '(helm-ff-lynx-style-map t)
  '(helm-ff-skip-boring-files t)
+ '(helm-minibuffer-history-key "M-p")
  '(helm-rg-file-paths-in-matches-behavior 'absolute)
  '(helm-rg-include-file-on-every-match-line nil)
  '(highlight-changes-colors '("#FD5FF0" "#AE81FF"))
@@ -74,38 +74,56 @@
      ("#A75B00" . 70)
      ("#F309DF" . 85)
      ("#3C3D37" . 100)))
- '(indent-tabs-mode nil)
- '(js-indent-level 2 t)
+ '(indent-tabs-mode nil nil nil "Customized with use-package typescript-mode")
+ '(js-indent-level 2 t nil "Customized with use-package json-mode")
  '(js2-strict-trailing-comma-warning nil t)
  '(lsp-flycheck-live-reporting :t)
  '(lsp-java-format-enabled nil)
  '(lsp-java-java-path "/usr/lib/jvm/java-11-openjdk/bin/java")
  '(lsp-java-save-actions-organize-imports nil)
  '(lsp-metals-java-home "/usr/lib/jvm/java-11-openjdk/")
- '(lsp-ui-doc-delay 10.0)
- '(lsp-ui-flycheck-enable nil t)
- '(lsp-ui-flycheck-live-reporting :t t)
- '(lsp-ui-sideline-show-hover :t)
+ '(lsp-ui-doc-delay 10.0 nil nil "Customized with use-package lsp-ui")
+ '(lsp-ui-flycheck-enable nil t nil "Customized with use-package lsp-ui")
+ '(lsp-ui-flycheck-live-reporting :t t nil "Customized with use-package enh-ruby-mode")
+ '(lsp-ui-sideline-show-hover :t nil nil "Customized with use-package lsp-ui")
  '(magit-diff-use-overlays nil)
- '(notmuch-search-oldest-first nil t)
- '(org-agenda-files
-   '("~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org") nil nil "Customized with use-package org")
+ '(notmuch-search-oldest-first nil t nil "Customized with use-package notmuch")
  '(org-noter-always-create-frame nil)
  '(org-noter-kill-frame-at-session-end nil)
+ '(org-roam-capture-templates
+   '(("O" "observation about behavior" plain #'org-roam--capture-get-point "%?" :file-name "%<%Y%m%d%H%M%S>-${slug}" :head "#+title: ${title}
+" :unnarrowed t)
+     ("d" "default" plain #'org-roam-capture--get-point "%?" :file-name "%<%Y%m%d%H%M%S>-${slug}" :head "#+title: ${title}
+" :unnarrowed t)))
  '(package-selected-packages
    '(org org-noter org-pdfview pdf-tools evil-collection helm-notmuch notmuch helm-config protobuf-mode lsp-ui lsp-ui-sideline company-go flycheck-rust python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil))
- '(pdf-loader-install nil t)
+ '(pdf-loader-install nil t nil "Customized with use-package pdf-tools")
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(projectile-globally-ignored-directories '("node_modules"))
  '(push 'rustic-clippy t)
- '(python-indent 4 t)
- '(rbenv-show-active-ruby-in-modeline nil)
+ '(python-indent 4 t nil "Customized with use-package python-mode")
+ '(rbenv-show-active-ruby-in-modeline nil nil nil "Customized with use-package rbenv")
  '(ruby-align-to-stmt-keywords nil)
  '(ruby-deep-arglist nil)
  '(ruby-deep-indent-paren nil)
  '(safe-local-variable-values
-   '((flycheck-eslintrc concat
+   '((eval progn
+           (require 'projectile)
+           (setq projectile-file-exists-remote-cache-expire
+                 (* 60 60))
+           (setq projectile-enable-caching t)
+           (setq projectile-sort-order 'recentf)
+           (setq whitespace-style
+                 '(trailing))
+           (dolist
+               (dir
+                '("target"))
+             (push dir lsp-file-watch-ignored))
+           (projectile-register-project-type 'go
+                                             '("go.mod")
+                                             :compilation-dir "go/" :compile "go install ./..." :src-dir "go/" :test "go test ..." :run "go test ..." :test-suffix "_test.go"))
+     (flycheck-eslintrc concat
                         (locate-dominating-file default-directory ".dir-locals.el")
                         "cmd/dev/.eslintrc.yaml")
      (eval progn
@@ -192,11 +210,11 @@
      (projectile-file-exists-remote-cache-expire
       (* 60 60))))
  '(sh-basic-offset 2)
- '(tab-width 4)
+ '(tab-width 4 nil nil "Customized with use-package python-mode")
  '(tide-format-options '(:indentSize 2 :tabSize 2 :baseIndentSize 2))
  '(tool-bar-mode nil)
- '(typescript-indent-level 2 t)
- '(typescript-indent-offset 2 t)
+ '(typescript-indent-level 2 nil nil "Customized with use-package typescript-mode")
+ '(typescript-indent-offset 2 t nil "Customized with use-package typescript-mode")
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    '((20 . "#F92672")
@@ -218,22 +236,22 @@
      (340 . "#2790C3")
      (360 . "#66D9EF")))
  '(vc-annotate-very-old-color nil)
- '(web-mode-auto-quote-style 2 t)
- '(web-mode-code-indent-offset 2 t)
- '(web-mode-css-indent-offset 2 t)
- '(web-mode-enable-auto-quoting nil t)
- '(web-mode-enable-current-element-highlight t t)
+ '(web-mode-auto-quote-style 2 t nil "Customized with use-package web-mode")
+ '(web-mode-code-indent-offset 2 t nil "Customized with use-package web-mode")
+ '(web-mode-css-indent-offset 2 t nil "Customized with use-package web-mode")
+ '(web-mode-enable-auto-quoting nil t nil "Customized with use-package web-mode")
+ '(web-mode-enable-current-element-highlight t t nil "Customized with use-package web-mode")
  '(web-mode-html-tag-font-lock-keywords
    '(("\\(</?\\)\\([[\\.:alnum:]]+\\)"
       (1 'web-mode-html-tag-bracket-face)
       (2 'web-mode-html-tag-face))
      ("\"[^\"]*\"" 0 'web-mode-html-attr-value-face)
      ("\\([[:alnum:]]+\\)" 1 'web-mode-html-attr-name-face)
-     ("/?>" 0 'web-mode-html-tag-bracket-face)) t)
- '(web-mode-markup-indent-offset 2 t)
+     ("/?>" 0 'web-mode-html-tag-bracket-face)) t nil "Customized with use-package web-mode")
+ '(web-mode-markup-indent-offset 2 t nil "Customized with use-package web-mode")
  '(weechat-color-list
    (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))
- '(whitespace-style '(trailing)))
+ '(whitespace-style '(trailing) nil nil "Customized with use-package go-mode"))
 
 ;; automatically clean up bad whitespace
 (setq whitespace-action '(auto-cleanup))
