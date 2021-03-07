@@ -186,10 +186,6 @@ in {
         };
       }
       {
-        name = "enhancd";
-        src = enhancd;
-      }
-      {
         name = "zsh-completions";
         src = pkgs.fetchFromGitHub {
           owner = "zsh-users";
