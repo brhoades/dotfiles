@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  nixpkgs.config.packageOverrides = _pkgs: {
+    kitty = (import <nixos-unstable-small> {}).kitty;
+  };
+
   programs.kitty = {
     enable = true;
     settings = {
@@ -10,11 +14,8 @@
       bold_italic_font = "auto";
 
       enable_audio_bell = "no";
-      # SO BRIGHT.
-      # visual_bell_duration = "0.05";
 
       background_opacity = "0.85";
-      # wheel_scroll_multiplier = "1"; for X11
       touch_scroll_multiplier = "2";
       strip_trailing_spaces = "smart"; # only on text selections not square
     };

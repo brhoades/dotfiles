@@ -108,7 +108,9 @@ in {
       direnv
 
       json-mode dockerfile-mode markdown-mode yaml-mode
+      yamllint
       # journalctl-mode
+
 
       racer flycheck-rust rustic
 

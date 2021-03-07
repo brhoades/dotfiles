@@ -23,18 +23,32 @@
     };
   };
 
-  brodes.windowManager.i3status_rs.blocks = {
-    net = {
-      enable = false;
-      device = "enp5s0";
+  brodes = {
+    windowManager = {
+      i3status_rs.blocks = {
+        net = {
+          enable = false;
+          device = "enp5s0";
+        };
+
+        temperature = {
+          enable = true;
+          device = "zenpower-pci-00c3";
+        };
+
+        microphone.enable = true;
+      };
+
+      swayidle = {
+        enable = true;
+        dpms.enable = true;
+      };
     };
 
-    temperature = {
+    xdgHack = {
       enable = true;
-      device = "zenpower-pci-00c3";
+      configFile = ./secrets/xdghack.json;
     };
-
-    microphone.enable = true;
   };
 
 
