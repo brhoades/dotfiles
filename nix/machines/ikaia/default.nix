@@ -12,6 +12,7 @@
     ../../programs/wine.nix
     ../../programs/dlux.nix
     ../../programs/bup.nix
+    ../../programs/runelite.nix
     ./msmtp.nix
   ];
 
