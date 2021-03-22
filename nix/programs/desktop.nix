@@ -18,7 +18,8 @@
   };
 
   home.packages = with pkgs; [
-    feh
+    # feh use imv
+    imv
     pavucontrol
 
     (chromium.override { enableVaapi = true; })
