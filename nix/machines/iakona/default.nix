@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   imports = [
     ../common.nix
     ../../programs/development.nix
@@ -12,9 +11,7 @@
   user = {
     name = "Billy J Rhoades II";
     email = "me@brod.es";
-    signing =  {
-      key = "6D052A5305F89A0E!";
-    };
+    signing = { key = "6D052A5305F89A0E!"; };
   };
 
   brodes = {
@@ -44,9 +41,9 @@
     username = "aaron";
     homeDirectory = "/home/aaron";
 
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
+    # You can update Home Manager without changing this value. See
+    # the Home Manager release notes for a list of state version
+    # changes in each release.
     stateVersion = "20.09";
   };
 }

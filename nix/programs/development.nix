@@ -1,9 +1,5 @@
-{ pkgs, ... }:
-{
-  imports = [
-    ./emacs.nix
-    ./git.nix
-  ];
+{ pkgs, ... }: {
+  imports = [ ./emacs.nix ./git.nix ];
 
   # if go
   home.packages = with pkgs; [
@@ -12,7 +8,5 @@
     github-cli
   ];
 
-  home.sessionVariables = {
-    GOROOT = [ "${pkgs.go.out}/share/go" ];
-  };
+  home.sessionVariables = { GOROOT = [ "${pkgs.go.out}/share/go" ]; };
 }

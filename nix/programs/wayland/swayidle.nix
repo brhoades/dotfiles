@@ -1,5 +1,4 @@
-{ config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, ... }: {
   options.brodes.windowManager.swayidle = with lib; {
     enable = mkEnableOption "Enable swayidle on sway start";
 
@@ -31,11 +30,14 @@
   config.wayland.windowManager.sway = let
     cfg = config.brodes.windowManager.swayidle;
     enabled = cfg.enable && config.wayland.windowManager.sway.enable;
-    dpms = if !cfg.dpms.enable then [] else [
-      "\ttimeout ${toString cfg.dpms.timeout} '${cfg.dpms.apply}'"
-      "\t\tresume '${cfg.dpms.undo}'"
+    dpms = if !cfg.dpms.enable then
+      [ ]
+    else [
+      "	timeout ${toString cfg.dpms.timeout} '${cfg.dpms.apply}'"
+      "		resume '${cfg.dpms.undo}'"
     ];
-    invocation = lib.concatStringsSep " \\\n" (["exec ${cfg.pkg}/bin/swayidle -w"] ++ dpms);
+    invocation = lib.concatStringsSep " \\\n"
+      ([ "exec ${cfg.pkg}/bin/swayidle -w" ] ++ dpms);
   in lib.mkIf enabled {
     extraConfig = lib.mkAfter ''
       for_window [app_id="firefox"] inhibit_idle fullscreen

@@ -1,8 +1,5 @@
-{ config, lib, pkgs, ... }:
-{
-  imports = [
-    ./ffxdghack.nix
-  ];
+{ config, lib, pkgs, ... }: {
+  imports = [ ./ffxdghack.nix ];
 
   # Home Manager setup
   home.sessionVariables = {
@@ -11,8 +8,7 @@
     XDG_SESSION_TYPE = "wayland";
   };
 
-  programs.firefox = let
-    unstable = import <nixos-unstable> {};
+  programs.firefox = let unstable = import <nixos-unstable> { };
   in {
     enable = true;
 
@@ -44,8 +40,10 @@
         "general.smoothScroll.other.durationMinMS" = 125;
         "general.smoothScroll.pages.durationMaxMS" = 125;
         "general.smoothScroll.pages.durationMinMS" = 125;
-        "mousewheel.system_scroll_override_on_root_content.horizontal.factor" = 175;
-        "mousewheel.system_scroll_override_on_root_content.vertical.factor" = 175;
+        "mousewheel.system_scroll_override_on_root_content.horizontal.factor" =
+          175;
+        "mousewheel.system_scroll_override_on_root_content.vertical.factor" =
+          175;
         "toolkit.scrollbox.horizontalScrollDistance" = 6;
         "toolkit.scrollbox.verticalScrollDistance" = 2;
 
@@ -87,18 +85,20 @@
     };
   };
 
-  home.file.".tridactylrc".text = with lib; let
-    blacklistSites = [
-      "mail.google.com"
-      "md.hecke.rs"
-      "app.datadoghq.com"
-      "photos.google.com"
-    ];
-  in ''
-    " Apparently a bit janky, but I like it.
-    set smoothscroll true
+  home.file.".tridactylrc".text = with lib;
+    let
+      blacklistSites = [
+        "mail.google.com"
+        "md.hecke.rs"
+        "app.datadoghq.com"
+        "photos.google.com"
+      ];
+    in ''
+      " Apparently a bit janky, but I like it.
+      set smoothscroll true
 
-    " Sites blacklisted against tridactyl due to poor compatiblity.
-    ${concatMapStringsSep "\n" (url: "autocmd DocLoad ${url} mode ignore") blacklistSites}
-  '';
+      " Sites blacklisted against tridactyl due to poor compatiblity.
+      ${concatMapStringsSep "\n" (url: "autocmd DocLoad ${url} mode ignore")
+      blacklistSites}
+    '';
 }

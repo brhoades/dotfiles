@@ -1,11 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ../modules/default.nix
-    ../programs/default.nix
-    ../services/desktop.nix
-  ];
+  imports =
+    [ ../modules/default.nix ../programs/default.nix ../services/desktop.nix ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -15,8 +12,7 @@
 
   programs.zsh.enableCompletion = true;
 
-  home.sessionVariables = let
-    editor = "vim";
+  home.sessionVariables = let editor = "vim";
   in {
     EDITOR = editor;
     GIT_EDITOR = editor;
@@ -25,14 +21,21 @@
 
   home.packages = with pkgs; [
     git
-    wget rsync httpie curl
+    wget
+    rsync
+    httpie
+    curl
     perl
-    nnn bat
-    ripgrep rename # perl rename, not busybox.
-    tmux screen
+    nnn
+    bat
+    ripgrep
+    rename # perl rename, not busybox.
+    tmux
+    screen
 
     telnet
-    htop iotop
+    htop
+    iotop
     lsof
     pciutils
 

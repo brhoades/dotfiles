@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
-with pkgs; with lib; let
+with pkgs;
+with lib;
+let
   ffxdghack = rustPlatform.buildRustPackage rec {
     pname = "ffxdghack";
     version = "0.1.0";
@@ -19,7 +21,7 @@ with pkgs; with lib; let
 
     meta = {
       description = "override firefox profiles based on the url of the link";
-      homepage = https://github.com/brhoades/ffxdghack;
+      homepage = "https://github.com/brhoades/ffxdghack";
       license = licenses.mit;
     };
   };
@@ -27,40 +29,37 @@ in {
   options.brodes.xdgHack = with pkgs.lib; {
     enable = mkEnableOption "enable xdghack for firefox";
 
-    configFile = mkOption {
-      type = types.path;
-    };
+    configFile = mkOption { type = types.path; };
   };
 
-  config = let
-    cfg = config.brodes.xdgHack;
+  config = let cfg = config.brodes.xdgHack;
   in lib.mkIf cfg.enable {
     xdg.dataFile."applications/ffirefox.desktop".text = ''
-[Desktop Entry]
-Categories=Network;WebBrowser;
-Comment=
-Exec=${ffxdghack}/bin/ffxdghack ${cfg.configFile} %U
-GenericName=Web Browser
-Icon=firefox
-MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp
-Name=Firefox (Wayland Custom)
-Terminal=false
-Type=Application
-'';
+      [Desktop Entry]
+      Categories=Network;WebBrowser;
+      Comment=
+      Exec=${ffxdghack}/bin/ffxdghack ${cfg.configFile} %U
+      GenericName=Web Browser
+      Icon=firefox
+      MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp
+      Name=Firefox (Wayland Custom)
+      Terminal=false
+      Type=Application
+    '';
 
     xdg = {
       enable = true;
       mimeApps = {
         enable = false;
-        associations.added = let
-          ff = "ffirefox.desktop"; # this upsets the firefox greatly
-        in {
-          "text/html" = ff;
-          "x-scheme-handler/http" = ff;
-          "x-scheme-handler/https" = ff;
-          "x-scheme-handler/about" = ff;
-          "x-scheme-handler/unknown" = ff;
-        };
+        associations.added =
+          let ff = "ffirefox.desktop"; # this upsets the firefox greatly
+          in {
+            "text/html" = ff;
+            "x-scheme-handler/http" = ff;
+            "x-scheme-handler/https" = ff;
+            "x-scheme-handler/about" = ff;
+            "x-scheme-handler/unknown" = ff;
+          };
       };
     };
   };

@@ -3,12 +3,13 @@
 let
   p10k = pkgs.zsh-powerlevel10k;
   p10kPath = "${p10k}/share/zsh-powerlevel10k";
-  unstablePkgs = import <nixpkgs> {};
+  unstablePkgs = import <nixpkgs> { };
   prezto = unstablePkgs.zsh-prezto;
 in {
   home = {
     packages = [
-      prezto unstablePkgs.fzy
+      prezto
+      unstablePkgs.fzy
       # 20.03 p10k isn't playing nice with 20.03 zsh
       unstablePkgs.zsh-powerlevel10k
     ];

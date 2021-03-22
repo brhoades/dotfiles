@@ -2,7 +2,7 @@
 
 {
   nixpkgs.config.packageOverrides = _pkgs: {
-    kitty = (import <nixos-unstable-small> {}).kitty;
+    kitty = (import <nixos-unstable-small> { }).kitty;
   };
 
   programs.kitty = {

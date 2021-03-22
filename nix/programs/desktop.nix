@@ -27,15 +27,23 @@
     thunderbird
 
     barrier
-    xorg.xrandr xorg.xkill scrot
+    xorg.xrandr
+    xorg.xkill
+    scrot
 
-    fira-code fira-code-symbols roboto
+    fira-code
+    fira-code-symbols
+    roboto
+
+    nixfmt
 
     # i3-status-rust requires 4
     font-awesome_4
     lm_sensors # i3-status-rust queries for temps
 
-    xfce.thunar xfce.xfconf xfce.tumbler
+    xfce.thunar
+    xfce.xfconf
+    xfce.tumbler
   ];
 
   gtk = {

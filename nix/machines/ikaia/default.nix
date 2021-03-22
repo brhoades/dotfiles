@@ -19,9 +19,7 @@
   user = {
     name = "Billy J Rhoades II";
     email = "me@brod.es";
-    signing =  {
-      key = "6D052A5305F89A0E!";
-    };
+    signing = { key = "6D052A5305F89A0E!"; };
   };
 
   brodes = {
@@ -51,7 +49,6 @@
       configFile = ./secrets/xdghack.json;
     };
   };
-
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

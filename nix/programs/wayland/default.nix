@@ -1,24 +1,19 @@
 { pkgs, lib, ... }:
 
-with lib; let
-  fonts = [
-    "FontAwesome 10"
-    "Roboto 12"
-  ];
-  leftMon = "\"Dell Inc. DELL U2415 CFV9N98G0YDS\"";
-  mainMon = "\"Dell Inc. DELL U2720Q F8KFX13\"";
-  rightMon = "\"Dell Inc. DELL U2415 CFV9N9890J5S\"";
+with lib;
+let
+  fonts = [ "FontAwesome 10" "Roboto 12" ];
+  leftMon = ''"Dell Inc. DELL U2415 CFV9N98G0YDS"'';
+  mainMon = ''"Dell Inc. DELL U2720Q F8KFX13"'';
+  rightMon = ''"Dell Inc. DELL U2415 CFV9N9890J5S"'';
 in {
-  imports = [
-    ./mako.nix
-    ./swayidle.nix
-  ];
+  imports = [ ./mako.nix ./swayidle.nix ];
 
   # wayland-only packages
-  home.packages = let
-    stable = import <nixos-20.03> {};
+  home.packages = let stable = import <nixos-20.03> { };
   in with pkgs; [
-    grim slurp # scrot-like behavior
+    grim
+    slurp # scrot-like behavior
 
     wl-clipboard # xclip-like behavior
 
@@ -29,9 +24,7 @@ in {
   ];
 
   # This catches rofi, but not sway-launched programs.
-  pam.sessionVariables = {
-    MOZ_ENABLE_WAYLAND = "1";
-  };
+  pam.sessionVariables = { MOZ_ENABLE_WAYLAND = "1"; };
 
   wayland.windowManager.sway = let
     # We use variables to avoid repeating the names in multiple places.
@@ -46,306 +39,308 @@ in {
     ws9 = "r";
     ws10 = "a";
     mod = "Mod4";
-    in {
-      enable = true;
-      extraConfig = let
-        echo = "${pkgs.busybox}/bin/echo";
-        mute = pkgs.writeShellScriptBin "mute" ''
-          touch /tmp/PTT.log
-          ${echo} "first $(date +"%T.%3N")" >> /tmp/PTT.log
-          ${pkgs.xautomation}/bin/xte 'keyup XF86AudioPlay'
-          ${echo} "end $(date +"%T.%3N")" >> /tmp/PTT.log
-        '';
-      in ''
-        # Don't steal focus
-        focus_on_window_activation urgent
-        # focus_follows_mouse no
-
-        # Some trouble makers
-        no_focus [window_role="^[dD]iscord"]
-
-        # left
-        output ${leftMon} pos 0 0
-        output ${leftMon} mode 1920x1200@60Hz
-        output ${leftMon} transform 90
-
-        # center
-        output ${mainMon} pos 1200 0
-        output ${mainMon} mode 3840x2160@59.997002Hz
-        output ${mainMon} scale 1.5
-
-        # right
-        output ${rightMon} mode 1920x1200@60Hz
-        # output ${rightMon} pos ${toString (1200 + (3840 / 1.5))} 0
-        output ${rightMon} pos ${toString (3760)} 0
-
-        # TV
-        # output HDMI-A-1 pos ${toString (1080+1200+3840)} 0
-        # output HDMI-A-1 mode 1920x1080@60Hz
-        # output HDMI-A-1 disable
-
-        output "*" background ${toString ./background.jpeg} fill
-
-        input "type:keyboard" {
-          xkb_layout us
-          xkb_variant altgr-intl
-          xkb_options ctrl:nocaps
-          xkb_numlock enabled
-        }
-
-        # workspace -> monitor
-        workspace ${ws4}  output ${leftMon}
-        workspace ${ws10} output ${leftMon}
-        workspace ${ws3}  output ${mainMon}
-        workspace ${ws1}  output ${mainMon}
-        workspace ${ws2}  output ${rightMon}
-
-        # for discord
-        # bindsym Scroll_Lock exec "${pkgs.xautomation}/bin/xte 'keydown XF86AudioPlay'"
-        # bindsym --release Scroll_Lock exec "${mute}/bin/mute"
-        bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 0"
-        bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
-        # bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
-        # bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
+  in {
+    enable = true;
+    extraConfig = let
+      echo = "${pkgs.busybox}/bin/echo";
+      mute = pkgs.writeShellScriptBin "mute" ''
+        touch /tmp/PTT.log
+        ${echo} "first $(date +"%T.%3N")" >> /tmp/PTT.log
+        ${pkgs.xautomation}/bin/xte 'keyup XF86AudioPlay'
+        ${echo} "end $(date +"%T.%3N")" >> /tmp/PTT.log
       '';
+    in ''
+      # Don't steal focus
+      focus_on_window_activation urgent
+      # focus_follows_mouse no
 
-      config = {
-        inherit fonts;
+      # Some trouble makers
+      no_focus [window_role="^[dD]iscord"]
 
-        startup = [
-          { command = "Discord"; }
-          { command = "signal-desktop"; }
-          { command = "thunderbird"; }
-          { command = ''bash -c "MOZ_ENABLE_WAYLAND=1 exec firefox''; }
+      # left
+      output ${leftMon} pos 0 0
+      output ${leftMon} mode 1920x1200@60Hz
+      output ${leftMon} transform 90
+
+      # center
+      output ${mainMon} pos 1200 0
+      output ${mainMon} mode 3840x2160@59.997002Hz
+      output ${mainMon} scale 1.5
+
+      # right
+      output ${rightMon} mode 1920x1200@60Hz
+      # output ${rightMon} pos ${toString (1200 + (3840 / 1.5))} 0
+      output ${rightMon} pos ${toString (3760)} 0
+
+      # TV
+      # output HDMI-A-1 pos ${toString (1080 + 1200 + 3840)} 0
+      # output HDMI-A-1 mode 1920x1080@60Hz
+      # output HDMI-A-1 disable
+
+      output "*" background ${toString ./background.jpeg} fill
+
+      input "type:keyboard" {
+        xkb_layout us
+        xkb_variant altgr-intl
+        xkb_options ctrl:nocaps
+        xkb_numlock enabled
+      }
+
+      # workspace -> monitor
+      workspace ${ws4}  output ${leftMon}
+      workspace ${ws10} output ${leftMon}
+      workspace ${ws3}  output ${mainMon}
+      workspace ${ws1}  output ${mainMon}
+      workspace ${ws2}  output ${rightMon}
+
+      # for discord
+      # bindsym Scroll_Lock exec "${pkgs.xautomation}/bin/xte 'keydown XF86AudioPlay'"
+      # bindsym --release Scroll_Lock exec "${mute}/bin/mute"
+      bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 0"
+      bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
+      # bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
+      # bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
+    '';
+
+    config = {
+      inherit fonts;
+
+      startup = [
+        { command = "Discord"; }
+        { command = "signal-desktop"; }
+        { command = "thunderbird"; }
+        { command = ''bash -c "MOZ_ENABLE_WAYLAND=1 exec firefox''; }
+      ];
+
+      assigns = {
+        "${ws1}" = [ { class = "Steam"; } { class = "Emacs"; } ];
+
+        "${ws4}" = [
+          {
+            class = "Slack";
+          }
+
+          # Sway has a hell of a time matching the thunderbird app_id / class
+          # it claims to. These four seem to always work versus just class/app_id
+          # sometimes working. Maybe thunderbird changes its class on launch?
+          { app_id = "thunderbird"; }
+          { class = "^[tT]hunderbird.*"; }
+          { title = ".*Mozilla Thunderbird$"; }
+          { class = "^[Mm]ail"; }
         ];
 
-        assigns = {
-          "${ws1}"= [
-            { class = "Steam"; }
-            { class = "Emacs"; }
-          ];
+        "${ws10}" =
+          [ { class = "^[Dd]iscord.*"; } { class = "^[Ss]ignal.*"; } ];
+      };
 
-          "${ws4}" = [
-            { class = "Slack"; }
+      # resize window (you can also use the mouse for that)
+      modes.resize = {
+        # These bindings trigger as soon as you enter the resize mode
 
-            # Sway has a hell of a time matching the thunderbird app_id / class
-            # it claims to. These four seem to always work versus just class/app_id
-            # sometimes working. Maybe thunderbird changes its class on launch?
-            { app_id = "thunderbird"; }
-            { class = "^[tT]hunderbird.*"; }
-            { title = ".*Mozilla Thunderbird$"; }
-            { class = "^[Mm]ail"; }
-          ];
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
 
-          "${ws10}" = [
-            { class = "^[Dd]iscord.*"; }
-            { class = "^[Ss]ignal.*"; }
-          ];
+        "j" = "resize shrink width 10 px or 10 ppt";
+        "k" = "resize grow height 10 px or 10 ppt";
+        "l" = "resize shrink height 10 px or 10 ppt";
+        "semicolon" = "resize grow width 10 px or 10 ppt";
+
+        # same bindings, but for the arrow keys
+        "Left" = "resize shrink width 10 px or 10 ppt";
+        "Down" = "resize grow height 10 px or 10 ppt";
+        "Up" = "resize shrink height 10 px or 10 ppt";
+        "Right" = "resize grow width 10 px or 10 ppt";
+
+        # back to normal: Enter or Escape or $mod+r
+        "Return" = ''mode "default"'';
+        "Escape" = ''mode "default"'';
+        "${mod}+r" = ''mode "default"'';
+      };
+
+      modifier = mod;
+      keybindings = let
+        dirkeys = {
+          "j" = "down";
+          "k" = "up";
+          "l" = "right";
+          "h" = "left";
         };
+      in {
+        "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
+        "${mod}+space" =
+          "exec ${pkgs.rofi}/bin/rofi -show run -modi run -only-match -matching fuzzy";
 
-        # resize window (you can also use the mouse for that)
-        modes.resize = {
-          # These bindings trigger as soon as you enter the resize mode
+        "${mod}+j" = "focus left";
+        "${mod}+k" = "focus down";
+        "${mod}+l" = "focus up";
+        "${mod}+semicolon" = "focus right";
 
-          # Pressing left will shrink the window’s width.
-          # Pressing right will grow the window’s width.
-          # Pressing up will shrink the window’s height.
-          # Pressing down will grow the window’s height.
+        # alternatively, you can use the cursor keys:
+        "${mod}+Left" = "focus left";
+        "${mod}+Down" = "focus down";
+        "${mod}+Up" = "focus up";
+        "${mod}+Right" = "focus right";
 
-          "j" = "resize shrink width 10 px or 10 ppt";
-          "k" = "resize grow height 10 px or 10 ppt";
-          "l" = "resize shrink height 10 px or 10 ppt";
-          "semicolon" = "resize grow width 10 px or 10 ppt";
+        # move focused window
+        # "${mod}+Shift+j" = "move left";
+        # "${mod}+Shift+k" = "move down";
+        # "${mod}+Shift+l" = "move up";
+        # "${mod}+Shift+semicolon" = "move right";
+        "${mod}+Shift+j" = "move left";
+        "${mod}+Shift+k" = "move down";
+        "${mod}+Shift+l" = "move up";
+        "${mod}+Shift+semicolon" = "move right";
 
-          # same bindings, but for the arrow keys
-          "Left" = "resize shrink width 10 px or 10 ppt";
-          "Down" = "resize grow height 10 px or 10 ppt";
-          "Up" = "resize shrink height 10 px or 10 ppt";
-          "Right" = "resize grow width 10 px or 10 ppt";
+        # alternatively, you can use the cursor keys:
+        "${mod}+Shift+Left" = "move left";
+        "${mod}+Shift+Down" = "move down";
+        "${mod}+Shift+Up" = "move up";
+        "${mod}+Shift+Right" = "move right";
 
-          # back to normal: Enter or Escape or $mod+r
-          "Return" = "mode \"default\"";
-          "Escape" = "mode \"default\"";
-          "${mod}+r" = "mode \"default\"";
-        };
+        # Workspace rotation
+        "${mod}+Shift+comma" = "move workspace to output left";
+        "${mod}+Shift+period" = "move workspace to output right";
 
-        modifier = mod;
-        keybindings = let
-          dirkeys = {
-            "j" = "down";
-            "k" = "up";
-            "l" = "right";
-            "h" = "left";
-          };
-        in {
-          "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
-          "${mod}+space" =  "exec ${pkgs.rofi}/bin/rofi -show run -modi run -only-match -matching fuzzy";
+        # split in horizontal orientation
+        "${mod}+h" = "split h";
 
-          "${mod}+j" = "focus left";
-          "${mod}+k" = "focus down";
-          "${mod}+l" = "focus up";
-          "${mod}+semicolon" = "focus right";
+        # split in vertical orientation
+        "${mod}+v" = "split v";
 
-           # alternatively, you can use the cursor keys:
-           "${mod}+Left" = "focus left";
-           "${mod}+Down" = "focus down";
-           "${mod}+Up" = "focus up";
-           "${mod}+Right" = "focus right";
+        # enter fullscreen mode for the focused container
+        "${mod}+f" = "fullscreen toggle";
 
-           # move focused window
-           # "${mod}+Shift+j" = "move left";
-           # "${mod}+Shift+k" = "move down";
-           # "${mod}+Shift+l" = "move up";
-           # "${mod}+Shift+semicolon" = "move right";
-           "${mod}+Shift+j" = "move left";
-           "${mod}+Shift+k" = "move down";
-           "${mod}+Shift+l" = "move up";
-           "${mod}+Shift+semicolon" = "move right";
+        # change container layout (stacked, tabbed, toggle split)
+        # "${mod}+s" = "layout stacking";
+        # "${mod}+w" = "layout tabbed";
+        # "${mod}+e" = "layout toggle split";
 
-            # alternatively, you can use the cursor keys:
-           "${mod}+Shift+Left" = "move left";
-           "${mod}+Shift+Down" = "move down";
-           "${mod}+Shift+Up" = "move up";
-           "${mod}+Shift+Right" = "move right";
+        "${mod}+d" = "layout toggle all";
+        # kill focused window
+        "${mod}+s" = "kill";
 
-           # Workspace rotation
-           "${mod}+Shift+comma" = "move workspace to output left";
-           "${mod}+Shift+period" = "move workspace to output right";
+        # toggle tiling / floating
+        "${mod}+Shift+space" = "floating toggle";
 
-           # split in horizontal orientation
-           "${mod}+h" = "split h";
+        # change focus between tiling / floating windows
+        # "${mod}+space" = "focus mode_toggle";
 
-           # split in vertical orientation
-           "${mod}+v" = "split v";
+        # focus the tab above/below.
+        # "${mod}+a" = "focus up";
+        # "${mod}+Shift+a" = "focus down";
 
-           # enter fullscreen mode for the focused container
-           "${mod}+f" = "fullscreen toggle";
+        # focus the child container
+        #"${mod}+d" = "focus child";
 
-           # change container layout (stacked, tabbed, toggle split)
-           # "${mod}+s" = "layout stacking";
-           # "${mod}+w" = "layout tabbed";
-           # "${mod}+e" = "layout toggle split";
+        # switch to workspace, left hand only keys
+        "${mod}+1" = "workspace ${ws1}";
+        "${mod}+2" = "workspace ${ws2}";
+        "${mod}+3" = "workspace ${ws3}";
+        "${mod}+4" = "workspace ${ws4}";
+        "${mod}+5" = "workspace ${ws5}";
+        "${mod}+q" = "workspace ${ws6}";
+        "${mod}+w" = "workspace ${ws7}";
+        "${mod}+e" = "workspace ${ws8}";
+        "${mod}+r" = "workspace ${ws9}";
+        "${mod}+a" = "workspace ${ws10}";
 
-           "${mod}+d" = "layout toggle all";
-           # kill focused window
-           "${mod}+s" = "kill";
+        # legacy switch keybinds
+        "${mod}+6" = "workspace ${ws6}";
+        "${mod}+7" = "workspace ${ws7}";
+        "${mod}+8" = "workspace ${ws8}";
+        "${mod}+9" = "workspace ${ws9}";
+        "${mod}+0" = "workspace ${ws10}";
 
-           # toggle tiling / floating
-           "${mod}+Shift+space" = "floating toggle";
+        # move focused container to workspace, left hand only keys
+        "${mod}+Shift+1" = "move container to workspace ${ws1}";
+        "${mod}+Shift+2" = "move container to workspace ${ws2}";
+        "${mod}+Shift+3" = "move container to workspace ${ws3}";
+        "${mod}+Shift+4" = "move container to workspace ${ws4}";
+        "${mod}+Shift+5" = "move container to workspace ${ws5}";
+        "${mod}+Shift+q" = "move container to workspace ${ws6}";
+        "${mod}+Shift+w" = "move container to workspace ${ws7}";
+        "${mod}+Shift+e" = "move container to workspace ${ws8}";
+        "${mod}+Shift+r" = "move container to workspace ${ws9}";
+        "${mod}+Shift+a" = "move container to workspace ${ws10}";
+        ## legacy move keybinds
+        "${mod}+Shift+6" = "move container to workspace ${ws6}";
+        "${mod}+Shift+7" = "move container to workspace ${ws7}";
+        "${mod}+Shift+8" = "move container to workspace ${ws8}";
+        "${mod}+Shift+9" = "move container to workspace ${ws9}";
+        "${mod}+Shift+0" = "move container to workspace ${ws10}";
+        # reload the configuration file
+        "${mod}+Shift+c" = "reload";
 
-           # change focus between tiling / floating windows
-           # "${mod}+space" = "focus mode_toggle";
+        # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+        # "${mod}+Shift+r" = "restart";
+        # exit i3 (logs you out of your X session)
+        # "${mod}+Shift+e" = "exec \"i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'\"";
+        # "${mod}+r" = "mode \"resize\"";
 
-           # focus the tab above/below.
-           # "${mod}+a" = "focus up";
-           # "${mod}+Shift+a" = "focus down";
+        # Media Keys
+        "XF86AudioRaiseVolume" =
+          "exec --no-startup-id pactl set-sink-volume 2 +5%";
+        "XF86AudioLowerVolume" =
+          "exec --no-startup-id pactl set-sink-volume 2 -5%";
+        "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle";
+        "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 4";
+        "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 4";
 
-           # focus the child container
-           #"${mod}+d" = "focus child";
+        # bindcode 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
+        # bindcode --release 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
+        #bindsym Scroll_Lock exec "xte 'keydown Scroll_Lock'"
+        #bindsym --release Scroll_Lock exec "xte 'keyup Scroll_Lock'"
+      } //
+      # change focus view
+      mapAttrs' (key: dir: nameValuePair ("${mod}+${key}") ("focus ${dir}"))
+      dirkeys //
+      # move focused view
+      mapAttrs'
+      (key: dir: nameValuePair ("${mod}+Shift+${key}") ("move ${dir}")) dirkeys;
 
-           # switch to workspace, left hand only keys
-           "${mod}+1" = "workspace ${ws1}";
-           "${mod}+2" = "workspace ${ws2}";
-           "${mod}+3" = "workspace ${ws3}";
-           "${mod}+4" = "workspace ${ws4}";
-           "${mod}+5" = "workspace ${ws5}";
-           "${mod}+q" = "workspace ${ws6}";
-           "${mod}+w" = "workspace ${ws7}";
-           "${mod}+e" = "workspace ${ws8}";
-           "${mod}+r" = "workspace ${ws9}";
-           "${mod}+a" = "workspace ${ws10}";
+      gaps = {
+        smartGaps = true;
+        inner = 6;
+        outer = 2;
+        smartBorders = "on";
+      };
 
-           # legacy switch keybinds
-           "${mod}+6" = "workspace ${ws6}";
-           "${mod}+7" = "workspace ${ws7}";
-           "${mod}+8" = "workspace ${ws8}";
-           "${mod}+9" = "workspace ${ws9}";
-           "${mod}+0" = "workspace ${ws10}";
+      window = { hideEdgeBorders = "smart"; };
+    };
+  };
 
-           # move focused container to workspace, left hand only keys
-           "${mod}+Shift+1" = "move container to workspace ${ws1}";
-           "${mod}+Shift+2" = "move container to workspace ${ws2}";
-           "${mod}+Shift+3" = "move container to workspace ${ws3}";
-           "${mod}+Shift+4" = "move container to workspace ${ws4}";
-           "${mod}+Shift+5" = "move container to workspace ${ws5}";
-           "${mod}+Shift+q" = "move container to workspace ${ws6}";
-           "${mod}+Shift+w" = "move container to workspace ${ws7}";
-           "${mod}+Shift+e" = "move container to workspace ${ws8}";
-           "${mod}+Shift+r" = "move container to workspace ${ws9}";
-           "${mod}+Shift+a" = "move container to workspace ${ws10}";
-           ## legacy move keybinds
-           "${mod}+Shift+6" = "move container to workspace ${ws6}";
-           "${mod}+Shift+7" = "move container to workspace ${ws7}";
-           "${mod}+Shift+8" = "move container to workspace ${ws8}";
-           "${mod}+Shift+9" = "move container to workspace ${ws9}";
-           "${mod}+Shift+0" = "move container to workspace ${ws10}";
-           # reload the configuration file
-           "${mod}+Shift+c" = "reload";
+  brodes.windowManager.i3status_rs = {
+    inherit fonts;
+    enable = true;
+    output = leftMon;
+    position = "top";
+    colors = {
+      separator = "#666666";
+      background = "#222222";
+      statusline = "#dddddd";
 
-           # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-           # "${mod}+Shift+r" = "restart";
-           # exit i3 (logs you out of your X session)
-           # "${mod}+Shift+e" = "exec \"i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'\"";
-           # "${mod}+r" = "mode \"resize\"";
-
-          # Media Keys
-          "XF86AudioRaiseVolume" = "exec --no-startup-id pactl set-sink-volume 2 +5%";
-          "XF86AudioLowerVolume" = "exec --no-startup-id pactl set-sink-volume 2 -5%";
-          "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle";
-          "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 4";
-          "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 4";
-
-          # bindcode 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
-          # bindcode --release 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
-          #bindsym Scroll_Lock exec "xte 'keydown Scroll_Lock'"
-          #bindsym --release Scroll_Lock exec "xte 'keyup Scroll_Lock'"
-        } //
-        # change focus view
-        mapAttrs' (key: dir: nameValuePair ("${mod}+${key}") ("focus ${dir}")) dirkeys //
-        # move focused view
-        mapAttrs' (key: dir: nameValuePair ("${mod}+Shift+${key}") ("move ${dir}")) dirkeys;
-
-        gaps = {
-          smartGaps = true;
-          inner = 6;
-          outer = 2;
-          smartBorders = "on";
-        };
-
-        window = { hideEdgeBorders = "smart"; };
+      focusedWorkspace = {
+        background = "#0088CC";
+        border = "#0088CC";
+        text = "#ffffff";
+      };
+      activeWorkspace = {
+        background = "#333333";
+        border = "#333333";
+        text = "#ffffff";
+      };
+      inactiveWorkspace = {
+        background = "#333333";
+        border = "#333333";
+        text = "#888888";
+      };
+      urgentWorkspace = {
+        background = "#900000";
+        border = "#900000";
+        text = "#ffffff";
       };
     };
-
-    brodes.windowManager.i3status_rs = {
-      inherit fonts;
-      enable = true;
-      output = leftMon;
-      position = "top";
-      colors = {
-        separator = "#666666";
-        background = "#222222";
-        statusline = "#dddddd";
-
-        focusedWorkspace = {
-          background = "#0088CC";
-          border = "#0088CC";
-          text = "#ffffff";
-        };
-        activeWorkspace = {
-          background = "#333333";
-          border = "#333333";
-          text = "#ffffff";
-        };
-        inactiveWorkspace = {
-          background = "#333333";
-          border = "#333333";
-          text = "#888888";
-        };
-        urgentWorkspace = {
-          background = "#900000";
-          border = "#900000";
-          text = "#ffffff";
-        };
-      };
-    };
+  };
 }

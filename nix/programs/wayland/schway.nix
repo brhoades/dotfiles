@@ -1,4 +1,4 @@
-with import <nixpkgs> {};
+with import <nixpkgs> { };
 
 stdenv.mkDerivation rec {
   name = "schway-${version}";
@@ -7,7 +7,8 @@ stdenv.mkDerivation rec {
   src = writeShellScriptBin "schway" (builtins.readFile ./schway);
 
   buildInputs = [
-    grim slurp
+    grim
+    slurp
     wl-clipboard
 
     src
@@ -21,7 +22,7 @@ stdenv.mkDerivation rec {
 
   meta = {
     description = "schway wraps grim/slurp to mimic scrot";
-    homepage = https://brod.es;
+    homepage = "https://brod.es";
     license = "MIT";
   };
 }

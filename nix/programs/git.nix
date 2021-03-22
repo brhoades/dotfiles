@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
-let
-  user = config.user;
+let user = config.user;
 in {
   options.user = with lib; {
     name = mkOption {
@@ -20,9 +19,7 @@ in {
         default = false;
       };
 
-      key = mkOption {
-        type = types.nullOr types.str;
-      };
+      key = mkOption { type = types.nullOr types.str; };
     };
   };
 
@@ -39,36 +36,26 @@ in {
       };
 
       extraConfig = {
-        color = {
-          ui = "auto";
-        };
+        color = { ui = "auto"; };
 
-        push = {
-          default = "simple";
-        };
+        push = { default = "simple"; };
 
-        credential = {
-          helper = "cache --timeout=28800";
-        };
+        credential = { helper = "cache --timeout=28800"; };
 
-        merge = {
-          tool = "ediff";
-        };
+        merge = { tool = "ediff"; };
 
-        "protocol \"keybase\"" = {
-          allow = "always";
-        };
+        "protocol \"keybase\"" = { allow = "always"; };
       };
 
       ignores = [
         "/testers/"
         ".LOCAL$"
-        "/\.dir-locals.el"
-        "/\.ruby-version"
-        "*\.bak"
-        "/\.projectile"
-        "/\.ignore"
-        "/\.gitconfig"
+        "/.dir-locals.el"
+        "/.ruby-version"
+        "*.bak"
+        "/.projectile"
+        "/.ignore"
+        "/.gitconfig"
         "node_modules"
         ".solargraph.yml"
       ];
