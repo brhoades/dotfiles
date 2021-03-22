@@ -1,16 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 let
   p10k = pkgs.zsh-powerlevel10k;
   p10kPath = "${p10k}/share/zsh-powerlevel10k";
   unstablePkgs = import <nixpkgs> {};
   prezto = unstablePkgs.zsh-prezto;
-  enhancd = pkgs.fetchFromGitHub {
-    owner = "b4b4r07";
-    repo = "enhancd";
-    rev = "v2.2.4";
-    sha256 = "1smskx9vkx78yhwspjq2c5r5swh9fc5xxa40ib4753f00wk4dwpp";
-  };
 in {
   home = {
     packages = [
@@ -44,23 +38,17 @@ in {
       save = 100 * 1024 * 1024;
       extended = true;
       share = true;
+      # This prevents zsh source errors leading to a shell
+      # without our size configuration abouve, which causes
+      # seemingly random truncations. We only set the path
+      # once we've set other options.
+      path = "${config.xdg.dataHome}/.zhistory";
     };
 
-
-    envExtra = ''
+    initExtraBeforeCompInit = ''
       # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
       # Initialization code that may require console input (password prompts, [y/n]
       # confirmations, etc.) must go above this block; everything else may go below.
-
-      # https://medium.com/@rajsek/zsh-bash-startup-files-loading-order-bashrc-zshrc-etc-e30045652f2e
-      # .zshenv is sourced prior to .zshrc / zprofile
-      # enable history options before powerlevel10k to prevent preload failures
-      # from clobbering history
-      setopt extendedhistory
-      setopt sharehistory
-    '';
-
-    initExtraBeforeCompInit = ''
       if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
         source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
       fi
@@ -75,11 +63,6 @@ in {
     '';
 
     initExtra = ''
-      export ENHANCD_DISABLE_DOT=1
-      export ENHANCD_DISABLE_HYPHEN=1
-      export ENHANCD_DISABLE_HOME=1
-      source "${enhancd}/init.sh"
-
       # the first compinit doesn't catch everything on fpath.
       compinit
 
