@@ -85,7 +85,7 @@ in {
           yasnippet
           hydra
           company
-          company-lsp
+          # company-lsp
 
           lsp-java
           scala-mode

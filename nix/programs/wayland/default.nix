@@ -96,8 +96,15 @@ in {
       # for discord
       # bindsym Scroll_Lock exec "${pkgs.xautomation}/bin/xte 'keydown XF86AudioPlay'"
       # bindsym --release Scroll_Lock exec "${mute}/bin/mute"
+      # logitech wireles mouse
       bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 0"
       bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
+      # big mouse
+      bindsym Scroll_Lock exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 0"
+      bindSym --release Scroll_Lock exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
+
+      bindsym F12 exec "swaymsg workspace ${ws3}"
+      # bindcode 105+62+96 workspace ${ws3}
       # bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
       # bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
     '';

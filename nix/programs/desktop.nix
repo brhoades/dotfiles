@@ -22,7 +22,7 @@
     imv
     pavucontrol
 
-    (chromium.override { enableVaapi = true; })
+    # (chromium.override { enableVaapi = true; })
     google-chrome
     thunderbird
 
