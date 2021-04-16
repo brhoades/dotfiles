@@ -24,3 +24,7 @@
 
 (use-package yasnippet
   :ensure t)
+
+(use-package helm-lsp
+  :ensure t
+  :after (helm lsp-mode))
