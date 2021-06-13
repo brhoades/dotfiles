@@ -1,9 +1,11 @@
 ; http://tleyden.github.io/blog/2014/05/27/configure-emacs-as-a-go-editor-from-scratch-part-2/
 (defun my-go-mode-hook ()
-  ; Use goimports instead of go-fmt
-  (setq gofmt-command "goimports")
-  ; Call Gofmt before saving
-  (add-hook 'before-save-hook 'gofmt-before-save)
+  ; previously used before lsp:
+  ;; Use goimports instead of go-fmt
+  ;; (setq gofmt-command "goimports")
+  ;; Call Gofmt before saving
+  ;; (add-hook 'before-save-hook 'gofmt-before-save)
+
   ; Customize compile command to run go build
   ;(if (not (string-match "go" compile-command))
   ;    (set (make-local-variable 'compile-command)
@@ -19,9 +21,9 @@
   :hook ((go-mode . flycheck-mode)
          (go-mode . my-go-mode-hook))
 
-  ; ((go-mode . lsp-deferred)
-  ; (before-save . lsp-format-buffer)
-  ; (before-save . lsp-organize-imports))
+  ((go-mode . lsp-deferred)
+   (before-save . lsp-format-buffer)
+   (before-save . lsp-organize-imports))
   :custom
   ((flycheck-idle-change-delay 1)
    (tab-width 4)
