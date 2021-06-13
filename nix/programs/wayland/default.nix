@@ -86,6 +86,11 @@ in {
         xkb_numlock enabled
       }
 
+      input "1133:4123:Logitech_M705" {
+        accel_profile adaptive
+        pointer_accel 0.5
+      }
+
       # workspace -> monitor
       workspace ${ws4}  output ${leftMon}
       workspace ${ws10} output ${leftMon}
@@ -292,6 +297,7 @@ in {
         "XF86AudioLowerVolume" =
           "exec --no-startup-id pactl set-sink-volume 2 -5%";
         "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle";
+        "pause" = "exec --no-startup-id pactl set-sink-mute 0 toggle";
         "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 4";
         "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 4";
 
