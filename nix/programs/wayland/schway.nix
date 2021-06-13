@@ -4,7 +4,7 @@ stdenv.mkDerivation rec {
   name = "schway-${version}";
   version = "0.1";
 
-  src = writeShellScriptBin "schway" (builtins.readFile ./schway);
+  src = writeShellScriptBin "schway" (builtins.readFile ./schway.sh);
 
   buildInputs = [
     grim
