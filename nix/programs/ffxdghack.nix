@@ -17,7 +17,7 @@ let
       sha256 = "1qn6nzlx5w4kf1122sgy0y193z3cn0d460hi8p96iqpgmf6irrfx";
     };
 
-    cargoSha256 = "0v6ifniay96y3sip5djd8fidd37g46xfkc8xk0qdbfq7w1yr56n2";
+    cargoSha256 = "1a8nk2dydycpnplqh33wk7rlhz8xnqa0nnylgn5z0fpzpc6c9x93";
 
     meta = {
       description = "override firefox profiles based on the url of the link";
@@ -50,7 +50,7 @@ in {
     xdg = {
       enable = true;
       mimeApps = {
-        enable = false;
+        enable = true;
         associations.added =
           let ff = "ffirefox.desktop"; # this upsets the firefox greatly
           in {
