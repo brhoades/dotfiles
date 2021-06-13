@@ -65,109 +65,109 @@ in {
         with epkgs; [
           use-package
 
-          tide
-          web-mode
-          rjsx-mode
-          typescript-mode
-          less-css-mode
-          add-node-modules-path
-          nodejs # for tide and to run node_modules
-
-          js2-mode
-          vue-mode
-          elm-mode
-          purescript-mode
-
-          flycheck
-
-          lsp-ui
-          lsp-mode
-          yasnippet
-          hydra
-          company
-          # company-lsp
-
-          lsp-java
-          scala-mode
-
-          nix-mode
-
-          dap-mode
-
-          org
-          org-noter
-          org-roam
-          pkgs.sqlite
-          pkgs.graphviz # org-roam requirement
-
-          pdf-tools
-
-          notmuch
-
-          xclip
-
-          python-mode
-
-          go-mode
-          company-go
-          go-projectile
-
-          projectile
-          helm
-          helm-rg
-          helm-smex
-          helm-projectile
-          flx-ido
-
-          magit
-          git-link
-          # evil-magit is gone
-          evil
-          evil-smartparens # evil-collection  includes evil-mode too now?
-          monokai-theme
-
-          # undo-fu undo-fu-session
-          undo-tree
-
-          bind-key
-          diminish
-          exec-path-from-shell
-          direnv
-
-          json-mode
-          dockerfile-mode
-          markdown-mode
-          yaml-mode
-          yamllint
-          # journalctl-mode
-
-          racer
-          flycheck-rust
-          rustic
-
-          rbenv
-          enh-ruby-mode
-          projectile-rails
-          robe
-
-          solarized-theme
-
-          git-link
-          github-review
-
-          # if go
-          go # godef gocode gotags gotools golint delve
-          # errcheck go-tools unconvert
-
-          # if nix
-          # nix-linter
-
-          # projectile-{ag,rg}
-          ag
-          ripgrep
-
-          # magit
-          git
+#          tide
+#          web-mode
+#          # rjsx-mode unstable: something broken with C?
+#          typescript-mode
+#          less-css-mode
+#          add-node-modules-path
+#          nodejs # for tide and to run node_modules
+#
+#          js2-mode
+#          vue-mode
+#          elm-mode
+#          purescript-mode
+#
+#          flycheck
+#
+#          lsp-ui
+#          lsp-mode
+#          yasnippet
+#          hydra
+#          company
+#          # company-lsp
+#
+#          # lsp-java unstable broken again
+#          scala-mode
+#
+#          nix-mode
+#
+#          dap-mode
+#
+#          org
+#          org-noter
+#          org-roam
+#          pkgs.sqlite
+#          pkgs.graphviz # org-roam requirement
+#
+#          pdf-tools
+#
+#          notmuch
+#
+#          xclip
+#
+#          python-mode
+#
+#          go-mode
+#          company-go
+#          go-projectile
+#
+#          projectile
+#          helm
+#          helm-rg
+#          helm-smex
+#          helm-projectile
+#          flx-ido
+#
+#          magit
+#          git-link
+#          # evil-magit is gone
+#          evil
+#          evil-smartparens # evil-collection  includes evil-mode too now?
+#          monokai-theme
+#
+#          # undo-fu undo-fu-session
+#          undo-tree
+#
+#          bind-key
+#          diminish
+#          exec-path-from-shell
+#          direnv
+#
+#          json-mode
+#          dockerfile-mode
+#          markdown-mode
+#          yaml-mode
+#          yamllint
+#          # journalctl-mode
+#
+#          racer
+#          flycheck-rust
+#          rustic
+#
+#          rbenv
+#          enh-ruby-mode
+#          projectile-rails
+#          robe
+#
+#          solarized-theme
+#
+#          git-link
+#          github-review
+#
+#          # if go
+#          go # godef gocode gotags gotools golint delve
+#          # errcheck go-tools unconvert
+#
+#          # if nix
+#          # nix-linter
+#
+#          # projectile-{ag,rg}
+#          ag
+#          ripgrep
+#
+#          # magit
+#          git
         ]);
   };
 }
