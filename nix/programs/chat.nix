@@ -14,6 +14,7 @@
           configure = { availablePlugins, ... }: {
             scripts = with super.weechatScripts; [
               wee-slack
+              multiline
             ];
           };
         };
