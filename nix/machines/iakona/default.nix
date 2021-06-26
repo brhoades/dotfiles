@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports = [
     ../common.nix
     ../../programs/development.nix
@@ -6,12 +6,15 @@
 
     ../../programs/desktop.nix
     ../../services/desktop.nix
+    ../../services/keybase.nix
   ];
 
   user = {
     name = "Billy J Rhoades II";
     email = "me@brod.es";
-    signing = { key = "6D052A5305F89A0E!"; };
+    signing =  {
+      key = "F372D673E3A1FCFA!";
+    };
   };
 
   brodes = {
@@ -38,6 +41,11 @@
   };
 
   home = {
+    packages = with pkgs; [
+      iw # used by i3status_rs to query rates
+      networkmanager # nmtui nmcli
+    ];
+
     username = "aaron";
     homeDirectory = "/home/aaron";
 
