@@ -2,7 +2,11 @@
 
 with lib;
 let
-  fonts = [ "FontAwesome 10" "Roboto 12" ];
+  fonts = {
+    names = ["FontAwesome" "Roboto"];
+    style = "Condensed";
+    size = 12.0;
+  };
   leftMon = ''"Dell Inc. DELL U2415 CFV9N98G0YDS"'';
   mainMon = ''"Dell Inc. DELL U2720Q F8KFX13"'';
   rightMon = ''"Dell Inc. DELL U2415 CFV9N9890J5S"'';

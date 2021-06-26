@@ -18,8 +18,7 @@
     };
 
     fonts = mkOption {
-      type = types.listOf types.str;
-      default = [ ];
+      type = types.attrs;
     };
 
     output = mkOption { type = types.nullOr types.str; };
