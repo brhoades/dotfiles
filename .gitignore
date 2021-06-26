@@ -30,5 +30,5 @@ dotconfig/pulse/cookie
 dotconfig/i3/i3status-rs.toml
 
 # per-machine config activation
-/nixpkgs/home.nix
-nixpkgs/config.nix
+/nix/home.nix
+nix/config.nix
