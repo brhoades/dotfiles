@@ -122,6 +122,31 @@
       };
 
       notify.enable = mkEnableOption "Enable the notify block";
+
+      weather = {
+        enable = mkEnableOption "Enable the weather block";
+
+        autolocate = mkOption {
+          type = types.bool;
+          default = true;
+        };
+
+        format = mkOption {
+          type = types.str;
+          default = "{weather} {temp}";
+        };
+
+        interval = mkOption {
+          type = types.int;
+          default = 600;
+        };
+
+        # TOML string to configure the service
+        service = mkOption {
+          type = types.nullOr types.str;
+          default = null;
+        };
+      };
     };
   };
 
@@ -227,6 +252,17 @@
       block = "notify"
     '';
 
+    # only supports dunst, not mako
+    weatherBlock = if !cfg.blocks.weather.enable then
+      ""
+    else ''
+      [[block]]
+      block = "weather"
+      format = "${cfg.blocks.weather.format}"
+      ${if cfg.blocks.weather.service == null then "" else "service = ${cfg.blocks.weather.service}"}
+
+    '';
+
     statusFile = pkgs.writeText "config.toml" ''
       theme = "${cfg.theme}"
       icons = "${cfg.icons}"
@@ -255,6 +291,7 @@
       ${btBlock}
       ${batBlock}
       ${notifyBlock}
+      ${weatherBlock}
       [[block]]
       block = "time"
       interval = 1
