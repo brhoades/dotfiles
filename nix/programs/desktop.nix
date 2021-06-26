@@ -44,6 +44,8 @@
     xfce.thunar
     xfce.xfconf
     xfce.tumbler
+
+    vlc evince calibre
   ];
 
   gtk = {
