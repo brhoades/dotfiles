@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   services.xcape = {
     enable = false;
     timeout = 500; # ms
