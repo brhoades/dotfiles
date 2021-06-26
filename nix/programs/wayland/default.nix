@@ -88,7 +88,7 @@ in {
 
       input "1133:4123:Logitech_M705" {
         accel_profile adaptive
-        pointer_accel 0.5
+        pointer_accel 0.3 # way too zippy
       }
 
       # workspace -> monitor
@@ -106,12 +106,22 @@ in {
       bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
       # big mouse
       bindsym Scroll_Lock exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 0"
-      bindSym --release Scroll_Lock exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
+      bindsym --release Scroll_Lock exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
 
       bindsym F12 exec "swaymsg workspace ${ws3}"
       # bindcode 105+62+96 workspace ${ws3}
       # bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
       # bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
+
+      set $lock_pg ${toString ./background.jpeg}
+
+      bindsym Ctrl+${mod}+l exec "${pkgs.swaylock}/bin/swaylock -i $lock_bg -F"
+
+      exec swayidle -w \
+         timeout 300 '${pkgs.swaylock}/bin/swaylock -f -c 000000 -i $lock_bg -F' \
+         timeout 600 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+         before-sleep '${pkgs.swaylock}/bin/swaylock -f -c 000000 -i $lock_bg -F'
     '';
 
     config = {
