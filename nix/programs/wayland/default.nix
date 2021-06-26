@@ -79,7 +79,9 @@ in {
 
       output "*" background ${toString ./background.jpeg} fill
 
-      input "type:keyboard" {
+      # https://bugzilla.mozilla.org/show_bug.cgi?id=1652820#c28
+      # don't specify wildcards, do each keyboard
+      input "1241:8211:daskeyboard" {
         xkb_layout us
         xkb_variant altgr-intl
         xkb_options ctrl:nocaps
@@ -117,11 +119,6 @@ in {
 
       bindsym Ctrl+${mod}+l exec "${pkgs.swaylock}/bin/swaylock -i $lock_bg -F"
 
-      exec swayidle -w \
-         timeout 300 '${pkgs.swaylock}/bin/swaylock -f -c 000000 -i $lock_bg -F' \
-         timeout 600 'swaymsg "output * dpms off"' \
-              resume 'swaymsg "output * dpms on"' \
-         before-sleep '${pkgs.swaylock}/bin/swaylock -f -c 000000 -i $lock_bg -F'
     '';
 
     config = {

@@ -26,8 +26,8 @@
     windowManager = {
       i3status_rs.blocks = {
         net = {
-          enable = false;
-          device = "enp5s0";
+          enable = true;
+          device = "enp4s0";
         };
 
         temperature = {
@@ -36,11 +36,20 @@
         };
 
         microphone.enable = true;
+        notify.enable = false;
       };
 
       swayidle = {
         enable = true;
         dpms.enable = true;
+
+        lock = {
+          idle = {
+            enable = true;
+            timeout = 6000;
+          };
+          sleep.enable = true;
+        };
       };
     };
 

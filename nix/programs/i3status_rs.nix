@@ -39,12 +39,43 @@
 
         format = mkOption {
           type = types.nullOr types.str;
-          default = null;
+          default = "{speed_up;M} {speed_down;M} {graph_down;M}";
+        };
+
+        format_alt = mkOption {
+          type = types.nullOr types.str;
+          default = "{ssid} {signal_strength} {ip} {speed_down} {speed_up} {graph_down;K}";
         };
 
         interval = mkOption {
           type = types.int;
           default = 5;
+        };
+      };
+
+      networkmanager = {
+        enable = mkEnableOption "Enable the network manager block";
+
+        primaryOnly = mkOption {
+          type = types.nullOr types.bool;
+          default = false;
+        };
+
+        include = mkOption {
+          type = types.nullOr types.listOf types.str;
+          default = null;
+        };
+
+        exclude = mkOption {
+          type = types.nullOr types.listOf types.str;
+          default = [
+            "br\\-[0-9a-f]{12}" "docker\\d+"
+          ];
+        };
+
+        onClick = mkOption {
+          type = types.nullOr types.str;
+          default = "${pkgs.kitty}/bin/kitty --hold nmcli";
         };
       };
 
@@ -91,6 +122,8 @@
           default = null;
         };
       };
+
+      notify.enable = mkEnableOption "Enable the notify block";
     };
   };
 
@@ -98,6 +131,7 @@
     swayOn = config.wayland.windowManager.sway.enable;
     cfg = config.brodes.windowManager.i3status_rs;
     netCfg = cfg.blocks.net;
+    nmCfg = cfg.blocks.networkmanager;
     btCfg = cfg.blocks.bluetooth;
     batCfg = cfg.blocks.battery;
 
@@ -106,12 +140,29 @@
     else ''
       [[block]]
       block = "net"
-      ip = false
-      speed_up = false
-      graph_up = true
-      use_bits = false
       ${if netCfg.format == null then "" else ''format = "${netCfg.format}"''}
+      ${if netCfg.format_alt == null then "" else ''format_alt = "${netCfg.format_alt}"''}
       ${if netCfg.device == null then "" else ''device = "${netCfg.device}"''}
+
+    '';
+
+    nmBlock = let
+      exclude = if nmCfg.exclude == null
+                then ""
+                else "exclude = [${builtins.concatMapStringsSep ", " nmCfg.exclude}]";
+      include = if nmCfg.include == null
+                then ""
+                else "include = [${builtins.concatMapStringsSep ", " nmCfg.include}]";
+    in
+      if !nmCfg.enable then
+      ""
+    else ''
+      [[block]]
+      block = "networkmanager"
+      ${if nmCfg.onClick == null then "" else ''on_click = "${toString nmCfg.onClick}"''}
+      ${include}
+      ${exclude}
+      ${if nmCfg.primaryOnly == null then "" else ''primary_only = ${toString nmCfg.primaryOnly}''}
       interval = ${toString netCfg.interval}
 
     '';
@@ -146,7 +197,7 @@
       block = "sound"
       device_kind = "source"
       # no longer supported?
-      # color_overrides = { warning_bg = "#ff0000" } 
+      # color_overrides = { warning_bg = "#ff0000" }
 
     '';
 
@@ -157,6 +208,15 @@
       block = "battery"
       ${if batCfg.format == null then "" else ''format = "${batCfg.format}"''}
       interval = ${toString netCfg.interval}
+
+    '';
+
+    # only supports dunst, not mako
+    notifyBlock = if !cfg.blocks.notify.enable then
+      ""
+    else ''
+      [[block]]
+      block = "notify"
     '';
 
     statusFile = pkgs.writeText "config.toml" ''
@@ -164,6 +224,7 @@
       icons = "${cfg.icons}"
 
       ${netBlock}
+      ${nmBlock}
       [[block]]
       block = "memory"
       display_type = "memory"
@@ -185,6 +246,7 @@
       ${micBlock}
       ${btBlock}
       ${batBlock}
+      ${notifyBlock}
       [[block]]
       block = "time"
       interval = 1
