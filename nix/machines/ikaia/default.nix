@@ -7,7 +7,6 @@
     ../../programs/development.nix
     ../../services/desktop.nix
     ../../programs/steam.nix
-    ../../programs/steam.nix
     ../../programs/emacs.nix
     ../../programs/wine.nix
     ../../programs/dlux.nix

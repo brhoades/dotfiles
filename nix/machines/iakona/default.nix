@@ -4,6 +4,7 @@
     ../../programs/development.nix
     ../../programs/emacs.nix
 
+    ../../programs/desktop.nix
     ../../services/desktop.nix
     ../../services/keybase.nix
   ];
