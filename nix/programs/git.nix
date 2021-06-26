@@ -61,8 +61,6 @@ in {
       ];
     };
 
-    home.packages = with pkgs; [
-      delta
-    ];
+    home.packages = with pkgs; [ delta ];
   };
 }

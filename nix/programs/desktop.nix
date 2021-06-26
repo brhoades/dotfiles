@@ -45,10 +45,16 @@
     xfce.xfconf
     xfce.tumbler
 
-    vlc evince calibre libreoffice ffmpeg-full
-    imagemagick gimp
+    vlc
+    evince
+    calibre
+    libreoffice
+    ffmpeg-full
+    imagemagick
+    gimp
 
-    p7zip unzip
+    p7zip
+    unzip
     ncdu
   ];
 

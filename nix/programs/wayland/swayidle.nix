@@ -48,12 +48,21 @@
     cfg = config.brodes.windowManager.swayidle;
     enabled = cfg.enable && config.wayland.windowManager.sway.enable;
     bg = if cfg.background == null then "" else "-i ${cfg.background}";
-    idleLock = if !cfg.lock.idle.enable then [] else [
-      ''timeout ${toString cfg.lock.idle.timeout} "${pkgs.swaylock}/bin/swaylock -f -c 000000 ${bg} -F"''
-    ];
-    sleepLock = if !cfg.lock.sleep.enable then [] else [
-      ''before-sleep "${pkgs.swaylock}/bin/swaylock -f -c 000000 ${bg} -F"''
-    ];
+    idleLock = if !cfg.lock.idle.enable then
+      [ ]
+    else
+      [
+        ''
+          timeout ${
+            toString cfg.lock.idle.timeout
+          } "${pkgs.swaylock}/bin/swaylock -f -c 000000 ${bg} -F"''
+      ];
+    sleepLock = if !cfg.lock.sleep.enable then
+      [ ]
+    else
+      [
+        ''before-sleep "${pkgs.swaylock}/bin/swaylock -f -c 000000 ${bg} -F"''
+      ];
     dpms = if !cfg.dpms.enable then
       [ ]
     else [

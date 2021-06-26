@@ -12,11 +12,13 @@
     tree
     nmap
 
-    yq jq
+    yq
+    jq
     tmate
     python3
 
-    kubectl kubectx
+    kubectl
+    kubectx
     tcpdump
   ];
 

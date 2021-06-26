@@ -4,7 +4,6 @@
     ../../programs/development.nix
     ../../programs/emacs.nix
 
-    ../../programs/desktop.nix
     ../../services/desktop.nix
     ../../services/keybase.nix
   ];
@@ -12,9 +11,7 @@
   user = {
     name = "Billy J Rhoades II";
     email = "me@brod.es";
-    signing =  {
-      key = "F372D673E3A1FCFA!";
-    };
+    signing = { key = "F372D673E3A1FCFA!"; };
   };
 
   brodes = {

@@ -4,9 +4,7 @@
     enterngrok = "${/home/aaron/lib/enterngrok}";
   };
 
-  home.packages = with pkgs; [
-    lorri
-  ];
+  home.packages = with pkgs; [ lorri ];
 
   services.lorri.enable = true;
 }

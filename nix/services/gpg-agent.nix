@@ -1,5 +1,4 @@
-{ pkgs, config, ... }:
-{
+{ pkgs, config, ... }: {
   services.gpg-agent = {
     # enable = options.brodes.development;
     enable = true;
