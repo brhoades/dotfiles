@@ -7,11 +7,17 @@
     # errcheck go-tools unconvert
     github-cli
 
-    unzip
     lorri
     gdb
     tree
     nmap
+
+    yq jq
+    tmate
+    python3
+
+    kubectl kubectx
+    tcpdump
   ];
 
   home.sessionVariables = { GOROOT = [ "${pkgs.go.out}/share/go" ]; };
