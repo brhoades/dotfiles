@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   services.dunst = {
     enable = true;
 
@@ -28,7 +27,7 @@
         #   %I  iconname (without its path)
         #   %p  progress value if set ([  0%] to [100%]) or nothing
         # Markup is allowed
-        format = ''<b>%s</b>\n%b'';
+        format = "<b>%s</b>\\n%b";
 
         # Sort messages by urgency.
         sort = "no";
@@ -61,7 +60,6 @@
         # Hide duplicate's count and stack them
         stack_duplicates = "yes";
         hide_duplicates_count = "yes";
-
 
         # The geometry of the window:
         #   [{width}]x{height}[+/-{x}+/-{y}]
@@ -200,114 +198,112 @@
         # separator_color = "#333333";
       };
 
-        #[urgency_normal]
-        #frame_color = "#5B8234"
-        #foreground = "#5B8234"
-        #background = "#191311"
-        #background = "#2B313C"
-        #timeout = 6
-        #
-        #[urgency_critical]
-        #frame_color = "#B7472A"
-        #foreground = "#B7472A"
-        #background = "#191311"
-        #background = "#2B313C"
-        #timeout = 8
+      #[urgency_normal]
+      #frame_color = "#5B8234"
+      #foreground = "#5B8234"
+      #background = "#191311"
+      #background = "#2B313C"
+      #timeout = 6
+      #
+      #[urgency_critical]
+      #frame_color = "#B7472A"
+      #foreground = "#B7472A"
+      #background = "#191311"
+      #background = "#2B313C"
+      #timeout = 8
 
+      # [urgency_low]
+      #     msg_urgency = low
+      #     background = "#f5f5f5"
+      #     foreground = "#969896"
+      #     timeout = 5
 
-        # [urgency_low]
-        #     msg_urgency = low
-        #     background = "#f5f5f5"
-        #     foreground = "#969896"
-        #     timeout = 5
+      urgency_normal = {
+        msg_urgency = "normal";
+        background = "#c8c8fa";
+        foreground = "#333333";
+        timeout = "10";
+      };
 
-              urgency_normal = {
-                          msg_urgency = "normal";
-                          background = "#c8c8fa";
-                          foreground = "#333333";
-                          timeout = "10";
-                        };
+      urgency_critical = {
+        msg_urgency = "critical";
+        background = "#ed6a43";
+        foreground = "#ffffff";
+        timeout = "0";
+      };
 
-            urgency_critical = {
-              msg_urgency = "critical";
-              background = "#ed6a43";
-              foreground = "#ffffff";
-              timeout = "0";
-            };
+      # Every section that isn't one of the above is interpreted as a rules to
+      # override settings for certain messages.
+      # Messages can be matched by "appname", "summary", "body", "icon", "category",
+      # "msg_urgency" and you can override the "timeout", "urgency", "foreground",
+      # "background", "new_icon" and "format".
+      # Shell-like globbing will get expanded.
+      #
+      # SCRIPTING
+      # You can specify a script that gets run when the rule matches by
+      # setting the "script" option.
+      # The script will be called as follows:
+      #   script appname summary body icon urgency
+      # where urgency can be "LOW", "NORMAL" or "CRITICAL".
+      #
+      # NOTE: if you don't want a notification to be displayed, set the format
+      # to "".
+      # NOTE: It might be helpful to run dunst -print in a terminal in order
+      # to find fitting options for rules.
 
+      #[espeak]
+      #    summary = "*"
+      #    script = dunst_espeak.sh
 
-        # Every section that isn't one of the above is interpreted as a rules to
-        # override settings for certain messages.
-        # Messages can be matched by "appname", "summary", "body", "icon", "category",
-        # "msg_urgency" and you can override the "timeout", "urgency", "foreground",
-        # "background", "new_icon" and "format".
-        # Shell-like globbing will get expanded.
-        #
-        # SCRIPTING
-        # You can specify a script that gets run when the rule matches by
-        # setting the "script" option.
-        # The script will be called as follows:
-        #   script appname summary body icon urgency
-        # where urgency can be "LOW", "NORMAL" or "CRITICAL".
-        #
-        # NOTE: if you don't want a notification to be displayed, set the format
-        # to "".
-        # NOTE: It might be helpful to run dunst -print in a terminal in order
-        # to find fitting options for rules.
+      #[script-test]
+      #    summary = "*script*"
+      #    script = dunst_test.sh
 
-        #[espeak]
-        #    summary = "*"
-        #    script = dunst_espeak.sh
+      #[ignore]
+      #    # This notification will not be displayed
+      #    summary = "foobar"
+      #    format = ""
 
-        #[script-test]
-        #    summary = "*script*"
-        #    script = dunst_test.sh
+      #[signed_on]
+      #    appname = Pidgin
+      #    summary = "*signed on*"
+      #    urgency = low
+      #
+      #[signed_off]
+      #    appname = Pidgin
+      #    summary = *signed off*
+      #    urgency = low
+      #
+      #[says]
+      #    appname = Pidgin
+      #    summary = *says*
+      #    urgency = critical
+      #
+      #[twitter]
+      #    appname = Pidgin
+      #    summary = *twitter.com*
+      #    urgency = normal
+      #
 
-        #[ignore]
-        #    # This notification will not be displayed
-        #    summary = "foobar"
-        #    format = ""
+      slack_dm = {
+        appname = "Slack";
+        summary = "[ngrok] from*";
+        urgency = "critical";
+        # copied from above
+        background = "#ed6a43";
+        foreground = "#ffffff";
+        timeout = "30";
+      };
 
-        #[signed_on]
-        #    appname = Pidgin
-        #    summary = "*signed on*"
-        #    urgency = low
-        #
-        #[signed_off]
-        #    appname = Pidgin
-        #    summary = *signed off*
-        #    urgency = low
-        #
-        #[says]
-        #    appname = Pidgin
-        #    summary = *says*
-        #    urgency = critical
-        #
-        #[twitter]
-        #    appname = Pidgin
-        #    summary = *twitter.com*
-        #    urgency = normal
-        #
-
-        slack_dm = {
-          appname = "Slack";
-          summary = "\[ngrok\] from*";
-          urgency = "critical";
-          # copied from above
-          background = "#ed6a43";
-          foreground = "#ffffff";
-          timeout = "30";
-        };
-
-        slack_channel = {
-          appname = "Slack";
-          summary = "\[ngrok\] in*";
-          urgency = "normal";
-          # Copied from above
-          background = "#c8c8fa";
-          foreground = "#333333";
-          timeout = "3";
-        };
+      slack_channel = {
+        appname = "Slack";
+        summary = "[ngrok] in*";
+        urgency = "normal";
+        # Copied from above
+        background = "#c8c8fa";
+        foreground = "#333333";
+        timeout = "3";
+      };
     };
   };
 }
