@@ -36,6 +36,12 @@
 
         microphone.enable = true;
         notify.enable = false;
+
+        weather = {
+          enable = true;
+          autolocate = false;
+          service = ''{ name = "openweathermap", place = "Seattle", api_key = "${builtins.readFile ./secrets/openweathermapkey}", units = "imperial" }'';
+        };
       };
 
       swayidle = {

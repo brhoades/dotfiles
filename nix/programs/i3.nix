@@ -14,7 +14,7 @@
     ws9 = "9";
     ws10 = "10:cht";
     mod = "Mod4";
-    fonts = [ "FontAwesome 10" "Roboto 12" ];
+    fonts = config.wayland.windowManager.sway.config.fonts;
   in {
     enable = true;
     package = pkgs.i3-gaps;

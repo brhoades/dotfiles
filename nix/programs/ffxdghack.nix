@@ -32,13 +32,20 @@ in {
     configFile = mkOption { type = types.path; };
   };
 
-  config = let cfg = config.brodes.xdgHack;
+  config = let
+    cfg = config.brodes.xdgHack;
+    # https://www.guyrutenberg.com/2020/03/21/xdg-open-fails-when-using-firefox-under-wayland/
+    wrapper = writeShellScriptBin "wrapper" ''
+      export MOZ_DBUS_REMOTE=1
+      export MOZ_ENABLE_WAYLAND=1
+      exec ${ffxdghack}/bin/ffxdghack "$@"
+    '';
   in lib.mkIf cfg.enable {
     xdg.dataFile."applications/ffirefox.desktop".text = ''
       [Desktop Entry]
       Categories=Network;WebBrowser;
       Comment=
-      Exec=${ffxdghack}/bin/ffxdghack ${cfg.configFile} %U
+      Exec=${wrapper}/bin/wrapper ${cfg.configFile} %U
       GenericName=Web Browser
       Icon=firefox
       MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp
@@ -49,17 +56,19 @@ in {
 
     xdg = {
       enable = true;
-      mimeApps = {
+      mimeApps = let
+        ff = "ffirefox.desktop";
+        assocs = inp: {
+          "text/html" = inp;
+          "x-scheme-handler/http" = inp;
+          "x-scheme-handler/https" = inp;
+          "x-scheme-handler/about" = inp;
+          "x-scheme-handler/unknown" = inp;
+        };
+      in {
         enable = true;
-        associations.added =
-          let ff = "ffirefox.desktop"; # this upsets the firefox greatly
-          in {
-            "text/html" = ff;
-            "x-scheme-handler/http" = ff;
-            "x-scheme-handler/https" = ff;
-            "x-scheme-handler/about" = ff;
-            "x-scheme-handler/unknown" = ff;
-          };
+        associations.added = assocs ff;
+        defaultApplications = assocs [ ff ];
       };
     };
   };
