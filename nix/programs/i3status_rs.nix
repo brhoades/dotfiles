@@ -17,11 +17,12 @@
       default = "awesome";
     };
 
-    fonts = mkOption {
-      type = types.attrs;
-    };
+    fonts = mkOption { type = types.attrs; };
 
-    output = mkOption { type = types.nullOr types.str; };
+    output = mkOption {
+      description = "Display to output the system tray on";
+      type = types.nullOr types.str;
+    };
 
     position = mkOption { type = types.nullOr types.str; };
 
@@ -259,7 +260,10 @@
       [[block]]
       block = "weather"
       format = "${cfg.blocks.weather.format}"
-      ${if cfg.blocks.weather.service == null then "" else "service = ${cfg.blocks.weather.service}"}
+      ${if cfg.blocks.weather.service == null then
+        ""
+      else
+        "service = ${cfg.blocks.weather.service}"}
 
     '';
 

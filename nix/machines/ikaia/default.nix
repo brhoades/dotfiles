@@ -23,24 +23,30 @@
 
   brodes = {
     windowManager = {
-      i3status_rs.blocks = {
-        net = {
-          enable = true;
-          device = "enp4s0";
-        };
+      i3status_rs = {
+        output = ''"Dell Inc. DELL U2415 CFV9N98G0YDS"'';
+        blocks = {
+          net = {
+            enable = true;
+            device = "enp4s0";
+          };
 
-        temperature = {
-          enable = true;
-          device = "zenpower-pci-00c3";
-        };
+          temperature = {
+            enable = true;
+            device = "zenpower-pci-00c3";
+          };
 
-        microphone.enable = true;
-        notify.enable = false;
+          microphone.enable = true;
+          notify.enable = false;
 
-        weather = {
-          enable = true;
-          autolocate = false;
-          service = ''{ name = "openweathermap", place = "Seattle", api_key = "${builtins.readFile ./secrets/openweathermapkey}", units = "imperial" }'';
+          weather = {
+            enable = true;
+            autolocate = false;
+            service = ''
+              { name = "openweathermap", place = "Seattle", api_key = "${
+                builtins.readFile ./secrets/openweathermapkey
+              }", units = "imperial" }'';
+          };
         };
       };
 

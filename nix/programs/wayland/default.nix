@@ -3,7 +3,7 @@
 with lib;
 let
   fonts = {
-    names = ["FontAwesome" "Roboto"];
+    names = [ "FontAwesome" "Roboto" ];
     style = "Condensed";
     size = 12.0;
   };
@@ -345,7 +345,6 @@ in {
   brodes.windowManager.i3status_rs = {
     inherit fonts;
     enable = true;
-    output = leftMon;
     position = "top";
     colors = {
       separator = "#666666";

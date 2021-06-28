@@ -16,24 +16,28 @@
   };
 
   brodes = {
-    windowManager.i3status_rs.blocks = {
-      net = {
-        enable = true;
-        device = "wlp0s20f3";
-        format = "{signal_strength} {ssid}";
-      };
+    windowManager.i3status_rs = {
+      # x1 carbon display, eDP-1
+      output = ''"Chimei Innolux Corporation 0x14E4 0x00000000"'';
+      blocks = {
+        net = {
+          enable = true;
+          device = "wlp0s20f3";
+          format = "{signal_strength} {ssid}";
+        };
 
-      battery.enable = true;
+        battery.enable = true;
 
-      temperature = {
-        enable = true;
-        device = "coretemp-isa-0000";
-      };
+        temperature = {
+          enable = true;
+          device = "coretemp-isa-0000";
+        };
 
-      bluetooth = {
-        enable = true;
-        mac = "28:11:A5:35:50:04";
-        label = " QC35";
+        bluetooth = {
+          enable = true;
+          mac = "28:11:A5:35:50:04";
+          label = " QC35";
+        };
       };
     };
   };
