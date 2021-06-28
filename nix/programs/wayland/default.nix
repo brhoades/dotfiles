@@ -87,6 +87,13 @@ in {
         xkb_options ctrl:nocaps
         xkb_numlock enabled
       }
+      # x1carbon keyboard
+      input "1:1:AT_Translated_Set_2_keyboard" {
+        xkb_layout us
+        xkb_variant altgr-intl
+        xkb_options ctrl:nocaps
+        xkb_numlock enabled
+      }
 
       input "1133:4123:Logitech_M705" {
         accel_profile adaptive
