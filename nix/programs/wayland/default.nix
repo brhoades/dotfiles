@@ -98,6 +98,13 @@ in {
         xkb_options ctrl:nocaps
         xkb_numlock enabled
       }
+      # mac das keyboard
+      input "9456:311:Das_Keyboard_Model_S_Das_Keyboard_Model_S" {
+        xkb_layout us
+        xkb_variant altgr-intl
+        xkb_options ctrl:nocaps
+        xkb_numlock enabled
+      }
 
       input "1133:4123:Logitech_M705" {
         accel_profile adaptive
