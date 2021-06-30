@@ -17,7 +17,7 @@ let
       sha256 = "03bis0d7r7mllimz6byirh94qzn444k0a1l1m6xvndd7riizqy4y";
     };
 
-    cargoSha256 = "1i3hrj6j3grxwxyq2vspc5ijzx6n9bk9riv1kbfw2xgzcif4wccx";
+    cargoSha256 = "0bklj0hzjc22zywp7998pl836a7r7scic14wsxc16pdklwss90cz";
 
     meta = {
       description = "dlux is a tiny daemon for hardware brightness control";

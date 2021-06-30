@@ -7,7 +7,6 @@
     ../../programs/development.nix
     ../../services/desktop.nix
     ../../programs/steam.nix
-    ../../programs/steam.nix
     ../../programs/emacs.nix
     ../../programs/wine.nix
     ../../programs/dlux.nix
@@ -24,23 +23,44 @@
 
   brodes = {
     windowManager = {
-      i3status_rs.blocks = {
-        net = {
-          enable = false;
-          device = "enp5s0";
-        };
+      i3status_rs = {
+        output = ''"Dell Inc. DELL U2415 CFV9N98G0YDS"'';
+        blocks = {
+          net = {
+            enable = true;
+            device = "enp4s0";
+          };
 
-        temperature = {
-          enable = true;
-          device = "zenpower-pci-00c3";
-        };
+          temperature = {
+            enable = true;
+            device = "zenpower-pci-00c3";
+          };
 
-        microphone.enable = true;
+          microphone.enable = true;
+          notify.enable = false;
+
+          weather = {
+            enable = true;
+            autolocate = false;
+            service = ''
+              { name = "openweathermap", place = "Seattle", api_key = "${
+                builtins.readFile ./secrets/openweathermapkey
+              }", units = "imperial" }'';
+          };
+        };
       };
 
       swayidle = {
         enable = true;
         dpms.enable = true;
+
+        lock = {
+          idle = {
+            enable = true;
+            timeout = 6000;
+          };
+          sleep.enable = true;
+        };
       };
     };
 

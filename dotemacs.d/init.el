@@ -41,7 +41,7 @@
  '(auto-revert-remote-files t)
  '(c-label-minimum-indentation 2)
  '(company-idle-delay nil nil nil "Customized with use-package company")
- '(company-tooltip-align-annotations t nil nil "Customized with use-package company")
+ '(company-tooltip-align-annotations t t nil "Customized with use-package company")
  '(compilation-message-face 'default)
  '(css-indent-offset 2)
  '(custom-enabled-themes '(misterioso))

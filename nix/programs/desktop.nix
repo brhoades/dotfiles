@@ -44,6 +44,18 @@
     xfce.thunar
     xfce.xfconf
     xfce.tumbler
+
+    vlc
+    evince
+    calibre
+    libreoffice
+    ffmpeg-full
+    imagemagick
+    gimp
+
+    p7zip
+    unzip
+    ncdu
   ];
 
   gtk = {

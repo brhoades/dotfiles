@@ -60,5 +60,7 @@ in {
         ".solargraph.yml"
       ];
     };
+
+    home.packages = with pkgs; [ delta ];
   };
 }

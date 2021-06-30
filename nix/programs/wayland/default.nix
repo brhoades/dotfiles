@@ -2,7 +2,11 @@
 
 with lib;
 let
-  fonts = [ "FontAwesome 10" "Roboto 12" ];
+  fonts = {
+    names = [ "FontAwesome" "Roboto" ];
+    style = "Condensed";
+    size = 12.0;
+  };
   leftMon = ''"Dell Inc. DELL U2415 CFV9N98G0YDS"'';
   mainMon = ''"Dell Inc. DELL U2720Q F8KFX13"'';
   rightMon = ''"Dell Inc. DELL U2415 CFV9N9890J5S"'';
@@ -79,11 +83,32 @@ in {
 
       output "*" background ${toString ./background.jpeg} fill
 
-      input "type:keyboard" {
+      # https://bugzilla.mozilla.org/show_bug.cgi?id=1652820#c28
+      # don't specify wildcards, do each keyboard
+      input "1241:8211:daskeyboard" {
         xkb_layout us
         xkb_variant altgr-intl
         xkb_options ctrl:nocaps
         xkb_numlock enabled
+      }
+      # x1carbon keyboard
+      input "1:1:AT_Translated_Set_2_keyboard" {
+        xkb_layout us
+        xkb_variant altgr-intl
+        xkb_options ctrl:nocaps
+        xkb_numlock enabled
+      }
+      # mac das keyboard
+      input "9456:311:Das_Keyboard_Model_S_Das_Keyboard_Model_S" {
+        xkb_layout us
+        xkb_variant altgr-intl
+        xkb_options ctrl:nocaps
+        xkb_numlock enabled
+      }
+
+      input "1133:4123:Logitech_M705" {
+        accel_profile adaptive
+        pointer_accel 0.3 # way too zippy
       }
 
       # workspace -> monitor
@@ -101,12 +126,17 @@ in {
       bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
       # big mouse
       bindsym Scroll_Lock exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 0"
-      bindSym --release Scroll_Lock exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
+      bindsym --release Scroll_Lock exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
 
       bindsym F12 exec "swaymsg workspace ${ws3}"
       # bindcode 105+62+96 workspace ${ws3}
       # bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
       # bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
+
+      set $lock_pg ${toString ./background.jpeg}
+
+      bindsym Ctrl+${mod}+l exec "${pkgs.swaylock}/bin/swaylock -i $lock_bg -F"
+
     '';
 
     config = {
@@ -292,6 +322,7 @@ in {
         "XF86AudioLowerVolume" =
           "exec --no-startup-id pactl set-sink-volume 2 -5%";
         "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle";
+        "pause" = "exec --no-startup-id pactl set-sink-mute 0 toggle";
         "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 4";
         "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 4";
 
@@ -321,7 +352,6 @@ in {
   brodes.windowManager.i3status_rs = {
     inherit fonts;
     enable = true;
-    output = leftMon;
     position = "top";
     colors = {
       separator = "#666666";

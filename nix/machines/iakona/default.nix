@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports = [
     ../common.nix
     ../../programs/development.nix
@@ -6,38 +6,48 @@
 
     ../../programs/desktop.nix
     ../../services/desktop.nix
+    ../../services/keybase.nix
   ];
 
   user = {
     name = "Billy J Rhoades II";
     email = "me@brod.es";
-    signing = { key = "6D052A5305F89A0E!"; };
+    signing = { key = "F372D673E3A1FCFA!"; };
   };
 
   brodes = {
-    windowManager.i3status_rs.blocks = {
-      net = {
-        enable = true;
-        device = "wlp0s20f3";
-        format = "{signal_strength} {ssid}";
-      };
+    windowManager.i3status_rs = {
+      # x1 carbon display, eDP-1
+      output = ''"Chimei Innolux Corporation 0x14E4 0x00000000"'';
+      blocks = {
+        net = {
+          enable = true;
+          device = "wlp0s20f3";
+          format = "{signal_strength} {ssid}";
+        };
 
-      battery.enable = true;
+        battery.enable = true;
 
-      temperature = {
-        enable = true;
-        device = "coretemp-isa-0000";
-      };
+        temperature = {
+          enable = true;
+          device = "coretemp-isa-0000";
+        };
 
-      bluetooth = {
-        enable = true;
-        mac = "28:11:A5:35:50:04";
-        label = " QC35";
+        bluetooth = {
+          enable = true;
+          mac = "28:11:A5:35:50:04";
+          label = " QC35";
+        };
       };
     };
   };
 
   home = {
+    packages = with pkgs; [
+      iw # used by i3status_rs to query rates
+      networkmanager # nmtui nmcli
+    ];
+
     username = "aaron";
     homeDirectory = "/home/aaron";
 
