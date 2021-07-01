@@ -26,9 +26,9 @@
     startServices = true;
 
     services.mako = {
-      Install.WantedBy = [ "multi-user.target" ];
-      Install.After = [ "graphical-session.target" ];
       Unit.Description = "start mako to show notifications";
+      Unit.After = [ "graphical-session.target" ];
+      Install.WantedBy = [ "multi-user.target" ];
       Service = {
         Type = "simple";
         ExecStart = "${pkgs.mako}/bin/mako";
