@@ -41,7 +41,7 @@
  '(auto-revert-remote-files t)
  '(c-label-minimum-indentation 2)
  '(company-idle-delay nil nil nil "Customized with use-package company")
- '(company-tooltip-align-annotations t t nil "Customized with use-package company")
+ '(company-tooltip-align-annotations t nil nil "Customized with use-package company")
  '(compilation-message-face 'default)
  '(css-indent-offset 2)
  '(custom-enabled-themes '(misterioso))
@@ -83,8 +83,9 @@
  '(lsp-ui-flycheck-live-reporting :t t nil "Customized with use-package enh-ruby-mode")
  '(magit-diff-use-overlays nil)
  '(notmuch-search-oldest-first nil t nil "Customized with use-package notmuch")
- '(org-agenda-files
-   '("~/work/notes/topics/2021/02-blackholing.org" "~/work/notes/daily/2021-05-27.org" "~/work/notes/topics/syncs/kyle-sync.org" "~/work/notes/topics/syncs/gracie-sync.org" "~/Documents/org/agenda/work.org" "~/Documents/org/agenda/home.org") nil nil "Customized with use-package org")
+ '(org-agenda-files '("/home/aaron/work/notes/agenda/todo.org"))
+ '(org-agenda-loop-over-headlines-in-active-region nil)
+ '(org-agenda-text-search-extra-files '(agenda-archives "/home/aaron/work/notes/daily"))
  '(org-noter-always-create-frame nil)
  '(org-noter-kill-frame-at-session-end nil)
  '(org-roam-capture-templates
@@ -93,7 +94,7 @@
      ("d" "default" plain #'org-roam-capture--get-point "%?" :file-name "%<%Y%m%d%H%M%S>-${slug}" :head "#+title: ${title}
 " :unnarrowed t)))
  '(package-selected-packages
-   '(rg helm-lsp org org-noter org-pdfview pdf-tools evil-collection helm-notmuch notmuch helm-config protobuf-mode lsp-ui lsp-ui-sideline company-go flycheck-rust python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil))
+   '(go-projectile rg helm-lsp org org-noter org-pdfview pdf-tools evil-collection helm-notmuch notmuch helm-config protobuf-mode lsp-ui lsp-ui-sideline company-go flycheck-rust python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil))
  '(pdf-loader-install nil t nil "Customized with use-package pdf-tools")
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
