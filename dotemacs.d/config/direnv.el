@@ -1,4 +1,4 @@
+; If it's blocked, don't tell me
 (use-package direnv
-  :ensure t
-  :config
-  (direnv-mode))
+ :config
+ (add-to-list 'warning-suppress-types '(direnv)))
