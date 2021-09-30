@@ -7,9 +7,9 @@ let
     style = "Condensed";
     size = 12.0;
   };
-  leftMon = ''"Dell Inc. DELL U2415 CFV9N98G0YDS"'';
+  rightMon = ''"Dell Inc. DELL U2415 CFV9N98G0YDS"'';
   mainMon = ''"Dell Inc. DELL U2720Q F8KFX13"'';
-  rightMon = ''"Dell Inc. DELL U2415 CFV9N9890J5S"'';
+  leftMon = ''"Dell Inc. DELL U2415 CFV9N9890J5S"'';
 in {
   imports = [ ./mako.nix ./swayidle.nix ];
 
@@ -47,6 +47,7 @@ in {
     enable = true;
     extraConfig = let
       echo = "${pkgs.busybox}/bin/echo";
+      micDevice = "alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo";
       mute = pkgs.writeShellScriptBin "mute" ''
         touch /tmp/PTT.log
         ${echo} "first $(date +"%T.%3N")" >> /tmp/PTT.log
@@ -61,20 +62,21 @@ in {
       # Some trouble makers
       no_focus [window_role="^[dD]iscord"]
 
-      # left
-      output ${leftMon} pos 0 0
-      output ${leftMon} mode 1920x1200@60Hz
-      output ${leftMon} transform 90
+      # output ${leftMon} pos 0 0
+      # output ${leftMon} mode 1920x1200@60Hz
+      # output ${leftMon} transform 90
 
       # center
-      output ${mainMon} pos 1200 0
+      # output ${mainMon} pos 1200 0
+      output ${mainMon} pos 0 0
       output ${mainMon} mode 3840x2160@59.997002Hz
       output ${mainMon} scale 1.5
 
       # right
       output ${rightMon} mode 1920x1200@60Hz
+      output ${rightMon} transform 90
+      output ${rightMon} pos ${toString (2560)} 0
       # output ${rightMon} pos ${toString (1200 + (3840 / 1.5))} 0
-      output ${rightMon} pos ${toString (3760)} 0
 
       # TV
       # output HDMI-A-1 pos ${toString (1080 + 1200 + 3840)} 0
@@ -129,17 +131,15 @@ in {
       # for discord
       # bindsym Scroll_Lock exec "${pkgs.xautomation}/bin/xte 'keydown XF86AudioPlay'"
       # bindsym --release Scroll_Lock exec "${mute}/bin/mute"
-      # logitech wireles mouse
-      bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 0"
-      bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
-      # big mouse
-      bindsym Scroll_Lock exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 0"
-      bindsym --release Scroll_Lock exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.iec958-stereo 1"
+      # # logitech wireles mouse
+      bindsym --whole-window button9 exec "pactl set-source-mute ${micDevice} 0"
+      bindsym --whole-window --release button9 exec "pactl set-source-mute ${micDevice} 1"
+      # # big mouse
+      bindsym Scroll_Lock exec "pactl set-source-mute ${micDevice} 0"
+      bindsym --release Scroll_Lock exec "pactl set-source-mute ${micDevice} 1"
 
       bindsym F12 exec "swaymsg workspace ${ws3}"
       # bindcode 105+62+96 workspace ${ws3}
-      # bindsym --whole-window button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
-      # bindsym --whole-window --release button9 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
 
       set $lock_pg ${toString ./background.jpeg}
 
