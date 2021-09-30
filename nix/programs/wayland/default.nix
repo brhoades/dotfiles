@@ -124,6 +124,8 @@ in {
       workspace ${ws1}  output ${mainMon}
       workspace ${ws2}  output ${rightMon}
 
+      bindsym Ctrl+${mod}+l exec "${pkgs.swaylock}/bin/swaylock -i $lock_bg -F"
+
       # for discord
       # bindsym Scroll_Lock exec "${pkgs.xautomation}/bin/xte 'keydown XF86AudioPlay'"
       # bindsym --release Scroll_Lock exec "${mute}/bin/mute"
@@ -141,8 +143,6 @@ in {
 
       set $lock_pg ${toString ./background.jpeg}
 
-      bindsym Ctrl+${mod}+l exec "${pkgs.swaylock}/bin/swaylock -i $lock_bg -F"
-
     '';
 
     config = {
@@ -152,7 +152,8 @@ in {
         { command = "Discord"; }
         { command = "signal-desktop"; }
         { command = "thunderbird"; }
-        { command = ''bash -c "MOZ_ENABLE_WAYLAND=1 exec firefox''; }
+        { command = ''bash -c "MOZ_ENABLE_WAYLAND=1 exec firefox"''; }
+        { command = "mako"; }
       ];
 
       assigns = {
