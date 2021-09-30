@@ -8,7 +8,8 @@
     XDG_SESSION_TYPE = "wayland";
   };
 
-  programs.firefox = let unstable = import <nixos-unstable> { };
+  programs.firefox = let
+    overlayedPkgs = import <nixpkgs> { overlays = [(import ../overlays/firefox-overlay.nix)]; };
   in {
     enable = true;
 
@@ -16,7 +17,8 @@
     #   extraNativeMessagingHosts = [ tridactyl-native ];
     #   forceWayland = true;
     # };
-    package = pkgs.firefox-wayland;
+    # package = pkgs.firefox-wayland;
+    package = overlayedPkgs.latest.firefox-nightly-bin;
 
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       ublock-origin
