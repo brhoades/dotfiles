@@ -21,21 +21,6 @@
     icons = false;
   };
 
-  # https://neuron.zettel.page/6479cd5e.html
-  systemd.user = {
-    startServices = true;
-
-    services.mako = {
-      Unit.Description = "start mako to show notifications";
-      Unit.After = [ "graphical-session.target" ];
-      Install.WantedBy = [ "multi-user.target" ];
-      Service = {
-        Type = "simple";
-        ExecStart = "${pkgs.mako}/bin/mako";
-      };
-    };
-  };
-
   home.packages = with pkgs;
     [
       libnotify # notify-send

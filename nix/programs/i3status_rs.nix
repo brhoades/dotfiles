@@ -148,6 +148,25 @@
           default = null;
         };
       };
+
+      backlight = {
+        enable = mkEnableOption "Enable the brightness block";
+
+        device = mkOption {
+          type = types.str;
+          default = "intel_backlight";
+        };
+
+        stepWidth = mkOption {
+          type = types.int;
+          default = 5;
+        };
+
+        invertIcons = mkOption {
+          type = types.bool;
+          default = false;
+        };
+      };
     };
   };
 
@@ -158,6 +177,11 @@
     nmCfg = cfg.blocks.networkmanager;
     btCfg = cfg.blocks.bluetooth;
     batCfg = cfg.blocks.battery;
+    tempCfg = cfg.blocks.temperature;
+    blCfg = cfg.blocks.backlight;
+    micCfg = cfg.blocks.microphone;
+    notifyCfg = cfg.blocks.notify;
+    wthrCfg = cfg.blocks.weather;
 
     netBlock = if !netCfg.enable then
       ""
@@ -211,7 +235,6 @@
 
     '';
 
-    tempCfg = cfg.blocks.temperature;
     tempBlock = if !tempCfg.enable then
       ""
     else ''
@@ -224,7 +247,7 @@
 
     '';
 
-    micBlock = if !cfg.blocks.microphone.enable then
+    micBlock = if !micCfg.enable then
       ""
     else ''
       [[block]]
@@ -246,24 +269,36 @@
     '';
 
     # only supports dunst, not mako
-    notifyBlock = if !cfg.blocks.notify.enable then
+    notifyBlock = if !notifyCfg.enable then
       ""
     else ''
       [[block]]
       block = "notify"
+
     '';
 
     # only supports dunst, not mako
-    weatherBlock = if !cfg.blocks.weather.enable then
+    weatherBlock = if !wthrCfg.enable then
       ""
     else ''
       [[block]]
       block = "weather"
-      format = "${cfg.blocks.weather.format}"
-      ${if cfg.blocks.weather.service == null then
+      format = "${wthrCfg.format}"
+      ${if wthrCfg.service == null then
         ""
       else
-        "service = ${cfg.blocks.weather.service}"}
+        "service = ${wthrCfg.service}"}
+
+    '';
+
+    backlightBlock = if !blCfg.enable then
+      ""
+    else ''
+      [[block]]
+      block = "backlight"
+      device = "${blCfg.device}"
+      step_width = ${toString blCfg.stepWidth}
+      invert_icons = ${if blCfg.invertIcons then "true" else "false"}
 
     '';
 
@@ -281,16 +316,17 @@
       ${tempBlock}
       [[block]]
       block = "cpu"
-      interval = 1
+      interval = 5
 
       [[block]]
       block = "load"
-      interval = 1
+      interval = 15
       format = "{1m}"
 
       [[block]]
       block = "sound"
       device_kind = "sink"
+      ${backlightBlock}
       ${micBlock}
       ${btBlock}
       ${batBlock}

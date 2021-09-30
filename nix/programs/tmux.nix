@@ -23,7 +23,8 @@
 
     plugins = with pkgs.tmuxPlugins; [
       # sensible defaults
-      sensible
+      # messes with XTERM colors? "terminal does not support clear"
+      # sensible
 
       # Show a symbol when prefix is on
       prefix-highlight
@@ -156,6 +157,10 @@
       set -g @continuum-boot 'on'
 
       set -g @override_copy_command '${pkgs.wl-clipboard}/bin/wl-copy'
+
+      set -g default-terminal "screen-256color"
+
+      set  -s escape-time       0
 
       # Theme
       # set -g @themepack 'powerline/block/green'

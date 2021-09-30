@@ -5,6 +5,7 @@
     ../../programs/emacs.nix
 
     ../../programs/desktop.nix
+    ../../programs/steam.nix
     ../../services/desktop.nix
     ../../services/keybase.nix
   ];
@@ -27,6 +28,10 @@
         };
 
         battery.enable = true;
+        backlight = {
+          enable = true;
+          invertIcons = true; # otherwise it's bright when dim
+        };
 
         temperature = {
           enable = true;

@@ -91,6 +91,12 @@ in {
         xkb_options ctrl:nocaps
         xkb_numlock enabled
       }
+      input "9456:320:Metadot_-_Das_Keyboard_Das_Keyboard" {
+        xkb_layout us
+        xkb_variant altgr-intl
+        xkb_options ctrl:nocaps
+        xkb_numlock enabled
+      }
       # x1carbon keyboard
       input "1:1:AT_Translated_Set_2_keyboard" {
         xkb_layout us
@@ -101,7 +107,7 @@ in {
       # mac das keyboard
       input "9456:311:Das_Keyboard_Model_S_Das_Keyboard_Model_S" {
         xkb_layout us
-        xkb_variant altgr-intl
+        xkb_variant mac
         xkb_options ctrl:nocaps
         xkb_numlock enabled
       }
@@ -117,6 +123,8 @@ in {
       workspace ${ws3}  output ${mainMon}
       workspace ${ws1}  output ${mainMon}
       workspace ${ws2}  output ${rightMon}
+
+      bindsym Ctrl+${mod}+l exec "${pkgs.swaylock}/bin/swaylock -i $lock_bg -F"
 
       # for discord
       # bindsym Scroll_Lock exec "${pkgs.xautomation}/bin/xte 'keydown XF86AudioPlay'"
@@ -135,8 +143,6 @@ in {
 
       set $lock_pg ${toString ./background.jpeg}
 
-      bindsym Ctrl+${mod}+l exec "${pkgs.swaylock}/bin/swaylock -i $lock_bg -F"
-
     '';
 
     config = {
@@ -146,7 +152,8 @@ in {
         { command = "Discord"; }
         { command = "signal-desktop"; }
         { command = "thunderbird"; }
-        { command = ''bash -c "MOZ_ENABLE_WAYLAND=1 exec firefox''; }
+        { command = ''bash -c "MOZ_ENABLE_WAYLAND=1 exec firefox"''; }
+        { command = "mako"; }
       ];
 
       assigns = {
