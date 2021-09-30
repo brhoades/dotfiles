@@ -1,10 +1,6 @@
 { pkgs, ... }:
 
 {
-  nixpkgs.config.packageOverrides = _pkgs: {
-    kitty = (import <nixos-unstable-small> { }).kitty;
-  };
-
   programs.kitty = {
     enable = true;
     settings = {
