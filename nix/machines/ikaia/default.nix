@@ -28,7 +28,8 @@
         blocks = {
           net = {
             enable = true;
-            device = "enp4s0";
+            # device = "enp4s0";
+            device = "wlp3s0";
           };
 
           temperature = {
