@@ -41,7 +41,7 @@
  '(auto-revert-remote-files t)
  '(c-label-minimum-indentation 2)
  '(company-idle-delay nil nil nil "Customized with use-package company")
- '(company-tooltip-align-annotations t t nil "Customized with use-package company")
+ '(company-tooltip-align-annotations t nil nil "Customized with use-package company")
  '(compilation-message-face 'default)
  '(css-indent-offset 2)
  '(custom-enabled-themes '(misterioso))
@@ -55,7 +55,6 @@
  '(fci-rule-color "#3C3D37")
  '(flycheck-add-next-checker 'tsx-tide t nil "Customized with use-package flycheck")
  '(flycheck-highlighting-mode 'symbols nil nil "Customized with use-package flycheck")
- '(flycheck-idle-change-delay 1 nil nil "Customized with use-package go-mode")
  '(flymake-mode 0 t)
  '(flymake-start-on-flymake-mode nil)
  '(global-xclip-mode nil nil nil "Customized with use-package xclip")
@@ -74,20 +73,19 @@
      ("#A75B00" . 70)
      ("#F309DF" . 85)
      ("#3C3D37" . 100)))
- '(indent-tabs-mode nil nil nil "Customized with use-package typescript-mode")
- '(js-indent-level 2 t nil "Customized with use-package json-mode")
+ '(js-indent-level 2 nil nil "Customized with use-package json-mode")
  '(js2-strict-trailing-comma-warning nil t)
  '(lsp-flycheck-live-reporting :t)
  '(lsp-java-format-enabled nil)
  '(lsp-java-java-path "/usr/lib/jvm/java-11-openjdk/bin/java")
  '(lsp-java-save-actions-organize-imports nil)
  '(lsp-metals-java-home "/usr/lib/jvm/java-11-openjdk/")
- '(lsp-ui-doc-delay 10.0 nil nil "Customized with use-package lsp-ui")
- '(lsp-ui-flycheck-enable nil t nil "Customized with use-package lsp-ui")
  '(lsp-ui-flycheck-live-reporting :t t nil "Customized with use-package enh-ruby-mode")
- '(lsp-ui-sideline-show-hover :t nil nil "Customized with use-package lsp-ui")
  '(magit-diff-use-overlays nil)
  '(notmuch-search-oldest-first nil t nil "Customized with use-package notmuch")
+ '(org-agenda-files '("/home/aaron/work/notes/agenda/todo.org"))
+ '(org-agenda-loop-over-headlines-in-active-region nil)
+ '(org-agenda-text-search-extra-files '(agenda-archives "/home/aaron/work/notes/daily"))
  '(org-noter-always-create-frame nil)
  '(org-noter-kill-frame-at-session-end nil)
  '(org-roam-capture-templates
@@ -96,7 +94,7 @@
      ("d" "default" plain #'org-roam-capture--get-point "%?" :file-name "%<%Y%m%d%H%M%S>-${slug}" :head "#+title: ${title}
 " :unnarrowed t)))
  '(package-selected-packages
-   '(org org-noter org-pdfview pdf-tools evil-collection helm-notmuch notmuch helm-config protobuf-mode lsp-ui lsp-ui-sideline company-go flycheck-rust python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil))
+   '(go-projectile rg helm-lsp org org-noter org-pdfview pdf-tools evil-collection helm-notmuch notmuch helm-config protobuf-mode lsp-ui lsp-ui-sideline company-go flycheck-rust python-mode company-lsp lsp-mode nix-mode diminish use-package go-autocomplete go-imports go-mode helm-ag projectile-rails evil-magit magit rjsx-mode neotree dockerfile-mode haskell-mode purescript-mode less-css-mode flycheck-pyflakes tide exec-path-from-shell flycheck web-mode js2-mode vue-mode elm-mode helm-smex scala-mode yaml-mode rbenv smex evil-smartparens ruby-hash-syntax timesheet el-get json-mode markdown-mode bug-hunter helm-projectile flx-ido projectile helm evil))
  '(pdf-loader-install nil t nil "Customized with use-package pdf-tools")
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
@@ -109,6 +107,73 @@
  '(ruby-deep-indent-paren nil)
  '(safe-local-variable-values
    '((eval progn
+           (setq projectile-file-exists-remote-cache-expire
+                 (* 60 60))
+           (setq projectile-enable-caching t)
+           (setq projectile-sort-order 'recentf)
+           (setq lsp-file-watch-threshold 5000)
+           (setq whitespace-style
+                 '(trailing))
+           (push "[/\\\\]target" lsp-file-watch-ignored)
+           (push "workingdirs" lsp-file-watch-ignored)
+           (push "go/replace" lsp-file-watch-ignored)
+           (push "[/\\\\]\\.git" lsp-file-watch-ignored)
+           (push "[/\\\\]node_modules" lsp-file-watch-ignored)
+           (push "[/\\\\][^/\\\\]*\\.\\(json\\|html\\|jade\\)$" lsp-file-watch-ignored)
+           (push "[/\\\\]js" lsp-file-watch-ignored)
+           (push "[/\\\\]config" lsp-file-watch-ignored)
+           (push "[/\\\\]sql" lsp-file-watch-ignored)
+           (push "[/\\\\]proto" lsp-file-watch-ignored)
+           (push "[/\\\\]migations" lsp-file-watch-ignored)
+           (push "[/\\\\]secrets" lsp-file-watch-ignored)
+           (push "[/\\\\]tf" lsp-file-watch-ignored)
+           (push "[/\\\\]nix" lsp-file-watch-ignored)
+           (push "[/\\\\]devenv" lsp-file-watch-ignored)
+           (projectile-register-project-type 'go
+                                             '("go.mod")
+                                             :compilation-dir "go/" :compile "go install ./..." :src-dir "go/" :test "go test ..." :run "go test ..." :test-suffix "_test.go"))
+     (eval progn
+           (setq projectile-file-exists-remote-cache-expire
+                 (* 60 60))
+           (setq projectile-enable-caching t)
+           (setq projectile-sort-order 'recentf)
+           (setq whitespace-style
+                 '(trailing))
+           (push "[/\\\\]target" lsp-file-watch-ignored)
+           (push "workingdirs" lsp-file-watch-ignored)
+           (push "go/replace" lsp-file-watch-ignored)
+           (push "[/\\\\]\\.git" lsp-file-watch-ignored)
+           (push "[/\\\\]node_modules" lsp-file-watch-ignored)
+           (push "[/\\\\][^/\\\\]*\\.\\(json\\|html\\|jade\\)$" lsp-file-watch-ignored)
+           (push "[/\\\\]js" lsp-file-watch-ignored)
+           (push "[/\\\\]config" lsp-file-watch-ignored)
+           (push "[/\\\\]sql" lsp-file-watch-ignored)
+           (push "[/\\\\]proto" lsp-file-watch-ignored)
+           (push "[/\\\\]migations" lsp-file-watch-ignored)
+           (push "[/\\\\]secrets" lsp-file-watch-ignored)
+           (push "[/\\\\]tf" lsp-file-watch-ignored)
+           (push "[/\\\\]nix" lsp-file-watch-ignored)
+           (push "[/\\\\]devenv" lsp-file-watch-ignored)
+           (projectile-register-project-type 'go
+                                             '("go.mod")
+                                             :compilation-dir "go/" :compile "go install ./..." :src-dir "go/" :test "go test ..." :run "go test ..." :test-suffix "_test.go"))
+     (eval progn
+           (require 'projectile)
+           (setq projectile-file-exists-remote-cache-expire
+                 (* 60 60))
+           (setq projectile-enable-caching t)
+           (setq projectile-sort-order 'recentf)
+           (setq whitespace-style
+                 '(trailing))
+           (dolist
+               (dir
+                '("target")
+                '("workingdirs"))
+             (push dir lsp-file-watch-ignored))
+           (projectile-register-project-type 'go
+                                             '("go.mod")
+                                             :compilation-dir "go/" :compile "go install ./..." :src-dir "go/" :test "go test ..." :run "go test ..." :test-suffix "_test.go"))
+     (eval progn
            (require 'projectile)
            (setq projectile-file-exists-remote-cache-expire
                  (* 60 60))
@@ -210,7 +275,6 @@
      (projectile-file-exists-remote-cache-expire
       (* 60 60))))
  '(sh-basic-offset 2)
- '(tab-width 4 nil nil "Customized with use-package python-mode")
  '(tide-format-options '(:indentSize 2 :tabSize 2 :baseIndentSize 2))
  '(tool-bar-mode nil)
  '(typescript-indent-level 2 nil nil "Customized with use-package typescript-mode")
@@ -236,11 +300,11 @@
      (340 . "#2790C3")
      (360 . "#66D9EF")))
  '(vc-annotate-very-old-color nil)
- '(web-mode-auto-quote-style 2 t nil "Customized with use-package web-mode")
- '(web-mode-code-indent-offset 2 t nil "Customized with use-package web-mode")
- '(web-mode-css-indent-offset 2 t nil "Customized with use-package web-mode")
- '(web-mode-enable-auto-quoting nil t nil "Customized with use-package web-mode")
- '(web-mode-enable-current-element-highlight t t nil "Customized with use-package web-mode")
+ '(web-mode-auto-quote-style 2 nil nil "Customized with use-package web-mode")
+ '(web-mode-code-indent-offset 2 nil nil "Customized with use-package web-mode")
+ '(web-mode-css-indent-offset 2 nil nil "Customized with use-package web-mode")
+ '(web-mode-enable-auto-quoting nil nil nil "Customized with use-package web-mode")
+ '(web-mode-enable-current-element-highlight t nil nil "Customized with use-package web-mode")
  '(web-mode-html-tag-font-lock-keywords
    '(("\\(</?\\)\\([[\\.:alnum:]]+\\)"
       (1 'web-mode-html-tag-bracket-face)
@@ -248,10 +312,9 @@
      ("\"[^\"]*\"" 0 'web-mode-html-attr-value-face)
      ("\\([[:alnum:]]+\\)" 1 'web-mode-html-attr-name-face)
      ("/?>" 0 'web-mode-html-tag-bracket-face)) t nil "Customized with use-package web-mode")
- '(web-mode-markup-indent-offset 2 t nil "Customized with use-package web-mode")
+ '(web-mode-markup-indent-offset 2 nil nil "Customized with use-package web-mode")
  '(weechat-color-list
-   (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))
- '(whitespace-style '(trailing) nil nil "Customized with use-package go-mode"))
+   (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
 
 ;; automatically clean up bad whitespace
 (setq whitespace-action '(auto-cleanup))
@@ -272,7 +335,7 @@
  ;; If there is more than one, they won't work right.
  '(default ((((class color) (min-colors 89)) (:foreground "#d2cfc6" :background "#292928"))))
  '(flycheck-error ((t (:underline (:color "red" :style wave)))))
- '(org-block-begin-line ((t (:background "#35331D" :foreground "#75715E" :slant italic))))
+ '(org-block-begin-line ((t (:extend t :background "color-52" :foreground "color-69" :slant italic))))
  '(org-code ((t (:inherit org-block :foreground "#EEEEE"))))
  '(org-meta-line ((t (:inherit org-block-begin-line)))))
 

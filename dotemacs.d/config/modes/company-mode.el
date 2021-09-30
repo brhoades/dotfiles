@@ -11,10 +11,3 @@
 										; to show it
   (company-tooltip-align-annotations t))
 
-(use-package company-lsp
-  :ensure t
-  :after (company lsp-mode)
-  :commands company-lsp
-  :custom
-  (company-lsp-cache-candidates t)
-)

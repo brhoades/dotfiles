@@ -27,8 +27,8 @@ in {
 
   # XXX: nix-linter still broken >:(
   nixpkgs.config.packageOverrides = _pkgs: {
-    hnix = hnixPkgs.haskellPackages.hnix;
-    nix-linter = hnixPkgs.nix-linter;
+    # hnix = hnixPkgs.haskellPackages.hnix;
+    # nix-linter = hnixPkgs.nix-linter;
   };
 
   home.packages = with pkgs;
@@ -98,14 +98,14 @@ in {
           #          org
           #          org-noter
           #          org-roam
-          #          pkgs.sqlite
-          #          pkgs.graphviz # org-roam requirement
+          pkgs.sqlite # required to start
+          pkgs.graphviz # org-roam requirement
           #
-          #          pdf-tools
+          pdf-tools
           #
           #          notmuch
           #
-          #          xclip
+           xclip
           #
           #          python-mode
           #
@@ -130,10 +130,10 @@ in {
           #          # undo-fu undo-fu-session
           #          undo-tree
           #
-          #          bind-key
+          bind-key
           #          diminish
           #          exec-path-from-shell
-          #          direnv
+          direnv
           #
           #          json-mode
           #          dockerfile-mode
@@ -161,14 +161,14 @@ in {
           #          # errcheck go-tools unconvert
           #
           #          # if nix
-          #          # nix-linter
+          # nix-linter
           #
           #          # projectile-{ag,rg}
-          #          ag
-          #          ripgrep
+                   ag
+                   ripgrep
           #
           #          # magit
-          #          git
+                   git
         ]);
   };
 }
