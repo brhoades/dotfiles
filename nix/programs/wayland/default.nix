@@ -91,6 +91,12 @@ in {
         xkb_options ctrl:nocaps
         xkb_numlock enabled
       }
+      input "9456:320:Metadot_-_Das_Keyboard_Das_Keyboard" {
+        xkb_layout us
+        xkb_variant altgr-intl
+        xkb_options ctrl:nocaps
+        xkb_numlock enabled
+      }
       # x1carbon keyboard
       input "1:1:AT_Translated_Set_2_keyboard" {
         xkb_layout us
@@ -101,7 +107,7 @@ in {
       # mac das keyboard
       input "9456:311:Das_Keyboard_Model_S_Das_Keyboard_Model_S" {
         xkb_layout us
-        xkb_variant altgr-intl
+        xkb_variant mac
         xkb_options ctrl:nocaps
         xkb_numlock enabled
       }
