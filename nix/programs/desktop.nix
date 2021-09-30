@@ -47,7 +47,6 @@
 
     vlc
     evince
-    calibre
     libreoffice
     ffmpeg-full
     imagemagick
