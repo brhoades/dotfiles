@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 with lib;
 let
@@ -126,7 +126,7 @@ in {
       workspace ${ws1}  output ${mainMon}
       workspace ${ws2}  output ${rightMon}
 
-      bindsym Ctrl+${mod}+l exec "${pkgs.swaylock}/bin/swaylock -i $lock_bg -F"
+      bindsym Ctrl+${mod}+l exec "${config.brodes.windowManager.lockCmd}"
 
       # for discord
       # bindsym Scroll_Lock exec "${pkgs.xautomation}/bin/xte 'keydown XF86AudioPlay'"
@@ -140,8 +140,6 @@ in {
 
       bindsym F12 exec "swaymsg workspace ${ws3}"
       # bindcode 105+62+96 workspace ${ws3}
-
-      set $lock_pg ${toString ./background.jpeg}
 
     '';
 
