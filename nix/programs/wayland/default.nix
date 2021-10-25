@@ -7,9 +7,10 @@ let
     style = "Condensed";
     size = 12.0;
   };
-  rightMon = ''"Dell Inc. DELL U2415 CFV9N98G0YDS"'';
-  mainMon = ''"Dell Inc. DELL U2720Q F8KFX13"'';
-  leftMon = ''"Dell Inc. DELL U2415 CFV9N9890J5S"'';
+  # rightMon = ''"Dell Inc. DELL U2415 CFV9N98G0YDS"'';
+  leftMon = ''"Dell Inc. DELL U2720Q F8KFX13"'';
+  mainMon = ''"Dell Inc. DELL U2917W 0PRH475QA29L"'';
+  rightMon = ''"Dell Inc. DELL U2415 CFV9N9890J5S"'';
 in {
   imports = [ ./mako.nix ./swayidle.nix ];
 
@@ -62,21 +63,21 @@ in {
       # Some trouble makers
       no_focus [window_role="^[dD]iscord"]
 
-      # output ${leftMon} pos 0 0
-      # output ${leftMon} mode 1920x1200@60Hz
+      output ${leftMon} pos 0 0
+      output ${leftMon} mode 3840x2160@59.997002Hz
       # output ${leftMon} transform 90
+      output ${leftMon} scale 1.5
 
       # center
-      # output ${mainMon} pos 1200 0
-      output ${mainMon} pos 0 0
-      output ${mainMon} mode 3840x2160@59.997002Hz
-      output ${mainMon} scale 1.5
+      # output ${mainMon} pos ${toString(3840 / 1.5)} 0
+      output ${mainMon} pos 2560 0
+      output ${mainMon} mode 2560x1080
 
       # right
       output ${rightMon} mode 1920x1200@60Hz
-      output ${rightMon} transform 90
-      output ${rightMon} pos ${toString (2560)} 0
-      # output ${rightMon} pos ${toString (1200 + (3840 / 1.5))} 0
+      output ${rightMon} pos 5120 0
+      # output ${rightMon} transform 90
+      # output ${rightMon} pos ${toString (2560 + 3840 / 1.5)} 0
 
       # TV
       # output HDMI-A-1 pos ${toString (1080 + 1200 + 3840)} 0
