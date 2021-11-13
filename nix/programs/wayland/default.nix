@@ -26,6 +26,8 @@ in {
 
     # remote wayland
     stable.waypipe
+
+    pulseaudioLight
   ];
 
   # This catches rofi, but not sway-launched programs.
