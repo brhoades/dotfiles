@@ -27,6 +27,7 @@
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 2)
+(setq make-backup-files nil)
 
 (setq tramp-default-method "ssh")
 
@@ -43,6 +44,7 @@
  '(company-idle-delay nil nil nil "Customized with use-package company")
  '(company-tooltip-align-annotations t nil nil "Customized with use-package company")
  '(compilation-message-face 'default)
+ '(create-lockfiles nil)
  '(css-indent-offset 2)
  '(custom-enabled-themes '(misterioso))
  '(custom-safe-themes
@@ -83,7 +85,7 @@
  '(lsp-ui-flycheck-live-reporting :t t nil "Customized with use-package enh-ruby-mode")
  '(magit-diff-use-overlays nil)
  '(notmuch-search-oldest-first nil t nil "Customized with use-package notmuch")
- '(org-agenda-files '("/home/aaron/work/notes/agenda/todo.org"))
+ '(org-agenda-files '("/home/aaron/work/notes/agenda/todo.org") nil nil "Customized with use-package org")
  '(org-agenda-loop-over-headlines-in-active-region nil)
  '(org-agenda-text-search-extra-files '(agenda-archives "/home/aaron/work/notes/daily"))
  '(org-noter-always-create-frame nil)
@@ -106,7 +108,8 @@
  '(ruby-deep-arglist nil)
  '(ruby-deep-indent-paren nil)
  '(safe-local-variable-values
-   '((eval progn
+   '((helm-ff-avfs-directory . "~/.avfs")
+     (eval progn
            (setq projectile-file-exists-remote-cache-expire
                  (* 60 60))
            (setq projectile-enable-caching t)
