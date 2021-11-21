@@ -123,11 +123,11 @@ in {
       }
 
       # workspace -> monitor
-      workspace ${ws4}  output ${leftMon}
-      workspace ${ws10} output ${leftMon}
+      workspace ${ws4}  output ${rightMon}
+      workspace ${ws10} output ${rightMon}
       workspace ${ws3}  output ${mainMon}
       workspace ${ws1}  output ${mainMon}
-      workspace ${ws2}  output ${rightMon}
+      workspace ${ws2}  output ${leftMon}
 
       bindsym Ctrl+${mod}+l exec "${config.brodes.windowManager.lockCmd}"
 
