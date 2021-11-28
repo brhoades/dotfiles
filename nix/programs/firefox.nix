@@ -13,11 +13,6 @@
   in {
     enable = true;
 
-    # package = with unstableSm; wrapFirefox innerPkg {
-    #   extraNativeMessagingHosts = [ tridactyl-native ];
-    #   forceWayland = true;
-    # };
-    # package = pkgs.firefox-wayland;
     package = overlayedPkgs.latest.firefox-nightly-bin;
 
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
