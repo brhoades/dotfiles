@@ -9,7 +9,9 @@
   };
 
   programs.firefox = let
-    overlayedPkgs = import <nixpkgs> { overlays = [(import ../overlays/firefox-overlay.nix)]; };
+    overlayedPkgs = import <nixpkgs> {
+      overlays = [ (import ../overlays/firefox-overlay.nix) ];
+    };
   in {
     enable = true;
 

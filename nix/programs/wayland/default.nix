@@ -50,7 +50,8 @@ in {
     enable = true;
     extraConfig = let
       echo = "${pkgs.busybox}/bin/echo";
-      micDevice = "alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo";
+      micDevice =
+        "alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo";
       mute = pkgs.writeShellScriptBin "mute" ''
         touch /tmp/PTT.log
         ${echo} "first $(date +"%T.%3N")" >> /tmp/PTT.log
@@ -71,7 +72,7 @@ in {
       output ${leftMon} scale 1.5
 
       # center
-      # output ${mainMon} pos ${toString(3840 / 1.5)} 0
+      # output ${mainMon} pos ${toString (3840 / 1.5)} 0
       output ${mainMon} pos 2560 0
       output ${mainMon} mode 2560x1080
 

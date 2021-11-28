@@ -1,7 +1,5 @@
 { config, pkgs, lib, ... }: {
-  imports = [
-    ./swaylock.nix
-  ];
+  imports = [ ./swaylock.nix ];
 
   options.brodes.windowManager.swayidle = with lib; {
     enable = mkEnableOption "Enable swayidle on sway start";
@@ -50,18 +48,9 @@
     idleLock = if !cfg.lock.idle.enable then
       [ ]
     else
-      [
-        ''
-          timeout ${
-            toString cfg.lock.idle.timeout
-          } "${lockCmd}"''
-      ];
-    sleepLock = if !cfg.lock.sleep.enable then
-      [ ]
-    else
-      [
-        ''before-sleep "${lockCmd}"''
-      ];
+      [ ''timeout ${toString cfg.lock.idle.timeout} "${lockCmd}"'' ];
+    sleepLock =
+      if !cfg.lock.sleep.enable then [ ] else [ ''before-sleep "${lockCmd}"'' ];
     dpms = if !cfg.dpms.enable then
       [ ]
     else [
@@ -71,8 +60,7 @@
     invocation = lib.concatStringsSep " \\\n"
       ([ "exec ${cfg.pkg}/bin/swayidle -w" ] ++ dpms ++ sleepLock ++ idleLock);
 
-
-  # bindsym Ctrl+${mod}+l exec 
+    # bindsym Ctrl+${mod}+l exec 
   in lib.mkIf enabled {
     extraConfig = lib.mkAfter ''
       for_window [app_id="firefox"] inhibit_idle fullscreen

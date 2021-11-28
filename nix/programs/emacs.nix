@@ -26,10 +26,11 @@ in {
   };
 
   # XXX: nix-linter still broken >:(
-  nixpkgs.config.packageOverrides = _pkgs: {
-    # hnix = hnixPkgs.haskellPackages.hnix;
-    # nix-linter = hnixPkgs.nix-linter;
-  };
+  nixpkgs.config.packageOverrides = _pkgs:
+    {
+      # hnix = hnixPkgs.haskellPackages.hnix;
+      # nix-linter = hnixPkgs.nix-linter;
+    };
 
   home.packages = with pkgs;
     [
@@ -62,8 +63,7 @@ in {
     # only defined in .el files.
     extraPackages = with pkgs;
       (epkgs:
-        with epkgs;
-        [
+        with epkgs; [
           use-package
 
           #          tide
@@ -105,7 +105,7 @@ in {
           #
           #          notmuch
           #
-           xclip
+          xclip
           #
           #          python-mode
           #
@@ -164,11 +164,11 @@ in {
           # nix-linter
           #
           #          # projectile-{ag,rg}
-                   ag
-                   ripgrep
+          ag
+          ripgrep
           #
           #          # magit
-                   git
+          git
         ]);
   };
 }

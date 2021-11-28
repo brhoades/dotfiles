@@ -284,10 +284,7 @@
       [[block]]
       block = "weather"
       format = "${wthrCfg.format}"
-      ${if wthrCfg.service == null then
-        ""
-      else
-        "service = ${wthrCfg.service}"}
+      ${if wthrCfg.service == null then "" else "service = ${wthrCfg.service}"}
 
     '';
 

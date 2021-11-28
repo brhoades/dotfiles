@@ -13,10 +13,11 @@
 
     };
 
-    lockCmd = with lib; mkOption {
-      type = types.nullOr types.str;
-      default = null;
-    };
+    lockCmd = with lib;
+      mkOption {
+        type = types.nullOr types.str;
+        default = null;
+      };
   };
 
   config.brodes.windowManager.lockCmd = let

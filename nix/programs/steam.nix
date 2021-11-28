@@ -1,6 +1,7 @@
-{ pkgs, ... }: let
+{ pkgs, ... }:
+let
 
-      smlpkgs = import <nixos-unstable-small> {};
+  smlpkgs = import <nixos-unstable-small> { };
 in {
   nixpkgs.config.packageOverrides = pkgs: {
     steam = (pkgs.steam.override {
