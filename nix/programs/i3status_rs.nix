@@ -83,7 +83,7 @@
 
         format = mkOption {
           type = types.nullOr types.str;
-          default = "{percentage}% {time}";
+          default = "{percentage} {time}";
         };
 
         interval = mkOption {
