@@ -92,6 +92,15 @@
     "*.dpi" = 96;
     "Xft.antialias" = true;
     # "Xft.hinting" = 1;
+    "XTerm.vt100.saveLines" = 81920;
+    "XTerm.vt100.foreground" = "white";
+    "XTerm.vt100.background" = "black";
+    "XTerm*faceName" = "Fira Code";
+    "*.vt100.metaSendsEscape" = "true"; # allow alt
+    "XTerm*vt100.translations" = ''#override \
+    Shift Ctrl <Key> C: copy-selection(CLIPBOARD) \n\
+    Shift Ctrl <Key> V: insert-selection(CLIPBOARD)'';
+    "xterm.*backarrowKey" = "false";
   };
 
   xsession = {
