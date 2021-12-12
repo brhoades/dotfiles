@@ -100,7 +100,7 @@
     "XTerm*vt100.translations" = ''#override \
     Shift Ctrl <Key> C: copy-selection(CLIPBOARD) \n\
     Shift Ctrl <Key> V: insert-selection(CLIPBOARD)'';
-    "xterm.*backarrowKey" = "false";
+    "XTerm.*backarrowKey" = "false";
   };
 
   xsession = {

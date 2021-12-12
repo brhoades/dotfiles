@@ -3,6 +3,9 @@
 {
   programs.kitty = {
     enable = true;
+
+    # having issues with fonts after an update?
+    # fc-cache -rf  to reset. kitty is sensitive.
     settings = {
       font_family = "FiraCode";
       bold_font = "auto";
