@@ -82,7 +82,6 @@
 
       # https://github.com/davatorium/rofi/wiki/WindowPosition
       position = 6;
-      monitor = -4;
     };
   };
 
