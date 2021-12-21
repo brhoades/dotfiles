@@ -10,6 +10,8 @@ dotzprezto/modules/*
 /dotemacs.d/.cache
 /dotemacs.d/emojis
 /dotemacs.d/workspace
+/dotemacs.d/bookmarks
+/dotemacs.d/url/
 *personal*
 /dotemacs.d/ede-projects.el
 
@@ -33,3 +35,8 @@ dotconfig/i3/i3status-rs.toml
 /nix/home.nix
 nix/config.nix
 **/secrets/
+
+# secret-ish
+nix/programs/dlux.yaml
+nix/programs/bup.nix
+scripts/mail
