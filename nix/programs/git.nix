@@ -43,6 +43,8 @@ in {
         credential = { helper = "cache --timeout=28800"; };
 
         merge = { tool = "ediff"; };
+        
+        pull.ff = "only";
 
         "protocol \"keybase\"" = { allow = "always"; };
       };
