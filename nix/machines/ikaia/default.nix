@@ -24,7 +24,7 @@
   brodes = {
     windowManager = {
       i3status_rs = {
-        output = ''"Dell Inc. DELL U2415 CFV9N98G0YDS"'';
+        output = ''"Dell Inc. DELL U2917W 0PRH475QA29L"'';
         blocks = {
           net = {
             enable = true;
