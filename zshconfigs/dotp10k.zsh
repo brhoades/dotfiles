@@ -34,6 +34,7 @@
     os_icon                 # os identifier
     dir                     # current directory
     vcs                     # git status
+    ngrok_env
     # prompt_char           # prompt symbol
   )
 
@@ -54,14 +55,14 @@
     nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
     nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
     nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
-    node_version          # node.js version
-    go_version            # go version (https://golang.org)
-    rust_version          # rustc version (https://www.rust-lang.org)
+    # node_version          # node.js version
+    # go_version            # go version (https://golang.org)
+    # rust_version          # rustc version (https://www.rust-lang.org)
     # dotnet_version        # .NET version (https://dotnet.microsoft.com)
     # php_version           # php version (https://www.php.net/)
     # laravel_version       # laravel php framework version (https://laravel.com/)
     # java_version          # java version (https://www.java.com/)
-    package               # name@version from package.json (https://docs.npmjs.com/files/package.json)
+    # package               # name@version from package.json (https://docs.npmjs.com/files/package.json)
     rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
     rvm                     # ruby version from rvm (https://rvm.io)
     fvm                     # flutter version management (https://github.com/leoafarias/fvm)
@@ -83,7 +84,7 @@
     nnn                     # nnn shell (https://github.com/jarun/nnn)
     vim_shell               # vim shell indicator (:sh)
     midnight_commander      # midnight commander shell (https://midnight-commander.org/)
-    nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
+    # nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
     vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
     # vpn_ip                # virtual private network indicator
     # load                  # CPU load
@@ -1500,6 +1501,46 @@
   # This works even with POWERLEVEL9K_DISABLE_HOT_RELOAD=true.
   (( ! $+functions[p10k] )) || p10k reload
 }
+
+  # Example of a user-defined prompt segment. Function prompt_example will be called on every
+  # prompt if `example` prompt segment is added to POWERLEVEL9K_LEFT_PROMPT_ELEMENTS or
+  # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS. It displays an icon and orange text greeting the user.
+  #
+  # Type `p10k help segment` for documentation and a more sophisticated example.
+  function prompt_ngrok_env() {
+    BGCOLOR=
+    FGCOLOR=white
+
+    case $NGROK_ENV in
+      local)
+        FGCOLOR=white
+        ;;
+      dev)
+        BGCOLOR=yellow
+        FGCOLOR=yellow
+        ;;
+      stage)
+        FGCOLOR=yellow
+        BGCOLOR=yellow
+        ;;
+      prod)
+        BGCOLOR=red
+        FGCOLOR=red
+        ;;
+      *)
+        BGCOLOR=white
+        FGCOLOR=black
+        ;;
+    esac
+    # -i '⭐' for an icon someday
+    if [[ ! -z "$BGCOLOR" ]] && [[ ! -z "$FGCOLOR" ]]; then
+      p10k segment -f $FGCOLOR -b $BGCOLOR -t "$NGROK_ENV"
+    elif [[ ! -z "$BGCOLOR" ]]; then
+      p10k segment -b $BGCOLOR -t "$NGROK_ENV"
+    else 
+      p10k segment -f $FGCOLOR -t "$NGROK_ENV"
+    fi
+  }
 
 # Tell `p10k configure` which file it should overwrite.
 typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
