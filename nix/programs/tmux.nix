@@ -160,7 +160,12 @@
 
       set -g default-terminal "screen-256color"
 
+      # When set to default, was causing control to have a massive delay.
+      # Zero purportedly affects other keys but I've not noticed.
       set  -s escape-time       0
+
+      set -g update-environment "WAYLAND_DISPLAY \
+                                "
 
       # Theme
       # set -g @themepack 'powerline/block/green'
