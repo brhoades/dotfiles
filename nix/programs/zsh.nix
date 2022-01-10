@@ -149,7 +149,6 @@ in {
       # Do not store "history" in the history list
       setopt HIST_NO_STORE
 
-
       (( ! ''${+functions[p10k]} )) || p10k finalize
     '';
 
