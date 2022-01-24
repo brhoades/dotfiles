@@ -40,6 +40,7 @@
    [default default default italic underline success warning error])
  '(auto-composition-mode nil t nil "Customized with use-package helm")
  '(auto-revert-remote-files t)
+ '(c-basic-offset 2)
  '(c-label-minimum-indentation 2)
  '(company-idle-delay nil nil nil "Customized with use-package company")
  '(company-tooltip-align-annotations t nil nil "Customized with use-package company")

@@ -55,6 +55,8 @@
     p7zip
     unzip
     ncdu
+
+    qmk
   ];
 
   gtk = {
@@ -96,9 +98,10 @@
     "XTerm.vt100.background" = "black";
     "XTerm*faceName" = "Fira Code";
     "*.vt100.metaSendsEscape" = "true"; # allow alt
-    "XTerm*vt100.translations" = ''#override \
-    Shift Ctrl <Key> C: copy-selection(CLIPBOARD) \n\
-    Shift Ctrl <Key> V: insert-selection(CLIPBOARD)'';
+    "XTerm*vt100.translations" = ''
+      #override \
+          Shift Ctrl <Key> C: copy-selection(CLIPBOARD) \n\
+          Shift Ctrl <Key> V: insert-selection(CLIPBOARD)'';
     "XTerm.*backarrowKey" = "false";
   };
 

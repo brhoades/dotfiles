@@ -6,7 +6,10 @@
                                  (expand-file-name "/usr/include/Box2D/")
                                  (expand-file-name "/usr/include/GL/")
                            )
-                           flycheck-gcc-language-standard "c++11")))
+                           flycheck-gcc-language-standard "c++11"
+                           (setq-default c-default-style "k&r")
+                           (setq-default c-basic-offset 2)
+                           )))
 
 (add-hook 'c++-mode-hook (lambda () (setq flycheck-disabled-checkers '(c/c++-clang))))
 

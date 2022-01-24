@@ -169,6 +169,9 @@ in {
           #
           #          # magit
           git
+
+          cppcheck # cpp-mode
+          clang # cpp-mode
         ]);
   };
 }

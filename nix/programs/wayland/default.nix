@@ -145,6 +145,11 @@ in {
       bindsym F12 exec "swaymsg workspace ${ws3}"
       # bindcode 105+62+96 workspace ${ws3}
 
+      # window behavior overrides
+      for_window [window_type="notification"] toggle floating
+      # reminders
+      for_window [title="^[0-9]+ Reminders?$" app_id="thunderbird"] toggle floating
+
     '';
 
     config = {
