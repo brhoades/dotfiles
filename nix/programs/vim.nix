@@ -9,16 +9,16 @@
     plugins = let
       # unstable nixpkgs has airline woes
       # unstable = pkgs.vimPlugins;
-      unstable = (import <nixos-unstable-small> { }).vimPlugins;
-    in [
-      unstable.YouCompleteMe
-      unstable.syntastic
-      unstable.fugitive
-      unstable.airline
-      unstable.ctrlp
-      unstable.ctrlp
-      # unstable.SimplyFold
-      unstable.vim-nix
+      # unstable = (import <nixos-unstable-small> { }).vimPlugins;
+    in with pkgs.vimPlugins; [
+      YouCompleteMe
+      syntastic
+      fugitive
+      airline
+      ctrlp
+      ctrlp
+      # SimplyFold
+      vim-nix
     ];
 
     extraConfig = ''
