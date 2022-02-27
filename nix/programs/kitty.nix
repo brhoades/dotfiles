@@ -3,6 +3,7 @@
 {
   programs.kitty = {
     enable = true;
+    package = pkgs.kitty;
 
     # having issues with fonts after an update?
     # fc-cache -rf  to reset. kitty is sensitive.

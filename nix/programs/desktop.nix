@@ -47,7 +47,7 @@
 
     vlc
     evince
-    libreoffice
+    # libreoffice 2022/02/27 - broken
     ffmpeg-full
     imagemagick
     gimp

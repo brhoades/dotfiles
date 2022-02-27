@@ -15,8 +15,7 @@ in {
   imports = [ ./mako.nix ./swayidle.nix ];
 
   # wayland-only packages
-  home.packages = let stable = import <nixos-20.03> { };
-  in with pkgs; [
+  home.packages = with pkgs; [
     grim
     slurp # scrot-like behavior
 
@@ -24,8 +23,7 @@ in {
 
     (import ./schway.nix)
 
-    # remote wayland
-    stable.waypipe
+    waypipe
 
     pulseaudioLight
   ];
@@ -147,7 +145,7 @@ in {
 
       # window behavior overrides
       for_window [window_type="notification"] toggle floating
-      # reminders
+      # thunderbird reminders
       for_window [title="^[0-9]+ Reminders?$" app_id="thunderbird"] toggle floating
 
     '';

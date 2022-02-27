@@ -26,12 +26,12 @@ let
     };
   };
 in {
-  systemd.user.services.dlux = {
-    Unit = { Description = "dlux monitor brightness control daemon"; };
+  # systemd.user.services.dlux = {
+  # Unit = { Description = "dlux monitor brightness control daemon"; };
 
-    Service = {
-      Type = "simple";
-      ExecStart = "${dlux}/bin/dlux daemon ${./dlux.yaml}";
-    };
-  };
+  # Service = {
+  # Type = "simple";
+  # ExecStart = "${dlux}/bin/dlux daemon ${./dlux.yaml}";
+  # };
+  # };
 }
