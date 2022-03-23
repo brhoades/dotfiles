@@ -98,6 +98,7 @@ in {
           #          org
           #          org-noter
           #          org-roam
+          pkgs.metals
           pkgs.sqlite # required to start
           pkgs.graphviz # org-roam requirement
           #
