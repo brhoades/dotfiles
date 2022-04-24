@@ -33,7 +33,7 @@
     tmux
     screen
 
-    telnet
+    inetutils
     htop
     iotop
     lsof
