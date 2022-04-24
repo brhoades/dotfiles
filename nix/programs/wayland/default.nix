@@ -25,7 +25,7 @@ in {
 
     waypipe
 
-    pulseaudioLight
+    pulseaudio
   ];
 
   # This catches rofi, but not sway-launched programs.

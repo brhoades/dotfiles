@@ -7,7 +7,7 @@ let
     version = "0.1.2";
     name = "${pname}-${version}b";
 
-    nativeBuildInputs = [ libudev pkgconfig ];
+    nativeBuildInputs = [ udev pkgconfig ];
     buildInputs = nativeBuildInputs;
 
     src = fetchFromGitHub {
