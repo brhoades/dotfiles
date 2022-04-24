@@ -28,13 +28,18 @@
         blocks = {
           net = {
             enable = true;
-            # device = "enp4s0";
-            device = "wlp3s0";
+            device = "enp4s0";
           };
 
           temperature = {
             enable = true;
             device = "zenpower-pci-00c3";
+          };
+
+          bluetooth = {
+            enable = true;
+            mac = "28:11:A5:35:50:04";
+            label = "QC35";
           };
 
           microphone.enable = true;
