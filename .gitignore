@@ -38,5 +38,4 @@ nix/config.nix
 
 # secret-ish
 nix/programs/dlux.yaml
-nix/programs/bup.nix
 scripts/mail
