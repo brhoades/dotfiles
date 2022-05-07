@@ -21,7 +21,7 @@ in {
 
     wl-clipboard # xclip-like behavior
 
-    (import ./schway.nix)
+    import ./schway.nix { inherit pkgs; }
 
     waypipe
 

@@ -1,6 +1,5 @@
-with import <nixpkgs> { };
-
-stdenv.mkDerivation rec {
+{ pkgs }:
+with pkgs; stdenv.mkDerivation rec {
   name = "schway-${version}";
   version = "0.1";
 
