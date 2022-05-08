@@ -11,8 +11,8 @@
   programs.firefox = {
     enable = true;
 
-    # package = overlayedPkgs.latest.firefox-nightly-bin;
-    package = pkgs.latest.firefox-nightly-bin;
+    # XXX: go back to nightly if wayland paste issues return
+    # package = pkgs.inputs.firefox-nightly.latest;
 
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       ublock-origin

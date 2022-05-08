@@ -1,14 +1,10 @@
-{ pkgs, ... }:
-let
-
-  smlpkgs = import <nixos-unstable-small> { };
-in {
+{ pkgs, ... }: {
   nixpkgs.config.packageOverrides = pkgs: {
     steam = (pkgs.steam.override {
       nativeOnly = true; # use nixos-provided libraries, not steam's.
-      extraPkgs = (_: with smlpkgs; [ mono gtk3 gtk3-x11 libgdiplus zlib ]);
+      extraPkgs = (_: with pkgs; [ mono gtk3 gtk3-x11 libgdiplus zlib ]);
     });
   };
 
-  home.packages = with smlpkgs; [ steam ];
+  home.packages = [ pkgs.inputs.latest.steam ];
 }

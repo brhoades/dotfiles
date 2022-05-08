@@ -1,6 +1,8 @@
-{ ... }: {
-  home.packages = with (import <nixos-unstable> { }); [
-    wineWowPackages.stable
-    winetricks
-  ];
+{ pkgs, ... }:
+{
+  /* home.packages = with (import pkgs.inputs.latest {}); [
+       wineWowPackages.stable
+       winetricks
+     ];
+  */
 }

@@ -10,8 +10,8 @@
       flake = false;
     };
 
-    firefox-nightly.url =
-      "https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz";
+    # upstream firefox-nightly has an unpinned json fetch
+    firefox-nightly.url = "github:colemickens/flake-firefox-nightly";
 
     nur.url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
 
@@ -22,22 +22,52 @@
   outputs = inputs@{ self, nixpkgs, latest, user-secrets, firefox-nightly, nur
     , home-manager }: rec {
       inherit self inputs;
-      overlays = [ firefox-nightly.overlay nur.overlay ];
+      system = "x86_64-linux";
+      overlays = [
+        nur.overlay
+        (_: _: {
+          # allow home-manager to access secrets and latest
+          inputs = {
+            inherit user-secrets system firefox-nightly;
+            latest = import latest {
+              system = self.system;
+              config.allowUnfreePredicate = (pkg: true);
+            };
+          };
+        })
+      ];
       lib = import ./nix/lib { inherit nixpkgs home-manager overlays; };
       profiles = {
-        ikaia = import ./nix/machines/ikaia;
-        ioane = import ./nix/machines/ioane;
+        ikaia = _: {
+          imports = [
+            {
+              # nixos
+              nixpkgs.overlays = overlays;
+            }
+            ./nix/machines/ikaia
+          ];
+        };
+        ioane = _: {
+          imports = [
+            {
+              # nixos
+              nixpkgs.overlays = overlays;
+            }
+            ./nix/machines/ioane
+          ];
+        };
       };
 
-      homeConfigurations = {
-        ikaia = lib.homeConfigurationFromProfile profiles.ikaia {
-          system = "x86_64-linux";
-        };
+      homeConfigurations = rec {
+        aaron = ikaia;
+        # this lets home-manager --flake '.#' work, but it isn't permanent
+        "" = ikaia;
+        ikaia =
+          lib.homeConfigurationFromProfile profiles.ikaia { inherit system; };
 
         # The default configuration is just the minimal profile
-        ioane = lib.homeConfigurationFromProfile profiles.ioane {
-          system = "x86_64-linux";
-        };
+        ioane =
+          lib.homeConfigurationFromProfile profiles.ioane { inherit system; };
       };
     };
 }

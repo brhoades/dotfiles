@@ -1,14 +1,39 @@
 {
   "nodes": {
-    "firefox-nightly": {
+    "cachix": {
       "locked": {
-        "narHash": "sha256-sroCK+QJTmoXtcRkwZyKOP9iAYOPID2Bwdxn4GkG16w=",
-        "type": "tarball",
-        "url": "https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz"
+        "lastModified": 1635350005,
+        "narHash": "sha256-tAMJnUwfaDEB2aa31jGcu7R7bzGELM9noc91L2PbVjg=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "1c1f5649bb9c1b0d98637c8c365228f57126f361",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz"
+        "owner": "nixos",
+        "ref": "nixos-20.09",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "firefox-nightly": {
+      "inputs": {
+        "cachix": "cachix",
+        "mozilla": "mozilla",
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1652023103,
+        "narHash": "sha256-mN0PVlPsdYhJ5+Ts9oY+7ntsBakjrzYRhnFJGm5EWYE=",
+        "owner": "colemickens",
+        "repo": "flake-firefox-nightly",
+        "rev": "bb1bbdd3e85347a0994e0b923549216c6e677ea0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "colemickens",
+        "repo": "flake-firefox-nightly",
+        "type": "github"
       }
     },
     "home-manager": {
@@ -48,7 +73,39 @@
         "type": "github"
       }
     },
+    "mozilla": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1651008893,
+        "narHash": "sha256-N6xPE/wNynlKhDSGxvYKkX9PJFsENIXR/RMVc9NzILU=",
+        "owner": "colemickens",
+        "repo": "nixpkgs-mozilla",
+        "rev": "dac859ea535d8abcd2146346d1dca1ee8fc50210",
+        "type": "github"
+      },
+      "original": {
+        "owner": "colemickens",
+        "repo": "nixpkgs-mozilla",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
+      "locked": {
+        "lastModified": 1651726670,
+        "narHash": "sha256-dSGdzB49SEvdOJvrQWfQYkAefewXraHIV08Vz6iDXWQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "c777cdf5c564015d5f63b09cc93bef4178b19b01",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1651865313,
         "narHash": "sha256-fLnmcBaVpJukNIzXZETxtJKLSSTf4LnBCWa/DwyGJBU=",
@@ -80,7 +137,7 @@
         "firefox-nightly": "firefox-nightly",
         "home-manager": "home-manager",
         "latest": "latest",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nur": "nur",
         "user-secrets": "user-secrets"
       }
@@ -88,7 +145,7 @@
     "user-secrets": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-pQpattmS9VmO3ZIQUFn66az8GSmB4IvYhTTCFn6SUmo=",
+        "narHash": "sha256-rAZqy/RzZgn94E4wWe1Hw6RW4d80pzXJdm9yE9pbvcA=",
         "path": "/var/lib/secrets/users/aaron",
         "type": "path"
       },

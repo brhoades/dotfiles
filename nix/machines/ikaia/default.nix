@@ -50,7 +50,8 @@
             autolocate = false;
             service = ''
               { name = "openweathermap", place = "Seattle", api_key = "${
-                builtins.readFile ./secrets/openweathermapkey
+                builtins.readFile
+                "${pkgs.inputs.user-secrets}/openweathermapkey"
               }", units = "imperial" }'';
           };
         };
@@ -72,7 +73,7 @@
 
     xdgHack = {
       enable = true;
-      configFile = ./secrets/xdghack.json;
+      configFile = "${pkgs.inputs.user-secrets}/xdghack.json";
     };
   };
 
