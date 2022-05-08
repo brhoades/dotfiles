@@ -13,7 +13,7 @@
     # upstream firefox-nightly has an unpinned json fetch
     firefox-nightly.url = "github:colemickens/flake-firefox-nightly";
 
-    nur.url = "https://github.com/nix-community/NUR/archive/master.tar.gz";
+    nur.url = "github:nix-community/NUR";
 
     home-manager.url = "github:nix-community/home-manager/release-21.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

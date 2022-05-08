@@ -123,13 +123,17 @@
     },
     "nur": {
       "locked": {
-        "narHash": "sha256-34INXwR19K2zvUTIJSnoyKoH2BRjycyIqxqhyfzLhaI=",
-        "type": "tarball",
-        "url": "https://github.com/nix-community/NUR/archive/master.tar.gz"
+        "lastModified": 1652034323,
+        "narHash": "sha256-gcdkE+h9Ib/CRV7PKj+GjiRBLskO+Cn61ldH4rD9/sg=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "8bbefa7e35a8685ef0a7d759ea7da47d6969b991",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://github.com/nix-community/NUR/archive/master.tar.gz"
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
       }
     },
     "root": {
