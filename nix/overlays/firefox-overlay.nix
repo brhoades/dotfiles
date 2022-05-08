@@ -3,6 +3,7 @@ let
   # moz-rev = "master";
   moz-ref = "e1f7540";
   moz-url = builtins.fetchTarball {
+    # XXX: move into flake
     url =
       "https://github.com/mozilla/nixpkgs-mozilla/archive/${moz-rev}.tar.gz";
     sha256 = "0wlmf82p93py1vk89j4pv9c92is9zpr9va3f0xwqlh3l2j5nkl1i";
