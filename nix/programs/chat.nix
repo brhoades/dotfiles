@@ -1,12 +1,6 @@
 { pkgs, ... }:
 
 {
-  nixpkgs.config.packageOverrides = pkgs: {
-    # XXX: discord update breaks everything.
-    # discord = import ../../../nixpkgs/pkgs/applications/networking/instant-messengers/discord { inherit pkgs; };
-    discord = (import <nixos-unstable-small> { }).discord;
-  };
-
   nixpkgs.overlays = [
     (self: super: {
       weechat = super.weechat.override {

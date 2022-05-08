@@ -1,6 +1,6 @@
 {
   imports = [ ./options.nix ];
 
-  nixpkgs.config = import ./nixpkgs-config.nix;
-  xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
+  nixpkgs.config = { allowUnfree = true; };
+  xdg.configFile."nixpkgs/config.nix".source = { allowUnfree = true; };
 }

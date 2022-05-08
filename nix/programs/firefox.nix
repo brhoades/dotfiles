@@ -8,14 +8,11 @@
     XDG_SESSION_TYPE = "wayland";
   };
 
-  programs.firefox = let
-    overlayedPkgs = import <nixpkgs> {
-      overlays = [ (import ../overlays/firefox-overlay.nix) ];
-    };
-  in {
+  programs.firefox = {
     enable = true;
 
-    package = overlayedPkgs.latest.firefox-nightly-bin;
+    # package = overlayedPkgs.latest.firefox-nightly-bin;
+    package = pkgs.latest.firefox-nightly-bin;
 
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       ublock-origin
