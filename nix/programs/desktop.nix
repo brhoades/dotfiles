@@ -67,7 +67,9 @@
     };
   };
 
-  fonts.fontconfig.enable = true;
+  # FIXME: disabled due to conflict in nixos flake?
+  # There is no conflict though...
+  # fonts.fontconfig.enable = true;
 
   programs.rofi = {
     enable = true;
