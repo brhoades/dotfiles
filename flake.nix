@@ -38,6 +38,15 @@
       ];
       lib = import ./nix/lib { inherit nixpkgs home-manager overlays; };
       profiles = {
+        root = _: {
+          imports = [
+            {
+              # nixos
+              nixpkgs.overlays = overlays;
+            }
+            ./nix/profiles/root.nix
+          ];
+        };
         ikaia = _: {
           imports = [
             {
