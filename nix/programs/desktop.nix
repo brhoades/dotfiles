@@ -57,6 +57,8 @@
     ncdu
 
     qmk
+
+    pkgs.inputs.latest.zoom-us
   ];
 
   gtk = {
