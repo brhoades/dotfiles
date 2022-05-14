@@ -41,7 +41,7 @@
     signal-desktop
     discord
     slack
-    weechat
+    # weechat
     aspellDicts.en
     aspellDicts.es
   ];
