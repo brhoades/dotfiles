@@ -65,18 +65,29 @@
             ./nix/machines/ioane
           ];
         };
+        iakona = _: {
+          imports = [
+            {
+              # nixos
+              nixpkgs.overlays = overlays;
+            }
+            ./nix/machines/iakona
+          ];
+        };
       };
 
       homeConfigurations = rec {
-        aaron = ikaia;
+        aaron = iakona;
         # this lets home-manager --flake '.#' work, but it isn't permanent
-        "" = ikaia;
+        "" = iakona;
         ikaia =
           lib.homeConfigurationFromProfile profiles.ikaia { inherit system; };
 
-        # The default configuration is just the minimal profile
         ioane =
           lib.homeConfigurationFromProfile profiles.ioane { inherit system; };
+
+        iakona =
+          lib.homeConfigurationFromProfile profiles.iakona { inherit system; };
       };
     };
 }
