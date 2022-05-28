@@ -85,7 +85,8 @@ in {
       # output HDMI-A-1 mode 1920x1080@60Hz
       # output HDMI-A-1 disable
 
-      output "*" background ${toString ./background.jpeg} fill
+      # default background, rotated in cron
+      output "*" background ${toString ../../files/backgrounds/geometric-sunset-wpc-yellow-warm.jpg} fill
 
       # https://bugzilla.mozilla.org/show_bug.cgi?id=1652820#c28
       # don't specify wildcards, do each keyboard
