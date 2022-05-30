@@ -149,7 +149,7 @@
     "user-secrets": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-rAZqy/RzZgn94E4wWe1Hw6RW4d80pzXJdm9yE9pbvcA=",
+        "narHash": "sha256-hYa9Z51EdtTMULNqG2eB1SCmk+vmngQtcbzCfub8GmU=",
         "path": "/var/lib/secrets/users/aaron",
         "type": "path"
       },
