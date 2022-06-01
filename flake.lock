@@ -57,6 +57,26 @@
         "type": "github"
       }
     },
+    "homeage": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1636425441,
+        "narHash": "sha256-7c/5YCNk+KB+sg7UE5mhmOYc3DRc9aa6L2EdFzfN2YM=",
+        "owner": "jordanisaacs",
+        "repo": "homeage",
+        "rev": "0388d8c73829c425db9db0772d7bb0d440970f09",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jordanisaacs",
+        "repo": "homeage",
+        "type": "github"
+      }
+    },
     "latest": {
       "locked": {
         "lastModified": 1652467128,
@@ -140,22 +160,27 @@
       "inputs": {
         "firefox-nightly": "firefox-nightly",
         "home-manager": "home-manager",
+        "homeage": "homeage",
         "latest": "latest",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",
-        "user-secrets": "user-secrets"
+        "secrets": "secrets"
       }
     },
-    "user-secrets": {
+    "secrets": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-hYa9Z51EdtTMULNqG2eB1SCmk+vmngQtcbzCfub8GmU=",
-        "path": "/var/lib/secrets/users/aaron",
-        "type": "path"
+        "lastModified": 1653928732,
+        "narHash": "sha256-V24oEyI6AGkV+nORJBODMJ9Mf0NAB24C3jrsTcVA1Vo=",
+        "ref": "master",
+        "rev": "8c90ad512a8717f31408244a88cf99b39b3fca96",
+        "revCount": 5,
+        "type": "git",
+        "url": "ssh://git@sea.brod.es/~/secrets"
       },
       "original": {
-        "path": "/var/lib/secrets/users/aaron",
-        "type": "path"
+        "type": "git",
+        "url": "ssh://git@sea.brod.es/~/secrets"
       }
     }
   },
