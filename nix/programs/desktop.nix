@@ -24,7 +24,7 @@
 
     # (chromium.override { enableVaapi = true; })
     google-chrome
-    thunderbird
+    inputs.latest.thunderbird
 
     barrier
     xorg.xrandr
