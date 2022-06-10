@@ -77,7 +77,7 @@ in {
       # right
       output ${rightMon} mode 1920x1200@60Hz
       output ${rightMon} pos 5120 0
-      # output ${rightMon} transform 90
+      output ${rightMon} transform 90
       # output ${rightMon} pos ${toString (2560 + 3840 / 1.5)} 0
 
       # TV
@@ -86,7 +86,9 @@ in {
       # output HDMI-A-1 disable
 
       # default background, rotated in cron
-      output "*" background ${toString ../../files/backgrounds/geometric-sunset-wpc-yellow-warm.jpg} fill
+      output "*" background ${
+        toString ../../files/backgrounds/geometric-sunset-wpc-yellow-warm.jpg
+      } fill
 
       # https://bugzilla.mozilla.org/show_bug.cgi?id=1652820#c28
       # don't specify wildcards, do each keyboard
