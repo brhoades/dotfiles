@@ -109,13 +109,12 @@
     "XTerm.*backarrowKey" = "false";
   };
 
-  xsession = {
-    numlock.enable = true;
-    pointerCursor = {
-      name = "Vanilla-DMZ";
-      package = pkgs.vanilla-dmz;
-      size = 32;
-    };
+  xsession.numlock.enable = true;
+  home.pointerCursor = {
+    name = "Vanilla-DMZ";
+    package = pkgs.vanilla-dmz;
+    size = 32;
+    x11.enable = true;
   };
 
 }
