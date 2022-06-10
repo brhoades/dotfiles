@@ -224,11 +224,6 @@ in {
         "${mod}+space" =
           "exec ${pkgs.rofi}/bin/rofi -show run -modi run -only-match -matching fuzzy";
 
-        "${mod}+j" = "focus left";
-        "${mod}+k" = "focus down";
-        "${mod}+l" = "focus up";
-        "${mod}+semicolon" = "focus right";
-
         # alternatively, you can use the cursor keys:
         "${mod}+Left" = "focus left";
         "${mod}+Down" = "focus down";
@@ -256,7 +251,7 @@ in {
         "${mod}+Shift+period" = "move workspace to output right";
 
         # split in horizontal orientation
-        "${mod}+h" = "split h";
+        "${mod}+H" = "split h";
 
         # split in vertical orientation
         "${mod}+v" = "split v";
