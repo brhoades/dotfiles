@@ -1,5 +1,9 @@
 { config, lib, pkgs, ... }: {
-  imports = [ ./ffxdghack.nix ];
+  imports = [
+    # ./ffxdghack.nix TODO: getting sick of the mimeapps hack... need another way
+    # to integrat that doesn't break file association overrides and
+    # force me to remove my mimeapps.list on every switch
+  ];
 
   # Home Manager setup
   home.sessionVariables = {
