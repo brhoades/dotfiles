@@ -1,4 +1,15 @@
 { config, pkgs, ... }: {
+  config.nixpkgs.config.packageOverrides = pkgs: {
+    i3status-rs = (pkgs.i3status-rs.override {
+      src = pkgs.fetchFromGitHub {
+        owner = "brhoades";
+        repo = "i3status-rust";
+        rev = "master";
+        sha256 = "sha256-HtPgl52ysE/CVX706YeKBFc6CgGpHzvHwZoS+DzHADZ=";
+      };
+    });
+  };
+
   options.brodes.windowManager.i3status_rs = with pkgs.lib; {
     enable = mkEnableOption "Enable i3status-rs for sway";
 
