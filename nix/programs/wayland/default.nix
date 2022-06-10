@@ -77,7 +77,7 @@ in {
       # right
       output ${rightMon} mode 1920x1200@60Hz
       output ${rightMon} pos 5120 0
-      output ${rightMon} transform 90
+      output ${rightMon} transform 270
       # output ${rightMon} pos ${toString (2560 + 3840 / 1.5)} 0
 
       # TV
@@ -251,7 +251,7 @@ in {
         "${mod}+Shift+period" = "move workspace to output right";
 
         # split in horizontal orientation
-        "${mod}+H" = "split h";
+        "${mod}+Shift+v" = "split h";
 
         # split in vertical orientation
         "${mod}+v" = "split v";
