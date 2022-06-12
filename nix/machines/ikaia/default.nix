@@ -46,7 +46,7 @@
           notify.enable = false;
 
           weather = {
-            enable = true;
+            enable = false;
             autolocate = false;
             service = ''
               { name = "openweathermap", place = "Seattle", api_key = "${config.xdg.configHome}/openweathermap/key", units = "imperial" }'';
@@ -81,12 +81,12 @@
   homeage.file."xdghack.json" = {
     source = "${pkgs.inputs.secrets}/users/aaron/xdghack.json.age";
     path = "xdghack/config.json";
-    symlinks = [ "${config.xdg.configHome}/xdghack/config.json" ];
+    symlinks = [ "${config.xdg.configHome}/xdghack.config.json" ];
   };
   homeage.file."openweathermapkey" = {
     source = "${pkgs.inputs.secrets}/users/aaron/openweathermapkey.age";
     path = "openweathermapkey";
-    symlinks = [ "${config.xdg.configHome}/openweathermap/key" ];
+    symlinks = [ "${config.xdg.configHome}/openweathermap.key" ];
   };
 
   # Home Manager needs a bit of information about you and the
