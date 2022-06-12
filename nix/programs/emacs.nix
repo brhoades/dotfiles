@@ -17,20 +17,16 @@ let
   }) { };
 in {
   home.file = {
-    ".emacs.d/init.el".source =
-      config.lib.file.mkOutOfStoreSymlink ../../dotemacs.d/init.el;
-    ".emacs.d/config".source =
-      config.lib.file.mkOutOfStoreSymlink ../../dotemacs.d/config;
+    ".emacs.d/init.el".source = ../../dotemacs.d/init.el;
+    ".emacs.d/config".source = ../../dotemacs.d/config;
     ".emacs.d/.cache/lsp/rust/rust-analyzer".source =
       "${pkgs.rust-analyzer}/bin/rust-analyzer";
   };
 
-  # XXX: nix-linter still broken >:(
-  nixpkgs.config.packageOverrides = _pkgs:
-    {
-      # hnix = hnixPkgs.haskellPackages.hnix;
-      # nix-linter = hnixPkgs.nix-linter;
-    };
+  nixpkgs.config.packageOverrides = _pkgs: {
+    hnix = hnixPkgs.haskellPackages.hnix;
+    nix-linter = hnixPkgs.nix-linter;
+  };
 
   home.packages = with pkgs;
     [
