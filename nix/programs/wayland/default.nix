@@ -11,6 +11,8 @@ let
   leftMon = ''"Dell Inc. DELL U2720Q F8KFX13"'';
   mainMon = ''"Dell Inc. DELL U2917W 0PRH475QA29L"'';
   rightMon = ''"Dell Inc. DELL U2415 CFV9N9890J5S"'';
+  workMon = ''"Unknown PA278CV M3LMQS362198"'';
+  laptopMon = ''"Chimei Innolux Corporation 0x14E4 0x00000000"'';
 in {
   imports = [ ./mako.nix ./swayidle.nix ];
 
@@ -85,7 +87,14 @@ in {
       # output HDMI-A-1 mode 1920x1080@60Hz
       # output HDMI-A-1 disable
 
-      # default background, rotated in cron
+      # laptop
+      output ${laptopMon} pos 0 0
+
+      # work monitor
+      output ${workMon} pos 0 -1440
+      output ${workMon} mode 2560x1440@59.951Hz
+
+      # default background, rotated in cron (some day)
       output "*" background ${
         toString ../../files/backgrounds/geometric-sunset-wpc-yellow-warm.jpg
       } fill
