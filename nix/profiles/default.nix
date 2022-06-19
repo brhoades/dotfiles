@@ -1,9 +1,8 @@
-{
-  username ? "aaron",
-  email ? "aaron@brod.es",
-  name ? "Billy J Rhoades II (default profile)",
+{ username ? "aaron", email ? "aaron@brod.es"
+, name ? "Billy J Rhoades II (default profile)",
 
-}: { config, pkgs, ... }:
+}:
+{ config, pkgs, ... }:
 
 {
   imports = [
@@ -15,14 +14,14 @@
 
   user = {
     inherit email name;
-    email = email;
     signing = { key = "6D052A5305F89A0E!"; };
   };
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = username;
-  home.homeDirectory = if username == "root" then "/root" else "/home/${username}";
+  home.homeDirectory =
+    if username == "root" then "/root" else "/home/${username}";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
