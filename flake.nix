@@ -68,6 +68,12 @@
             ./nix/machines/iakona
           ];
         };
+        # vm or headless profile
+        default = _: {
+          imports = common ++ [
+            ./nix/profiles/default.nix
+          ];
+        };
       };
 
       homeConfigurations = rec {
