@@ -5,7 +5,6 @@
     ../machines/common.nix
     ../programs/default.nix
     ../programs/development.nix
-    ../programs/emacs.nix
   ];
 
   user = { signing = { key = "6D052A5305F89A0E!"; }; };
