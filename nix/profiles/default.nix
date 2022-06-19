@@ -1,7 +1,3 @@
-{ username ? "aaron", email ? "aaron@brod.es"
-, name ? "Billy J Rhoades II (default profile)",
-
-}:
 { config, pkgs, ... }:
 
 {
@@ -12,16 +8,7 @@
     ../programs/emacs.nix
   ];
 
-  user = {
-    inherit email name;
-    signing = { key = "6D052A5305F89A0E!"; };
-  };
-
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = username;
-  home.homeDirectory =
-    if username == "root" then "/root" else "/home/${username}";
+  user = { signing = { key = "6D052A5305F89A0E!"; }; };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
