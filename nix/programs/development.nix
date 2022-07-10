@@ -20,6 +20,7 @@
     kubectl
     kubectx
     tcpdump
+    nixfmt
   ];
 
   home.sessionVariables = { GOROOT = [ "${pkgs.go.out}/share/go" ]; };
