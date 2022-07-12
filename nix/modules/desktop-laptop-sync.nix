@@ -28,7 +28,7 @@ with pkgs; {
 
     Service = {
       Type = "oneshot";
-      ExecStart = ''"${pkgs.unison}/bin/unison" -ui text -dumbtty -batch -retry 3 "${config.home.homeDirectory}/Pictures" "ssh://aaron@sea.brod.es//media/users/billy/pictures/laptop-desktop-sync"'';
+      ExecStart = ''"${pkgs.unison}/bin/unison" -ui text -dumbtty -batch -retry 3 -copyonconflict -ignore screenshots/latest "${config.home.homeDirectory}/Pictures" "ssh://aaron@sea.brod.es//media/users/billy/pictures/laptop-desktop-sync"'';
     };
 
     Install.Also = "sync-pictures.target";
