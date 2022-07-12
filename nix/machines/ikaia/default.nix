@@ -12,6 +12,10 @@
     ../../programs/dlux.nix
     ../../programs/bup.nix
     ../../programs/runelite.nix
+
+    ../../modules/desktop-laptop-sync.nix
+    ../../modules/update-latest-symlink.nix
+
     ./msmtp.nix
   ];
 

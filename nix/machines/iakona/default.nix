@@ -8,6 +8,9 @@
     ../../programs/steam.nix
     ../../services/desktop.nix
     ../../services/keybase.nix
+
+    ../../modules/desktop-laptop-sync.nix
+    ../../modules/update-latest-symlink.nix
   ];
 
   user = {
