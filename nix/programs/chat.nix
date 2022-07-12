@@ -38,7 +38,7 @@
 
   home.packages = let
   in with pkgs; [
-    signal-desktop
+    pkgs.inputs.latest.signal-desktop # 2022/07/12: signal can't load images off 22.05
     discord
     slack
     # weechat
