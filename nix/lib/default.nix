@@ -1,5 +1,6 @@
 # https://raw.githubusercontent.com/TLATER/dotfiles/b4014deafdebc8f02128cba4c7c4a3865effee24/nixpkgs/lib/default.nix
-{ nixpkgs, home-manager, overlays, }: rec {
+{ nixpkgs, home-manager, overlays }:
+nixpkgs.lib // rec {
   # Create a module with correctly set overlays from a given
   # profile.
   #

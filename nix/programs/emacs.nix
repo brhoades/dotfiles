@@ -1,21 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
-let
-  # bnixpkgs = import (pkgs.fetchFromGitHub {
-  #   owner = "brhoades";
-  #   repo = "nixpkgs";
-  #   rev = "brhoades/emacs-28-pgtk";
-  #   sha256 = "0s1zf23vvm14f4vvfhc9dgy5dkbgylxg26gflq4l5mpxqh3p7hgz";
-  # }) {};
-  # nix-linter breaks so frequently. Locking it down to a December version which used a hnix
-  # that didn't give me ulcers.
-  hnixPkgs = import (pkgs.fetchFromGitHub {
-    owner = "brhoades";
-    repo = "nixpkgs";
-    rev = "frozen/nix-linter";
-    sha256 = "1g0siknkxrf7a16fngcf61c9v02rh7p2bslmi80zi6s73qjnmcsw";
-  }) { };
-in {
+{
   home.file = {
     ".emacs.d/init.el".source = ../../dotemacs.d/init.el;
     ".emacs.d/config".source = ../../dotemacs.d/config;
@@ -23,19 +8,10 @@ in {
       "${pkgs.rust-analyzer}/bin/rust-analyzer";
   };
 
-  nixpkgs.config.packageOverrides = _pkgs: {
-    hnix = hnixPkgs.haskellPackages.hnix;
-    nix-linter = hnixPkgs.nix-linter;
-  };
-
-  home.packages = with pkgs;
-    [
-      # nix-linter
-    ];
+  home.packages = with pkgs; [ nix-linter inputs.rnix gopls ];
 
   # emacs needs .emacs.d/{undo,tmp,tansient,elpa,workspace}
   # It should make all except for undo and workspace itself?
-  ## XXX: enable after upgrade to 20.09+
   systemd.user.tmpfiles.rules =
     let emacsdir = (config.home.homeDirectory + "/.emacs.d");
     in [
@@ -87,13 +63,13 @@ in {
           #          # lsp-java unstable broken again
           #          scala-mode
           #
-          #          nix-mode
+          nix-mode
           #
           #          dap-mode
           #
-          #          org
-          #          org-noter
-          #          org-roam
+          org
+          org-noter
+          org-roam
           pkgs.metals
           pkgs.sqlite # required to start
           pkgs.graphviz # org-roam requirement

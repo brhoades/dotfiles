@@ -20,10 +20,13 @@
 
     home-manager.url = "github:nix-community/home-manager/release-21.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    rnix.url = "github:nix-community/rnix-lsp";
+    rnix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, latest, secrets, homeage, firefox-nightly, nur
-    , home-manager }: rec {
+  outputs = inputs@{ self, nixpkgs, latest, secrets, homeage, firefox-nightly
+    , nur, home-manager, rnix }: rec {
       inherit self inputs;
       common = [
         {
@@ -36,9 +39,8 @@
       overlays = [
         nur.overlay
         (_: _: {
-          # allow home-manager to access secrets and latest
-          inputs = {
-            inherit secrets system firefox-nightly;
+          # hack to let modules access inputs w/o top-level arg
+          inputs = inputs // {
             latest = import latest {
               system = self.system;
               config.allowUnfreePredicate = (pkg: true);
@@ -48,32 +50,12 @@
       ];
       lib = import ./nix/lib { inherit nixpkgs home-manager overlays; };
       profiles = {
-        root = _: {
-          imports = [
-            ./nix/profiles/root.nix
-          ];
-        };
-        ikaia = _: {
-          imports = common ++ [
-            ./nix/machines/ikaia
-          ];
-        };
-        ioane = _: {
-          imports = common ++ [
-            ./nix/machines/ioane
-          ];
-        };
-        iakona = _: {
-          imports = common ++ [
-            ./nix/machines/iakona
-          ];
-        };
+        root = _: { imports = [ ./nix/profiles/root.nix ]; };
+        ikaia = _: { imports = common ++ [ ./nix/machines/ikaia ]; };
+        ioane = _: { imports = common ++ [ ./nix/machines/ioane ]; };
+        iakona = _: { imports = common ++ [ ./nix/machines/iakona ]; };
         # vm or headless profile
-        default = _: {
-          imports = common ++ [
-            ./nix/profiles/default.nix
-          ];
-        };
+        default = _: { imports = common ++ [ ./nix/profiles/default.nix ]; };
       };
 
       homeConfigurations = rec {
