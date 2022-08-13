@@ -23,7 +23,7 @@
     pavucontrol
 
     # (chromium.override { enableVaapi = true; })
-    google-chrome
+    inputs.latest.google-chrome
     inputs.latest.thunderbird
 
     barrier

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, inputs, ... }: {
   imports = [ ./ffxdghack.nix ];
 
   # Home Manager setup
@@ -11,8 +11,7 @@
   programs.firefox = {
     enable = true;
 
-    # XXX: go back to nightly if wayland paste issues return
-    # package = pkgs.inputs.firefox-nightly.latest;
+    package = pkgs.inputs.latest.firefox;
 
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       ublock-origin
