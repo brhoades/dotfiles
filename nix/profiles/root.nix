@@ -3,8 +3,7 @@
 {
   imports = [
     ../machines/common.nix
-    ../programs/development.nix
-    ../programs/emacs.nix
+    ../programs/development-minimal.nix
   ];
 
   user = {
