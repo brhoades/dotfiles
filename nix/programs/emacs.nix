@@ -130,8 +130,9 @@
           #          github-review
           #
           #          # if go
-          #          go # godef gocode gotags gotools golint delve
-          #          # errcheck go-tools unconvert
+          go godef gocode gotags gotools golint delve
+          govet
+          errcheck go-tools unconvert
           #
           #          # if nix
           # nix-linter
