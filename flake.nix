@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
     latest.url = "github:nixos/nixpkgs/nixos-unstable";
+    bnixpkgs.url = "github:brhoades/nixpkgs";
 
     secrets = {
       url = "git+ssh://git@sea.brod.es/~/secrets";
@@ -25,7 +26,7 @@
     rnix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, latest, secrets, homeage, firefox-nightly
+  outputs = inputs@{ self, nixpkgs, latest, bnixpkgs, secrets, homeage, firefox-nightly
     , nur, home-manager, rnix }: rec {
       inherit self inputs;
       common = [
@@ -42,6 +43,10 @@
           # hack to let modules access inputs w/o top-level arg
           inputs = inputs // {
             latest = import latest {
+              system = self.system;
+              config.allowUnfreePredicate = (pkg: true);
+            };
+            bnixpkgs = import bnixpkgs {
               system = self.system;
               config.allowUnfreePredicate = (pkg: true);
             };

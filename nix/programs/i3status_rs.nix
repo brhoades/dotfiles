@@ -1,21 +1,10 @@
-{ config, pkgs, ... }: {
-  config.nixpkgs.config.packageOverrides = pkgs: {
-    i3status-rs = (pkgs.i3status-rs.override {
-      src = pkgs.fetchFromGitHub {
-        owner = "brhoades";
-        repo = "i3status-rust";
-        rev = "master";
-        sha256 = "sha256-HtPgl52ysE/CVX706YeKBFc6CgGpHzvHwZoS+DzHADZ=";
-      };
-    });
-  };
-
+{ config, pkgs, inputs, ... }: {
   options.brodes.windowManager.i3status_rs = with pkgs.lib; {
     enable = mkEnableOption "Enable i3status-rs for sway";
 
     pkg = mkOption {
       type = types.package;
-      default = pkgs.i3status-rust;
+      default = pkgs.inputs.bnixpkgs.i3status-rust;
     };
 
     theme = mkOption {
@@ -94,7 +83,7 @@
 
         format = mkOption {
           type = types.nullOr types.str;
-          default = "{percentage} {time}";
+          default = "$icon $percentage $time";
         };
 
         interval = mkOption {
@@ -311,16 +300,19 @@
     '';
 
     statusFile = pkgs.writeText "config.toml" ''
-      theme = "${cfg.theme}"
+      [icons]
       icons = "${cfg.icons}"
+
+      [theme]
+      theme = "${cfg.theme}"
 
       ${netBlock}
       ${nmBlock}
       [[block]]
       block = "memory"
       display_type = "memory"
-      format_mem = "{mem_used_percents}"
-      format_swap = "{swap_used_percents}"
+      format_mem = "$icon $mem_total_used_percents.eng(2)"
+      format_swap = "$icon $swap_used_percents.eng(2)"
       ${tempBlock}
       [[block]]
       block = "cpu"
@@ -329,7 +321,7 @@
       [[block]]
       block = "load"
       interval = 15
-      format = "{1m}"
+      format = "$icon $1m.eng(3)"
 
       [[block]]
       block = "sound"

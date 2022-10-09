@@ -1,5 +1,20 @@
 {
   "nodes": {
+    "bnixpkgs": {
+      "locked": {
+        "lastModified": 1665358014,
+        "narHash": "sha256-M7EWAvPWnDNKS8R7u5CRH0OJFAmJKfNOoOKKWYv9dA8=",
+        "owner": "brhoades",
+        "repo": "nixpkgs",
+        "rev": "5830f0b34fce21a6c692daa0e2601018f6278a3e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "brhoades",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "cachix": {
       "locked": {
         "lastModified": 1635350005,
@@ -109,6 +124,27 @@
         "type": "github"
       }
     },
+    "naersk": {
+      "inputs": {
+        "nixpkgs": [
+          "rnix",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1655042882,
+        "narHash": "sha256-9BX8Fuez5YJlN7cdPO63InoyBy7dm3VlJkkmTt6fS1A=",
+        "owner": "nix-community",
+        "repo": "naersk",
+        "rev": "cddffb5aa211f50c4b8750adbec0bbbdfb26bb9f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "naersk",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1651726670,
@@ -156,14 +192,38 @@
         "type": "github"
       }
     },
+    "rnix": {
+      "inputs": {
+        "naersk": "naersk",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1663380950,
+        "narHash": "sha256-OKLyIXIXhUnRB3Xw+7zI3u6XkwF7Mrbfz1XaasV6i7Q=",
+        "owner": "nix-community",
+        "repo": "rnix-lsp",
+        "rev": "6925256babec4307479a4080b44f2be38056f210",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "rnix-lsp",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "bnixpkgs": "bnixpkgs",
         "firefox-nightly": "firefox-nightly",
         "home-manager": "home-manager",
         "homeage": "homeage",
         "latest": "latest",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",
+        "rnix": "rnix",
         "secrets": "secrets"
       }
     },
@@ -181,6 +241,21 @@
       "original": {
         "type": "git",
         "url": "ssh://git@sea.brod.es/~/secrets"
+      }
+    },
+    "utils": {
+      "locked": {
+        "lastModified": 1656928814,
+        "narHash": "sha256-RIFfgBuKz6Hp89yRr7+NR5tzIAbn52h8vT6vXkYjZoM=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "7e2a3b3dfd9af950a856d66b0a7d01e3c18aa249",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
       }
     }
   },

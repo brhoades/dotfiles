@@ -50,7 +50,7 @@
           notify.enable = false;
 
           weather = {
-            enable = false;
+            enable = true;
             autolocate = false;
             service = ''
               { name = "openweathermap", place = "Seattle", api_key = "${config.xdg.configHome}/openweathermap/key", units = "imperial" }'';

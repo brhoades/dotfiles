@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   imports = [
     ../common.nix
     ../../programs/development.nix
@@ -46,6 +46,13 @@
             enable = true;
             mac = "28:11:A5:35:50:04";
             label = " QC35";
+          };
+
+          weather = {
+            enable = true;
+            autolocate = false;
+            service = ''
+              { name = "openweathermap", place = "Seattle", api_key = "${config.xdg.configHome}/openweathermap/key", units = "imperial" }'';
           };
         };
       };
