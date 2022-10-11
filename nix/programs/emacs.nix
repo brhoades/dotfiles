@@ -36,6 +36,7 @@
     extraPackages = with pkgs;
       (epkgs:
         with epkgs; [
+          ispell
           use-package
 
           #          tide
