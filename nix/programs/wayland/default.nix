@@ -250,14 +250,16 @@ in {
         "${mod}+Shift+semicolon" = "move right";
 
         # alternatively, you can use the cursor keys:
-        "${mod}+Shift+Left" = "move left";
-        "${mod}+Shift+Down" = "move down";
-        "${mod}+Shift+Up" = "move up";
-        "${mod}+Shift+Right" = "move right";
+        # "${mod}+Shift+Left" = "move left";
+        # "${mod}+Shift+Down" = "move down";
+        # "${mod}+Shift+Up" = "move up";
+        # "${mod}+Shift+Right" = "move right";
 
-        # Workspace rotation
-        "${mod}+Shift+comma" = "move workspace to output left";
-        "${mod}+Shift+period" = "move workspace to output right";
+        # Workspace reassignment
+        "${mod}+Shift+Left" = "move workspace to output left";
+        "${mod}+Shift+Right" = "move workspace to output right";
+        "${mod}+Shift+Up" = "move workspace to output up";
+        "${mod}+Shift+Down" = "move workspace to output down";
 
         # split in horizontal orientation
         "${mod}+Shift+v" = "split h";
