@@ -11,11 +11,13 @@
       Persistent = true;
       OnCalendar = "*-*-* 00:00:00";
     };
+
+    Install.WantedBy = ["timers.target"];
   };
 
   systemd.user.services.update-latest-symlink = {
     Unit = {
-      Description = config.systemd.user.timers.sync-pictures.Unit.Description;
+      Description = config.systemd.user.timers.update-latest-symlink.Unit.Description;
       Wants = "update-latest-symlink.target";
     };
 
@@ -31,8 +33,6 @@
           ln -s "$LATEST" latest
         '';
         in "${src}/bin/update-symlink.sh";
-
-
     };
 
     Install.Also = "update-latest-symlink.target";
