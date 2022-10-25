@@ -1,23 +1,23 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   systemd.user.timers.update-latest-symlink = {
     Unit = {
       Description = "Update the latest symlink for screenshots.";
       Requires = "update-latest-symlink.service";
     };
 
-    Timer = { 
+    Timer = {
       # after booting, if we missed a run, run it now
       Persistent = true;
       OnCalendar = "*-*-* 00:00:00";
     };
 
-    Install.WantedBy = ["timers.target"];
+    Install.WantedBy = [ "timers.target" "default.target" ];
   };
 
   systemd.user.services.update-latest-symlink = {
     Unit = {
-      Description = config.systemd.user.timers.update-latest-symlink.Unit.Description;
+      Description =
+        config.systemd.user.timers.update-latest-symlink.Unit.Description;
       Wants = "update-latest-symlink.target";
     };
 
@@ -32,7 +32,7 @@
           [[ ! -d "$LATEST" ]] && mkdir -p "$LATEST"
           ln -s "$LATEST" latest
         '';
-        in "${src}/bin/update-symlink.sh";
+      in "${src}/bin/update-symlink.sh";
     };
 
     Install.Also = "update-latest-symlink.target";
