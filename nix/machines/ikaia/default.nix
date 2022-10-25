@@ -37,7 +37,7 @@
 
           temperature = {
             enable = true;
-            device = "zenpower-pci-00c3";
+            device = "*-pci-00c3";
           };
 
           bluetooth = {

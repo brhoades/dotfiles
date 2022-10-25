@@ -39,13 +39,14 @@
 
         format = mkOption {
           type = types.nullOr types.str;
-          default = "{speed_up;M} {speed_down;M} {graph_down;M}";
+          default =
+            "^icon_net_up $speed_up.eng(3,B,K) $icon_net_down $speed_down.eng(3,B,K) ";
         };
 
         format_alt = mkOption {
           type = types.nullOr types.str;
           default =
-            "{ssid} {signal_strength} {ip} {speed_down} {speed_up} {graph_down;K}";
+            "$ssid $signal_strength $ip ^icon_net_down $speed_down.eng(3,B,K) ^icon_net_up $speed_up.eng(3,B,K)";
         };
 
         interval = mkOption {
@@ -243,7 +244,7 @@
       chip = "${tempCfg.device}"
       collapsed = false
       interval = ${toString tempCfg.interval}
-      format = "{min}-{max}"
+      format = "$icon $min - $max"
 
     '';
 
