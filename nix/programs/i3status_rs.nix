@@ -40,7 +40,7 @@
         format = mkOption {
           type = types.nullOr types.str;
           default =
-            "^icon_net_up $speed_up.eng(3,B,K) $icon_net_down $speed_down.eng(3,B,K) ";
+            "^icon_net_down $speed_down.eng(3,B,K) ^icon_net_up $speed_up.eng(3,B,K) ";
         };
 
         format_alt = mkOption {
