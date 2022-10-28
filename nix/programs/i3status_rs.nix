@@ -135,7 +135,7 @@
 
         format = mkOption {
           type = types.str;
-          default = "{weather} {temp}";
+          default = "$icon $weather $temp";
         };
 
         interval = mkOption {

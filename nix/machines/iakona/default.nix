@@ -28,7 +28,6 @@
           net = {
             enable = true;
             device = "wlp0s20f3";
-            format = "{signal_strength} {ssid}";
           };
 
           battery.enable = true;
