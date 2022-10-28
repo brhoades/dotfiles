@@ -27,7 +27,8 @@
         blocks = {
           net = {
             enable = true;
-            device = "wlp0s20f3";
+            format = "$ssid $signal_strength ^icon_net_down $speed_down.eng(3,B,K) ^icon_net_up $speed_up.eng(3,B,K) ";
+            device = "wlan0";
           };
 
           battery.enable = true;
@@ -38,6 +39,7 @@
 
           temperature = {
             enable = true;
+            interval = 2;
             device = "coretemp-isa-0000";
           };
 

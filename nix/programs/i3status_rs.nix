@@ -105,6 +105,11 @@
           type = types.int;
           default = 5;
         };
+
+        format = mkOption {
+          type = types.str;
+          default = "$icon $min - $max";
+        };
       };
 
       microphone = { enable = mkEnableOption "Enable the microphone block"; };
@@ -242,9 +247,8 @@
       [[block]]
       block = "temperature"
       chip = "${tempCfg.device}"
-      collapsed = false
       interval = ${toString tempCfg.interval}
-      format = "$icon $min - $max"
+      format = "${tempCfg.format}"
 
     '';
 
@@ -311,9 +315,8 @@
       ${nmBlock}
       [[block]]
       block = "memory"
-      display_type = "memory"
-      format_mem = "$icon $mem_total_used_percents.eng(2)"
-      format_swap = "$icon $swap_used_percents.eng(2)"
+      format = "$icon $mem_used.eng(3,B,M) /$mem_total.eng(3,B,M)"
+
       ${tempBlock}
       [[block]]
       block = "cpu"
