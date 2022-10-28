@@ -45,7 +45,6 @@
           bluetooth = {
             enable = true;
             mac = "28:11:A5:35:50:04";
-            label = " QC35";
           };
 
           weather = {

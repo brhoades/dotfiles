@@ -117,9 +117,9 @@
           default = null;
         };
 
-        label = mkOption {
+        format = mkOption {
           type = types.nullOr types.str;
-          default = null;
+          default = "$icon $name{$percentage|}";
         };
       };
 
@@ -232,7 +232,7 @@
       [[block]]
       block = "bluetooth"
       mac = "${btCfg.mac}"
-      label = "${btCfg.label}"
+      format = "${btCfg.format}"
 
     '';
 
