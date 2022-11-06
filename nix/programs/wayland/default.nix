@@ -46,6 +46,9 @@ in {
     ws9 = "r";
     ws10 = "a";
     mod = "Mod4";
+    includes = [
+      ./config.d/zoom
+    ];
   in {
     enable = true;
     extraConfig = let
@@ -160,7 +163,7 @@ in {
       # thunderbird reminders
       for_window [title="^[0-9]+ Reminders?$" app_id="thunderbird"] toggle floating
 
-    '';
+    '' + concatMapStringsSep "\n" (f: ''include "${f}"'') includes;
 
     config = {
       inherit fonts;

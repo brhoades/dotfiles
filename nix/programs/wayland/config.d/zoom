@@ -1,0 +1,19 @@
+# Zoom Meeting App
+# 
+# Default for all windows is non-floating.
+
+# zoom has three windows when starting a meeting normally:
+#   * the primary window with settings and upcoming meetings
+#   * the window for video and controls (the meeting)
+#   * a giant popup that escapes the notify system that says audio is connected
+# 
+# For pop up notification windows that don't use notifications api
+for_window [app_id="zoom" title="^zoom$"] border none, floating enable, kill
+# For specific Zoom windows
+for_window [app_id="zoom" title="^(Zoom|About)$"] border pixel, floating enable
+for_window [app_id="zoom" title="Settings"] floating enable, floating_minimum_size 960 x 700
+# Open Zoom Meeting windows on a new workspace (a bit hacky)
+# for_window [app_id="zoom" title="Zoom Meeting(.*)?"] workspace next_on_output --create, move container to workspace current, floating disable, inhibit_idle open
+# just don't float and also inhibit idle
+for_window [app_id="zoom" title="Zoom Meeting(.*)?"] floating disable, inhibit_idle open
+

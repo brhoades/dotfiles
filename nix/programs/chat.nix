@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ./zoom.nix
+  ];
+
   nixpkgs.overlays = [
     (self: super: {
       weechat = super.weechat.override {
