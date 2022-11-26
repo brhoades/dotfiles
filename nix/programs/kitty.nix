@@ -19,6 +19,10 @@
       strip_trailing_spaces = "smart"; # only on text selections not square
     };
 
+    environment = {
+      "TERM" = "tmux-256color"; # kitty defaults to xterm-kitty, which busts ssh
+    };
+
     keybindings = {
       "ctrl+c" = "copy_and_clear_or_interrupt";
       "ctrl+v" = "paste_from_clipboard";
