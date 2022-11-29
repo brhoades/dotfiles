@@ -31,6 +31,7 @@ with pkgs; {
       Type = "oneshot";
       ExecStart = ''
         "${pkgs.unison}/bin/unison" -ui text -dumbtty -batch -retry 3 -copyonconflict -ignore "Path screenshots/latest" "${config.home.homeDirectory}/Pictures" "ssh://aaron@sea.brod.es//media/users/billy/pictures/laptop-desktop-sync"'';
+      Environment = ''SSH_AUTH_SOCK=""''; # ssh-agent isn't needed b/c no pass
     };
 
     Install.Also = "sync-pictures.target";
