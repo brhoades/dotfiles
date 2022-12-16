@@ -147,6 +147,7 @@
 
           cppcheck # cpp-mode
           clang # cpp-mode
+          haskell-language-server
         ]);
   };
 }
