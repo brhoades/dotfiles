@@ -2,7 +2,7 @@
   description = "Billy's dotfiles flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     latest.url = "github:nixos/nixpkgs/nixos-unstable";
     bnixpkgs.url = "github:brhoades/nixpkgs";
 
