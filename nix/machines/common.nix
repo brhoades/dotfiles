@@ -41,4 +41,8 @@
 
     ngrok
   ];
+
+  # broken in 2022/12
+  # https://github.com/NixOS/nixpkgs/issues/196651 maybe?
+  manual.manpages.enable = false;
 }
