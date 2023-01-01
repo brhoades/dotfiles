@@ -11,6 +11,7 @@
   user = {
     name = lib.mkDefault "Billy J Rhoades II";
     email = lib.mkDefault "me@brod.es";
+    signing = lib.mkDefault { key = "6D052A5305F89A0E!"; };
   };
 
   # Home Manager needs a bit of information about you and the
