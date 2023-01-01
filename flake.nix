@@ -26,8 +26,8 @@
     rnix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, latest, bnixpkgs, secrets, homeage, firefox-nightly
-    , nur, home-manager, rnix }: rec {
+  outputs = inputs@{ self, nixpkgs, latest, bnixpkgs, secrets, homeage
+    , firefox-nightly, nur, home-manager, rnix }: rec {
       inherit self inputs;
       common = [
         {
@@ -61,6 +61,9 @@
         iakona = _: { imports = common ++ [ ./nix/machines/iakona ]; };
         # vm or headless profile
         default = _: { imports = common ++ [ ./nix/profiles/default.nix ]; };
+        headless-development = _: {
+          imports = common ++ [ ./nix/profiles/headless-development.nix ];
+        };
       };
 
       homeConfigurations = rec {
