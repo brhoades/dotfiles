@@ -8,10 +8,9 @@ let
     size = 12.0;
   };
   # rightMon = ''"Dell Inc. DELL U2415 CFV9N98G0YDS"'';
-  leftMon = ''"Dell Inc. DELL U2720Q F8KFX13"'';
-  mainMon = ''"Dell Inc. DELL U2917W 0PRH475QA29L"'';
-  rightMon = ''"Dell Inc. DELL U2415 CFV9N9890J5S"'';
-  workMon = ''"Unknown PA278CV M3LMQS362198"'';
+  rightMon = ''"Dell Inc. DELL U2720Q F8KFX13"'';
+  mainMon = ''"Unknown PA278CV M3LMQS362198"'';
+  topMon = ''"Ancor Communications Inc ASUS PB277 0x0000F3F1"'';
   laptopMon = ''"Chimei Innolux Corporation 0x14E4 0x00000000"'';
 in {
   imports = [ ./mako.nix ./swayidle.nix ];
@@ -46,9 +45,7 @@ in {
     ws9 = "r";
     ws10 = "a";
     mod = "Mod4";
-    includes = [
-      ./config.d/zoom
-    ];
+    includes = [ ./config.d/zoom ];
   in {
     enable = true;
     extraConfig = let
@@ -69,38 +66,32 @@ in {
       # Some trouble makers
       no_focus [window_role="^[dD]iscord"]
 
-      output ${leftMon} pos 0 0
-      output ${leftMon} mode 3840x2160@59.997002Hz
-      # output ${leftMon} transform 90
-      output ${leftMon} scale 1.5
+      output ${topMon} mode 2560x1440@75Hz
+      output ${topMon} pos 0 0
+      output ${topMon} scale 1
+      output ${topMon} transform 0
 
       # center
-      # output ${mainMon} pos ${toString (3840 / 1.5)} 0
-      output ${mainMon} pos 2560 0
-      output ${mainMon} mode 2560x1080
+      output ${mainMon} mode 2560x1440@75Hz
+      output ${mainMon} pos 0 1440
+      output ${mainMon} transform 0
+      output ${mainMon} scale 1
 
       # right
-      output ${rightMon} mode 1920x1200@60Hz
-      output ${rightMon} pos 5120 0
-      output ${rightMon} transform 270
-      # output ${rightMon} pos ${toString (2560 + 3840 / 1.5)} 0
-
-      # TV
-      # output HDMI-A-1 pos ${toString (1080 + 1200 + 3840)} 0
-      # output HDMI-A-1 mode 1920x1080@60Hz
-      # output HDMI-A-1 disable
+      output ${rightMon} mode 3840x2160@59.997002Hz
+      output ${rightMon} pos 2560 1440
+      output ${rightMon} transform 0
+      output ${rightMon} scale 1.25
 
       # laptop
       output ${laptopMon} pos 0 0
-
-      # work monitor
-      output ${workMon} pos 0 -1440
-      output ${workMon} mode 2560x1440@59.951Hz
 
       # default background, rotated in cron (some day)
       output "*" background ${
         toString ../../files/backgrounds/geometric-sunset-wpc-yellow-warm.jpg
       } fill
+
+      output * adaptive_sync on
 
       # https://bugzilla.mozilla.org/show_bug.cgi?id=1652820#c28
       # don't specify wildcards, do each keyboard
@@ -141,7 +132,7 @@ in {
       workspace ${ws10} output ${rightMon}
       workspace ${ws3}  output ${mainMon}
       workspace ${ws1}  output ${mainMon}
-      workspace ${ws2}  output ${leftMon}
+      workspace ${ws2}  output ${topMon}
 
       bindsym Ctrl+${mod}+l exec "${config.brodes.windowManager.lockCmd}"
 
