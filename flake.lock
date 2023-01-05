@@ -2,11 +2,11 @@
   "nodes": {
     "bnixpkgs": {
       "locked": {
-        "lastModified": 1666969620,
-        "narHash": "sha256-7GkYTePo0/o5NnohIts+h4hTZh2bNojaUfct0HI6ZmM=",
+        "lastModified": 1669566586,
+        "narHash": "sha256-28UuiXByhm7sXJyu9uQYNWBpUFBMaeNAKyR1JN+pcdo=",
         "owner": "brhoades",
         "repo": "nixpkgs",
-        "rev": "6175da03e26f76ca01385e0a206b217ebdfef23c",
+        "rev": "88aa93c520e124e40c4e9a3b7306f2ba542ff636",
         "type": "github"
       },
       "original": {
