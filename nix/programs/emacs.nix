@@ -4,8 +4,8 @@
   home.file = {
     ".emacs.d/init.el".source = ../../dotemacs.d/init.el;
     ".emacs.d/config".source = ../../dotemacs.d/config;
-    ".emacs.d/.cache/lsp/rust/rust-analyzer".source =
-      "${pkgs.rust-analyzer}/bin/rust-analyzer";
+    # ".emacs.d/.cache/lsp/rust/rust-analyzer".source =
+    #   "${pkgs.rust-analyzer}/bin/rust-analyzer";
   };
 
   home.packages = with pkgs; [ nix-linter inputs.rnix gopls ];

@@ -19,7 +19,7 @@
   :ensure t
   :after (lsp-mode)
   :hook ((lsp-mode-hook . lsp-ui-mode))
-  :bind (("C-c e d" . lsp-ui-doc-show))
+  :bind (("C-c e u" . lsp-ui-doc-show))
   :custom
   (lsp-ui-doc-delay 10.0)
   (lsp-ui-flycheck-enable nil)

@@ -45,10 +45,14 @@
   :hook ((before-save . lsp-format-buffer)
          (before-save . lsp-organize-imports))
   :bind (("C-c d" . lsp-describe-thing-at-point)
+         ("C-c e d" . lsp-describe-thing-at-point)
+         ;; ("C-c e u" . lsp-ui-doc-show)) -> lsp-ui
          ;; ("C-c e n" . flymake-goto-next-error)
          ;; ("C-c e p" . flymake-goto-prev-error)
          ("C-c e r" . lsp-find-references)
          ("C-c e R" . lsp-rename)
          ("C-c e i" . lsp-find-implementation)
          ("C-c C-j" . lsp-find-definition)
-         ("C-c e t" . lsp-find-type-definition)))
+         ("C-c e t" . lsp-find-type-definition)
+         ("C-c e C-d" . lsp-rust-analyzer-open-external-docs
+         ("C-c e a" . lsp-execute-code-action)))
