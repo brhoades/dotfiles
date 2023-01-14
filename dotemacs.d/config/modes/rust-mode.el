@@ -54,5 +54,5 @@
          ("C-c e i" . lsp-find-implementation)
          ("C-c C-j" . lsp-find-definition)
          ("C-c e t" . lsp-find-type-definition)
-         ("C-c e C-d" . lsp-rust-analyzer-open-external-docs
+         ("C-c e C-d" . lsp-rust-analyzer-open-external-docs)
          ("C-c e a" . lsp-execute-code-action)))
