@@ -11,3 +11,11 @@
 										; to show it
   (company-tooltip-align-annotations t))
 
+; rustic completions require yasnippet or they drop $0/$1 after everything
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-reload-all)
+  (add-hook 'prog-mode-hook 'yas-minor-mode)
+  (add-hook 'text-mode-hook 'yas-minor-mode))
+
