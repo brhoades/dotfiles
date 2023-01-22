@@ -1,21 +1,7 @@
 { lib, pkgs, ... }:
-
-{
-  systemd.user.services = {
-    tmux-daemon = {
-      Unit = { Description = "tmux background session"; };
-
-      Service = let tmux = "${pkgs.tmux}/bin/tmux";
-      in {
-        Type = "forking";
-        ExecStart = "${tmux} new-session -s %u -d";
-        ExecStop = "${tmux} kill-session -t %u";
-      };
-    };
-  };
-
-  home.packages = with pkgs; [ wl-clipboard ];
-
+let 
+  isLinux = lib.strings.hasInfix "linux" pkgs.system;
+in ({
   programs.tmux = {
     enable = true;
     clock24 = true;
@@ -156,7 +142,9 @@
       # systemd support for continuum
       set -g @continuum-boot 'on'
 
-      set -g @override_copy_command '${pkgs.wl-clipboard}/bin/wl-copy'
+      ${if isLinux then "set -g @override_copy_command '${pkgs.wl-clipboard}/bin/wl-copy'" else ""}
+      ""
+    }
 
       set -g default-terminal "screen-256color"
 
@@ -171,4 +159,17 @@
       # set -g @themepack 'powerline/block/green'
     '';
   };
-}
+} // lib.mkIf isLinux {
+  systemd.user.services = {
+    tmux-daemon = {
+      Unit = { Description = "tmux background session"; };
+
+      Service = let tmux = "${pkgs.tmux}/bin/tmux";
+      in {
+        Type = "forking";
+        ExecStart = "${tmux} new-session -s %u -d";
+        ExecStop = "${tmux} kill-session -t %u";
+      };
+    };
+  };
+})

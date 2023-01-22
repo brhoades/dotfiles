@@ -16,6 +16,8 @@
     ../../modules/desktop-laptop-sync.nix
     ../../modules/update-latest-symlink.nix
 
+    ../../services/desktop.nix
+
     ./msmtp.nix
   ];
 

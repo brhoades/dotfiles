@@ -7,6 +7,7 @@
     ../programs/default.nix
     ../programs/development.nix
     ../programs/ngrok-work.nix
+    ../services/desktop.nix
   ];
 
   user = {

@@ -2,7 +2,7 @@
 
 {
   imports =
-    [ ../modules/default.nix ../programs/default.nix ../services/desktop.nix ];
+    [ ../modules/default.nix ../programs/default.nix ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -35,12 +35,12 @@
 
     inetutils
     htop
-    iotop
     lsof
     pciutils
-
+  ] ++ (if lib.strings.hasInfix "linux" pkgs.system then [
+    iotop
     ngrok
-  ];
+  ] else []);
 
   # broken in 2022/12
   # https://github.com/NixOS/nixpkgs/issues/196651 maybe?

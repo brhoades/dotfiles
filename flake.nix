@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     latest.url = "github:nixos/nixpkgs/nixos-unstable";
     bnixpkgs.url = "github:brhoades/nixpkgs";
+    flake-utils.url = "github:numtide/flake-utils";
 
     secrets = {
       url = "git+ssh://git@sea.brod.es/~/secrets";
@@ -27,7 +28,7 @@
   };
 
   outputs = inputs@{ self, nixpkgs, latest, bnixpkgs, secrets, homeage
-    , firefox-nightly, nur, home-manager, rnix }: rec {
+    , firefox-nightly, nur, home-manager, rnix, flake-utils }: rec {
       inherit self inputs;
       common = [
         {
@@ -36,7 +37,7 @@
         }
         homeage.homeManagerModules.homeage
       ];
-      system = "x86_64-linux";
+      system = "aarch64-darwin";
       overlays = [
         nur.overlay
         (_: _: {
@@ -59,6 +60,7 @@
         ikaia = _: { imports = common ++ [ ./nix/machines/ikaia ]; };
         ioane = _: { imports = common ++ [ ./nix/machines/ioane ]; };
         iakona = _: { imports = common ++ [ ./nix/machines/iakona ]; };
+        iaukea = _: { imports = common ++ [ ./nix/machines/iaukea ]; };
         # vm or headless profile
         default = _: { imports = common ++ [ ./nix/profiles/default.nix ]; };
         headless-development = _: {
@@ -78,6 +80,9 @@
 
         iakona =
           lib.homeConfigurationFromProfile profiles.iakona { inherit system; };
+
+        iaukea =
+          lib.homeConfigurationFromProfile profiles.iaukea { inherit system; };
       };
     };
 }
