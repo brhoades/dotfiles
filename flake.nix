@@ -37,18 +37,18 @@
         }
         homeage.homeManagerModules.homeage
       ];
-      system = "aarch64-darwin";
+      # system = "aarch64-darwin";
       overlays = [
         nur.overlay
-        (_: _: {
+        (p: _: {
           # hack to let modules access inputs w/o top-level arg
           inputs = inputs // {
             latest = import latest {
-              system = self.system;
+              system = p.system;
               config.allowUnfreePredicate = (pkg: true);
             };
             bnixpkgs = import bnixpkgs {
-              system = self.system;
+              system = p.system;
               config.allowUnfreePredicate = (pkg: true);
             };
           };
@@ -72,17 +72,21 @@
         aaron = iakona;
         # this lets home-manager --flake '.#' work, but it isn't permanent
         "" = iakona;
-        ikaia =
-          lib.homeConfigurationFromProfile profiles.ikaia { inherit system; };
+        ikaia = lib.homeConfigurationFromProfile profiles.ikaia {
+          inherit (nixpkgs) system;
+        };
 
-        ioane =
-          lib.homeConfigurationFromProfile profiles.ioane { inherit system; };
+        ioane = lib.homeConfigurationFromProfile profiles.ioane {
+          inherit (nixpkgs) system;
+        };
 
-        iakona =
-          lib.homeConfigurationFromProfile profiles.iakona { inherit system; };
+        iakona = lib.homeConfigurationFromProfile profiles.iakona {
+          inherit (nixpkgs) system;
+        };
 
-        iaukea =
-          lib.homeConfigurationFromProfile profiles.iaukea { inherit system; };
+        iaukea = lib.homeConfigurationFromProfile profiles.iaukea {
+          system = "aarch64-darwin";
+        };
       };
     };
 }
