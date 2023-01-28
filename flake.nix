@@ -38,21 +38,26 @@
         homeage.homeManagerModules.homeage
       ];
       # system = "aarch64-darwin";
+      mixedInputs = system: inputs // {
+        latest = import latest {
+          inherit system;
+          config.allowUnfreePredicate = (pkg: true);
+        };
+        bnixpkgs = import bnixpkgs {
+          inherit system;
+          config.allowUnfreePredicate = (pkg: true);
+        };
+      };
+
       overlays = [
         nur.overlay
         (p: _: {
           # hack to let modules access inputs w/o top-level arg
-          inputs = inputs // {
-            latest = import latest {
-              system = p.system;
-              config.allowUnfreePredicate = (pkg: true);
-            };
-            bnixpkgs = import bnixpkgs {
-              system = p.system;
-              config.allowUnfreePredicate = (pkg: true);
-            };
-          };
+          inputs = mixedInputs p.system;
         })
+        (
+          p: _: { inherit ((mixedInputs p.system).latest) ngrok; }
+        )
       ];
       lib = import ./nix/lib { inherit nixpkgs home-manager overlays; };
       profiles = {
