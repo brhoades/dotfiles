@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ ../modules/default.nix ../programs/default.nix ];
+  imports = [ ../modules/default.nix ../programs/default.nix ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -19,28 +18,33 @@
     TERM = "screen-256color";
   };
 
-  home.packages = with pkgs; [
-    git
-    wget
-    rsync
-    httpie
-    curl
-    perl
-    nnn
-    bat
-    ripgrep
-    rename # perl rename, not busybox.
-    tmux
-    screen
+  home.packages = with pkgs;
+    [
+      git
+      wget
+      rsync
+      httpie
+      curl
+      perl
+      nnn
+      bat
+      ripgrep
+      rename # perl rename, not busybox.
+      tmux
+      screen
 
-    inetutils
-    htop
-    lsof
-    pciutils
-  ] ++ (if lib.strings.hasInfix "linux" pkgs.system then [
-    iotop
-    ngrok
-  ] else []);
+      inetutils
+      htop
+      lsof
+      pciutils
+
+      zip
+      rar
+    ] ++ (if lib.strings.hasInfix "linux" pkgs.system then [
+      iotop
+      ngrok
+    ] else
+      [ ]);
 
   # broken in 2022/12
   # https://github.com/NixOS/nixpkgs/issues/196651 maybe?
