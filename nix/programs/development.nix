@@ -22,6 +22,7 @@
     tcpdump
     nixfmt
     nix-tree
+    colmena
   ];
 
   home.sessionVariables = { GOROOT = [ "${pkgs.go.out}/share/go" ]; };
