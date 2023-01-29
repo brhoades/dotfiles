@@ -12,9 +12,9 @@
 
   # emacs needs .emacs.d/{undo,tmp,tansient,elpa,workspace}
   # It should make all except for undo and workspace itself?
-  systemd.user.tmpfiles.rules =
-    let emacsdir = (config.home.homeDirectory + "/.emacs.d");
-    in [
+  systemd.user.tmpfiles.rules = let
+    emacsdir = (config.home.homeDirectory + "/.emacs.d");
+    in with pkgs.lib; mkIf (strings.hasInfix "linux" pkgs.system) [
       "d ${emacsdir + "/undo"} - - - - -"
       "d ${emacsdir + "/tmp"} - - - - -"
       "d ${emacsdir + "/workspace"} - - - - -"
