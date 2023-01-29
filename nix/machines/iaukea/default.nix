@@ -1,7 +1,7 @@
 { pkgs, config, ... }: {
   imports = [
     # ../../programs/development.nix
-    # ../../programs/emacs.nix TODO: tempfiles dependency
+    ../../programs/emacs.nix
     ../../programs/development-minimal.nix
     ../../programs/kitty.nix
     ../../programs/vim.nix

@@ -22,9 +22,9 @@ nixpkgs.lib // rec {
   # using `home-manager --flake`.
   #
   homeConfigurationFromProfile = profile:
-    { system, username ? "aaron", homeDirectory ? "/home/${username}", }:
+    { system, username ? "aaron", homeDirectory ? "/home/${username}", extraSpecialArgs ? {} }:
     home-manager.lib.homeManagerConfiguration {
-      inherit homeDirectory system username;
+      inherit homeDirectory system username extraSpecialArgs;
       configuration = nixosModuleFromProfile profile;
     };
 

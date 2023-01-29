@@ -28,8 +28,20 @@
   };
 
   outputs = inputs@{ self, nixpkgs, latest, bnixpkgs, secrets, homeage
-    , firefox-nightly, nur, home-manager, rnix, flake-utils }: rec {
-      inherit self inputs;
+  , firefox-nightly, nur, home-manager, rnix, flake-utils }: let
+      overlays = [
+        nur.overlay
+        (_: _: {
+          config.allowUnfreePredicate = (pkg: true);
+        })
+        (p: _: {
+          # hack to let modules access inputs w/o top-level arg
+          inputs = mixedInputs p.system;
+        })
+        (
+          p: _: { inherit ((mixedInputs p.system).latest) ngrok; }
+        )
+      ];
       common = [
         {
           # nixos
@@ -37,8 +49,8 @@
         }
         homeage.homeManagerModules.homeage
       ];
-      # system = "aarch64-darwin";
       mixedInputs = system: inputs // {
+        inherit inputs;
         latest = import latest {
           inherit system;
           config.allowUnfreePredicate = (pkg: true);
@@ -48,17 +60,6 @@
           config.allowUnfreePredicate = (pkg: true);
         };
       };
-
-      overlays = [
-        nur.overlay
-        (p: _: {
-          # hack to let modules access inputs w/o top-level arg
-          inputs = mixedInputs p.system;
-        })
-        (
-          p: _: { inherit ((mixedInputs p.system).latest) ngrok; }
-        )
-      ];
       lib = import ./nix/lib { inherit nixpkgs home-manager overlays; };
       profiles = {
         root = _: { imports = [ ./nix/profiles/root.nix ]; };
@@ -73,24 +74,28 @@
         };
       };
 
+    in rec {
+      inherit self inputs;
       homeConfigurations = rec {
         aaron = iakona;
-        # this lets home-manager --flake '.#' work, but it isn't permanent
-        "" = iakona;
-        ikaia = lib.homeConfigurationFromProfile profiles.ikaia {
+        ikaia = lib.homeConfigurationFromProfile profiles.ikaia rec {
           inherit (nixpkgs) system;
+          extraSpecialArgs = mixedInputs system;
         };
 
-        ioane = lib.homeConfigurationFromProfile profiles.ioane {
+        ioane = lib.homeConfigurationFromProfile profiles.ioane rec {
           inherit (nixpkgs) system;
+          extraSpecialArgs = mixedInputs system;
         };
 
-        iakona = lib.homeConfigurationFromProfile profiles.iakona {
+        iakona = lib.homeConfigurationFromProfile profiles.iakona rec {
           inherit (nixpkgs) system;
+          extraSpecialArgs = mixedInputs system;
         };
 
-        iaukea = lib.homeConfigurationFromProfile profiles.iaukea {
+        iaukea = lib.homeConfigurationFromProfile profiles.iaukea rec {
           system = "aarch64-darwin";
+          extraSpecialArgs = mixedInputs system;
         };
       };
     };
