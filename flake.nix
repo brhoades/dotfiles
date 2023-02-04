@@ -28,19 +28,15 @@
   };
 
   outputs = inputs@{ self, nixpkgs, latest, bnixpkgs, secrets, homeage
-  , firefox-nightly, nur, home-manager, rnix, flake-utils }: let
+    , firefox-nightly, nur, home-manager, rnix, flake-utils }:
+    let
       overlays = [
         nur.overlay
-        (_: _: {
-          config.allowUnfreePredicate = (pkg: true);
-        })
         (p: _: {
           # hack to let modules access inputs w/o top-level arg
           inputs = mixedInputs p.system;
         })
-        (
-          p: _: { inherit ((mixedInputs p.system).latest) ngrok; }
-        )
+        (p: _: { inherit ((mixedInputs p.system).latest) ngrok; })
       ];
       common = [
         {
@@ -49,17 +45,18 @@
         }
         homeage.homeManagerModules.homeage
       ];
-      mixedInputs = system: inputs // {
-        inherit inputs;
-        latest = import latest {
-          inherit system;
-          config.allowUnfreePredicate = (pkg: true);
+      mixedInputs = system:
+        inputs // {
+          inherit inputs;
+          latest = import latest {
+            inherit system;
+            config.allowUnfreePredicate = (pkg: true);
+          };
+          bnixpkgs = import bnixpkgs {
+            inherit system;
+            config.allowUnfreePredicate = (pkg: true);
+          };
         };
-        bnixpkgs = import bnixpkgs {
-          inherit system;
-          config.allowUnfreePredicate = (pkg: true);
-        };
-      };
       lib = import ./nix/lib { inherit nixpkgs home-manager overlays; };
       profiles = {
         root = _: { imports = [ ./nix/profiles/root.nix ]; };
@@ -75,7 +72,7 @@
       };
 
     in rec {
-      inherit self inputs;
+      inherit self inputs profiles;
       homeConfigurations = rec {
         aaron = iakona;
         ikaia = lib.homeConfigurationFromProfile profiles.ikaia rec {
