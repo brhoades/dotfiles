@@ -333,13 +333,21 @@ in {
 
         # Media Keys
         "XF86AudioRaiseVolume" =
-          "exec --no-startup-id pactl set-sink-volume 2 +5%";
+          ''exec --no-startup-id pactl set-sink-volume "@DEFAULT_SINK@" "+5%"'';
         "XF86AudioLowerVolume" =
-          "exec --no-startup-id pactl set-sink-volume 2 -5%";
-        "XF86AudioMute" = "exec --no-startup-id pactl set-sink-mute 0 toggle";
-        "pause" = "exec --no-startup-id pactl set-sink-mute 0 toggle";
+          ''exec --no-startup-id pactl set-sink-volume "@DEFAULT_SINK@" "-5%"'';
+        "XF86AudioMute" =
+          ''exec --no-startup-id pactl set-sink-mute  "@DEFAULT_SINK@" toggle'';
         "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 4";
         "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 4";
+
+        # custom keyboard keys
+        "F17" = ''
+          exec --no-startup-id pactl set-source-volume "@DEFAULT_SOURCE@" "+2%"'';
+        "F18" = ''
+          exec --no-startup-id pactl set-source-volume "@DEFAULT_SOURCE@" "-2%"'';
+        "F19" = ''
+          exec --no-startup-id pactl set-source-mute "@DEFAULT_SOURCE@" toggle'';
 
         # bindcode 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
         # bindcode --release 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
