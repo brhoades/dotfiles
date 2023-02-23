@@ -342,11 +342,11 @@ in {
         "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 4";
 
         # custom keyboard keys
-        "F17" = ''
+        "XF86Launch8" = ''
           exec --no-startup-id pactl set-source-volume "@DEFAULT_SOURCE@" "+2%"'';
-        "F18" = ''
+        "XF86Launch9" = ''
           exec --no-startup-id pactl set-source-volume "@DEFAULT_SOURCE@" "-2%"'';
-        "F19" = ''
+        "XF86Launch7" = ''
           exec --no-startup-id pactl set-source-mute "@DEFAULT_SOURCE@" toggle'';
 
         # bindcode 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
