@@ -30,7 +30,6 @@
       bat
       ripgrep
       rename # perl rename, not busybox.
-      tmux
       screen
 
       inetutils
