@@ -349,6 +349,9 @@ in {
         "XF86Launch7" = ''
           exec --no-startup-id pactl set-source-mute "@DEFAULT_SOURCE@" toggle'';
 
+        # "Ctrl + XF86Launch6" = ''exec --no-startup-id "${ddc}" up'';
+        # "Alt + XF86Launch6" = ''exec --no-startup-id "${ddc}" down'';
+
         # bindcode 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 0"
         # bindcode --release 70 exec "pactl set-source-mute alsa_input.usb-RODE_Microphones_RODE_NT-USB-00.analog-stereo 1"
         #bindsym Scroll_Lock exec "xte 'keydown Scroll_Lock'"
