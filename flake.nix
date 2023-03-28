@@ -61,7 +61,7 @@
       profiles = {
         root = _: { imports = [ ./nix/profiles/root.nix ]; };
         ikaia = _: { imports = common ++ [ ./nix/machines/ikaia ]; };
-        ioane = _: { imports = common ++ [ ./nix/machines/ioane ]; };
+        work = _: { imports = common ++ [ ./nix/machines/work.nix ]; };
         iakona = _: { imports = common ++ [ ./nix/machines/iakona ]; };
         iaukea = _: { imports = common ++ [ ./nix/machines/iaukea ]; };
         # vm or headless profile
@@ -80,7 +80,7 @@
           extraSpecialArgs = mixedInputs system;
         };
 
-        ioane = lib.homeConfigurationFromProfile profiles.ioane rec {
+        work = lib.homeConfigurationFromProfile profiles.work rec {
           inherit (nixpkgs) system;
           extraSpecialArgs = mixedInputs system;
         };
