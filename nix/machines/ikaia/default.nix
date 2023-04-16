@@ -82,6 +82,21 @@
     };
   };
 
+  home.packages = with pkgs; [
+    youtube-dl
+    fzf
+    ddcutil
+    ddccontrol
+    bottom
+    _1password
+    pkgs.inputs.latest.virt-manager
+    pstree
+    peek
+    mumble
+    libreoffice
+    fusee-launcher
+  ];
+
   homeage.identityPaths = [ "~/.ssh/id_ed25519" ];
   homeage.file."xdghack.json" = {
     source = "${pkgs.inputs.secrets}/users/aaron/xdghack.json.age";
