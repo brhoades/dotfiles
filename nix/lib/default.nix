@@ -22,7 +22,8 @@ nixpkgs.lib // rec {
   # using `home-manager --flake`.
   #
   homeConfigurationFromProfile = profile:
-    { system, username ? "aaron", homeDirectory ? "/home/${username}", extraSpecialArgs ? {} }:
+    { system, username ? "aaron", homeDirectory ? "/home/${username}"
+    , extraSpecialArgs ? { } }:
     home-manager.lib.homeManagerConfiguration {
       inherit homeDirectory system username extraSpecialArgs;
       configuration = nixosModuleFromProfile profile;
@@ -35,4 +36,6 @@ nixpkgs.lib // rec {
   localPackagesExcept = system: exceptions:
     withPkgs system
     (pkgs: removeAttrs (import ../pkgs { inherit pkgs; }) exceptions);
+
+  files = import ./files.nix { inherit nixpkgs; };
 }
