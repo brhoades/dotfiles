@@ -97,6 +97,16 @@
     fusee-launcher
   ];
 
+  # 2023/04/17
+  # multiple keyboards defined in sway config causes firefox crashes on reload.
+  # and it has for over a year.
+  # we'll define them on each machine until it's fixed :shrug:.
+  # https://bugzilla.mozilla.org/show_bug.cgi?id=1652820#c28
+  #
+  # keyboard is fine as-is
+  wayland.windowManager.sway.extraConfig = ''
+  '';
+
   homeage.identityPaths = [ "~/.ssh/id_ed25519" ];
   homeage.file."xdghack.json" = {
     source = "${pkgs.inputs.secrets}/users/aaron/xdghack.json.age";

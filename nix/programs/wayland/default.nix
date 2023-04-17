@@ -93,35 +93,6 @@ in {
 
       output * adaptive_sync on
 
-      # https://bugzilla.mozilla.org/show_bug.cgi?id=1652820#c28
-      # don't specify wildcards, do each keyboard
-      input "1241:8211:daskeyboard" {
-        xkb_layout us
-        xkb_variant altgr-intl
-        xkb_options ctrl:nocaps
-        xkb_numlock enabled
-      }
-      input "9456:320:Metadot_-_Das_Keyboard_Das_Keyboard" {
-        xkb_layout us
-        xkb_variant altgr-intl
-        xkb_options ctrl:nocaps
-        xkb_numlock enabled
-      }
-      # x1carbon keyboard
-      input "1:1:AT_Translated_Set_2_keyboard" {
-        xkb_layout us
-        xkb_variant altgr-intl
-        xkb_options ctrl:nocaps
-        xkb_numlock enabled
-      }
-      # mac das keyboard
-      input "9456:311:Das_Keyboard_Model_S_Das_Keyboard_Model_S" {
-        xkb_layout us
-        xkb_variant mac
-        xkb_options ctrl:nocaps
-        xkb_numlock enabled
-      }
-
       input "1133:4123:Logitech_M705" {
         accel_profile adaptive
         pointer_accel 0.3 # way too zippy

@@ -73,6 +73,21 @@
     };
   };
 
+  # 2023/04/17
+  # multiple keyboards defined in sway config causes firefox crashes on reload.
+  # and it has for over a year.
+  # we'll define them on each machine until it's fixed :shrug:.
+  # https://bugzilla.mozilla.org/show_bug.cgi?id=1652820#c28
+  wayland.windowManager.sway.extraConfig = ''
+    # x1carbon keyboard
+    input "1:1:AT_Translated_Set_2_keyboard" {
+      xkb_layout us
+      xkb_variant altgr-intl
+      xkb_options ctrl:nocaps
+      xkb_numlock enabled
+    }
+  '';
+
   home = {
     packages = with pkgs; [
       iw # used by i3status_rs to query rates
