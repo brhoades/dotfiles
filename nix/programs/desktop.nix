@@ -9,6 +9,7 @@
     ./i3.nix
     ./i3status_rs.nix
     ./chat.nix
+    ./zsh/1password_module.nix
   ];
 
   # Home Manager setup

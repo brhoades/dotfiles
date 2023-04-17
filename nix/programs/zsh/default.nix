@@ -15,8 +15,9 @@ in {
     # p10k prompts the config wizard unless its output
     # exists.
     file = {
-      ".p10k.zsh".source = ../../zshconfigs/dotp10k.zsh;
-      ".preztorc".source = ../../zshconfigs/dotpreztorc;
+      # TODO: move this... here?
+      ".p10k.zsh".source = ../../../zshconfigs/dotp10k.zsh;
+      ".preztorc".source = ../../../zshconfigs/dotpreztorc;
     };
   };
 
@@ -29,8 +30,7 @@ in {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    # XXX: 20.03
-    # enableVteIntegration = true;
+    enableVteIntegration = true;
 
     history = {
       size = 101 * 1024 * 1024;
@@ -58,7 +58,6 @@ in {
       source "$HOME/.p10k.zsh"
       source "${p10kPath}/powerlevel10k.zsh-theme"
       source "${prezto}/share/zsh-prezto/init.zsh"
-      source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
     '';
 
     initExtra = ''
