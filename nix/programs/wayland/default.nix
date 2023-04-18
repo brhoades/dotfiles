@@ -45,7 +45,7 @@ in {
     ws9 = "r";
     ws10 = "a";
     mod = "Mod4";
-    includes = [ ./config.d/zoom ];
+    includes = [ ./config.d/zoom ./config.d/runelite ];
   in {
     enable = true;
     extraConfig = let
@@ -140,7 +140,15 @@ in {
       ];
 
       assigns = {
-        "${ws1}" = [ { class = "Steam"; } { class = "Emacs"; } ];
+        "${ws1}" = [
+          { class = "Steam"; }
+          { class = "Emacs"; }
+          { title = "^(zoom|Zoom)"; }
+        ];
+        "${ws2}" = [
+          { class = "net-runelite-client-RuneLite"; }
+          { title = "RuneLite Launcher"; }
+        ];
 
         "${ws4}" = [
           {

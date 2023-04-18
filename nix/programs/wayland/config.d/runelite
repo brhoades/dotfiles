@@ -1,0 +1,2 @@
+# annoying 2-3 popups before the game starts
+for_window [title="RuneLite Launcher"] floating enable
