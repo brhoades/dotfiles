@@ -104,8 +104,7 @@
   # https://bugzilla.mozilla.org/show_bug.cgi?id=1652820#c28
   #
   # keyboard is fine as-is
-  wayland.windowManager.sway.extraConfig = ''
-  '';
+  wayland.windowManager.sway.extraConfig = "";
 
   homeage.identityPaths = [ "~/.ssh/id_ed25519" ];
   homeage.file."xdghack.json" = {
