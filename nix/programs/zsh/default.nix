@@ -27,7 +27,17 @@ in {
     enableBashIntegration = true;
   };
 
-  programs.zsh = {
+  programs.zsh = let
+    swaymsgFunc = ''
+      function swmsg() {
+        if [[ -z "$@" ]]; then
+          swaymsg --help
+        else
+          swaymsg "$@" | jq -C | less --raw
+        fi
+      }
+    '';
+  in {
     enable = true;
     enableCompletion = true;
     enableVteIntegration = true;
@@ -145,6 +155,8 @@ in {
       setopt HIST_NO_FUNCTIONS
       # Do not store "history" in the history list
       setopt HIST_NO_STORE
+
+      ${swaymsgFunc}
 
       (( ! ''${+functions[p10k]} )) || p10k finalize
     '';
