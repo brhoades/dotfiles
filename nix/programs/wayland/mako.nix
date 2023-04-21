@@ -10,7 +10,7 @@
     defaultTimeout = 5 * 1000;
     maxVisible = 1;
 
-    output = "DP-2";
+    output = config.brodes.windowManager.monitors.primary;
 
     # ../default.nix wayland
     # AA for slightly transparent

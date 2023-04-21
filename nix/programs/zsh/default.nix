@@ -6,11 +6,7 @@ let
   prezto = pkgs.zsh-prezto;
 in {
   home = {
-    packages = with pkgs; [
-      prezto
-      fzy
-      zsh-powerlevel10k
-    ];
+    packages = with pkgs; [ prezto fzy zsh-powerlevel10k ];
 
     # p10k prompts the config wizard unless its output
     # exists.
