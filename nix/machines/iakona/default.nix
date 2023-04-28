@@ -21,6 +21,8 @@
 
   brodes = {
     windowManager = {
+      monitors.primary = "eDP-1";
+
       i3status_rs = {
         # x1 carbon display, eDP-1
         output = ''"Chimei Innolux Corporation 0x14E4 0x00000000"'';
