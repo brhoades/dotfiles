@@ -3,6 +3,7 @@
     ../common.nix
     ../../programs/development.nix
     ../../programs/emacs.nix
+    ../../programs/bup.nix
 
     ../../programs/desktop.nix
     ../../programs/steam.nix
