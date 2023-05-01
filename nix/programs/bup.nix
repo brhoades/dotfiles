@@ -37,7 +37,7 @@ let
             trap "rm -f "$FULLFILE"" EXIT ERR
         fi
 
-        aws s3 cp --acl public-read "$FULLFILE" s3://${bucketName}/ || exit $?
+        ${awscli.out}/bin/aws s3 cp --acl public-read "$FULLFILE" s3://${bucketName}/ || exit $?
 
         FILENAME="$(basename "$FULLFILE")"
         URI="https://${bucketName}/$FILENAME"
