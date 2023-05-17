@@ -11,6 +11,7 @@
     gdb
     tree
     nmap
+    trippy
 
     yq
     jq
