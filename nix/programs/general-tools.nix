@@ -37,5 +37,5 @@
   ] ++ (if lib.strings.hasInfix "linux" pkgs.system then [
       iotop
       ngrok
-    ]);
+    ] else []);
 }
