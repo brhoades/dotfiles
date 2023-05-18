@@ -18,33 +18,6 @@
     TERM = "screen-256color";
   };
 
-  home.packages = with pkgs;
-    [
-      git
-      wget
-      rsync
-      httpie
-      curl
-      perl
-      nnn
-      bat
-      ripgrep
-      rename # perl rename, not busybox.
-      screen
-
-      inetutils
-      htop
-      lsof
-      pciutils
-
-      zip
-      rar
-    ] ++ (if lib.strings.hasInfix "linux" pkgs.system then [
-      iotop
-      ngrok
-    ] else
-      [ ]);
-
   # broken in 2022/12
   # https://github.com/NixOS/nixpkgs/issues/196651 maybe?
   manual.manpages.enable = false;
