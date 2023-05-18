@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   imports = [ ./emacs.nix ./git.nix ./vim.nix ];
 
   # if go
@@ -7,11 +7,9 @@
     # errcheck go-tools unconvert
     github-cli
 
-    lorri
     gdb
     tree
     nmap
-    trippy
 
     yq
     jq
@@ -23,7 +21,6 @@
     tcpdump
     nixfmt
     nix-tree
-    colmena
   ];
 
   home.sessionVariables = { GOROOT = [ "${pkgs.go.out}/share/go" ]; };
