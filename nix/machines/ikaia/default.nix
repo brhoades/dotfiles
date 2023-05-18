@@ -92,7 +92,6 @@
     bottom
     _1password
     pkgs.inputs.latest.virt-manager
-    pstree
     peek
     mumble
     libreoffice
