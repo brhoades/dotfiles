@@ -1,41 +1,41 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [
-    mtr
-    unixtools.netstat
-    nmap
-    inetutils
 
-    lsof
-    netstat
-    pcitools
-    lshow
+  home.packages = with pkgs;
+    [
+      mtr
+      unixtools.netstat
+      nmap
+      inetutils
 
-    htop
+      lsof
 
-    ripgrep
-    nnn
-    bat
-    curl
-    httpie
-    wget
+      htop
 
-    rsync
-    rename # perl rename, not busybox
+      ripgrep
+      nnn
+      bat
+      curl
+      httpie
+      wget
 
-    perl
+      rsync
+      rename # perl rename, not busybox
 
-    git
+      perl
 
-    screen
+      git
 
-    zip
-    rar
-    p7zip
+      screen
 
-    mosh
-    psmisc
-  ] ++ (if lib.strings.hasInfix "linux" pkgs.system then [
+      zip
+      rar
+      p7zip
+
+      mosh
+      psmisc
+    ] ++ (if lib.strings.hasInfix "linux" pkgs.system then [
       iotop
       ngrok
-    ] else []);
+    ] else
+      [ ]);
 }
