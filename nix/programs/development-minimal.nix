@@ -9,5 +9,5 @@
     nixfmt
   ];
 
-  home.sessionVariables = { GOROOT = [ "${pkgs.go.out}/share/go" ]; };
+  home.sessionVariables = { GOROOT = "${pkgs.go.out}/share/go"; };
 }

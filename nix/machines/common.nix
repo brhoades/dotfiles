@@ -9,7 +9,10 @@
   # Don't notify-send on every switch.
   news.display = "silent";
 
-  programs.zsh.enableCompletion = true;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+  };
 
   home.sessionVariables = let editor = "vim";
   in {
@@ -20,5 +23,5 @@
 
   # broken in 2022/12
   # https://github.com/NixOS/nixpkgs/issues/196651 maybe?
-  manual.manpages.enable = false;
+  # manual.manpages.enable = false;
 }

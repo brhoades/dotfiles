@@ -8,7 +8,11 @@
       "${pkgs.inputs.latest.rust-analyzer}/bin/rust-analyzer";
   };
 
-  home.packages = with pkgs; [ nix-linter inputs.rnix gopls ];
+  home.packages = with pkgs; [
+    # nix-linter # 2023/06/09: marked broken on on 23.05 
+    pkgs.inputs.rnix
+    gopls
+  ];
 
   # emacs needs .emacs.d/{undo,tmp,tansient,elpa,workspace}
   # It should make all except for undo and workspace itself?
