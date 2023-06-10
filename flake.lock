@@ -262,11 +262,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1654044214,
-        "narHash": "sha256-NH+9TGqGN+ktUiG7v0Rlbi1aWgQcS2EC5kH1Lq1+o74=",
-        "ref": "master",
-        "rev": "e5583ffdfe3179cb580653f26758751c8eb09754",
-        "revCount": 6,
+        "lastModified": 1686415165,
+        "narHash": "sha256-gEw6bJ1c4hvGgqkC5DOaTbIuKh65WCWTs/ngAOZdjN0=",
+        "ref": "refs/heads/master",
+        "rev": "6a1524995d4f935323368cf9d868923c3ece4046",
+        "revCount": 18,
         "type": "git",
         "url": "ssh://git@sea.brod.es/~/secrets"
       },
