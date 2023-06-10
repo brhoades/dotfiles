@@ -55,7 +55,7 @@ in {
 
   home = {
     packages = with pkgs; [ pass bpass ];
-    sessionVariables.GOPASS_NO_NOTIFY = true;
+    sessionVariables.GOPASS_NO_NOTIFY = "true";
   };
 
   xdg.configFile.gopassConfig = {

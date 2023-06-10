@@ -13,14 +13,14 @@
 
     package = pkgs.inputs.latest.firefox;
 
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      ublock-origin
-      tridactyl # XXX: use latest beta
-      reddit-enhancement-suite
-      darkreader
-    ];
-
     profiles = let
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        ublock-origin
+        tridactyl # XXX: use latest beta
+        reddit-enhancement-suite
+        darkreader
+      ];
+
       darkChrome = ''
         browser { background-color: #333 !important; }
       '';
@@ -66,14 +66,14 @@
       };
     in {
       personal = {
-        inherit settings;
+        inherit settings extensions;
         isDefault = true;
         id = 0;
         userChrome = darkChrome;
       };
 
       work = {
-        inherit settings;
+        inherit settings extensions;
         id = 1;
         userChrome = darkChrome;
       };

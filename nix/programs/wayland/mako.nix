@@ -1,5 +1,5 @@
 { lib, config, pkgs, ... }: {
-  programs.mako = {
+  services.mako = {
     enable = true;
 
     font = "Roboto 12";
@@ -26,8 +26,10 @@
       libnotify # notify-send
     ];
 
-  xdg.configFile."mako/config".onChange =
-    lib.mkIf config.programs.mako.enable ''
-      systemctl --user restart mako.service
-    '';
+  # 2023/06/10: previously, mako would not come back up when its config
+  # was swapped. Maybe now that it's a service it's fine?
+  # xdg.configFile."mako/config".onChange =
+  #   lib.mkIf config.programs.mako.enable ''
+  #     systemctl --user restart mako.service
+  #   '';
 }
