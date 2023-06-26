@@ -1,15 +1,8 @@
-(use-package lsp-mode :ensure t)
-(use-package yasnippet :ensure t)
-(use-package hydra :ensure t)
+(use-package hydra
+    :ensure t)
 
 (use-package lsp-java
   :ensure t)
-
-(use-package dap-mode
-  :ensure t
-  :config
-  (dap-mode t)
-  (dap-ui-mode t))
 
 (add-hook 'java-mode-hook 'flycheck)
 (add-hook 'java-mode-hook 'company-mode)
