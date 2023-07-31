@@ -20,9 +20,9 @@
   :hook ((go-mode . flycheck-mode)
          (go-mode . my-go-mode-hook))
 
-  ; ((go-mode . lsp-deferred)
-  ;  (before-save . lsp-format-buffer)
-  ;  (before-save . lsp-organize-imports))
+  ((go-mode . lsp-deferred)
+   (before-save . lsp-format-buffer)
+   (before-save . lsp-organize-imports))
   :custom
   ((flycheck-idle-change-delay 1)
    (tab-width 4)

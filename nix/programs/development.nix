@@ -3,8 +3,9 @@
 
   # if go
   home.packages = with pkgs; [
-    go # godef gocode gotags gotools golint delve gocode
-    # errcheck go-tools unconvert
+    go godef gocode gotags gotools golint delve gocode
+    errcheck go-tools unconvert
+    gopls
     github-cli
 
     gdb
