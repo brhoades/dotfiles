@@ -21,6 +21,7 @@ for_window [app_id="zoom" title="Zoom - Licensed Account"] floating enable
 
 for_window [title="^(zoom|Zoom)$"] floating enable
 for_window [title="Zoom - Licensed Account"] floating enable
-for_window [title="Settings"] floating enable, floating_minimum_size 960 x 700
+# this catches anything with settings in the title and floats it
+# for_window [title="Settings"] floating enable, floating_minimum_size 960 x 700
 for_window [title="Zoom Meeting(.*)?"] floating disable, inhibit_idle open
 for_window [title="Meeting Chat"] floating enable, inhibit_idle open
