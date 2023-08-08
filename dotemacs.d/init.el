@@ -39,6 +39,7 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(auto-composition-mode nil t nil "Customized with use-package helm")
+ '(comp-async-report-warnings-errors nil)
  '(auto-revert-remote-files t)
  '(c-basic-offset 2)
  '(c-label-minimum-indentation 2)
