@@ -99,7 +99,7 @@ in {
       }
 
       # workspace -> monitor
-      workspace ${ws4}  output ${mainMon} # flipped so I can pretend ot focus?
+      workspace ${ws4}  output ${rightMon}
       workspace ${ws10} output ${rightMon}
       workspace ${ws6}  output ${rightMon} # q
       workspace ${ws3}  output ${mainMon}
