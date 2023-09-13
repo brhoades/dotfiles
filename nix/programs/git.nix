@@ -47,6 +47,8 @@ in {
         pull.ff = "only";
 
         "protocol \"keybase\"" = { allow = "always"; };
+
+        init.defaultBrancch = "main";
       };
 
       ignores = [
