@@ -141,14 +141,14 @@ in {
 
       assigns = {
         "${ws1}" = [
-          { class = "Steam"; }
-          { class = "Emacs"; }
-          { title = "^(zoom|Zoom)"; }
+          # { class = "Steam"; }
+          # { class = "Emacs"; }
+          # { title = "^(zoom|Zoom)"; }
         ];
-        "${ws2}" = [
-          { class = "net-runelite-client-RuneLite"; }
-          { title = "RuneLite Launcher"; }
-        ];
+        # "${ws2}" = [
+        #   { class = "net-runelite-client-RuneLite"; }
+        #   { title = "RuneLite Launcher"; }
+        # ];
 
         "${ws4}" = [
           {
