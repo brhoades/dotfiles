@@ -64,6 +64,7 @@
         work = _: { imports = common ++ [ ./nix/machines/work.nix ]; };
         iakona = _: { imports = common ++ [ ./nix/machines/iakona ]; };
         iaukea = _: { imports = common ++ [ ./nix/machines/iaukea ]; };
+        work-mbp = _: { imports = common ++ [ ./nix/machines/work-mbp ]; };
         # vm or headless profile
         default = _: { imports = common ++ [ ./nix/profiles/default.nix ]; };
         headless-development = _: {
@@ -73,6 +74,9 @@
 
     in rec {
       inherit self inputs profiles;
+      # TODO: for all systems
+      defaultPackage.aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
+
       homeConfigurations = rec {
         aaron = iakona;
         ikaia = lib.homeConfigurationFromProfile profiles.ikaia rec {
@@ -94,6 +98,13 @@
           system = "aarch64-darwin";
           extraSpecialArgs = mixedInputs system;
         };
+
+        billy = lib.homeConfigurationFromProfile profiles.work-mbp rec {
+          system = "aarch64-darwin";
+
+          extraSpecialArgs = mixedInputs system;
+        };
+
       };
     };
 }
