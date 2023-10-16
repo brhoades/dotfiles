@@ -7,7 +7,7 @@
     # having issues with fonts after an update?
     # fc-cache -rf  to reset. kitty is sensitive.
     settings = {
-      font_family = "FiraCode";
+      font_family = "Fira Code";
       bold_font = "auto";
       italic_font = "auto";
       bold_italic_font = "auto";
