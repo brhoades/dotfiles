@@ -32,10 +32,10 @@
       p7zip
 
       mosh
-      psmisc
     ] ++ (if lib.strings.hasInfix "linux" pkgs.system then [
       iotop
       ngrok
+      psmisc
     ] else
       [ ]);
 }
