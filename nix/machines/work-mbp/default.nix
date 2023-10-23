@@ -18,6 +18,7 @@
   home.packages = with pkgs; [
     mosh
     nix-index
+    rustup
   ];
 
   programs.kitty = {
