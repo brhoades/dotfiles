@@ -7,7 +7,7 @@
     ../../programs/vim.nix
     ../../programs/git.nix
     ../../programs
-    ../../programs/zsh.nix
+    # ../../programs/zsh.nix
     ../../programs/tmux.nix
     ../../programs/pazi.nix
     ../../programs/direnv.nix
