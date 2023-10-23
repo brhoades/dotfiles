@@ -21,16 +21,29 @@ nixpkgs.lib // rec {
   # Create a homeManagerConfiguration that can be installed
   # using `home-manager --flake`.
   #
+  # https://nix-community.github.io/home-manager/release-notes.html#sec-release-22.11-highlights
   homeConfigurationFromProfile = profile:
     { system, username ? "aaron", homeDirectory ? "/home/${username}"
     , extraSpecialArgs ? { } }:
-    home-manager.lib.homeManagerConfiguration {
-      inherit homeDirectory system username extraSpecialArgs;
-      configuration = nixosModuleFromProfile profile;
-    };
+    (withPkgs system (pkgs:
+      home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          {
+            home = {
+	      inherit homeDirectory username; # system extraSpecialArgs;
+            };
+          }
+          (nixosModuleFromProfile profile)
+        ];
+      }));
+    
 
   withPkgs = system: f:
-    let pkgs = import nixpkgs { inherit overlays system; };
+    let pkgs = import nixpkgs {
+      inherit overlays system;
+      config.allowUnfree = true;
+    };
     in f pkgs;
 
   localPackagesExcept = system: exceptions:
