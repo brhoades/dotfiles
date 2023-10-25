@@ -1,13 +1,16 @@
 # opens iTerm2
-alt - return : kitty 
+alt - return : kitty
 
-# Navigation
+# close window
+alt - s : skhd --key "cmd - w"
+
+# navigation
 alt - h : yabai -m window --focus west
 alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
 
-# Moving windows
+# moving windows
 shift + alt - h : yabai -m window --warp west
 shift + alt - j : yabai -m window --warp south
 shift + alt - k : yabai -m window --warp north
@@ -18,6 +21,9 @@ alt - 1 : yabai -m space --focus 1
 alt - 2 : yabai -m space --focus 2
 alt - 3 : yabai -m space --focus 3
 alt - 4 : yabai -m space --focus 4
+alt - q : yabai -m spacec --focus 5
+alt - w : yabai -m spacec --focus 6
+alt - e : yabai -m spacec --focus 7
 
 # Move focus container to workspace
 shift + alt - m : yabai -m window --space last; yabai -m space --focus last
@@ -27,6 +33,9 @@ shift + alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
 shift + alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
 shift + alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
 shift + alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
+shift + alt - q : yabai -m window --space 5; yabai -m space --focus 5
+shift + alt - w : yabai -m window --space 6; yabai -m space --focus 6
+shift + alt - e : yabai -m window --space 7; yabai -m space --focus 7
 
 # Resize windows
 lctrl + alt - h : yabai -m window --resize left:-50:0; \
