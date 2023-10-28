@@ -109,6 +109,10 @@ in {
         export PATH=$HOME/go/bin:$PATH
       fi
 
+      if [[ -e "$HOME/.cargo/bin" ]]; then
+        export PATH=$HOME/.cargo/bin:$PATH
+      fi
+
       hash kubectl &> /dev/null && source <(kubectl completion zsh) || {}
 
       # alias gopass='GPG_TTY=$(tty) gopass'
