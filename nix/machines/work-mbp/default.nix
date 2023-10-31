@@ -19,6 +19,7 @@
     mosh
     nix-index
     rustup
+    github-cli
   ];
 
   programs.kitty = {
