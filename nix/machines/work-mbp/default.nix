@@ -12,6 +12,7 @@
     ../../programs/tmux.nix
     ../../programs/pazi.nix
     ../../programs/direnv.nix
+    ../../programs/skhd_yabai
     ../common.nix
   ];
 

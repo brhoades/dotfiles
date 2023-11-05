@@ -78,7 +78,6 @@
       defaultPackage.aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
 
       homeConfigurations = rec {
-        aaron = iakona;
         ikaia = lib.homeConfigurationFromProfile profiles.ikaia rec {
           inherit (nixpkgs) system;
           extraSpecialArgs = mixedInputs system;
@@ -89,7 +88,7 @@
           extraSpecialArgs = mixedInputs system;
         };
 
-        iakona = lib.homeConfigurationFromProfile profiles.iakona rec {
+        aaron = lib.homeConfigurationFromProfile profiles.iakona rec {
           inherit (nixpkgs) system;
           extraSpecialArgs = mixedInputs system;
         };
