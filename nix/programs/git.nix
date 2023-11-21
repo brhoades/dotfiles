@@ -65,6 +65,10 @@ in {
       ];
     };
 
-    home.packages = with pkgs; [ delta ];
+    home.packages = with pkgs; [ delta github-cli git-machete hub ];
+    programs.zsh.shellAliases = {
+      git = "hub";
+      gm = "git machete";
+    };
   };
 }
