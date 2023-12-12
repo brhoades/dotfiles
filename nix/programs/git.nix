@@ -42,7 +42,10 @@ in {
 
         credential = { helper = "cache --timeout=28800"; };
 
-        merge = { tool = "ediff"; };
+        merge = {
+          tool = "vimdiff";
+          conflictstyle = "diff3";
+        };
 
         pull.ff = "only";
 
