@@ -73,5 +73,7 @@ in {
       git = "hub";
       gm = "git machete";
     };
+
+    programs.lazygit.enable = true;
   };
 }
