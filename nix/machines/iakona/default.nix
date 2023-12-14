@@ -2,7 +2,7 @@
   imports = [
     ../common.nix
     ../../programs/development.nix
-    ../../programs/emacs.nix
+    ../../programs/emacs
     ../../programs/bup.nix
 
     ../../programs/desktop.nix

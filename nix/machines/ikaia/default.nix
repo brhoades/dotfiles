@@ -8,7 +8,7 @@
     ../../services/desktop.nix
     #../../programs/steam.nix
     ../../programs/streaming.nix
-    ../../programs/emacs.nix
+    ../../programs/emacs
     ../../programs/wine.nix
     ../../programs/dlux.nix
     ../../programs/bup.nix

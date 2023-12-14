@@ -2,8 +2,8 @@
 
 {
   home.file = {
-    ".emacs.d/init.el".source = ../../dotemacs.d/init.el;
-    ".emacs.d/config".source = ../../dotemacs.d/config;
+    ".emacs.d/init.el".source = ../../../dotemacs.d/init.el;
+    ".emacs.d/config".source = ../../../dotemacs.d/config;
     ".emacs.d/.cache/lsp/rust/rust-analyzer".source =
       "${pkgs.inputs.latest.rust-analyzer}/bin/rust-analyzer";
   };
