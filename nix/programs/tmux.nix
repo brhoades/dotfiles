@@ -141,7 +141,7 @@ in lib.mkMerge [
         ${if isLinux then
           "set -g @override_copy_command '${pkgs.wl-clipboard}/bin/wl-copy'"
         else
-          ""}
+          "set -g @override_copy_command 'pbcopy'"}
 
         # enables squiggly underscores (undercurls)
         set -g default-terminal "alacritty"
