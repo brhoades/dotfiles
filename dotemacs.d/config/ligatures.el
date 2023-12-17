@@ -1,5 +1,7 @@
 (when (window-system)
-  (set-frame-font "Fira Code"))
+  ; check if we're on OSX
+  (when (featurep 'ns-win)
+    (set-face-attribute 'default nil :font "FiraCode Nerd Font Mono")))
 (let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
                (35 . ".\\(?:###\\|##\\|_(\\|[#(?[_{]\\)")
                (36 . ".\\(?:>\\)")
