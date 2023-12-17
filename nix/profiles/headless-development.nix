@@ -14,6 +14,11 @@
     signing = lib.mkDefault { key = "6D052A5305F89A0E!"; };
   };
 
+  # include kitty terminfo files to support features like undercurls
+  home.packages = with pkgs; [
+    kitty
+  ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = lib.mkDefault "aaron";

@@ -11,7 +11,6 @@ in lib.mkMerge [
         # Show a symbol when prefix is on
         prefix-highlight
 
-        resurrect
         continuum
 
         # copy to x11/wayland clipboard
@@ -20,6 +19,13 @@ in lib.mkMerge [
 
       # Copy mode (search /)
       keyMode = "vi";
+
+      terminal = "screen-256color";
+
+      # When set to default 500, causes delay with control registering for the program in tmux.
+      # Horrible effects on emacs since it's a ctrl-heavy program.
+      # Allegedly, 0 is bad.
+      escapeTime = 0;
 
       extraConfig = ''
         # https://github.com/ddollar/tmux/blob/master/examples/screen-keys.conf
@@ -142,13 +148,6 @@ in lib.mkMerge [
           "set -g @override_copy_command '${pkgs.wl-clipboard}/bin/wl-copy'"
         else
           "set -g @override_copy_command 'pbcopy'"}
-
-        # enables squiggly underscores (undercurls)
-        set -g default-terminal "alacritty"
-
-        # When set to default, was causing control to have a massive delay.
-        # Zero purportedly affects other keys but I've not noticed.
-        set  -s escape-time       0
 
         # Theme
         # set -g @themepack 'powerline/block/green'
