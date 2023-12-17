@@ -51,6 +51,9 @@ in {
     };
 
     initExtraBeforeCompInit = ''
+      # tramp needs a dumb prompt and barfs if we give it p10k
+      [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+
       # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
       # Initialization code that may require console input (password prompts, [y/n]
       # confirmations, etc.) must go above this block; everything else may go below.
