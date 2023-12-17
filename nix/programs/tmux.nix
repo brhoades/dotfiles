@@ -8,10 +8,6 @@ in lib.mkMerge [
       historyLimit = 20000;
 
       plugins = with pkgs.tmuxPlugins; [
-        # sensible defaults
-        # messes with XTERM colors? "terminal does not support clear"
-        # sensible
-
         # Show a symbol when prefix is on
         prefix-highlight
 
@@ -147,14 +143,12 @@ in lib.mkMerge [
         else
           ""}
 
-        set -g default-terminal "screen-256color"
+        # enables squiggly underscores (undercurls)
+        set -g default-terminal "alacritty"
 
         # When set to default, was causing control to have a massive delay.
         # Zero purportedly affects other keys but I've not noticed.
         set  -s escape-time       0
-
-        set -g update-environment "WAYLAND_DISPLAY \
-                                  "
 
         # Theme
         # set -g @themepack 'powerline/block/green'

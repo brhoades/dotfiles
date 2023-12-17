@@ -18,7 +18,7 @@
   in {
     EDITOR = editor;
     GIT_EDITOR = editor;
-    TERM = "screen-256color";
+    TERM = "alacritty";
   };
 
   # broken in 2022/12
