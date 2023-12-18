@@ -16,9 +16,10 @@
 
   # emacs needs .emacs.d/{undo,tmp,tansient,elpa,workspace}
   # It should make all except for undo and workspace itself?
-  systemd.user.tmpfiles.rules = let
-    emacsdir = (config.home.homeDirectory + "/.emacs.d");
-    in with pkgs.lib; mkIf (strings.hasInfix "linux" pkgs.system) [
+  systemd.user.tmpfiles.rules =
+    let emacsdir = (config.home.homeDirectory + "/.emacs.d");
+    in with pkgs.lib;
+    mkIf (strings.hasInfix "linux" pkgs.system) [
       "d ${emacsdir + "/undo"} - - - - -"
       "d ${emacsdir + "/tmp"} - - - - -"
       "d ${emacsdir + "/workspace"} - - - - -"
@@ -28,12 +29,10 @@
       "d ${emacsdir + "/transient"} - - - - -"
     ];
 
-  programs.emacs = {
+  programs.emacs = let isLinux = with pkgs; lib.strings.hasInfix "linux" system;
+  in {
     enable = true;
-    # I've not been using the GUI. Having emacs in tmux is too nice.
-    # emacs 28 introduces fuzzy search changes with projectile that are annoying
-    # as hell. Additionally, it breaks undo-tree.
-    # package = bnixpkgs.emacs28-pgtk;
+    package = if isLinux then pkgs.emacs else pkgs.inputs.latest.emacs-macport;
 
     # use-package takes care of any extra packages
     # only defined in .el files.
@@ -135,9 +134,17 @@
           #          github-review
           #
           #          # if go
-          go godef gocode gotags gotools golint delve
+          go
+          godef
+          gocode
+          gotags
+          gotools
+          golint
+          delve
           govet
-          errcheck go-tools unconvert
+          errcheck
+          go-tools
+          unconvert
           #
           #          # if nix
           # nix-linter
