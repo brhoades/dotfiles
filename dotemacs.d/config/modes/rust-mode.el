@@ -28,6 +28,7 @@
   :mode ("\\.rs\\'" . rustic-mode)
   :hook ((rustic-mode . flycheck-rust-setup)
 		 (rustic-mode . rustic-flycheck-setup)
-		 (rustic-mode . lsp-mode))
+		 (rustic-mode . lsp-mode)
+         (rustic-mode . (lambda () (setenv "CARGO_TARGET_DIR" "/tmp/emacs-target-dir"))))
   :custom
   (rustic-display-spinner nil))

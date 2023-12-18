@@ -1,25 +1,14 @@
+(use-package exec-path-from-shell
+ :ensure t
+ :config
+ ; MacOS + GUI
+ (when (window-system)
+  (when (featurep 'ns-win)
+    (exec-path-from-shell-initialize))))
 (use-package dockerfile-mode
  :ensure t
  :defer t)
-(use-package purescript-mode
- :ensure t
- :defer t)
-(use-package less-css-mode
- :ensure t
- :defer t)
-(use-package exec-path-from-shell
- :ensure t
- :defer t)
 (use-package js2-mode
- :ensure t
- :defer t)
-(use-package vue-mode
- :ensure t
- :defer t)
-(use-package elm-mode
- :ensure t
- :defer t)
-(use-package scala-mode
  :ensure t
  :defer t)
 (use-package yaml-mode
