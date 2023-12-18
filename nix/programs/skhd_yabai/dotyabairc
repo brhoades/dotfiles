@@ -9,6 +9,7 @@
 #
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
+yabai -m rule --add app=Emacs manage=on # emacs starts floating?
 
 # global settings
 yabai -m config                                 \
