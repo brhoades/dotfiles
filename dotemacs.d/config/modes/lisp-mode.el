@@ -14,7 +14,7 @@
             ;; more sane argument alignment
             (setq lisp-indent-function 'common-lisp-indent-function)
             ;; Keep M-TAB for `completion-at-point'
-            (define-key flyspell-mode-map "\M-\t" nil)
+            ;; 2023/12/18: errors on start in macport of emacs (define-key flyspell-mode-map "\M-\t" nil)
             ;; Pretty-print eval'd expressions.
             (define-key emacs-lisp-mode-map
               "\C-x\C-e" 'pp-eval-last-sexp)))
