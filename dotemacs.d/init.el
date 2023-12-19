@@ -29,7 +29,7 @@
 (setq tab-width 2)
 (setq make-backup-files nil)
 
-(setq tramp-default-method "ssh")
+(eval-after-load 'tramp '(setenv "SHELL" "/bin/sh"))
 
 
 (custom-set-variables

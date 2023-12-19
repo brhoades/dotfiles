@@ -8,6 +8,12 @@
 (use-package dockerfile-mode
  :ensure t
  :defer t)
+(use-package exec-path-from-shell
+ :ensure t
+ :defer t
+ :exec
+ (when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize)))
 (use-package js2-mode
  :ensure t
  :defer t)
