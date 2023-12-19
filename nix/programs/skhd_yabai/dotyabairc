@@ -9,7 +9,8 @@
 #
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
-yabai -m rule --add app=Emacs manage=on # emacs starts floating?
+yabai -m rule --add app="Emacs" manage=on # stop most emacs windows from floating
+yabai -m rule --add app="Emacs" subrole="AXFloatingWindow" manage=off # but allow popups to float
 
 # global settings
 yabai -m config                                 \
