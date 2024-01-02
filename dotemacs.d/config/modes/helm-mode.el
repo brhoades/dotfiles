@@ -24,7 +24,9 @@
 
 (use-package helm-rg
   :after helm
-  :ensure t)
+  :ensure t
+  :custom
+  (custom-reevaluate-setting 'helm-rg-ripgrep-executable)) ; this keeps getting set to nil?
 
 
 (use-package helm-smex
