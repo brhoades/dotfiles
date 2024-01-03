@@ -1,5 +1,5 @@
 # opens iTerm2
-alt - return : kitty
+alt - return : kitty --single-instance
 
 # close window
 alt - s : skhd --key "cmd - w"
