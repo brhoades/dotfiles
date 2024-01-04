@@ -24,8 +24,8 @@
 
   programs.kitty = {
     keybindings = {
-      "alt+left" = "send_text all \x1b\x62";
-      "alt+right" = "send_text all \x1b\x66";
+      "alt+left" = "send_text all \\x1b\\x62";
+      "alt+right" = "send_text all \\x1b\\x66";
     };
   };
 
