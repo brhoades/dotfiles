@@ -11,7 +11,8 @@
       # unstable = pkgs.vimPlugins;
       # unstable = (import <nixos-unstable-small> { }).vimPlugins;
     in with pkgs.vimPlugins; [
-      YouCompleteMe
+      # 2023/11: broken on bash install script
+      # YouCompleteMe
       syntastic
       fugitive
       airline
