@@ -61,7 +61,6 @@
       profiles = {
         root = _: { imports = [ ./nix/profiles/root.nix ]; };
         ikaia = _: { imports = common ++ [ ./nix/machines/ikaia ]; };
-        work = _: { imports = common ++ [ ./nix/machines/work.nix ]; };
         iakona = _: { imports = common ++ [ ./nix/machines/iakona ]; };
         iaukea = _: { imports = common ++ [ ./nix/machines/iaukea ]; };
         work-mbp = _: { imports = common ++ [ ./nix/machines/work-mbp ]; };
@@ -79,11 +78,6 @@
 
       homeConfigurations = rec {
         ikaia = lib.homeConfigurationFromProfile profiles.ikaia rec {
-          inherit (nixpkgs) system;
-          extraSpecialArgs = mixedInputs system;
-        };
-
-        work = lib.homeConfigurationFromProfile profiles.work rec {
           inherit (nixpkgs) system;
           extraSpecialArgs = mixedInputs system;
         };
