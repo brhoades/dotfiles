@@ -31,6 +31,7 @@
    (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
                     :major-modes '(nix-mode)
                     :server-id 'nix))
+  (lsp-file-watch-threshold 32768)
 )
 
 (use-package lsp-ui
