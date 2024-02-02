@@ -44,20 +44,6 @@
         (error (substitute-command-keys "To exit emacs: \\[kill-emacs]")))
 (global-set-key (kbd "C-x C-c") 'dont-kill-emacs)
 
-;; straight
-;(defvar bootstrap-version)
-;(let ((bootstrap-file
-;       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-;      (bootstrap-version 5))
-;  (unless (file-exists-p bootstrap-file)
-;    (with-current-buffer
-;        (url-retrieve-synchronously
-;         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-;         'silent 'inhibit-cookies)
-;      (goto-char (point-max))
-;      (eval-print-last-sexp)))
-;  (load bootstrap-file nil 'nomessage))
-
 ;; refresh packages when needed
 (unless package-archive-contents
   (package-refresh-contents))
@@ -65,3 +51,10 @@
 ; spaceemacs uses 100 MiB, I should too. Reduces CPU use.
 ; https://emacs.stackexchange.com/a/19715
 (setq gc-cons-threshold 100000000) ; 100mb, default is 800kb
+
+; store custom overrides in a separate, non-nix controlled file
+;
+; this is especially helpful on my work machine where I don't want to pollute
+; personal configs with work settings.
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file t)

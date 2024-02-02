@@ -9,7 +9,7 @@
   };
 
   home.packages = with pkgs; [
-    # nix-linter # 2023/06/09: marked broken on on 23.05 
+    # nix-linter # 2023/06/09: marked broken on on 23.05
     pkgs.inputs.rnix
     gopls
   ];
@@ -159,6 +159,8 @@
           cppcheck # cpp-mode
           clang # cpp-mode
           haskell-language-server
+
+          pkgs.pyright # lsp-pyright
         ]);
   };
 }
