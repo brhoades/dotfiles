@@ -1,9 +1,0 @@
----
-:backtrace: false
-:bulk_threshold: 1000
-:sources:
-- https://rubygems.org/
-- http://gemcutter.org
-:update_sources: true
-:verbose: true
-gem: --user-install --no-document
