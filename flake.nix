@@ -82,12 +82,12 @@
           extraSpecialArgs = mixedInputs system;
         };
 
-        aaron = lib.homeConfigurationFromProfile profiles.iakona rec {
-          inherit (nixpkgs) system;
+        iaukea = lib.homeConfigurationFromProfile profiles.iaukea rec {
+          system = "aarch64-darwin";
           extraSpecialArgs = mixedInputs system;
         };
 
-        iaukea = lib.homeConfigurationFromProfile profiles.iaukea rec {
+        work-mbp = lib.homeConfigurationFromProfile profiles.work-mbp rec {
           system = "aarch64-darwin";
           extraSpecialArgs = mixedInputs system;
         };
