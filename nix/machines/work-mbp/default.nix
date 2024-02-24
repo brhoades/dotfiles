@@ -1,13 +1,8 @@
 { pkgs, config, ... }: {
   imports = [
-    # ../../programs/development.nix
-    ../../programs/emacs
-    ../../programs/development-minimal.nix
+    ../../programs/development.nix
     ../../programs/kitty.nix
-    ../../programs/vim.nix
-    ../../programs/git.nix
     ../../programs
-    # ../../programs/zsh.nix
     ../../programs/zsh
     ../../programs/tmux.nix
     ../../programs/pazi.nix
@@ -16,11 +11,7 @@
     ../common.nix
   ];
 
-  home.packages = with pkgs; [
-    mosh
-    nix-index
-    rustup
-  ];
+  home.packages = with pkgs; [ mosh nix-index rustup ];
 
   programs.kitty = {
     keybindings = {
@@ -30,7 +21,7 @@
   };
 
   programs.man.enable = false; # doesn't even build on aarch64
-  manual.manpages.enable = false; 
+  manual.manpages.enable = false;
 
   user = {
     name = "Billy J Rhoades II";
