@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./git.nix ./vim.nix ];
+  imports = [ ./git.nix ./vim.nix ./zellij.nix ];
 
   home.packages = with pkgs; [
     yq
@@ -8,6 +8,4 @@
 
     nixfmt
   ];
-
-  home.sessionVariables = { GOROOT = "${pkgs.go.out}/share/go"; };
 }

@@ -1,5 +1,5 @@
 { pkgs, inputs, ... }: {
-  imports = [ ./emacs ./git.nix ./vim.nix ];
+  imports = [ ./emacs ./git.nix ./vim.nix ./zellij.nix ];
 
   # if go
   home.packages = with pkgs; [
