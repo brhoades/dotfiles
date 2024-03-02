@@ -2,7 +2,7 @@
   programs.zellij = {
     enable = true;
     enableBashIntegration = true;
-    enableZshIntegration = true;
+    enableZshIntegration = false; # every zsh starts in zellij
 
     settings = {
       default_shell = "zsh";
