@@ -4,21 +4,20 @@ in {
   imports = [ ./emacs ./git.nix ./vim.nix ./zellij.nix ./fzf.nix ];
 
   # if go
-  home.packages = with pkgs;
-    [
-      go
-      godef
-      gocode
-      gotags
-      gotools
-      golint
-      delve
-      gocode
-      errcheck
-      go-tools
-      unconvert
-      gopls
-      github-cli
+  home.packages = with pkgs; [
+    go
+    godef
+    gocode
+    gotags
+    gotools
+    golint
+    delve
+    gocode
+    errcheck
+    go-tools
+    unconvert
+    gopls
+    github-cli
 
       tree
       nmap
