@@ -6,6 +6,6 @@
     jq
     python3
 
-    nixfmt
+    nixfmt-classic
   ];
 }

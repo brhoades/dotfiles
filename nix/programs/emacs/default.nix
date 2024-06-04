@@ -134,7 +134,6 @@
           #          # if go
           go
           godef
-          gocode
           gotags
           gotools
           golint

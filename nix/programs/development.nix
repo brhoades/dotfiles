@@ -7,12 +7,10 @@ in {
   home.packages = with pkgs; [
     go
     godef
-    gocode
     gotags
     gotools
     golint
     delve
-    gocode
     errcheck
     go-tools
     unconvert
@@ -30,7 +28,7 @@ in {
       kubectl
       kubectx
       tcpdump
-      nixfmt
+      nixfmt-classic
       nix-tree
     ] ++ (if isLinux then [ gdb ] else [ ]);
 

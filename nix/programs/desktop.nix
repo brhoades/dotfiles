@@ -36,7 +36,7 @@
     fira-code-symbols
     roboto
 
-    nixfmt
+    nixfmt-classic
 
     # i3-status-rust requires 4
     font-awesome_4
