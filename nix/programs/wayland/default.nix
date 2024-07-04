@@ -87,9 +87,10 @@ in {
       output ${laptopMon} pos 0 0
 
       # default background, rotated in cron (some day)
-      output "*" background ${
-        toString ../../files/backgrounds/geometric-sunset-wpc-yellow-warm.jpg
-      } fill
+      # output "*" background "$${
+      #   toString ../../files/backgrounds/geometric-sunset-wpc-yellow-warm.jpg
+      # }" fill
+      output "*" background #111111 solid_color
 
       output * adaptive_sync on
 
