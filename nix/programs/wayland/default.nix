@@ -10,7 +10,7 @@ let
   # rightMon = ''"Dell Inc. DELL U2415 CFV9N98G0YDS"'';
   rightMon = ''"Dell Inc. DELL U2720Q F8KFX13"'';
   mainMon = ''"ASUSTek COMPUTER INC PA278CV M3LMQS362198"'';
-  topMon = ''"Ancor Communications Inc ASUS PB277 0x0000F3F1"'';
+  topMon = ''"ASUSTek COMPUTER INC PA278CV M3LMQS362207"'';
   laptopMon = ''"Chimei Innolux Corporation 0x14E4 0x00000000"'';
 in {
   imports = [ ./mako.nix ./swayidle.nix ./monitors.nix ];
