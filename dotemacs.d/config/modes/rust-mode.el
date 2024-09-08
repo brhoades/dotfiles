@@ -32,3 +32,21 @@
          (rustic-mode . (lambda () (setenv "CARGO_TARGET_DIR" "/tmp/emacs-target-dir"))))
   :custom
   (rustic-display-spinner nil))
+
+
+(defun lsp-cargo-toggle-target ()
+  "Switches cargo's target between default and Windows"
+  (interactive)
+  (if (and
+       (not (null lsp-rust-analyzer-cargo-target))
+       (string-match "x86_64-pc-windows-gnu" lsp-rust-analyzer-cargo-target))
+      ; then
+      (progn
+       (prin1 "switched cargo target to default")
+       (setq lsp-rust-analyzer-cargo-target nil))
+      ; else
+      (progn
+        (setq lsp-rust-analyzer-cargo-target "x86_64-pc-windows-gnu")
+        (prin1 "switched cargo target to Windows"))))
+
+(define-key global-map (kbd "<f9>") 'my-themes-select)
