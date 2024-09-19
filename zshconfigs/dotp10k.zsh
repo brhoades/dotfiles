@@ -34,7 +34,6 @@
     os_icon                 # os identifier
     dir                     # current directory
     vcs                     # git status
-    ngrok_env
     # prompt_char           # prompt symbol
   )
 
@@ -1501,46 +1500,6 @@
   # This works even with POWERLEVEL9K_DISABLE_HOT_RELOAD=true.
   (( ! $+functions[p10k] )) || p10k reload
 }
-
-  # Example of a user-defined prompt segment. Function prompt_example will be called on every
-  # prompt if `example` prompt segment is added to POWERLEVEL9K_LEFT_PROMPT_ELEMENTS or
-  # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS. It displays an icon and orange text greeting the user.
-  #
-  # Type `p10k help segment` for documentation and a more sophisticated example.
-  function prompt_ngrok_env() {
-    BGCOLOR=
-    FGCOLOR=white
-
-    case $NGROK_ENV in
-      local)
-        FGCOLOR=white
-        ;;
-      dev)
-        BGCOLOR=yellow
-        FGCOLOR=yellow
-        ;;
-      stage)
-        FGCOLOR=yellow
-        BGCOLOR=yellow
-        ;;
-      prod)
-        BGCOLOR=red
-        FGCOLOR=red
-        ;;
-      *)
-        BGCOLOR=white
-        FGCOLOR=black
-        ;;
-    esac
-    # -i '⭐' for an icon someday
-    if [[ ! -z "$BGCOLOR" ]] && [[ ! -z "$FGCOLOR" ]]; then
-      p10k segment -f $FGCOLOR -b $BGCOLOR -t "$NGROK_ENV"
-    elif [[ ! -z "$BGCOLOR" ]]; then
-      p10k segment -b $BGCOLOR -t "$NGROK_ENV"
-    else 
-      p10k segment -f $FGCOLOR -t "$NGROK_ENV"
-    fi
-  }
 
 # Tell `p10k configure` which file it should overwrite.
 typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
