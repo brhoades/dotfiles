@@ -7,7 +7,7 @@ MONTHPATH="$BASEPATH/$(date "+%Y")/$(date "+%m")"
 
 [[ ! -d "$MONTHPATH" ]] && mkdir -p "$MONTHPATH"
 
-FILENAME="$MONTHPATH/$(date +"%Y%m%d_%H%M%S_%Z")-iaukea-ss.png"
+FILENAME="$MONTHPATH/$(date +"%Y%m%d_%H%M%S_%Z")-$(hostname)-ss.png"
 
 screencapture -o -W -i "$FILENAME"
 
