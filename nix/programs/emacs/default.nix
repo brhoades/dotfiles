@@ -155,7 +155,7 @@
 
           cppcheck # cpp-mode
           clang # cpp-mode
-          haskell-language-server
+          # haskell-language-server
 
           pkgs.pyright # lsp-pyright
         ]);
