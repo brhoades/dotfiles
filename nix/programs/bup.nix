@@ -9,7 +9,7 @@ let
       buildInputs = [
         awscli
         wl-clipboard
-        youtube-dl
+        yt-dlp
         coreutils
         debianutils.out # tempfile
       ];
@@ -22,13 +22,13 @@ let
           NEWFILE="$(${debianutils.out}/bin/tempfile --prefix="")"
           rm -f "$NEWFILE"
 
-          youtube-dl \
+          yt-dlp \
             --output "$NEWFILE.%(ext)s" \
             -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio/bestvideo/bestaudio' \
             -- "$FULLFILE"
 
           # get the name
-          FULLFILE="$(youtube-dl \
+          FULLFILE="$(yt-dlp \
             --output "$NEWFILE.%(ext)s" \
             --get-filename \
             -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio/bestvideo/bestaudio' \
