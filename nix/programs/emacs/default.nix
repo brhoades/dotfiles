@@ -99,7 +99,7 @@
           #          git-link
           #          # evil-magit is gone
           #          evil
-          #          evil-smartparens # evil-collection  includes evil-mode too now?
+          #          evil-collection  includes evil-mode too now?
           #          monokai-theme
           #
           #          # undo-fu undo-fu-session
