@@ -9,11 +9,10 @@ MONTHPATH="$BASEPATH/$(date "+%Y")/$(date "+%m")"
 
 FILENAME="$MONTHPATH/$(date +"%Y%m%d_%H%M%S_%Z")-$(hostname)-ss.png"
 
-screencapture -o -W -i "$FILENAME"
+launchctl asuser $(id -u) bash -c "screencapture -S -o -W -s -i "$FILENAME""
 
-# osascript -e "set the clipboard to \"$FILENAME\""
 osascript \
--e 'on run args' \
+  -e 'on run args' \
   -e 'set the clipboard to POSIX file (first item of args)' \
   -e end \
   "$FILENAME"
