@@ -88,7 +88,7 @@
         };
 
         # work mbp
-        billys-MacBook-Pro = lib.homeConfigurationFromProfile profiles.work-mbp rec {
+        MacBook-Pro = lib.homeConfigurationFromProfile profiles.work-mbp rec {
           system = "aarch64-darwin";
           extraSpecialArgs = mixedInputs system;
         };
