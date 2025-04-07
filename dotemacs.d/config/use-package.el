@@ -6,13 +6,16 @@
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
-  (package-install 'use-package))
-
-(eval-when-compile
-  (require 'use-package))
+  (package-install 'use-package)
+  (eval-when-compile
+    (unless (bound-and-true-p package--initialized)
+      (package-initialize))  ;; be sure load-path includes package directories
+    (require 'use-package)
+    ))
 
 (use-package diminish
   :ensure t)
+
 (use-package bind-key
   :ensure t
   :defer t)

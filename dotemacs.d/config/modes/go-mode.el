@@ -30,6 +30,11 @@
    (whitespace-style '(trailing)))
   )
 
+(use-package go-projectile
+    :ensure t
+    :defer t
+  :after (go-mode))
+
 (use-package company-go
   :defer t
   :ensure t

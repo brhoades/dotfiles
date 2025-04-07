@@ -17,21 +17,47 @@
 ;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common) ;; Map TAB key to completions.
 ;; (define-key rust-mode-map (kbd "C-c C-j") #'lsp-find-definition)
 
-;2023/06/11: having some issues with rustic-mode errors (lsp ui apparently),
-;killing old packages
-;(use-package flycheck-rust
-;  :ensure t
-;  :after (flycheck))
+(use-package flycheck-rust
+  :ensure t
+  :after (flycheck))
 
+
+; 2025/04/07: emacs 30.1 busted rustic with error cannot find file or folder "s" in a require
 (use-package rustic
   :ensure t
   :mode ("\\.rs\\'" . rustic-mode)
+  :config
+  (package-initialize)
   :hook ((rustic-mode . flycheck-rust-setup)
 		 (rustic-mode . rustic-flycheck-setup)
 		 (rustic-mode . lsp-mode)
          (rustic-mode . (lambda () (setenv "CARGO_TARGET_DIR" "/tmp/emacs-target-dir"))))
   :custom
-  (rustic-display-spinner nil))
+  (package-native-compile t)
+  (etq rust-mode-treesitter-derive t))
+
+
+(use-package tree-sitter-langs
+  :ensure t
+  :after (tree-sitter))
+
+(use-package tree-sitter
+  :ensure t
+  :config
+  (require 'tree-sitter-langs)
+  (global-tree-sitter-mode)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+
+;(use-package rust-mode
+;    :ensure t
+;    :mode ("\\.rs\\'" . rust-mode)
+;    :hook ((rust-mode . flycheck-rust-setup)
+;           (rust-mode . lsp-mode)
+;           (rust-mode . (lambda () (setenv "CARGO_TARGET_DIR" "/tmp/emacs-target-dir"))))
+;    :init
+;    (etq rust-mode-treesitter-derive t))
+
+
 
 
 (defun lsp-cargo-toggle-target ()
