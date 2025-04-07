@@ -23,6 +23,10 @@
 (evil-mode 1)
 ;;;;;;;;;;;;;;;
 
+; Suddenly required in emacs 30.1 and gives vague "cannot load file or folder s" error
+(use-package s
+  :ensure t)
+
 (setq-default indent-tabs-mode nil)
 (setq tab-width 2)
 (setq make-backup-files nil)
@@ -102,7 +106,6 @@
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(projectile-globally-ignored-directories '("node_modules"))
- '(push 'rustic-clippy t)
  '(python-indent 4 t nil "Customized with use-package python-mode")
  '(rbenv-show-active-ruby-in-modeline nil nil nil "Customized with use-package rbenv")
  '(ruby-align-to-stmt-keywords nil)
