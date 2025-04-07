@@ -6,7 +6,10 @@
   :config
   (helm-mode 1)
   (push "\.(js|ts)x?\.map$" helm-boring-file-regexp-list)
-  (push "\.pb\.(go|js|py)$" helm-boring-file-regexp-list))
+  (push "\.pb\.(go|js|py)$" helm-boring-file-regexp-list)
+  (setq helm-ff-guess-ffap-urls nil) ; don't guess urls/emails at point with helm
+  (setq helm-ff-use-notify nil) ; TODO: disable off emacs. Chews up FDs which causes errors.
+  )
 
 (use-package projectile
   :ensure t
