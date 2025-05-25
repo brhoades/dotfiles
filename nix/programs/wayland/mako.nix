@@ -2,23 +2,25 @@
   services.mako = {
     enable = true;
 
-    font = "Roboto 12";
-    anchor = "top-center";
-    margin = "1"; # distance from top
-    padding = "2"; # interior
+    settings = {
+      font = "Roboto 12";
+      anchor = "top-center";
+      margin = "1"; # distance from top
+      padding = "2"; # interior
 
-    defaultTimeout = 5 * 1000;
-    maxVisible = 1;
+      default-timeout = 5 * 1000;
+      max-visible = 1;
 
-    output = config.brodes.windowManager.monitors.primary;
+      output = config.brodes.windowManager.monitors.primary;
 
-    # ../default.nix wayland
-    # AA for slightly transparent
-    backgroundColor = "#222222AA";
-    textColor = "#FFFFFFFF";
-    borderColor = "#333333BB";
+      # ../default.nix wayland
+      # AA for slightly transparent
+      background-color = "#222222AA";
+      text-color = "#FFFFFFFF";
+      border-color = "#333333BB";
 
-    icons = false;
+      icons = false;
+    };
   };
 
   home.packages = with pkgs;
