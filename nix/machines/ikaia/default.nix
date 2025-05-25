@@ -91,7 +91,7 @@
     ddcutil
     ddccontrol
     bottom
-    _1password
+    _1password-cli
     pkgs.inputs.latest.virt-manager
     peek
     mumble
