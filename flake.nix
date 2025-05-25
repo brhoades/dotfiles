@@ -2,7 +2,7 @@
   description = "Billy's dotfiles flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     latest.url = "github:nixos/nixpkgs/nixos-unstable";
     bnixpkgs.url = "github:brhoades/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
@@ -20,7 +20,7 @@
 
     nur.url = "github:nix-community/NUR";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     rnix.url = "github:nix-community/rnix-lsp";
