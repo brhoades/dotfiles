@@ -66,14 +66,16 @@
       };
     in {
       personal = {
-        inherit settings extensions;
+        inherit settings;
+        extensions.packages = extensions;
         isDefault = true;
         id = 0;
         userChrome = darkChrome;
       };
 
       work = {
-        inherit settings extensions;
+        inherit settings;
+        extensions.packages = extensions;
         id = 1;
         userChrome = darkChrome;
       };
