@@ -74,7 +74,8 @@
     in rec {
       inherit self inputs profiles;
       # TODO: for all systems
-      defaultPackage.aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
+      defaultPackage.aarch64-darwin =
+        home-manager.defaultPackage.aarch64-darwin;
 
       homeConfigurations = rec {
         ikaia = lib.homeConfigurationFromProfile profiles.ikaia rec {
@@ -88,10 +89,11 @@
         };
 
         # work mbp
-        MacBook-Pro-33 = lib.homeConfigurationFromProfile profiles.work-mbp rec {
-          system = "aarch64-darwin";
-          extraSpecialArgs = mixedInputs system;
-        };
+        MacBook-Pro-33 =
+          lib.homeConfigurationFromProfile profiles.work-mbp rec {
+            system = "aarch64-darwin";
+            extraSpecialArgs = mixedInputs system;
+          };
       };
     };
 }
