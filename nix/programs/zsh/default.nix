@@ -50,7 +50,7 @@ in {
       path = "${config.xdg.dataHome}/.zhistory";
     };
 
-    initExtraBeforeCompInit = ''
+    initContent = pkgs.lib.mkOrder 550 ''
       # tramp needs a dumb prompt and barfs if we give it p10k
       [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 
@@ -67,9 +67,9 @@ in {
       source "$HOME/.p10k.zsh"
       source "${p10kPath}/powerlevel10k.zsh-theme"
       source "${prezto}/share/zsh-prezto/init.zsh"
-    '';
 
-    initExtra = ''
+      # NOTE: below used to be in initExtra
+
       # the first compinit doesn't catch everything on fpath.
       compinit
 
