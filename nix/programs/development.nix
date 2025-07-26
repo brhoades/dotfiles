@@ -33,4 +33,9 @@ in {
     ] ++ (if isLinux then [ gdb ] else [ ]);
 
   home.sessionVariables = { GOROOT = "${pkgs.go.out}/share/go"; };
+
+  programs.vscode = {
+    enable = true;
+    enableExtensionUpdateCheck = true;
+  };
 }
