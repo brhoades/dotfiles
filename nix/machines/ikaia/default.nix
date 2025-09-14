@@ -97,6 +97,15 @@
     mumble
     libreoffice
     fusee-launcher
+
+    # dolphin
+    kdePackages.dolphin
+    kdePackages.dolphin-plugins
+    kdePackages.kdegraphics-thumbnailers
+    kdePackages.kimageformats
+    kdePackages.ffmpegthumbs
+    kdePackages.kio
+    kdePackages.kio-extras
   ];
 
   # 2023/04/17
