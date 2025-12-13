@@ -17,7 +17,6 @@
     fonts = config.wayland.windowManager.sway.config.fonts;
   in {
     enable = true;
-    package = pkgs.i3-gaps;
     extraConfig = ''
       # Don't steal focus
       focus_on_window_activation urgent
