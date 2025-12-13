@@ -96,7 +96,6 @@
     peek
     mumble
     libreoffice
-    fusee-launcher
 
     # dolphin
     kdePackages.dolphin
