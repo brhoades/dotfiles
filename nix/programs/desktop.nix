@@ -27,7 +27,6 @@
     inputs.latest.google-chrome
     inputs.latest.thunderbird
 
-    barrier
     xorg.xrandr
     xorg.xkill
     scrot
