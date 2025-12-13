@@ -17,7 +17,7 @@
   systemd.user.tmpfiles.rules =
     let emacsdir = (config.home.homeDirectory + "/.emacs.d");
     in with pkgs.lib;
-    mkIf (strings.hasInfix "linux" pkgs.system) [
+    mkIf (strings.hasInfix "linux" pkgs.stdenv.hostPlatform.system) [
       "d ${emacsdir + "/undo"} - - - - -"
       "d ${emacsdir + "/tmp"} - - - - -"
       "d ${emacsdir + "/workspace"} - - - - -"

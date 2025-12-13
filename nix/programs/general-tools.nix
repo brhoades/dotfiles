@@ -32,7 +32,7 @@
       p7zip
 
       mosh
-    ] ++ (if lib.strings.hasInfix "linux" pkgs.system then [
+    ] ++ (if lib.strings.hasInfix "linux" pkgs.stdenv.hostPlatform.system then [
       iotop
       ngrok
       psmisc

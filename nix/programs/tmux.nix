@@ -1,5 +1,5 @@
 { lib, pkgs, ... }:
-let isLinux = lib.strings.hasInfix "linux" pkgs.system;
+let isLinux = lib.strings.hasInfix "linux" pkgs.stdenv.hostPlatform.system;
 in lib.mkMerge [
   {
     programs.tmux = {

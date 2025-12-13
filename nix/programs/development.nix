@@ -1,5 +1,5 @@
 { pkgs, inputs, ... }:
-let isLinux = with pkgs; lib.strings.hasInfix "linux" system;
+let isLinux = with pkgs; lib.strings.hasInfix "linux" stdenv.hostPlatform.system;
 in {
   imports = [ ./emacs ./git.nix ./vim.nix ./zellij.nix ./fzf.nix ];
 
@@ -37,6 +37,6 @@ in {
 
   programs.vscode = {
     enable = true;
-    enableExtensionUpdateCheck = true;
+    profiles.default.enableExtensionUpdateCheck = true;
   };
 }

@@ -27,15 +27,17 @@ in {
     programs.git = {
       enable = true;
 
-      userName = user.name;
-      userEmail = user.email;
+      settings = {
+        user = {
+          name = user.name;
+          email = user.email;
+        };
 
-      signing = {
-        key = user.signing.key;
-        signByDefault = user.signing.force;
-      };
+        signing = {
+          key = user.signing.key;
+          signByDefault = user.signing.force;
+        };
 
-      extraConfig = {
         color = { ui = "auto"; };
 
         push = { default = "simple"; };
