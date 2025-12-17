@@ -31,6 +31,7 @@ in {
       tcpdump
       nixfmt-classic
       nix-tree
+      claude-code
     ] ++ (if isLinux then [ gdb ] else [ ]);
 
   home.sessionVariables = { GOROOT = "${pkgs.go.out}/share/go"; };
