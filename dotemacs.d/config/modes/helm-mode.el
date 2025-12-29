@@ -3,7 +3,7 @@
   :custom
   ; https://github.com/tonsky/FiraCode/issues/158
   (auto-composition-mode nil)
-  :config
+  :custom
   (helm-mode 1)
   (push "\.(js|ts)x?\.map$" helm-boring-file-regexp-list)
   (push "\.pb\.(go|js|py)$" helm-boring-file-regexp-list)
@@ -28,14 +28,8 @@
   ;(auto-composition-mode nil))
 
 (use-package helm-rg
-  :after helm
-  :quelpa (helm-rg
-           :fetcher url
-           ; :fetcher github
-           ; :repo "lytex/helm-rg"
-           :upgrade t
-           :url "https://raw.githubusercontent.com/imiric/helm-rg/refs/heads/fix/31-hide-command-line/helm-rg.el"))
-
+  :ensure t
+  :after helm)
 
 (use-package helm-smex
   :ensure t
