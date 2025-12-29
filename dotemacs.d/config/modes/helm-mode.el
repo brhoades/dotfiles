@@ -15,9 +15,11 @@
   :ensure t
   :config
   (projectile-mode)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
-  ; :custom
-  ; (projectile-globally-ignored-directories '("node_modules")))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  :custom
+  (mapcar
+   (lambda (v) (add-to-list 'projectile-globally-ignored-directories v))
+   '("/nix/store" ".rustup" ".cache" ".pip" ".yarn" ".direnv")))
 
 (use-package helm-ag
   :after helm
