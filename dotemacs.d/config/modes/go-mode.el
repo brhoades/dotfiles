@@ -6,22 +6,8 @@
   (add-hook 'before-save-hook 'gofmt-before-save)
 )
 
-(defvar go-goto-override-keymap (make-keymap)
-  "Keymap for go goto implementation overried (no godef)")
-
-(define-minor-mode go-goto-override-minor-mode
-  "Minor mode for fixing go goto impl"
-  :init-value t
-  :global t
-  :keymap go-goto-override-keymap)
-
-;; The keymaps in `emulation-mode-map-alists' take precedence over
-;; `minor-mode-map-alist'
-(add-to-list 'emulation-mode-map-alists
-            `((go-goto-override-minor-mode . ,go-goto-override-keymap)))
-
-(define-key go-goto-override-keymap (kbd "C-c C-j") 'lsp-goto-implementation)
-(define-key go-goto-override-keymap (kbd "g d") 'lsp-goto-implementation)
+; (define-key go-goto-override-keymap (kbd "C-c C-j") 'lsp-goto-implementation)
+; (define-key go-goto-override-keymap (kbd "g d") 'lsp-goto-implementation)
 
 
 (use-package go-mode
@@ -33,7 +19,6 @@
   :hook ((go-mode . flycheck-mode)
          (go-mode . my-go-mode-hook)
          (go-mode . lsp-deferred)
-         (go-mode . go-goto-override-minor-mode)
          (before-save . lsp-format-buffer)
          (before-save . lsp-organize-imports))
   :custom
