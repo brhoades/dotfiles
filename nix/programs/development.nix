@@ -7,7 +7,6 @@ in {
   home.packages = with pkgs;
     [
       go
-      godef
       gotags
       gotools
       golint

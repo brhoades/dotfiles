@@ -27,9 +27,12 @@
 
 (use-package helm-rg
   :after helm
-  :ensure t
-  :custom
-  (custom-reevaluate-setting 'helm-rg-ripgrep-executable)) ; this keeps getting set to nil?
+  :quelpa (helm-rg
+           :fetcher url
+           ; :fetcher github
+           ; :repo "lytex/helm-rg"
+           :upgrade t
+           :url "https://raw.githubusercontent.com/imiric/helm-rg/refs/heads/fix/31-hide-command-line/helm-rg.el"))
 
 
 (use-package helm-smex

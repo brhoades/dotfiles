@@ -131,18 +131,6 @@
           #          git-link
           #          github-review
           #
-          #          # if go
-          go
-          godef
-          gotags
-          gotools
-          golint
-          delve
-          govet
-          errcheck
-          go-tools
-          unconvert
-          #
           #          # if nix
           # nix-linter
           #
