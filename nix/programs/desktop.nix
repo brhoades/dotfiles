@@ -57,6 +57,7 @@
     ncdu
 
     qmk
+    zoom-us
   ];
 
   gtk = {
