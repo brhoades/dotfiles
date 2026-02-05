@@ -30,7 +30,7 @@ in {
       tcpdump
       nixfmt-classic
       nix-tree
-      claude-code
+      pkgs.inputs.latest.claude-code
     ] ++ (if isLinux then [ gdb ] else [ ]);
 
   home.sessionVariables = { GOROOT = "${pkgs.go.out}/share/go"; };
