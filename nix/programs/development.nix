@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }:
 let isLinux = with pkgs; lib.strings.hasInfix "linux" stdenv.hostPlatform.system;
 in {
-  imports = [ ./emacs ./git.nix ./vim.nix ./zellij.nix ./fzf.nix ];
+  imports = [ ./emacs ./git.nix ./vim.nix ./fzf.nix ];
 
   # if go would be nice
   home.packages = with pkgs;

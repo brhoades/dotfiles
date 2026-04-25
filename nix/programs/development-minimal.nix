@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./git.nix ./vim.nix ./zellij.nix ];
+  imports = [ ./git.nix ./vim.nix ];
 
   home.packages = with pkgs; [
     yq
