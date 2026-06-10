@@ -27,7 +27,7 @@
       "d ${emacsdir + "/transient"} - - - - -"
     ];
 
-  programs.emacs = let isLinux = with pkgs; lib.strings.hasInfix "linux" system;
+  programs.emacs = let isLinux = with pkgs; lib.strings.hasInfix "linux" stdenv.hostPlatform.system;
   in {
     enable = true;
     package = if isLinux then pkgs.emacs else pkgs.inputs.latest.emacs-macport;

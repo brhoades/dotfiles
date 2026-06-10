@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   bpass = with pkgs;
     stdenv.mkDerivation rec {
@@ -51,6 +51,7 @@ in {
   programs.password-store = {
     enable = true;
     package = pkgs.gopass;
+    settings = { PASSWORD_STORE_DIR = "${config.xdg.configHome}/password-store"; };
   };
 
   home = {

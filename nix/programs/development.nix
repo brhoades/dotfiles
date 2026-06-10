@@ -28,7 +28,7 @@ in {
       kubectl
       kubectx
       tcpdump
-      nixfmt-classic
+      nixfmt
       nix-tree
       pkgs.inputs.latest.claude-code
     ] ++ (if isLinux then [ gdb ] else [ ]);

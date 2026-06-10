@@ -14,13 +14,15 @@
       # 2023/11: broken on bash install script
       # YouCompleteMe
       syntastic
-      fugitive
-      airline
-      ctrlp
-      ctrlp
+      vim-fugitive
+      vim-airline
+      ctrlp-vim
       # SimplyFold
       vim-nix
     ];
+
+    withRuby = false;
+    withPython3 = false;
 
     extraConfig = ''
       set hidden

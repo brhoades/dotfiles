@@ -27,23 +27,23 @@
     inputs.latest.google-chrome
     inputs.latest.thunderbird
 
-    xorg.xrandr
-    xorg.xkill
+    xrandr
+    xkill
     scrot
 
     fira-code
     fira-code-symbols
     roboto
 
-    nixfmt-classic
+    nixfmt
 
     # i3-status-rust requires 4
     font-awesome_4
     lm_sensors # i3-status-rust queries for temps
 
-    xfce.thunar
-    xfce.xfconf
-    xfce.tumbler
+    thunar
+    xfconf
+    tumbler
 
     vlc
     evince

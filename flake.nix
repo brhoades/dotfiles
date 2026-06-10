@@ -79,7 +79,7 @@
 
       homeConfigurations = rec {
         ikaia = lib.homeConfigurationFromProfile profiles.ikaia rec {
-          inherit (nixpkgs) system;
+          inherit (nixpkgs.stdenv.hostPlatform) system;
           extraSpecialArgs = mixedInputs system;
         };
 
