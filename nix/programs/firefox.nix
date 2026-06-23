@@ -11,8 +11,6 @@
 
     package = pkgs.inputs.latest.firefox;
 
-    configPath = ".mozilla/firefox";
-
     profiles = let
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin

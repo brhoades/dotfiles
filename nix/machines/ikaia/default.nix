@@ -28,6 +28,9 @@
     signing = { key = "6D052A5305F89A0E!"; };
   };
 
+  # legacy location, deprecated in 26.05
+  programs.firefox.configPath = ".mozilla/firefox";
+
   brodes = {
     windowManager = {
       monitors.primary = "DP-1";
