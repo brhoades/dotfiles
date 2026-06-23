@@ -63,7 +63,7 @@
         ikaia = _: { imports = common ++ [ ./nix/machines/ikaia ]; };
         iakona = _: { imports = common ++ [ ./nix/machines/iakona ]; };
         iaukea = _: { imports = common ++ [ ./nix/machines/iaukea ]; };
-        work-mbp = _: { imports = common ++ [ ./nix/machines/work-mbp ]; };
+        work-1pw = _: { imports = common ++ [ ./nix/machines/work-1pw ]; };
         # vm or headless profile
         default = _: { imports = common ++ [ ./nix/profiles/default.nix ]; };
         headless-development = _: {
@@ -78,20 +78,16 @@
         home-manager.defaultPackage.aarch64-darwin;
 
       homeConfigurations = rec {
-        ikaia = lib.homeConfigurationFromProfile profiles.ikaia rec {
-          inherit (nixpkgs.stdenv.hostPlatform) system;
-          extraSpecialArgs = mixedInputs system;
-        };
-
         iaukea = lib.homeConfigurationFromProfile profiles.iaukea rec {
           system = "aarch64-darwin";
           extraSpecialArgs = mixedInputs system;
         };
 
-        # work mbp
-        MacBook-Pro-33 =
-          lib.homeConfigurationFromProfile profiles.work-mbp rec {
-            system = "aarch64-darwin";
+        # work thinkpad
+        thinkpadp1 =
+          lib.homeConfigurationFromProfile profiles.work-1pw rec {
+            system = "x86_64-linux";
+	    username = "billy";
             extraSpecialArgs = mixedInputs system;
           };
       };

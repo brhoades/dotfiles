@@ -6,7 +6,6 @@
     ./password-manager.nix
     ./firefox.nix
     ./wayland
-    ./i3.nix
     ./i3status_rs.nix
     ./chat.nix
     ./zsh/1password_module.nix

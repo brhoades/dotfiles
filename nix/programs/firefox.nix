@@ -1,6 +1,4 @@
 { config, lib, pkgs, inputs, ... }: {
-  imports = [ ./ffxdghack.nix ];
-
   # Home Manager setup
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
