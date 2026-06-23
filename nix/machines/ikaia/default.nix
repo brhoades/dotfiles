@@ -13,6 +13,7 @@
     ../../programs/dlux.nix
     ../../programs/bup.nix
     ../../programs/runelite.nix
+    ../../programs/kitty.nix
 
     ../../modules/desktop-laptop-sync.nix
     ../../modules/update-latest-symlink.nix
