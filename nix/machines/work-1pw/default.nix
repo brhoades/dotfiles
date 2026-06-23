@@ -11,6 +11,8 @@
     ../../services/desktop.nix
   ];
 
+  home.packages = with pkgs; [ mosh nix-index ];
+
   user = {
     name = "Billy J Rhoades II";
     email = "brhoades@agilebits.com";
