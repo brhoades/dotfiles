@@ -27,6 +27,10 @@ in {
     waypipe
 
     pulseaudio
+
+    # specified above
+    font-awesome
+    roboto
   ];
 
   # This catches rofi, but not sway-launched programs.
