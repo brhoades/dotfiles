@@ -8,16 +8,16 @@
 #   * a giant popup that escapes the notify system that says audio is connected
 # 
 # For pop up notification windows that don't use notifications api
-for_window [app_id="zoom" title="^zoom$"] border none, floating enable, kill
-for_window [app_id="zoom" title="^(Zoom|About)$"] border pixel, floating enable
-for_window [app_id="zoom" title="Settings"] floating enable, floating_minimum_size 960 x 700
-for_window [app_id="zoom" title="Zoom Meeting(.*)?"] floating disable, inhibit_idle open
-for_window [app_id="zoom" title="Meeting Chat"] floating enable, inhibit_idle open
+for_window [class="zoom" title="^zoom$"] border none, floating enable, kill
+for_window [class="zoom" title="^(Zoom|About)$"] border pixel, floating enable
+for_window [class="zoom" title="Settings"] floating enable, floating_minimum_size 960 x 700
+for_window [class="zoom" title="Zoom Meeting(.*)?"] floating disable, inhibit_idle open
+for_window [class="zoom" title="Meeting Chat"] floating enable, inhibit_idle open
 
-for_window [app_id="zoom" title="Choose ONE of the audio conference options"] floating enable
-for_window [app_id="zoom" title="zoom"] floating enable
-for_window [app_id="zoom" title="Zoom Meeting"] floating disable, inhibit_idle open
-for_window [app_id="zoom" title="Zoom - Licensed Account"] floating enable
+for_window [class="zoom" title="Choose ONE of the audio conference options"] floating enable
+for_window [class="zoom" title="zoom"] floating enable
+for_window [class="zoom" title="Zoom Meeting"] floating disable, inhibit_idle open
+for_window [class="zoom" title="Zoom - Licensed Account"] floating enable
 
 for_window [title="^(zoom|Zoom)$"] floating enable
 for_window [title="Zoom - Licensed Account"] floating enable
@@ -25,3 +25,5 @@ for_window [title="Zoom - Licensed Account"] floating enable
 # for_window [title="Settings"] floating enable, floating_minimum_size 960 x 700
 for_window [title="Zoom Meeting(.*)?"] floating disable, inhibit_idle open
 for_window [title="Meeting Chat"] floating enable, inhibit_idle open
+
+for_window [class="zoom" title="annotate_toolbar"] floating enable
