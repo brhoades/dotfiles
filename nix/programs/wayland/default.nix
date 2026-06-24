@@ -28,8 +28,8 @@ in {
 
     pulseaudio
 
-    # specified above
-    font-awesome
+    # i3-status-rust requires 4, see above
+    font-awesome_4
     roboto
   ];
 
@@ -69,6 +69,8 @@ in {
 
       # Some trouble makers
       no_focus [window_role="^[dD]iscord"]
+
+      default_border pixel 2
 
       output ${topMon} mode 2560x1440@75Hz
       output ${topMon} pos 0 0
@@ -394,4 +396,6 @@ in {
       };
     };
   };
+
+  fonts.fontconfig.enable = true;
 }
