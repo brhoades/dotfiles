@@ -208,7 +208,7 @@ in {
           "h" = "left";
         };
       in {
-        "${mod}+Return" = "exec ${pkgs.kitty}/bin/kitty";
+        "${mod}+Return" = "exec kitty";
         "${mod}+space" =
           "exec ${pkgs.rofi}/bin/rofi -show run -modi run -only-match -matching fuzzy";
 
