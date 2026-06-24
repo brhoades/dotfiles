@@ -109,6 +109,11 @@
     kdePackages.ffmpegthumbs
     kdePackages.kio
     kdePackages.kio-extras
+
+    qmk
+    zoom-us
+    inputs.latest.google-chrome
+    inputs.latest.thunderbird
   ];
 
   # 2023/04/17

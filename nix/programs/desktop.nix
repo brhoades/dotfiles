@@ -22,8 +22,6 @@
     pavucontrol
 
     # (chromium.override { enableVaapi = true; })
-    inputs.latest.google-chrome
-    inputs.latest.thunderbird
 
     xrandr
     xkill
@@ -53,9 +51,6 @@
     p7zip
     unzip
     ncdu
-
-    qmk
-    zoom-us
   ];
 
   gtk = {
