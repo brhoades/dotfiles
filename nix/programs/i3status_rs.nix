@@ -21,7 +21,7 @@
 
     output = mkOption {
       description = "Display to output the system tray on";
-      type = types.nullOr types.str;
+      type = types.str;
     };
 
     position = mkOption { type = types.nullOr types.str; };

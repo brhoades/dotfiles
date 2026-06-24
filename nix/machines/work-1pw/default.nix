@@ -28,7 +28,7 @@
       monitors.primary = "DP-1";
 
       i3status_rs = {
-        output = ''"Unknown PA278CV M3LMQS362198"'';
+        output = ''"eDP-1"'';
         blocks = {
           net = {
             enable = true;
@@ -37,10 +37,9 @@
 
 	  # networkmanager.enable = true;
 	  battery.enable = true;
-
           temperature = {
             enable = true;
-            device = "*-pci-00c3";
+            device = "*-isa-0000";
           };
 
           # bluetooth.enable = true;

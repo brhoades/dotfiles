@@ -37,7 +37,7 @@
       monitors.primary = "DP-1";
 
       i3status_rs = {
-        output = ''"Unknown PA278CV M3LMQS362198"'';
+        output = ''"ASUSTek COMPUTER INC PA278CV M3LMQS362198"'';
         blocks = {
           net = {
             enable = true;
