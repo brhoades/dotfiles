@@ -37,6 +37,11 @@
           type = types.nullOr types.int;
           default = 900;
         };
+
+        cmd = mkOption {
+          type = types.str;
+          default = "${config.brodes.windowManager.swayidle.pkg}/bin/swayidle -w";
+        };
       };
     };
   };
@@ -58,7 +63,7 @@
       "		resume '${cfg.dpms.undo}'"
     ];
     invocation = lib.concatStringsSep " \\\n"
-      ([ "exec ${cfg.pkg}/bin/swayidle -w" ] ++ dpms ++ sleepLock ++ idleLock);
+      ([ "exec ${cfg.lock.idle.cmd}" ] ++ dpms ++ sleepLock ++ idleLock);
 
     # bindsym Ctrl+${mod}+l exec 
   in lib.mkIf enabled {

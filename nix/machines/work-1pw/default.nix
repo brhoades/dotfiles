@@ -35,8 +35,8 @@
             device = "enx0c3796854659";
           };
 
-	  # networkmanager.enable = true;
-	  battery.enable = true;
+          # networkmanager.enable = true;
+          battery.enable = true;
           temperature = {
             enable = true;
             device = "*-isa-0000";
@@ -56,6 +56,8 @@
         };
       };
 
+      lockCmd = "swaylock \"${config.brodes.windowManager.swaylock.background}\" -F -e -c grey --indicator-idle-visible";
+
       swayidle = {
         enable = true;
         dpms.enable = true;
@@ -64,6 +66,7 @@
           idle = {
             enable = true;
             timeout = 6000;
+            cmd = "swayidle -f"; # use Debian's, NixOS never accepts pw
           };
           sleep.enable = true;
         };

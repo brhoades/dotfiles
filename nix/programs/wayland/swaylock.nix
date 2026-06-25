@@ -23,5 +23,5 @@
   config.brodes.windowManager.lockCmd = let
     slcfg = config.brodes.windowManager.swaylock;
     bg = if slcfg.background == null then "" else "-i ${toString slcfg.background}";
-  in "${slcfg.pkg}/bin/swaylock ${bg} -F -e -c grey --indicator-idle-visible";
+  in lib.mkDefault "${slcfg.pkg}/bin/swaylock ${bg} -F -e -c grey --indicator-idle-visible";
 }
