@@ -3,7 +3,6 @@
 {
   imports = [
     ./password-manager.nix
-    ./firefox.nix
     ./wayland
     ./i3status_rs.nix
     ./chat.nix
@@ -33,10 +32,6 @@
 
     nixfmt
 
-    # i3-status-rust requires 4
-    font-awesome_4
-    lm_sensors # i3-status-rust queries for temps
-
     thunar
     xfconf
     tumbler
@@ -60,10 +55,6 @@
       name = "Roboto 12";
     };
   };
-
-  # FIXME: disabled due to conflict in nixos flake?
-  # There is no conflict though...
-  # fonts.fontconfig.enable = true;
 
   programs.rofi = {
     enable = true;
