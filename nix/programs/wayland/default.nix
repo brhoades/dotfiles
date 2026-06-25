@@ -31,6 +31,7 @@ in {
     # i3-status-rust requires 4, see above
     font-awesome_4
     roboto
+    lm_sensors # i3-status-rust queries for temps
   ];
 
   # This catches rofi, but not sway-launched programs.
