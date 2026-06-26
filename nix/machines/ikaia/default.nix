@@ -5,6 +5,7 @@
     ../common.nix
     ../../programs/desktop.nix
     ../../programs/development.nix
+    ../../programs/chat.nix
     ../../services/desktop.nix
     #../../programs/steam.nix
     ../../programs/streaming.nix

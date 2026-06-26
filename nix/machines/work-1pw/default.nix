@@ -25,10 +25,10 @@
 
   brodes = {
     windowManager = {
-      monitors.primary = "DP-1";
+      monitors.primary = "DP-3";
 
       i3status_rs = {
-        output = ''"eDP-1"'';
+        output = ''"DP-3"'';
         blocks = {
           net = {
             enable = true;
