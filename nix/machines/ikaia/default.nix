@@ -82,14 +82,6 @@
         };
       };
     };
-
-    xdgHack = {
-      enable = false;
-      # TODO: getting sick of the mimeapps hack... need another way
-      # to integrate that doesn't break file association overrides and
-      # force me to remove my mimeapps.list on every switch
-      configFile = "${config.xdg.configHome}/xdghack/config.json";
-    };
   };
 
   home.packages = with pkgs; [
