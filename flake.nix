@@ -34,9 +34,9 @@
         nur.overlay
         (p: _: {
           # hack to let modules access inputs w/o top-level arg
-          inputs = mixedInputs p.system;
+          inputs = mixedInputs p.stdenv.hostPlatform.system;
         })
-        (p: _: { inherit ((mixedInputs p.system).latest) ngrok; })
+        (p: _: { inherit ((mixedInputs p.stdenv.hostPlatform.system).latest) ngrok; })
       ];
       common = [
         {
