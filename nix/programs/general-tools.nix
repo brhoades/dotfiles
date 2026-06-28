@@ -1,6 +1,7 @@
 { pkgs, ... }: {
 
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       mtr
       unixtools.netstat
@@ -32,10 +33,15 @@
       p7zip
 
       mosh
-    ] ++ (if lib.strings.hasInfix "linux" pkgs.stdenv.hostPlatform.system then [
-      iotop
-      ngrok
-      psmisc
-    ] else
-      [ ]);
+    ]
+    ++ (
+      if lib.strings.hasInfix "linux" pkgs.stdenv.hostPlatform.system then
+        [
+          iotop
+          ngrok
+          psmisc
+        ]
+      else
+        [ ]
+    );
 }

@@ -1,7 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
-let user = config.user;
-in {
+let
+  user = config.user;
+in
+{
   options.user = with lib; {
     name = mkOption {
       type = types.str;
@@ -38,11 +45,17 @@ in {
           signByDefault = user.signing.force;
         };
 
-        color = { ui = "auto"; };
+        color = {
+          ui = "auto";
+        };
 
-        push = { default = "simple"; };
+        push = {
+          default = "simple";
+        };
 
-        credential = { helper = "cache --timeout=28800"; };
+        credential = {
+          helper = "cache --timeout=28800";
+        };
 
         merge = {
           tool = "vimdiff";
@@ -51,7 +64,9 @@ in {
 
         pull.ff = "only";
 
-        "protocol \"keybase\"" = { allow = "always"; };
+        "protocol \"keybase\"" = {
+          allow = "always";
+        };
 
         init.defaultBrancch = "main";
       };
@@ -70,7 +85,12 @@ in {
       ];
     };
 
-    home.packages = with pkgs; [ delta github-cli git-machete hub ];
+    home.packages = with pkgs; [
+      delta
+      github-cli
+      git-machete
+      hub
+    ];
     programs.zsh.shellAliases = {
       git = "hub";
       gm = "git machete";

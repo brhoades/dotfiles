@@ -7,7 +7,11 @@
     ../programs/development-minimal.nix
   ];
 
-  user = { signing = { key = "6D052A5305F89A0E!"; }; };
+  user = {
+    signing = {
+      key = "6D052A5305F89A0E!";
+    };
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

@@ -11,7 +11,11 @@
     ../common.nix
   ];
 
-  home.packages = with pkgs; [ mosh nix-index rustup ];
+  home.packages = with pkgs; [
+    mosh
+    nix-index
+    rustup
+  ];
 
   programs.kitty = {
     keybindings = {
@@ -26,7 +30,9 @@
   user = {
     name = "Billy J Rhoades II";
     email = "brhoades@rippling.com";
-    signing = { key = "F372D673E3A1FCFA!"; };
+    signing = {
+      key = "F372D673E3A1FCFA!";
+    };
   };
 
   home = {

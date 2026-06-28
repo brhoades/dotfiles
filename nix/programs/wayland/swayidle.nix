@@ -1,4 +1,10 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
   imports = [ ./swaylock.nix ];
 
   options.brodes.windowManager.swayidle = with lib; {
@@ -46,34 +52,39 @@
     };
   };
 
-  config.wayland.windowManager.sway = let
-    cfg = config.brodes.windowManager.swayidle;
-    enabled = cfg.enable && config.wayland.windowManager.sway.enable;
-    lockCmd = "${config.brodes.windowManager.lockCmd} -f";
-    idleLock = if !cfg.lock.idle.enable then
-      [ ]
-    else
-      [ ''timeout ${toString cfg.lock.idle.timeout} "${lockCmd}"'' ];
-    sleepLock =
-      if !cfg.lock.sleep.enable then [ ] else [ ''before-sleep "${lockCmd}"'' ];
-    dpms = if !cfg.dpms.enable then
-      [ ]
-    else [
-      "	timeout ${toString cfg.dpms.timeout} '${cfg.dpms.apply}'"
-      "		resume '${cfg.dpms.undo}'"
-    ];
-    invocation = lib.concatStringsSep " \\\n"
-      ([ "exec ${cfg.lock.idle.cmd}" ] ++ dpms ++ sleepLock ++ idleLock);
+  config.wayland.windowManager.sway =
+    let
+      cfg = config.brodes.windowManager.swayidle;
+      enabled = cfg.enable && config.wayland.windowManager.sway.enable;
+      lockCmd = "${config.brodes.windowManager.lockCmd} -f";
+      idleLock =
+        if !cfg.lock.idle.enable then
+          [ ]
+        else
+          [ ''timeout ${toString cfg.lock.idle.timeout} "${lockCmd}"'' ];
+      sleepLock = if !cfg.lock.sleep.enable then [ ] else [ ''before-sleep "${lockCmd}"'' ];
+      dpms =
+        if !cfg.dpms.enable then
+          [ ]
+        else
+          [
+            "	timeout ${toString cfg.dpms.timeout} '${cfg.dpms.apply}'"
+            "		resume '${cfg.dpms.undo}'"
+          ];
+      invocation = lib.concatStringsSep " \\\n" (
+        [ "exec ${cfg.lock.idle.cmd}" ] ++ dpms ++ sleepLock ++ idleLock
+      );
 
-    # bindsym Ctrl+${mod}+l exec 
-  in lib.mkIf enabled {
-    extraConfig = lib.mkAfter ''
-      for_window [app_id="firefox"] inhibit_idle fullscreen
-      for_window [app_id="vlc"] inhibit_idle fullscreen
-      for_window [app_id="mpv"] inhibit_idle fullscreen
-      for_window [app_id="google-chrome*"] inhibit_idle fullscreen
+      # bindsym Ctrl+${mod}+l exec
+    in
+    lib.mkIf enabled {
+      extraConfig = lib.mkAfter ''
+        for_window [app_id="firefox"] inhibit_idle fullscreen
+        for_window [app_id="vlc"] inhibit_idle fullscreen
+        for_window [app_id="mpv"] inhibit_idle fullscreen
+        for_window [app_id="google-chrome*"] inhibit_idle fullscreen
 
-      ${invocation}
-    '';
-  };
+        ${invocation}
+      '';
+    };
 }

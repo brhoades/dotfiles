@@ -27,8 +27,20 @@
     rnix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, latest, bnixpkgs, secrets, homeage
-    , firefox-nightly, nur, home-manager, rnix, flake-utils }:
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      latest,
+      bnixpkgs,
+      secrets,
+      homeage,
+      firefox-nightly,
+      nur,
+      home-manager,
+      rnix,
+      flake-utils,
+    }:
     let
       overlays = [
         nur.overlay
@@ -45,8 +57,10 @@
         }
         homeage.homeManagerModules.homeage
       ];
-      mixedInputs = system:
-        inputs // {
+      mixedInputs =
+        system:
+        inputs
+        // {
           inherit inputs;
           latest = import latest {
             inherit system;
@@ -71,11 +85,11 @@
         };
       };
 
-    in rec {
+    in
+    rec {
       inherit self inputs profiles;
       # TODO: for all systems
-      defaultPackage.aarch64-darwin =
-        home-manager.defaultPackage.aarch64-darwin;
+      defaultPackage.aarch64-darwin = home-manager.defaultPackage.aarch64-darwin;
 
       homeConfigurations = rec {
         iaukea = lib.homeConfigurationFromProfile profiles.iaukea rec {
@@ -84,12 +98,11 @@
         };
 
         # work thinkpad
-        thinkpadp1 =
-          lib.homeConfigurationFromProfile profiles.work-1pw rec {
-            system = "x86_64-linux";
-	    username = "billy";
-            extraSpecialArgs = mixedInputs system;
-          };
+        thinkpadp1 = lib.homeConfigurationFromProfile profiles.work-1pw rec {
+          system = "x86_64-linux";
+          username = "billy";
+          extraSpecialArgs = mixedInputs system;
+        };
       };
     };
 }

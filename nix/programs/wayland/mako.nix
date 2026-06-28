@@ -1,4 +1,10 @@
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   services.mako = {
     enable = true;
 
@@ -23,10 +29,9 @@
     };
   };
 
-  home.packages = with pkgs;
-    [
-      libnotify # notify-send
-    ];
+  home.packages = with pkgs; [
+    libnotify # notify-send
+  ];
 
   # 2023/06/10: previously, mako would not come back up when its config
   # was swapped. Maybe now that it's a service it's fine?

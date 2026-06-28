@@ -7,7 +7,10 @@ let
     version = "0.1.2";
     name = "${pname}-${version}b";
 
-    nativeBuildInputs = [ udev pkgconfig ];
+    nativeBuildInputs = [
+      udev
+      pkgconfig
+    ];
     buildInputs = nativeBuildInputs;
 
     src = fetchFromGitHub {
@@ -25,7 +28,8 @@ let
       license = licenses.mit;
     };
   };
-in {
+in
+{
   # systemd.user.services.dlux = {
   # Unit = { Description = "dlux monitor brightness control daemon"; };
 

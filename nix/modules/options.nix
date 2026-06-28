@@ -1,7 +1,8 @@
 { config, lib, ... }:
 
 # This isn't used.
-with lib; {
+with lib;
+{
   options = {
     brodes = {
       desktop = mkEnableOption "Whether this a graphical machine.";

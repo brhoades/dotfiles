@@ -28,7 +28,9 @@
   user = {
     name = "Billy J Rhoades II";
     email = "me@brod.es";
-    signing = { key = "6D052A5305F89A0E!"; };
+    signing = {
+      key = "6D052A5305F89A0E!";
+    };
   };
 
   # legacy location, deprecated in 26.05
@@ -62,8 +64,7 @@
           weather = {
             enable = true;
             autolocate = false;
-            service = ''
-              { name = "openweathermap", place = "Seattle", api_key = "${config.xdg.configHome}/openweathermap/key", units = "imperial" }'';
+            service = ''{ name = "openweathermap", place = "Seattle", api_key = "${config.xdg.configHome}/openweathermap/key", units = "imperial" }'';
           };
         };
       };

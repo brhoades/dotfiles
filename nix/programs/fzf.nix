@@ -5,5 +5,5 @@
     enableZshIntegration = true;
   };
 
-   home.packages = with pkgs; [ fzf ];
+  home.packages = with pkgs; [ fzf ];
 }

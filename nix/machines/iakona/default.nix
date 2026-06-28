@@ -17,7 +17,9 @@
   user = {
     name = "Billy J Rhoades II";
     email = "me@brod.es";
-    signing = { key = "F372D673E3A1FCFA!"; };
+    signing = {
+      key = "F372D673E3A1FCFA!";
+    };
   };
 
   brodes = {
@@ -30,8 +32,7 @@
         blocks = {
           net = {
             enable = true;
-            format =
-              "$ssid $signal_strength ^icon_net_down $speed_down.eng(3,B,K) ^icon_net_up $speed_up.eng(3,B,K) ";
+            format = "$ssid $signal_strength ^icon_net_down $speed_down.eng(3,B,K) ^icon_net_up $speed_up.eng(3,B,K) ";
             device = "wlan0";
           };
 
@@ -55,8 +56,7 @@
           weather = {
             enable = true;
             autolocate = false;
-            service = ''
-              { name = "openweathermap", place = "Seattle", api_key = "${config.xdg.configHome}/openweathermap/key", units = "imperial" }'';
+            service = ''{ name = "openweathermap", place = "Seattle", api_key = "${config.xdg.configHome}/openweathermap/key", units = "imperial" }'';
           };
         };
       };

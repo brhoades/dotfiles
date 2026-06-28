@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ../modules/default.nix ../programs/default.nix ];
+  imports = [
+    ../modules/default.nix
+    ../programs/default.nix
+  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -14,12 +17,15 @@
     enableCompletion = true;
   };
 
-  home.sessionVariables = let editor = "vim";
-  in {
-    EDITOR = editor;
-    GIT_EDITOR = editor;
-    TERM = "screen-256color";
-  };
+  home.sessionVariables =
+    let
+      editor = "vim";
+    in
+    {
+      EDITOR = editor;
+      GIT_EDITOR = editor;
+      TERM = "screen-256color";
+    };
 
   # broken in 2022/12
   # https://github.com/NixOS/nixpkgs/issues/196651 maybe?

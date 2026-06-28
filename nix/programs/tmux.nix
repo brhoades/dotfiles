@@ -1,6 +1,8 @@
 { lib, pkgs, ... }:
-let isLinux = lib.strings.hasInfix "linux" pkgs.stdenv.hostPlatform.system;
-in lib.mkMerge [
+let
+  isLinux = lib.strings.hasInfix "linux" pkgs.stdenv.hostPlatform.system;
+in
+lib.mkMerge [
   {
     programs.tmux = {
       enable = true;
@@ -144,10 +146,12 @@ in lib.mkMerge [
         # systemd support for continuum
         set -g @continuum-boot 'on'
 
-        ${if isLinux then
-          "set -g @override_copy_command '${pkgs.wl-clipboard}/bin/wl-copy'"
-        else
-          "set -g @override_copy_command 'pbcopy'"}
+        ${
+          if isLinux then
+            "set -g @override_copy_command '${pkgs.wl-clipboard}/bin/wl-copy'"
+          else
+            "set -g @override_copy_command 'pbcopy'"
+        }
 
         # Theme
         # set -g @themepack 'powerline/block/green'
@@ -156,14 +160,19 @@ in lib.mkMerge [
   }
   (lib.mkIf isLinux {
     systemd.user.services.tmux-daemon = {
-      Unit = { Description = "tmux background session"; };
-
-      Service = let tmux = "${pkgs.tmux}/bin/tmux";
-      in {
-        Type = "forking";
-        ExecStart = "${tmux} new-session -s %u -d";
-        ExecStop = "${tmux} kill-session -t %u";
+      Unit = {
+        Description = "tmux background session";
       };
+
+      Service =
+        let
+          tmux = "${pkgs.tmux}/bin/tmux";
+        in
+        {
+          Type = "forking";
+          ExecStart = "${tmux} new-session -s %u -d";
+          ExecStop = "${tmux} kill-session -t %u";
+        };
     };
   })
 ]

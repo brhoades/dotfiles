@@ -9,12 +9,20 @@ let
 
   nixGL = import src { };
   mkGLWrap =
-    { pkg, pkgname ? pkg.pname, dstname ? pkgname, pkgver ? pkg.version }:
+    {
+      pkg,
+      pkgname ? pkg.pname,
+      dstname ? pkgname,
+      pkgver ? pkg.version,
+    }:
     (pkgs.stdenv.mkDerivation rec {
       inherit src;
       pname = "nixgl-${pkgname}";
       version = pkgver;
-      buildInputs = [ pkg nixGL.nixGLIntel ];
+      buildInputs = [
+        pkg
+        nixGL.nixGLIntel
+      ];
 
       installPhase = ''
         mkdir -p $out/bin
@@ -26,7 +34,8 @@ let
         fi
       '';
     });
-in {
+in
+{
   nixpkgs.config.packageOverrides = pkgs: {
     kitty = mkGLWrap { pkg = pkgs.kitty; };
     rofi = mkGLWrap {

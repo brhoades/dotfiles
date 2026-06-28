@@ -11,28 +11,32 @@
       OnCalendar = "*-*-* 00:00:00";
     };
 
-    Install.WantedBy = [ "timers.target" "default.target" ];
+    Install.WantedBy = [
+      "timers.target"
+      "default.target"
+    ];
   };
 
   systemd.user.services.update-latest-symlink = {
     Unit = {
-      Description =
-        config.systemd.user.timers.update-latest-symlink.Unit.Description;
+      Description = config.systemd.user.timers.update-latest-symlink.Unit.Description;
       Wants = "update-latest-symlink.target";
     };
 
     Service = {
       Type = "oneshot";
-      ExecStart = let
-        src = pkgs.writeShellScriptBin "update-symlink.sh" ''
-          set +x
-          cd "${config.home.homeDirectory}/Pictures/screenshots"
-          LATEST="$(date '+%Y')/$(date +'%m')"
-          rm latest
-          [[ ! -d "$LATEST" ]] && mkdir -p "$LATEST"
-          ln -s "$LATEST" latest
-        '';
-      in "${src}/bin/update-symlink.sh";
+      ExecStart =
+        let
+          src = pkgs.writeShellScriptBin "update-symlink.sh" ''
+            set +x
+            cd "${config.home.homeDirectory}/Pictures/screenshots"
+            LATEST="$(date '+%Y')/$(date +'%m')"
+            rm latest
+            [[ ! -d "$LATEST" ]] && mkdir -p "$LATEST"
+            ln -s "$LATEST" latest
+          '';
+        in
+        "${src}/bin/update-symlink.sh";
     };
 
     Install.Also = "update-latest-symlink.target";

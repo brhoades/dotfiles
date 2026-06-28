@@ -1,6 +1,7 @@
 { pkgs, config, ... }:
 let
-  bpass = with pkgs;
+  bpass =
+    with pkgs;
     stdenv.mkDerivation rec {
       name = "bpass-${version}";
       version = "0.1";
@@ -47,15 +48,21 @@ let
         license = "MIT";
       };
     };
-in {
+in
+{
   programs.password-store = {
     enable = true;
     package = pkgs.gopass;
-    settings = { PASSWORD_STORE_DIR = "${config.xdg.configHome}/password-store"; };
+    settings = {
+      PASSWORD_STORE_DIR = "${config.xdg.configHome}/password-store";
+    };
   };
 
   home = {
-    packages = with pkgs; [ pass bpass ];
+    packages = with pkgs; [
+      pass
+      bpass
+    ];
     sessionVariables.GOPASS_NO_NOTIFY = "true";
   };
 

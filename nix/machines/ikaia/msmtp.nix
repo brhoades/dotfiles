@@ -1,5 +1,7 @@
 { ... }: {
-  programs.msmtp = { enable = true; };
+  programs.msmtp = {
+    enable = true;
+  };
 
   accounts.email.accounts.ikaiadesktop = rec {
     primary = true;
@@ -14,7 +16,9 @@
     };
     msmtp = {
       enable = true;
-      extraConfig = { passwordeval = "cat ${toString ./secrets/msmtp}"; };
+      extraConfig = {
+        passwordeval = "cat ${toString ./secrets/msmtp}";
+      };
     };
   };
 }

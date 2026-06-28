@@ -11,7 +11,10 @@
     ../common.nix
   ];
 
-  home.packages = with pkgs; [ mosh nix-index ];
+  home.packages = with pkgs; [
+    mosh
+    nix-index
+  ];
 
   programs.kitty = {
     keybindings = {
@@ -26,13 +29,14 @@
   user = {
     name = "Billy J Rhoades II";
     email = "me@brod.es";
-    signing = { key = "F372D673E3A1FCFA!"; };
+    signing = {
+      key = "F372D673E3A1FCFA!";
+    };
   };
 
   home = {
     username = "aaron";
-    homeDirectory = pkgs.lib.mkForce
-      "/Users/aaron"; # an anonymous function is setting this too
+    homeDirectory = pkgs.lib.mkForce "/Users/aaron"; # an anonymous function is setting this too
 
     # You can update Home Manager without changing this value. See
     # the Home Manager release notes for a list of state version

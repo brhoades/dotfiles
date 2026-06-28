@@ -6,20 +6,23 @@
     vimAlias = true;
     vimdiffAlias = true;
 
-    plugins = let
-      # unstable nixpkgs has airline woes
-      # unstable = pkgs.vimPlugins;
-      # unstable = (import <nixos-unstable-small> { }).vimPlugins;
-    in with pkgs.vimPlugins; [
-      # 2023/11: broken on bash install script
-      # YouCompleteMe
-      syntastic
-      vim-fugitive
-      vim-airline
-      ctrlp-vim
-      # SimplyFold
-      vim-nix
-    ];
+    plugins =
+      let
+        # unstable nixpkgs has airline woes
+        # unstable = pkgs.vimPlugins;
+        # unstable = (import <nixos-unstable-small> { }).vimPlugins;
+      in
+      with pkgs.vimPlugins;
+      [
+        # 2023/11: broken on bash install script
+        # YouCompleteMe
+        syntastic
+        vim-fugitive
+        vim-airline
+        ctrlp-vim
+        # SimplyFold
+        vim-nix
+      ];
 
     withRuby = false;
     withPython3 = false;
@@ -59,6 +62,6 @@
       set undoreload=50000
       let myvar = "set backupext=_". strftime("--%y%m%d--%Hh%M")
       execute myvar
-        '';
+    '';
   };
 }

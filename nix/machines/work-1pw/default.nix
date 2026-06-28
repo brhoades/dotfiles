@@ -11,17 +11,22 @@
     ../../services/desktop.nix
   ];
 
-  home.packages = with pkgs; [ mosh nix-index ];
+  home.packages = with pkgs; [
+    mosh
+    nix-index
+  ];
 
   user = {
     name = "Billy J Rhoades II";
     email = "brhoades@agilebits.com";
-    signing = { key = "F372D673E3A1FCFA!"; };
+    signing = {
+      key = "F372D673E3A1FCFA!";
+    };
   };
 
   home.username = "billy";
   home.homeDirectory = "/home/billy";
-  home.stateVersion = "26.05"; 
+  home.stateVersion = "26.05";
 
   brodes = {
     windowManager = {

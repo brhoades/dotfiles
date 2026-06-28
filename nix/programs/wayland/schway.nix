@@ -1,5 +1,6 @@
 { pkgs }:
-with pkgs; stdenv.mkDerivation rec {
+with pkgs;
+stdenv.mkDerivation rec {
   name = "schway-${version}";
   version = "0.1";
 

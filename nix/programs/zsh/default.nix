@@ -4,9 +4,14 @@ let
   p10k = pkgs.zsh-powerlevel10k;
   p10kPath = "${p10k}/share/zsh-powerlevel10k";
   prezto = pkgs.zsh-prezto;
-in {
+in
+{
   home = {
-    packages = with pkgs; [ prezto fzy zsh-powerlevel10k ];
+    packages = with pkgs; [
+      prezto
+      fzy
+      zsh-powerlevel10k
+    ];
 
     # p10k prompts the config wizard unless its output
     # exists.
@@ -23,185 +28,187 @@ in {
     enableBashIntegration = true;
   };
 
-  programs.zsh = let
-    swaymsgFunc = ''
-      function swmsg() {
-        if [[ -z "$@" ]]; then
-          swaymsg --help
-        else
-          swaymsg "$@" | jq -C | less --raw
+  programs.zsh =
+    let
+      swaymsgFunc = ''
+        function swmsg() {
+          if [[ -z "$@" ]]; then
+            swaymsg --help
+          else
+            swaymsg "$@" | jq -C | less --raw
+          fi
+        }
+      '';
+    in
+    {
+      enable = true;
+      enableCompletion = true;
+      enableVteIntegration = true;
+
+      history = {
+        size = 101 * 1024 * 1024;
+        save = 100 * 1024 * 1024;
+        extended = true;
+        share = true;
+        # This prevents zsh source errors leading to a shell
+        # without our size configuration abouve, which causes
+        # seemingly random truncations. We only set the path
+        # once we've set other options.
+        path = "${config.xdg.dataHome}/.zhistory";
+      };
+
+      initContent = pkgs.lib.mkOrder 550 ''
+        # tramp needs a dumb prompt and barfs if we give it p10k
+        [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+
+        # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+        # Initialization code that may require console input (password prompts, [y/n]
+        # confirmations, etc.) must go above this block; everything else may go below.
+        if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
         fi
-      }
-    '';
-  in {
-    enable = true;
-    enableCompletion = true;
-    enableVteIntegration = true;
 
-    history = {
-      size = 101 * 1024 * 1024;
-      save = 100 * 1024 * 1024;
-      extended = true;
-      share = true;
-      # This prevents zsh source errors leading to a shell
-      # without our size configuration abouve, which causes
-      # seemingly random truncations. We only set the path
-      # once we've set other options.
-      path = "${config.xdg.dataHome}/.zhistory";
+        # direnv extensions cause warnings
+        typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+        source "$HOME/.p10k.zsh"
+        source "${p10kPath}/powerlevel10k.zsh-theme"
+        source "${prezto}/share/zsh-prezto/init.zsh"
+
+        # NOTE: below used to be in initExtra
+
+        # the first compinit doesn't catch everything on fpath.
+        compinit
+
+        # Show loading dots while waiting for tab completion.
+        export COMPLETION_WAITING_DOTS="true"
+
+        zstyle :prezto:module:prompt theme powerlevel10k
+
+        # Use the same colors as ls from dircolors.
+        zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+
+        # arrow key menu-style selection of tab completions
+        zstyle ':completion:*' menu select
+
+        # Set the Prezto modules to load (browse modules).
+        # The order matters.
+        zstyle ':prezto:load' pmodule \
+          'environment' \
+          'terminal' \
+          'editor' \
+          'history' \
+          'directory' \
+          'spectrum' \
+          'utility' \
+          'ssh' \
+          'ruby' \
+          'rails' \
+          'completion' \
+          'command-not-found' \
+          'prompt'
+
+        typeset -A ZSH_HIGHLIGHT_STYLES
+        ZSH_HIGHLIGHT_STYLES[cursor]=underline
+
+        if [[ -e "$HOME/.local/bin" ]]; then
+          export PATH=$HOME/.local/bin:$PATH
+        fi
+
+        if [[ -e "$HOME/go/bin" ]]; then
+          export PATH=$HOME/go/bin:$PATH
+        fi
+
+        if [[ -e "$HOME/.cargo/bin" ]]; then
+          export PATH=$HOME/.cargo/bin:$PATH
+        fi
+
+        hash kubectl &> /dev/null && source <(kubectl completion zsh) || {}
+
+        # alias gopass='GPG_TTY=$(tty) gopass'
+        # alias git='GPG_TTY=$(tty) git'
+        bindkey -e
+
+        # works in most terminals: xterm, gnome-terminal, terminator, st, sakura, termit, …
+        bindkey "\\e[1;5C" forward-word
+        bindkey "\\e[1;5D" backward-word
+
+        # urxvt
+        bindkey "\\eOc" forward-word
+        bindkey "\\eOd" backward-word
+
+        ### ctrl+delete
+        bindkey "\\e[3;5~" kill-word
+        # in this case, st misbehaves (even with tmux)
+        bindkey "\\e[M" kill-word
+        # and of course, urxvt must be always special
+        bindkey "\\e[3^" kill-word
+
+        ### ctrl+backspace
+        bindkey "\\C-h" backward-kill-word
+
+        ### ctrl+shift+delete
+        bindkey "\\e[3;6~" kill-line
+        bindkey "\\e[3@" kill-line
+
+        # ctrl left/right
+        bindkey "^[[1;5C" forward-word
+        bindkey "^[[1;5D" backward-word
+
+        # something above breaks single char deletes.
+        bindkey "^[[3~" delete-char
+
+        # allow > to clobber existing files
+        setopt CLOBBER
+        setopt NO_RM_STAR_SILENT
+        # Do not store functions in the history list.
+        setopt HIST_NO_FUNCTIONS
+        # Do not store "history" in the history list
+        setopt HIST_NO_STORE
+
+        ${swaymsgFunc}
+
+        (( ! ''${+functions[p10k]} )) || p10k finalize
+      '';
+
+      shellAliases = {
+        ls = "ls --color=auto";
+        yay = "yay --color=auto";
+        dmesg = "dmesg --color=auto";
+        less = "less -r"; # allow color passthrough
+        suspend = "sudo systemctl suspend";
+      };
+
+      plugins = [
+        {
+          name = "zsh-autosuggestions";
+          src = pkgs.fetchFromGitHub {
+            owner = "zsh-users";
+            repo = "zsh-autosuggestions";
+            rev = "v0.6.4";
+            sha256 = "0h52p2waggzfshvy1wvhj4hf06fmzd44bv6j18k3l9rcx6aixzn6";
+          };
+        }
+        {
+          name = "zsh-syntax-highlighting";
+          src = pkgs.fetchFromGitHub {
+            owner = "zsh-users";
+            repo = "zsh-syntax-highlighting";
+            rev = "v0.7.1";
+            sha256 = "03r6hpb5fy4yaakqm3lbf4xcvd408r44jgpv4lnzl9asp4sb9qc0";
+          };
+        }
+        {
+          name = "zsh-completions";
+          src = pkgs.fetchFromGitHub {
+            owner = "zsh-users";
+            repo = "zsh-completions";
+            rev = "0.31.0";
+            sha256 = "0rw23m8cqxhcb4yjhbzb9lir60zn1xjy7hn3zv1fzz700f0i6fyk";
+          };
+        }
+      ];
     };
-
-    initContent = pkgs.lib.mkOrder 550 ''
-      # tramp needs a dumb prompt and barfs if we give it p10k
-      [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
-
-      # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-      # Initialization code that may require console input (password prompts, [y/n]
-      # confirmations, etc.) must go above this block; everything else may go below.
-      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-        source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-      fi
-
-      # direnv extensions cause warnings
-      typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-
-      source "$HOME/.p10k.zsh"
-      source "${p10kPath}/powerlevel10k.zsh-theme"
-      source "${prezto}/share/zsh-prezto/init.zsh"
-
-      # NOTE: below used to be in initExtra
-
-      # the first compinit doesn't catch everything on fpath.
-      compinit
-
-      # Show loading dots while waiting for tab completion.
-      export COMPLETION_WAITING_DOTS="true"
-
-      zstyle :prezto:module:prompt theme powerlevel10k
-
-      # Use the same colors as ls from dircolors.
-      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-
-      # arrow key menu-style selection of tab completions
-      zstyle ':completion:*' menu select
-
-      # Set the Prezto modules to load (browse modules).
-      # The order matters.
-      zstyle ':prezto:load' pmodule \
-        'environment' \
-        'terminal' \
-        'editor' \
-        'history' \
-        'directory' \
-        'spectrum' \
-        'utility' \
-        'ssh' \
-        'ruby' \
-        'rails' \
-        'completion' \
-        'command-not-found' \
-        'prompt'
-
-      typeset -A ZSH_HIGHLIGHT_STYLES
-      ZSH_HIGHLIGHT_STYLES[cursor]=underline
-
-      if [[ -e "$HOME/.local/bin" ]]; then
-        export PATH=$HOME/.local/bin:$PATH
-      fi
-
-      if [[ -e "$HOME/go/bin" ]]; then
-        export PATH=$HOME/go/bin:$PATH
-      fi
-
-      if [[ -e "$HOME/.cargo/bin" ]]; then
-        export PATH=$HOME/.cargo/bin:$PATH
-      fi
-
-      hash kubectl &> /dev/null && source <(kubectl completion zsh) || {}
-
-      # alias gopass='GPG_TTY=$(tty) gopass'
-      # alias git='GPG_TTY=$(tty) git'
-      bindkey -e
-
-      # works in most terminals: xterm, gnome-terminal, terminator, st, sakura, termit, …
-      bindkey "\\e[1;5C" forward-word
-      bindkey "\\e[1;5D" backward-word
-
-      # urxvt
-      bindkey "\\eOc" forward-word
-      bindkey "\\eOd" backward-word
-
-      ### ctrl+delete
-      bindkey "\\e[3;5~" kill-word
-      # in this case, st misbehaves (even with tmux)
-      bindkey "\\e[M" kill-word
-      # and of course, urxvt must be always special
-      bindkey "\\e[3^" kill-word
-
-      ### ctrl+backspace
-      bindkey "\\C-h" backward-kill-word
-
-      ### ctrl+shift+delete
-      bindkey "\\e[3;6~" kill-line
-      bindkey "\\e[3@" kill-line
-
-      # ctrl left/right
-      bindkey "^[[1;5C" forward-word
-      bindkey "^[[1;5D" backward-word
-
-      # something above breaks single char deletes.
-      bindkey "^[[3~" delete-char
-
-      # allow > to clobber existing files
-      setopt CLOBBER
-      setopt NO_RM_STAR_SILENT
-      # Do not store functions in the history list.
-      setopt HIST_NO_FUNCTIONS
-      # Do not store "history" in the history list
-      setopt HIST_NO_STORE
-
-      ${swaymsgFunc}
-
-      (( ! ''${+functions[p10k]} )) || p10k finalize
-    '';
-
-    shellAliases = {
-      ls = "ls --color=auto";
-      yay = "yay --color=auto";
-      dmesg = "dmesg --color=auto";
-      less = "less -r"; # allow color passthrough
-      suspend = "sudo systemctl suspend";
-    };
-
-    plugins = [
-      {
-        name = "zsh-autosuggestions";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-autosuggestions";
-          rev = "v0.6.4";
-          sha256 = "0h52p2waggzfshvy1wvhj4hf06fmzd44bv6j18k3l9rcx6aixzn6";
-        };
-      }
-      {
-        name = "zsh-syntax-highlighting";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-syntax-highlighting";
-          rev = "v0.7.1";
-          sha256 = "03r6hpb5fy4yaakqm3lbf4xcvd408r44jgpv4lnzl9asp4sb9qc0";
-        };
-      }
-      {
-        name = "zsh-completions";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-completions";
-          rev = "0.31.0";
-          sha256 = "0rw23m8cqxhcb4yjhbzb9lir60zn1xjy7hn3zv1fzz700f0i6fyk";
-        };
-      }
-    ];
-  };
 
   programs.readline = {
     enable = true;

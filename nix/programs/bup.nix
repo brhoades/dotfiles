@@ -1,6 +1,7 @@
 { lib, pkgs, ... }:
 let
-  bup = with pkgs;
+  bup =
+    with pkgs;
     with lib;
     stdenv.mkDerivation rec {
       name = "bup-${version}";
@@ -51,10 +52,12 @@ let
       '';
 
       meta = {
-        description =
-          "bup uploads a file to an s3 bucket and prints out the url";
+        description = "bup uploads a file to an s3 bucket and prints out the url";
         homepage = "https://brod.es";
         license = licenses.mit;
       };
     };
-in { home.packages = [ bup ]; }
+in
+{
+  home.packages = [ bup ];
+}

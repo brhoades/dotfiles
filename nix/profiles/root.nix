@@ -9,7 +9,9 @@
   user = {
     name = "Billy J Rhoades II (root)";
     email = "root@brod.es";
-    signing = { key = "6D052A5305F89A0E!"; };
+    signing = {
+      key = "6D052A5305F89A0E!";
+    };
   };
 
   # Home Manager needs a bit of information about you and the

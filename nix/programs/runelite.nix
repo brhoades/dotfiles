@@ -7,8 +7,7 @@
 
   home.packages = with pkgs; [ runelite ];
 
-  nixpkgs.config.packageOverrides = _pkgs:
-    {
-      # runelite = (import /home/aaron/lib/nixpkgs { }).runelite;
-    };
+  nixpkgs.config.packageOverrides = _pkgs: {
+    # runelite = (import /home/aaron/lib/nixpkgs { }).runelite;
+  };
 }
