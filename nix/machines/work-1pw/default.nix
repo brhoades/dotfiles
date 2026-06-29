@@ -18,10 +18,8 @@
 
   user = {
     name = "Billy J Rhoades II";
-    email = "brhoades@agilebits.com";
-    signing = {
-      key = "F372D673E3A1FCFA!";
-    };
+    email = "billy.rhoades@agilebits.com";
+    signing = { key = "F372D673E3A1FCFA!"; };
   };
 
   home.username = "billy";
