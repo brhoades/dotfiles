@@ -5,7 +5,6 @@
     ./password-manager.nix
     ./wayland
     ./i3status_rs.nix
-    ./zsh/1password_module.nix
   ];
 
   # Home Manager setup

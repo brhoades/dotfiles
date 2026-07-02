@@ -16,6 +16,7 @@
     ../../programs/runelite.nix
     ../../programs/kitty.nix
     ../../programs/firefox.nix
+    ../../programs/zsh/1password_module.nix
 
     ../../modules/desktop-laptop-sync.nix
     ../../modules/update-latest-symlink.nix
