@@ -349,10 +349,8 @@ in
             "XF86AudioLowerVolume" = ''exec --no-startup-id pactl set-sink-volume "@DEFAULT_SINK@" "-5%"'';
             "XF86AudioMute" = ''exec --no-startup-id pactl set-sink-mute  "@DEFAULT_SINK@" toggle'';
 
-            # 26.05 deprecated light
-            #
-            # "XF86MonBrightnessDown" = "exec ${pkgs.light}/bin/light -U 4";
-            # "XF86MonBrightnessUp" = "exec ${pkgs.light}/bin/light -A 4";
+            "XF86MonBrightnessDown" = "exec brightnessctl s 5%-";
+            "XF86MonBrightnessUp" = "exec brightnessctl s 5%+";
 
             # custom keyboard keys
             "XF86Launch8" = ''exec --no-startup-id pactl set-source-volume "@DEFAULT_SOURCE@" "+2%"'';
