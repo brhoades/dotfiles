@@ -20,6 +20,7 @@ let
   mainMon = ''"ASUSTek COMPUTER INC PA278CV M3LMQS362198"'';
   topMon = ''"ASUSTek COMPUTER INC PA278CV M3LMQS362207"'';
   laptopMon = ''"Chimei Innolux Corporation 0x14E4 0x00000000"'';
+  schway = (import ./schway.nix { inherit pkgs; });
 in
 {
   imports = [
@@ -35,7 +36,7 @@ in
 
     wl-clipboard # xclip-like behavior
 
-    (import ./schway.nix { inherit pkgs; })
+    schway
 
     waypipe
 
@@ -337,6 +338,9 @@ in
             "${mod}+Shift+0" = "move container to workspace ${ws10}";
             # reload the configuration file
             "${mod}+Shift+c" = "reload";
+
+            # Screenshot
+            "${mod}+Shift+F4" = "bash --login -c '${schway}/bin/schway'";
 
             # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
             # "${mod}+Shift+r" = "restart";
