@@ -123,9 +123,9 @@ in
 
           output * adaptive_sync on
 
-          input "1133:4123:Logitech_M705" {
+          input "1133:16517:Logitech_G604" {
             accel_profile adaptive
-            pointer_accel 0.3 # way too zippy
+            scroll_factor 0.3 # wheel too sensitive
           }
 
           # workspace -> monitor
