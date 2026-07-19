@@ -110,6 +110,8 @@
     zoom-us
     inputs.latest.google-chrome
     inputs.latest.thunderbird
+
+    inputs.latest.lmstudio
   ];
 
   # 2023/04/17
