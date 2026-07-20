@@ -44,10 +44,6 @@
         (error (substitute-command-keys "To exit emacs: \\[kill-emacs]")))
 (global-set-key (kbd "C-x C-c") 'dont-kill-emacs)
 
-;; refresh packages when needed
-(unless package-archive-contents
-  (package-refresh-contents))
-
 ; spaceemacs uses 100 MiB, I should too. Reduces CPU use.
 ; https://emacs.stackexchange.com/a/19715
 (setq gc-cons-threshold 100000000) ; 100mb, default is 800kb
