@@ -76,4 +76,11 @@
       };
     };
   };
+
+  wayland.windowManager.sway.extraConfig = ''
+    input "1133:16517:Logitech_G604" {
+      accel_profile adaptive
+      scroll_factor 0.4 # wheel too sensitive
+    }
+  '';
 }

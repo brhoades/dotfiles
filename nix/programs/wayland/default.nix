@@ -123,11 +123,6 @@ in
 
           output * adaptive_sync on
 
-          input "1133:16517:Logitech_G604" {
-            accel_profile adaptive
-            scroll_factor 0.4 # wheel too sensitive
-          }
-
           # workspace -> monitor
           workspace ${ws4}  output ${rightMon}
           workspace ${ws10} output ${rightMon}
