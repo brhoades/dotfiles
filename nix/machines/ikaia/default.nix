@@ -91,7 +91,6 @@
     ddcutil
     ddccontrol
     bottom
-    _1password-cli
     pkgs.inputs.latest.virt-manager
     peek
     mumble
@@ -112,6 +111,8 @@
     inputs.latest.thunderbird
 
     inputs.latest.lmstudio
+    _1password-gui
+    _1password-cli
   ];
 
   # 2023/04/17
