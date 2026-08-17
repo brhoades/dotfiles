@@ -48,8 +48,7 @@ in
     lm_sensors # i3-status-rust queries for temps
   ];
 
-  # This catches rofi, but not sway-launched programs.
-  pam.sessionVariables = {
+  home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
   };
 

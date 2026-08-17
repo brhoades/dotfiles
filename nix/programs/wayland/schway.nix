@@ -29,7 +29,7 @@ stdenv.mkDerivation rec {
       esac
     done
 
-    REGION=$(slurp)
+    REGION=$(${pkgs.slurp}/bin/slurp)
     if [[ ! -z $DELAY ]]; then
       sleep $DELAY
     fi
@@ -40,11 +40,11 @@ stdenv.mkDerivation rec {
 
       if [[ $CLIPBOARD ]]; then
         cat "$FILENAME" | ${pkgs.wl-clipboard}/bin/wl-copy
-        notify-send "Screenshot to file and copied to clipboard."
+        ${pkgs.libnotify}/bin/notify-send "Screenshot to file and copied to clipboard."
         exit 0
       fi
 
-        notify-send "Screenshot to $FILENAME."
+        ${pkgs.libnotify}/bin/notify-send "Screenshot to $FILENAME."
       exit 0
     fi
 

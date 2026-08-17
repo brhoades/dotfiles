@@ -26,6 +26,15 @@
   home.homeDirectory = "/home/billy";
   home.stateVersion = "26.05";
 
+  # debian instead of nixos
+  targets.genericLinux.enable = true;
+
+  # debian instead of nixos
+  systemd.user.sessionVariables = {
+    PATH = "${config.home.homeDirectory}/.nix-profile/bin:/nix/var/nix/profiles/default/bin:\${PATH}";
+    MOZ_ENABLE_WAYLAND = "1";
+  };
+
   brodes = {
     windowManager = {
       monitors.primary = "DP-3";
