@@ -19,7 +19,9 @@
   user = {
     name = "Billy J Rhoades II";
     email = "billy.rhoades@agilebits.com";
-    signing = { key = "F372D673E3A1FCFA!"; };
+    signing = {
+      key = "F372D673E3A1FCFA!";
+    };
   };
 
   home.username = "billy";
@@ -68,7 +70,7 @@
         };
       };
 
-      lockCmd = "swaylock \"${config.brodes.windowManager.swaylock.background}\" -F -e -c grey --indicator-idle-visible";
+      lockCmd = "swaylock -i \"${config.brodes.windowManager.swaylock.background}\" -F -e -c grey --indicator-idle-visible";
 
       swayidle = {
         enable = true;
@@ -78,7 +80,6 @@
           idle = {
             enable = true;
             timeout = 6000;
-            cmd = "swayidle -f"; # use Debian's, NixOS never accepts pw
           };
           sleep.enable = true;
         };
