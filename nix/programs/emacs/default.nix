@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  inputs,
   ...
 }:
 
@@ -13,8 +12,8 @@
 
   home.packages = with pkgs; [
     # nix-linter # 2023/06/09: marked broken on on 23.05
-    pkgs.inputs.rnix
-    gopls
+    inputs.rnix
+    inputs.latest.gopls
   ];
 
   # emacs needs .emacs.d/{undo,tmp,tansient,elpa,workspace}

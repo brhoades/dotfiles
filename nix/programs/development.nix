@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 let
   isLinux = with pkgs; lib.strings.hasInfix "linux" stdenv.hostPlatform.system;
 in
@@ -14,15 +14,14 @@ in
   home.packages =
     with pkgs;
     [
-      go
-      gotags
-      gotools
-      golint
+      inputs.latest.go
+      inputs.latest.gotags
+      inputs.latest.gotools
+      inputs.latest.golint
       delve
       errcheck
-      go-tools
+      inputs.latest.go-tools
       unconvert
-      gopls
       github-cli
 
       tree
