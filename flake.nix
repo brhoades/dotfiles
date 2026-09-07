@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     latest.url = "github:nixos/nixpkgs/nixos-unstable";
-    bnixpkgs.url = "github:brhoades/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
 
     secrets = {
@@ -32,7 +31,6 @@
       self,
       nixpkgs,
       latest,
-      bnixpkgs,
       secrets,
       homeage,
       firefox-nightly,
@@ -63,10 +61,6 @@
         // {
           inherit inputs;
           latest = import latest {
-            inherit system;
-            config.allowUnfreePredicate = (pkg: true);
-          };
-          bnixpkgs = import bnixpkgs {
             inherit system;
             config.allowUnfreePredicate = (pkg: true);
           };

@@ -153,6 +153,14 @@ in
         ''
         + concatMapStringsSep "\n" (f: ''include "${f}"'') includes;
 
+      extraSessionCommands = let 
+        secretPath = "${config.xdg.configHome}/openweathermap/key";
+      in ''
+        if [[ -f ${secretPath} ]]; then
+          export OPENWEATHERMAP_API_KEY="$(cat ${secretPath})"
+        fi
+      '';
+
       config = {
         inherit fonts;
 
@@ -246,6 +254,7 @@ in
             # "${mod}+Shift+k" = "move down";
             # "${mod}+Shift+l" = "move up";
             # "${mod}+Shift+semicolon" = "move right";
+
             "${mod}+Shift+j" = "move left";
             "${mod}+Shift+k" = "move down";
             "${mod}+Shift+l" = "move up";

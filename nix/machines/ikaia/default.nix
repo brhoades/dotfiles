@@ -46,26 +46,27 @@
         blocks = {
           net = {
             enable = true;
-            device = "enp4s0";
+            device = "enp10s0";
           };
 
           temperature = {
             enable = true;
-            device = "*-pci-00c3";
+            device = "k10temp-pci-00c3";
           };
 
           bluetooth = {
             enable = true;
-            mac = "28:11:A5:35:50:04";
+            mac = "80:C3:BA:4A:0D:4C";
           };
 
           microphone.enable = true;
           notify.enable = false;
 
+          # API key m ust be set in OPENWEATHERMAP_API_KEY
           weather = {
             enable = true;
             autolocate = false;
-            service = ''{ name = "openweathermap", place = "Seattle", api_key = "${config.xdg.configHome}/openweathermap/key", units = "imperial" }'';
+            service = ''{ name = "openweathermap", units = "imperial", zip = "98310" }'';
           };
         };
       };

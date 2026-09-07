@@ -10,7 +10,7 @@
 
     pkg = mkOption {
       type = types.package;
-      default = pkgs.inputs.bnixpkgs.i3status-rust;
+      default = pkgs.i3status-rust;
     };
 
     theme = mkOption {
@@ -20,7 +20,7 @@
 
     icons = mkOption {
       type = types.str;
-      default = "awesome";
+      default = "awesome4";
     };
 
     fonts = mkOption { type = types.attrs; };
@@ -45,12 +45,12 @@
 
         format = mkOption {
           type = types.nullOr types.str;
-          default = "^icon_net_down $speed_down.eng(3,B,K) ^icon_net_up $speed_up.eng(3,B,K) ";
+          default = "^icon_net_down $speed_down.eng(w:3) ^icon_net_up $speed_up.eng(w:3) ";
         };
 
         format_alt = mkOption {
           type = types.nullOr types.str;
-          default = "$ssid $signal_strength $ip ^icon_net_down $speed_down.eng(3,B,K) ^icon_net_up $speed_up.eng(3,B,K)";
+          default = "$ssid $signal_strength $ip ^icon_net_down $speed_down.eng(w:3) ^icon_net_up $speed_up.eng(w:3)";
         };
 
         interval = mkOption {
@@ -133,7 +133,7 @@
 
         format = mkOption {
           type = types.nullOr types.str;
-          default = "$icon $name{$percentage|}";
+          default = "$icon $name  {$percentage|}";
         };
       };
 
@@ -300,7 +300,6 @@
 
           '';
 
-      # only supports dunst, not mako
       weatherBlock =
         if !wthrCfg.enable then
           ""
@@ -309,6 +308,8 @@
             [[block]]
             block = "weather"
             format = "${wthrCfg.format}"
+            autolocate = ${pkgs.lib.boolToString wthrCfg.autolocate}
+            interval = ${toString wthrCfg.interval}
             ${if wthrCfg.service == null then "" else "service = ${wthrCfg.service}"}
 
           '';
@@ -337,7 +338,7 @@
         ${nmBlock}
         [[block]]
         block = "memory"
-        format = "$icon $mem_used.eng(3,B,M) /$mem_total.eng(3,B,M)"
+        format = "$icon $mem_used.eng(w:3) /$mem_total.eng(w:3)"
 
         ${tempBlock}
         [[block]]
@@ -347,7 +348,7 @@
         [[block]]
         block = "load"
         interval = 15
-        format = "$icon $1m.eng(3)"
+        format = "$icon $1m.eng(w:3)"
 
         [[block]]
         block = "sound"
@@ -359,9 +360,11 @@
         ${notifyBlock}
         ${weatherBlock}
         [[block]]
-        block = "time"
         interval = 1
-        format = "%a %m/%d %R"
+        block = "time"
+        [block.format]
+        full = " $icon $timestamp.datetime(f:'%a %Y-%m-%d %R') "
+        short = " $icon $timestamp.datetime(f:%R) "
 
       '';
     in

@@ -1,20 +1,5 @@
 {
   "nodes": {
-    "bnixpkgs": {
-      "locked": {
-        "lastModified": 1669566586,
-        "narHash": "sha256-28UuiXByhm7sXJyu9uQYNWBpUFBMaeNAKyR1JN+pcdo=",
-        "owner": "brhoades",
-        "repo": "nixpkgs",
-        "rev": "88aa93c520e124e40c4e9a3b7306f2ba542ff636",
-        "type": "github"
-      },
-      "original": {
-        "owner": "brhoades",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "cachix": {
       "locked": {
         "lastModified": 1635350005,
@@ -303,7 +288,6 @@
     },
     "root": {
       "inputs": {
-        "bnixpkgs": "bnixpkgs",
         "firefox-nightly": "firefox-nightly",
         "flake-utils": "flake-utils_2",
         "home-manager": "home-manager",
