@@ -135,6 +135,11 @@
           type = types.nullOr types.str;
           default = "$icon $name  {$percentage|}";
         };
+
+        disconnectedFormat = mkOption {
+          type = types.nullOr types.str;
+          default = "";
+        };
       };
 
       notify.enable = mkEnableOption "Enable the notify block";
@@ -248,6 +253,7 @@
             block = "bluetooth"
             mac = "${btCfg.mac}"
             format = "${btCfg.format}"
+            disconnected_format = "${btCfg.disconnectedFormat}"
 
           '';
 
