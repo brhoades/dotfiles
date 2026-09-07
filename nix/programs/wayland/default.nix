@@ -48,10 +48,6 @@ in
     lm_sensors # i3-status-rust queries for temps
   ];
 
-  home.sessionVariables = {
-    MOZ_ENABLE_WAYLAND = "1";
-  };
-
   wayland.windowManager.sway =
     let
       # We use variables to avoid repeating the names in multiple places.
@@ -150,6 +146,10 @@ in
           # thunderbird reminders
           for_window [title="^[0-9]+ Reminders?$" app_id="thunderbird"] toggle floating
 
+          input "type:keyboard" {
+            xkb_layout "us"
+            xkb_variant "altgr-intl"
+          }
         ''
         + concatMapStringsSep "\n" (f: ''include "${f}"'') includes;
 
