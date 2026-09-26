@@ -111,7 +111,6 @@
     inputs.latest.google-chrome
     inputs.latest.thunderbird
 
-    inputs.latest.lmstudio
     _1password-gui
     _1password-cli
 
