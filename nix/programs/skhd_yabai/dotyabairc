@@ -12,6 +12,12 @@ sudo yabai --load-sa
 yabai -m rule --add app="Emacs" manage=on # stop most emacs windows from floating
 yabai -m rule --add app="Emacs" subrole="AXFloatingWindow" manage=off # but allow popups to float
 
+yabai -m rule --add app="CLIP STUDIO PAINT" manage=off 
+
+
+yabai -m rule --add subrole="AXDialog" manage=off 
+yabai -m rule --add subrole="AXFloatingWindow" manage=off 
+
 # global settings
 yabai -m config                                 \
     mouse_follows_focus          off            \
