@@ -92,7 +92,7 @@
     ddcutil
     ddccontrol
     bottom
-    pkgs.inputs.latest.virt-manager
+    virt-manager
     peek
     mumble
     libreoffice
@@ -114,6 +114,8 @@
     inputs.latest.lmstudio
     _1password-gui
     _1password-cli
+
+    inputs.latest.bottles
   ];
 
   # 2023/04/17
