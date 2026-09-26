@@ -3,6 +3,7 @@
     ../../programs/development.nix
     ../../programs/kitty.nix
     ../../programs
+    ../../programs/bup.nix
     ../../programs/zsh
     ../../programs/tmux.nix
     ../../programs/pazi.nix
