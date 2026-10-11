@@ -111,9 +111,6 @@
     inputs.latest.google-chrome
     inputs.latest.thunderbird
 
-    _1password-gui
-    _1password-cli
-
     inputs.latest.bottles
   ];
 
