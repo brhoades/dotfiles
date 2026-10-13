@@ -29,7 +29,6 @@ in
 
       yq
       jq
-      tmate
       python3
 
       kubectl
