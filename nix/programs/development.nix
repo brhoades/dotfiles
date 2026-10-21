@@ -14,13 +14,9 @@ in
   home.packages =
     with pkgs;
     [
-      inputs.latest.go
-      inputs.latest.gotags
-      inputs.latest.gotools
-      inputs.latest.golint
+      inputs.nixos-master.go
       delve
       errcheck
-      inputs.latest.go-tools
       unconvert
       github-cli
 
@@ -39,10 +35,6 @@ in
       pkgs.inputs.latest.claude-code
     ]
     ++ (if isLinux then [ gdb ] else [ ]);
-
-  home.sessionVariables = {
-    GOROOT = "${pkgs.go.out}/share/go";
-  };
 
   programs.vscode = {
     enable = true;
