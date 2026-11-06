@@ -35,9 +35,4 @@ in
       pkgs.inputs.latest.claude-code
     ]
     ++ (if isLinux then [ gdb ] else [ ]);
-
-  programs.vscode = {
-    enable = true;
-    profiles.default.enableExtensionUpdateCheck = true;
-  };
 }
