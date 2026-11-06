@@ -66,6 +66,11 @@ in
         ./config.d/zoom
         ./config.d/runelite
       ];
+      midTopScale = 1.1;
+      # adjust x/y by scale, converting them into a string.
+      waylandScale =
+        x: y: scale:
+        "${toString (floor (x / scale))} ${toString (floor (y / scale))}";
     in
     {
       enable = true;
@@ -92,23 +97,24 @@ in
 
           output ${topMon} mode 2560x1440@75Hz
           output ${topMon} pos 0 0
-          output ${topMon} scale 1
+          output ${topMon} scale ${lib.strings.floatToString midTopScale}
           output ${topMon} transform 0
 
           # center
           output ${mainMon} mode 2560x1440@75Hz
-          output ${mainMon} pos 0 1440
+          output ${mainMon} pos ${waylandScale 0 1440 midTopScale}
           output ${mainMon} transform 0
-          output ${mainMon} scale 1
+          output ${mainMon} scale ${lib.strings.floatToString midTopScale}
 
           # right
           output ${rightMon} mode 3840x2160@59.997002Hz
-          output ${rightMon} pos 2560 1440
+          output ${rightMon} pos ${waylandScale 2560 1440 midTopScale}
           output ${rightMon} transform 0
           output ${rightMon} scale 1.25
 
           # laptop
           output ${laptopMon} pos 0 0
+          output ${rightMon} scale 1.4
 
           # default background, rotated in cron (some day)
           # output "*" background "$''${
@@ -153,13 +159,15 @@ in
         ''
         + concatMapStringsSep "\n" (f: ''include "${f}"'') includes;
 
-      extraSessionCommands = let 
-        secretPath = "${config.xdg.configHome}/openweathermap/key";
-      in ''
-        if [[ -f ${secretPath} ]]; then
-          export OPENWEATHERMAP_API_KEY="$(cat ${secretPath})"
-        fi
-      '';
+      extraSessionCommands =
+        let
+          secretPath = "${config.xdg.configHome}/openweathermap/key";
+        in
+        ''
+          if [[ -f ${secretPath} ]]; then
+            export OPENWEATHERMAP_API_KEY="$(cat ${secretPath})"
+          fi
+        '';
 
       config = {
         inherit fonts;
