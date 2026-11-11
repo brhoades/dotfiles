@@ -10,7 +10,6 @@ in
     ./fzf.nix
   ];
 
-  # if go would be nice
   home.packages =
     with pkgs;
     [

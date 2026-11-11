@@ -13,7 +13,7 @@
   home.packages = with pkgs; [
     # nix-linter # 2023/06/09: marked broken on on 23.05
     inputs.rnix
-    inputs.latest.gopls
+    inputs.nixos-master.gopls
   ];
 
   # emacs needs .emacs.d/{undo,tmp,tansient,elpa,workspace}
